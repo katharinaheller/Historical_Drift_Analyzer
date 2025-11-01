@@ -1,0 +1,32 @@
+[project]
+name = "historical-drift-analyzer"
+version = "0.1.0"
+description = "Modular RAG-LLM pipeline"
+authors = [
+    {name = "Katharina Heller",email = "katharinaheller1@gmx.de"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "pymupdf (>=1.26.5,<2.0.0)",
+    "tqdm (>=4.67.1,<5.0.0)",
+    "requests (>=2.32.5,<3.0.0)",
+    "pyyaml (==6.0.2)",
+    "lxml (>=6.0.2,<7.0.0)",
+    "langdetect (>=1.0.9,<2.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=8.4.2,<9.0.0)",
+    "black (>=25.9.0,<26.0.0)",
+    "mypy (>=1.18.2,<2.0.0)",
+    "ruff (>=0.14.3,<0.15.0)"
+]
+

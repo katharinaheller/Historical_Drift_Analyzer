@@ -1,0 +1,49 @@
+# Historical Drift Analyzer – Ingestion Configuration
+# Controls PDF parsing, language detection, metadata extraction, and chunking strategies.
+
+global:
+  # Define project root for variable expansion (${base_dir})
+  # This value is automatically resolved by ConfigLoader.
+  # You can also set an absolute path here if desired.
+  base_dir: "${PROJECT_ROOT}"
+
+paths:
+  raw_pdfs: "${base_dir}/data/raw_pdfs"           # directory containing input PDFs
+  parsed: "${base_dir}/data/processed/parsed"     # output directory for parsed JSONs
+  metadata: "${base_dir}/data/processed/metadata" # output directory for extracted metadata
+
+options:
+  # --- Parsing and language setup -------------------------------------
+  language: "auto"        # detect automatically ("en" or "de" also supported)
+  pdf_parser: "auto"      # "fitz" = PyMuPDF, "auto" = choose best local parser
+
+  # --- Parallel processing --------------------------------------------
+  # Number of concurrent PDF parser processes, or "auto" for CPU-based detection
+  parallelism: "auto"
+
+  # --- Metadata extraction --------------------------------------------
+  # List of metadata fields to extract per document
+  # Available: title, authors, year, abstract, detected_language, file_size, toc
+  metadata_fields:
+    - title
+    - authors
+    - year
+    - abstract
+    - detected_language
+    - file_size
+    - toc
+
+  # --- Chunking configuration (reserved for later phases) -------------
+  chunking:
+    mode: "adaptive"                    # "adaptive" chooses optimal chunk sizes automatically
+    chunk_size: 2000                    # used only if mode = "static"
+    overlap: 200                        # overlap size in tokens
+    enable_overlap: true                # enable overlapping chunks
+    sentence_boundary_detection: true   # prefer splitting at sentence boundaries
+    merge_short_chunks: true            # merge very short chunks to preserve context
+    min_chunk_length: 400               # discard chunks shorter than this threshold (tokens)
+
+  # --- Reproducibility and logging ------------------------------------
+  save_intermediate: true               # save intermediate JSONs for debugging
+  log_level: "INFO"                     # log verbosity level
+  deterministic_mode: true              # enforce reproducible output across runs
