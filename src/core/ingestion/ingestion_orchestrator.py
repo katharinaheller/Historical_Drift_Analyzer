@@ -8,6 +8,7 @@ from src.core.ingestion.config_loader import ConfigLoader
 from src.core.ingestion.utils.file_utils import ensure_dir
 from src.core.ingestion.parser.parser_factory import ParserFactory
 from src.core.ingestion.metadata.metadata_extractor_factory import MetadataExtractorFactory
+from src.core.ingestion.cleaner.rag_text_cleaner import RagTextCleaner
 
 
 def main():
@@ -27,14 +28,17 @@ def main():
     # ------------------------------------------------------------------
     factory = ParserFactory(cfg, logger=logger)
     metadata_factory = MetadataExtractorFactory.from_config(cfg)
+    cleaner = RagTextCleaner.default()  # deterministic multi-stage cleaner
 
     active_metadata_fields = opts.get("metadata_fields", [])
     parallelism = opts.get("parallelism", "auto")
 
     raw_dir = Path(cfg["paths"]["raw_pdfs"]).resolve()
     parsed_dir = Path(cfg["paths"]["parsed"]).resolve()
+    cleaned_dir = Path(cfg["paths"].get("cleaned", "data/processed/cleaned")).resolve()
     metadata_dir = Path(cfg["paths"]["metadata"]).resolve()
     ensure_dir(parsed_dir)
+    ensure_dir(cleaned_dir)
     ensure_dir(metadata_dir)
 
     pdf_files = sorted(raw_dir.glob("*.pdf"))
@@ -57,19 +61,33 @@ def main():
             logger.info("Running ingestion in parallel mode ...")
             results = parallel_parser.parse_all(raw_dir, parsed_dir)
 
-            # --- Extract metadata directly from PDFs ---
             for res in results:
+                # --- STEP 1: Clean text deterministically ---
+                if "text" in res:
+                    res["text"] = cleaner.clean(res["text"])
+
+                # --- STEP 2: Extract and filter metadata ---
                 pdf_name = Path(res["metadata"]["source_file"]).stem
                 pdf_path = raw_dir / f"{pdf_name}.pdf"
-
                 all_meta = metadata_factory.extract_all(str(pdf_path))
                 filtered_meta = {
-                    k: v for k, v in all_meta.items() if not active_metadata_fields or k in active_metadata_fields
+                    k: v for k, v in all_meta.items()
+                    if not active_metadata_fields or k in active_metadata_fields
                 }
+                res["metadata"].update(filtered_meta)
+
+                # --- STEP 3: Save outputs ---
+                parsed_path = parsed_dir / f"{pdf_name}.parsed.json"
+                with open(parsed_path, "w", encoding="utf-8") as f:
+                    json.dump(res, f, ensure_ascii=False, indent=2)
+
+                cleaned_path = cleaned_dir / f"{pdf_name}.cleaned.json"
+                with open(cleaned_path, "w", encoding="utf-8") as f:
+                    json.dump(res, f, ensure_ascii=False, indent=2)
 
                 meta_path = metadata_dir / f"{pdf_name}.metadata.json"
                 with open(meta_path, "w", encoding="utf-8") as f:
-                    json.dump(filtered_meta, f, ensure_ascii=False, indent=2)
+                    json.dump(res["metadata"], f, ensure_ascii=False, indent=2)
 
             logger.info(f"Parallel ingestion completed ({len(results)} file(s)).")
             return
@@ -86,9 +104,13 @@ def main():
         try:
             # ---- STEP 1: Parse text ----
             parsed_result = parser.parse(str(pdf))
-            base_metadata = parsed_result.get("metadata", {})
 
-            # ---- STEP 2: Extract additional metadata (fully handled by metadata module) ----
+            # ---- STEP 2: Clean text ----
+            if "text" in parsed_result:
+                parsed_result["text"] = cleaner.clean(parsed_result["text"])
+
+            # ---- STEP 3: Extract metadata (metadata module handles it fully) ----
+            base_metadata = parsed_result.get("metadata", {})
             all_metadata = metadata_factory.extract_all(str(pdf))
             if active_metadata_fields:
                 all_metadata = {
@@ -97,9 +119,13 @@ def main():
             base_metadata.update(all_metadata)
             parsed_result["metadata"] = base_metadata
 
-            # ---- STEP 3: Save outputs ----
+            # ---- STEP 4: Save outputs ----
             parsed_path = parsed_dir / f"{pdf.stem}.parsed.json"
             with open(parsed_path, "w", encoding="utf-8") as f:
+                json.dump(parsed_result, f, ensure_ascii=False, indent=2)
+
+            cleaned_path = cleaned_dir / f"{pdf.stem}.cleaned.json"
+            with open(cleaned_path, "w", encoding="utf-8") as f:
                 json.dump(parsed_result, f, ensure_ascii=False, indent=2)
 
             meta_path = metadata_dir / f"{pdf.stem}.metadata.json"
