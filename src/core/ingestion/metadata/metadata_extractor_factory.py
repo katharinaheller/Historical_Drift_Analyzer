@@ -1,3 +1,4 @@
+# C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\metadata_extractor_factory.py
 from __future__ import annotations
 from typing import Any, Dict, List
 import importlib
@@ -41,6 +42,7 @@ class MetadataExtractorFactory:
             "detected_language": "language_detector",
             "file_size": "file_size_extractor",
             "toc": "toc_extractor",
+            "page_number": "page_number_extractor",  # Added page number extractor
         }
 
         for field in self.active_fields:
