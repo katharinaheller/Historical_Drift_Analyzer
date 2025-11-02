@@ -2,75 +2,26 @@
 # Central control instance for modular RAG pipeline components
 
 global:
-  project_name: "Historical Drift Analyzer"  # project identifier
-  base_dir: "C:/Users/katha/historical-drift-analyzer"  # absolute base path
-  cache_dir: "${base_dir}/data/cache"  # cache for intermediate data
-  log_level: "INFO"  # default verbosity level
+  project_name: "Historical Drift Analyzer"
+  base_dir: "C:/Users/katha/historical-drift-analyzer"
+  log_level: "INFO"
 
-# Ingestion phase configuration
-ingestion:
-  paths:
-    raw_pdfs: "${base_dir}/data/raw_pdfs"  # input PDF directory
-    parsed: "${base_dir}/data/processed/parsed"  # extracted text output
-    metadata: "${base_dir}/data/processed/metadata"  # extracted metadata output
-  options:
-    enable_ocr: false  # local OCR fallback (pytesseract)
-    text_extractor: "PyMuPDF"  # local-only text parser
-    metadata_strategy: "Heuristic"  # extract author/year/title heuristically
-    chunk_size: 2000  # token-based chunk length
-    overlap: 200  # token overlap size
-
-# Indexing phase configuration
-indexing:
-  paths:
-    embeddings_dir: "${base_dir}/data/embeddings"  # precomputed embeddings
-    vector_index_dir: "${base_dir}/data/vectorstores/faiss"  # vector index storage
-  options:
-    vector_store: "FAISS"  # supported: FAISS, LanceDB, SQLite
-    embedding_model: "all-MiniLM-L6-v2"  # local embedding model
-    dimension: 384  # embedding vector dimension
-    normalize_embeddings: true  # unit-norm embeddings
-
-# Retrieval phase configuration
-retrieval:
-  retriever:
-    type: "similarity"  # available: similarity, bm25, hybrid
-    top_k: 5  # number of retrieved chunks
-    reranker_model: null  # optional reranker model (local)
-  query_processor:
-    tokenizer: "basic"  # basic tokenizer for query normalization
-    stopwords: "nltk"  # stopword list source
-    normalize_case: true  # lowercase normalization
-
-# Generation phase configuration
-generation:
-  llm:
-    provider: "ollama"  # local model runtime
-    model: "mistral:7b-instruct"  # Ollama model tag
-    temperature: 0.2  # output randomness
-    max_tokens: 1024  # generation length
-  prompt_template:
-    system_prompt: |
-      You are an analytical assistant designed to perform historical drift analysis.
-      Always cite the document and page origin of retrieved evidence.
-    user_prompt_format: |
-      Analyze the semantic evolution of the term: "{term}" across time.
-      Provide key excerpts and synthesis from retrieved documents.
-
-# Evaluation phase configuration
-evaluation:
-  metrics:
-    - "precision"  # retrieval relevance accuracy
-    - "recall"  # retrieval completeness
-    - "semantic_drift_score"  # longitudinal semantic change metric
-  output_dir: "${base_dir}/data/evaluation"  # evaluation results
-  enable_trace_logging: true  # enable evaluation trace outputs
-
-# Runtime and environment configuration
 runtime:
   hardware:
-    gpu_enabled: true  # enable CUDA if available
-    max_threads: 8  # CPU thread limit
+    gpu_enabled: true
+    max_threads: 8
   environment:
-    offline_mode: true  # disallow network access
-    deterministic_mode: true  # identical results across runs
+    offline_mode: true
+    deterministic_mode: true
+
+# Default phase configuration placeholders
+ingestion:
+  paths:
+    raw_pdfs: "${base_dir}/data/raw_pdfs"
+    parsed: "${base_dir}/data/processed/parsed"
+    metadata: "${base_dir}/data/processed/metadata"
+
+indexing:
+  paths:
+    embeddings_dir: "${base_dir}/data/embeddings"
+    vector_index_dir: "${base_dir}/data/vectorstores/faiss"

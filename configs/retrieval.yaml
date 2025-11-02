@@ -1,0 +1,20 @@
+global:
+  base_dir: "${PROJECT_ROOT}"
+
+paths:
+  vector_store_dir: "${base_dir}/data/vector_store"   # where index.faiss + metadata.jsonl reside
+
+options:
+  embedding_model: "all-MiniLM-L6-v2"                 # must match embedding phase
+  top_k: 5                                            # number of retrieved chunks
+  similarity_metric: "cosine"                         # or "dot"
+  normalize_embeddings: true                          # ensure query normalization
+  log_level: "INFO"
+
+retriever:
+  backend: "FAISS"                                    # FAISS or LanceDB later
+  use_gpu: false                                      # CPU-based search for now
+
+output:
+  show_metadata: true                                 # print metadata in console
+  max_snippet_length: 300                             # truncate text previews

@@ -27,17 +27,16 @@ def _extract_chunks(chunk_data: Dict[str, Any]) -> List[Dict[str, Any]]:
         return chunk_data["chunks"]
     elif "text" in chunk_data:
         return [{"text": chunk_data["text"]}]
-    else:
-        return []
+    return []
 
 
 def _resolve_metadata_for_chunk(chunk_file: Path, metadata_dir: Path) -> Dict[str, Any]:
     """Try to locate matching metadata JSON for a given chunk file."""
     base = chunk_file.stem.replace(".chunks", "")
     candidates = [
-        metadata_dir / f"{chunk_file.name}",          # exact match (rare)
-        metadata_dir / f"{base}.json",               # e.g. 0712.3329v1.json
-        metadata_dir / f"{base}.metadata.json",      # e.g. 0712.3329v1.metadata.json
+        metadata_dir / f"{chunk_file.name}",
+        metadata_dir / f"{base}.json",
+        metadata_dir / f"{base}.metadata.json",
     ]
     for candidate in candidates:
         if candidate.exists():
@@ -47,7 +46,11 @@ def _resolve_metadata_for_chunk(chunk_file: Path, metadata_dir: Path) -> Dict[st
 
 
 def main() -> None:
-    cfg = ConfigLoader("configs/embedding.yaml").config
+    # ------------------------------------------------------------------
+    # 1. Load merged configuration (embedding + master)
+    # ------------------------------------------------------------------
+    cfg_loader = ConfigLoader("configs/embedding.yaml", master_path="configs/config.yaml")
+    cfg = cfg_loader.config
 
     opts: Dict[str, Any] = cfg.get("options", {})
     log_level = getattr(logging, opts.get("log_level", "INFO").upper(), logging.INFO)
@@ -63,6 +66,9 @@ def main() -> None:
     if not metadata_dir.exists():
         logger.warning(f"Metadata directory does not exist: {metadata_dir} (metadata will be empty)")
 
+    # ------------------------------------------------------------------
+    # 2. Initialize embedding backend + vector store
+    # ------------------------------------------------------------------
     embedder = EmbedderFactory.from_config(cfg)
     logger.info(f"Initialized embedder with dimension={embedder.dimension}")
 
@@ -81,7 +87,6 @@ def main() -> None:
                 logger.warning(f"No chunks found in {chunk_file.name}")
                 continue
 
-            # --- new robust metadata matching ---
             meta_data = _resolve_metadata_for_chunk(chunk_file, metadata_dir)
 
             for ch in chunks:
@@ -89,7 +94,7 @@ def main() -> None:
                 if not text:
                     continue
 
-                merged_meta: Dict[str, Any] = {
+                merged_meta = {
                     "source_file": meta_data.get("source_file", chunk_file.stem),
                     "title": meta_data.get("title"),
                     "authors": meta_data.get("authors"),
@@ -114,12 +119,9 @@ def main() -> None:
                         metas_batch.clear()
 
         if texts_batch:
-            try:
-                vectors = embedder.embed_batch(texts_batch, batch_size=batch_size)
-                vector_store.add_vectors(vectors, texts_batch, metas_batch)
-                logger.info(f"Embedded and stored final batch of size {len(texts_batch)}")
-            except Exception as e:
-                logger.error(f"Error during final embedding or storing batch: {e}")
+            vectors = embedder.embed_batch(texts_batch, batch_size=batch_size)
+            vector_store.add_vectors(vectors, texts_batch, metas_batch)
+            logger.info(f"Embedded and stored final batch of size {len(texts_batch)}")
 
         vector_store.persist()
         logger.info("Embedding pipeline finished successfully.")

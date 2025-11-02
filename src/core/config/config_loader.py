@@ -1,5 +1,4 @@
 from __future__ import annotations
-import os
 import yaml
 from pathlib import Path
 from typing import Any, Dict
@@ -8,64 +7,66 @@ from typing import Any, Dict
 class ConfigLoader:
     """
     Universal YAML configuration loader for all pipeline phases.
-    Expands ${PROJECT_ROOT}, ${BASE_DIR}, ${base_dir}, etc.
-    and gracefully handles missing domain-specific sections.
+    - Supports ${PROJECT_ROOT} / ${base_dir} placeholders
+    - Can inherit from a master config (for global settings)
+    - Provides safe defaults for missing sections
     """
 
-    def __init__(self, path: str):
+    def __init__(self, path: str, master_path: str | None = "configs/config.yaml"):
         self.path = Path(path)
         if not self.path.exists():
             raise FileNotFoundError(f"Configuration file not found: {self.path}")
 
-        # Load YAML file
+        # Load phase-specific YAML (e.g. ingestion.yaml)
         with open(self.path, "r", encoding="utf-8") as f:
-            self._raw = yaml.safe_load(f) or {}
+            phase_cfg = yaml.safe_load(f) or {}
 
-        if not isinstance(self._raw, dict):
-            raise ValueError("Configuration file must contain a top-level mapping")
+        # Load master config if available
+        master_cfg: Dict[str, Any] = {}
+        if master_path:
+            master_file = Path(master_path)
+            if master_file.exists():
+                with open(master_file, "r", encoding="utf-8") as f:
+                    master_cfg = yaml.safe_load(f) or {}
 
-        # Detect project root (the directory above 'configs')
+        # Merge configurations (phase overrides master)
+        self._raw = self._merge_dicts(master_cfg, phase_cfg)
+
+        # Detect project root
         self.project_root = self._detect_project_root()
 
-        # Determine base_dir, defaulting to project root
-        global_section = self._raw.get("global", {})
-        base_dir_value = global_section.get("base_dir", "${PROJECT_ROOT}")
-        self.base_dir = self._expand_single_var(base_dir_value)
-
-        # Expand placeholders recursively in all sections
+        # Resolve all placeholders like ${base_dir}
         self.config = self._expand_vars(self._raw)
 
-        # ------------------------------------------------------------------
-        # Graceful handling for domain-specific sections (e.g. chunking)
-        # Instead of raising errors, provide safe defaults.
-        # ------------------------------------------------------------------
-        if "chunking" not in self.config:
-            self.config["chunking"] = {}
-
-        if "options" not in self.config:
-            self.config["options"] = {}
-
-        if "paths" not in self.config:
-            self.config["paths"] = {}
-
-        # Expand again after adding defaults
-        self.config = self._expand_vars(self.config)
+        # Ensure minimal safe defaults
+        for section in ["paths", "options", "chunking"]:
+            self.config.setdefault(section, {})
 
     # ------------------------------------------------------------------
     def _detect_project_root(self) -> Path:
-        """Return the root directory of the project (one level above configs)."""
+        """Infer project root (the directory above 'configs')."""
         p = self.path.resolve()
         if "configs" in p.parts:
             idx = p.parts.index("configs")
             return Path(*p.parts[:idx])
-        # fallback: use parent directory
         return p.parent
 
     # ------------------------------------------------------------------
+    def _merge_dicts(self, base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
+        """Recursively merge dicts, with override taking precedence."""
+        merged = base.copy()
+        for k, v in override.items():
+            if isinstance(v, dict) and k in merged and isinstance(merged[k], dict):
+                merged[k] = self._merge_dicts(merged[k], v)
+            else:
+                merged[k] = v
+        return merged
+
+    # ------------------------------------------------------------------
     def _expand_single_var(self, value: Any) -> Any:
-        """Replace placeholders only when ${...} is explicitly present."""
+        """Replace placeholders only when explicitly present."""
         if not isinstance(value, str) or "${" not in value:
-            return value  # unchanged non-string or no placeholder
+            return value
 
         replacements = {
             "${PROJECT_ROOT}": str(self.project_root),
@@ -73,14 +74,13 @@ class ConfigLoader:
             "${BASE_DIR}": str(self.project_root),
             "${base_dir}": str(self.project_root),
         }
-
-        for placeholder, real in replacements.items():
-            value = value.replace(placeholder, real)
+        for ph, real in replacements.items():
+            value = value.replace(ph, real)
         return str(Path(value).resolve())
 
     # ------------------------------------------------------------------
     def _expand_vars(self, data: Any) -> Any:
-        """Recursively expand placeholders in nested dicts/lists."""
+        """Recursively expand placeholders in nested structures."""
         if isinstance(data, dict):
             return {k: self._expand_vars(v) for k, v in data.items()}
         elif isinstance(data, list):
@@ -92,7 +92,7 @@ class ConfigLoader:
 
     # ------------------------------------------------------------------
     def get(self, key: str, default: Any = None) -> Any:
-        """Access top-level config sections safely."""
+        """Safely access top-level config sections."""
         return self.config.get(key, default)
 
     # ------------------------------------------------------------------
@@ -103,6 +103,6 @@ class ConfigLoader:
 
 
 # ----------------------------------------------------------------------
-def load_config(path: str) -> Dict[str, Any]:
-    """Convenience function returning a parsed, expanded config dictionary."""
-    return ConfigLoader(path).config
+def load_config(path: str, master_path: str | None = "configs/config.yaml") -> Dict[str, Any]:
+    """Convenience function: directly load and expand a config dictionary."""
+    return ConfigLoader(path, master_path).config
