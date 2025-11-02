@@ -9,14 +9,16 @@ from src.core.ingestion.utils.file_utils import ensure_dir
 from src.core.ingestion.parser.parser_factory import ParserFactory
 from src.core.ingestion.metadata.metadata_extractor_factory import MetadataExtractorFactory
 from src.core.ingestion.cleaner.rag_text_cleaner import RagTextCleaner
+from src.core.ingestion.chunking.chunking_orchestrator import ChunkingOrchestrator
 
 
 def main():
     # ------------------------------------------------------------------
     # 1. Load configuration
     # ------------------------------------------------------------------
-    cfg = ConfigLoader("configs/ingestion.yaml").config
-    opts: Dict[str, Any] = cfg.get("options", {})
+    cfg = ConfigLoader("configs/ingestion.yaml")  # Load YAML configuration
+
+    opts: Dict[str, Any] = cfg.config.get("options", {})  # Access options
     log_level = getattr(logging, opts.get("log_level", "INFO").upper(), logging.INFO)
 
     logging.basicConfig(level=log_level, format="%(levelname)s | %(message)s")
@@ -26,22 +28,27 @@ def main():
     # ------------------------------------------------------------------
     # 2. Initialize components
     # ------------------------------------------------------------------
-    factory = ParserFactory(cfg, logger=logger)
-    metadata_factory = MetadataExtractorFactory.from_config(cfg)
-    cleaner = RagTextCleaner.default()  # deterministic multi-stage cleaner
+    factory = ParserFactory(cfg.config, logger=logger)  # Pass full configuration to ParserFactory
+    metadata_factory = MetadataExtractorFactory.from_config(cfg.config)
+    cleaner = RagTextCleaner.default()  # Deterministic multi-stage cleaner
+
+    # Initialize the ChunkingOrchestrator with YAML config
+    chunking_orchestrator = ChunkingOrchestrator(config=cfg.config)  # Pass configuration to ChunkingOrchestrator
 
     active_metadata_fields = opts.get("metadata_fields", [])
     parallelism = opts.get("parallelism", "auto")
 
-    raw_dir = Path(cfg["paths"]["raw_pdfs"]).resolve()
-    parsed_dir = Path(cfg["paths"]["parsed"]).resolve()
-    cleaned_dir = Path(cfg["paths"].get("cleaned", "data/processed/cleaned")).resolve()
-    metadata_dir = Path(cfg["paths"]["metadata"]).resolve()
+    raw_dir = Path(cfg.config["paths"]["raw_pdfs"]).resolve()  # Resolve paths from configuration
+    parsed_dir = Path(cfg.config["paths"]["parsed"]).resolve()
+    cleaned_dir = Path(cfg.config["paths"].get("cleaned", "data/processed/cleaned")).resolve()
+    metadata_dir = Path(cfg.config["paths"]["metadata"]).resolve()
+    chunks_dir = Path(cfg.config["paths"].get("chunks", "data/processed/chunks")).resolve()  # Define new chunks directory
     ensure_dir(parsed_dir)
     ensure_dir(cleaned_dir)
     ensure_dir(metadata_dir)
+    ensure_dir(chunks_dir)  # Ensure the chunks directory exists
 
-    pdf_files = sorted(raw_dir.glob("*.pdf"))
+    pdf_files = sorted(raw_dir.glob("*.pdf"))  # Look for PDFs in the directory
     if not pdf_files:
         logger.warning(f"No PDF files found in {raw_dir}")
         return
@@ -66,7 +73,12 @@ def main():
                 if "text" in res:
                     res["text"] = cleaner.clean(res["text"])
 
-                # --- STEP 2: Extract and filter metadata ---
+                # --- STEP 2: Chunking ---
+                if "text" in res:
+                    chunked_data = chunking_orchestrator.process(res["text"], metadata=res["metadata"])
+                    res["chunks"] = chunked_data  # Add chunks to the result
+
+                # --- STEP 3: Extract and filter metadata ---
                 pdf_name = Path(res["metadata"]["source_file"]).stem
                 pdf_path = raw_dir / f"{pdf_name}.pdf"
                 all_meta = metadata_factory.extract_all(str(pdf_path))
@@ -76,22 +88,30 @@ def main():
                 }
                 res["metadata"].update(filtered_meta)
 
-                # --- STEP 3: Save outputs ---
+                # --- STEP 4: Save outputs ---
                 # Save raw parsed output (only text)
                 parsed_path = parsed_dir / f"{pdf_name}.parsed.json"
                 with open(parsed_path, "w", encoding="utf-8") as f:
                     json.dump({"text": res["text"]}, f, ensure_ascii=False, indent=2)
 
-                # Save cleaned text only
-                cleaned_path = cleaned_dir / f"{pdf_name}.cleaned.txt"
+                # Save cleaned text only as JSON (without hash and length)
+                cleaned_path = cleaned_dir / f"{pdf_name}.cleaned.json"
                 if "text" in res:
+                    cleaned_data = {
+                        "cleaned_text": res["text"],
+                    }
                     with open(cleaned_path, "w", encoding="utf-8") as f:
-                        f.write(res["text"])
+                        json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
                 # Save metadata separately
                 meta_path = metadata_dir / f"{pdf_name}.metadata.json"
                 with open(meta_path, "w", encoding="utf-8") as f:
                     json.dump(res["metadata"], f, ensure_ascii=False, indent=2)
+
+                # Save chunked data in the 'chunks' directory as JSON
+                chunked_path = chunks_dir / f"{pdf_name}.chunks.json"  # Updated to save in the 'chunks' directory
+                with open(chunked_path, "w", encoding="utf-8") as f:
+                    json.dump({"chunks": res["chunks"]}, f, ensure_ascii=False, indent=2)
 
             logger.info(f"Parallel ingestion completed ({len(results)} file(s)).")
             return
@@ -113,7 +133,12 @@ def main():
             if "text" in parsed_result:
                 parsed_result["text"] = cleaner.clean(parsed_result["text"])
 
-            # ---- STEP 3: Extract metadata (metadata module handles it fully) ----
+            # ---- STEP 3: Chunking ----
+            if "text" in parsed_result:
+                chunked_data = chunking_orchestrator.process(parsed_result["text"], metadata=parsed_result.get("metadata", {}))
+                parsed_result["chunks"] = chunked_data  # Add chunks to the result
+
+            # ---- STEP 4: Extract metadata (metadata module handles it fully) ----
             base_metadata = parsed_result.get("metadata", {})
             all_metadata = metadata_factory.extract_all(str(pdf))
             if active_metadata_fields:
@@ -123,21 +148,29 @@ def main():
             base_metadata.update(all_metadata)
             parsed_result["metadata"] = base_metadata
 
-            # ---- STEP 4: Save outputs ----
+            # ---- STEP 5: Save outputs ----
             # Save raw parsed output (only text)
             parsed_path = parsed_dir / f"{pdf.stem}.parsed.json"
             with open(parsed_path, "w", encoding="utf-8") as f:
                 json.dump({"text": parsed_result["text"]}, f, ensure_ascii=False, indent=2)
 
-            # Save cleaned text only
-            cleaned_path = cleaned_dir / f"{pdf.stem}.cleaned.txt"
+            # Save cleaned text as JSON (without hash and length)
+            cleaned_path = cleaned_dir / f"{pdf.stem}.cleaned.json"
+            cleaned_data = {
+                "cleaned_text": parsed_result["text"],
+            }
             with open(cleaned_path, "w", encoding="utf-8") as f:
-                f.write(parsed_result["text"])
+                json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
             # Save metadata separately
             meta_path = metadata_dir / f"{pdf.stem}.metadata.json"
             with open(meta_path, "w", encoding="utf-8") as f:
                 json.dump(base_metadata, f, ensure_ascii=False, indent=2)
+
+            # Save chunked data in the 'chunks' directory as JSON
+            chunked_path = chunks_dir / f"{pdf.stem}.chunks.json"  # Updated to save in the 'chunks' directory
+            with open(chunked_path, "w", encoding="utf-8") as f:
+                json.dump({"chunks": parsed_result["chunks"]}, f, ensure_ascii=False, indent=2)
 
             logger.info(f"Completed {pdf.name}")
 

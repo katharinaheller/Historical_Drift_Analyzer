@@ -5,6 +5,26 @@ from src.core.ingestion.cleaner.base_cleaner import BaseTextCleaner
 from src.core.ingestion.cleaner import rules
 
 
+class HTMLCleaner(BaseTextCleaner):
+    """Removes HTML tags and entities like &nbsp;."""
+
+    def _clean_impl(self, text: str) -> str:
+        # Remove all HTML tags
+        text = re.sub(r'<.*?>', '', text)
+        # Remove HTML entities like &nbsp;
+        text = re.sub(r'&[a-zA-Z]+;', '', text)
+        return text
+
+
+class ScientificNotationCleaner(BaseTextCleaner):
+    """Removes scientific notations and references like 'Eq. 1', 'Theorem 3'."""
+
+    def _clean_impl(self, text: str) -> str:
+        # Remove scientific format like 'Eq. 1', 'Theorem 2'
+        text = re.sub(r'\b(Eq|Theorem|Lemma)\s+\d+\b', '', text)
+        return text
+
+
 class UnicodeNormalizer(BaseTextCleaner):
     """Normalize unicode spaces and zero-width chars."""
 

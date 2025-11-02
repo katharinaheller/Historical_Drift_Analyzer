@@ -16,6 +16,7 @@ class ConfigLoader:
         if not self.path.exists():
             raise FileNotFoundError(f"Configuration file not found: {self.path}")
 
+        # Load the YAML file
         with open(self.path, "r", encoding="utf-8") as f:
             self._raw = yaml.safe_load(f) or {}
 
@@ -30,11 +31,9 @@ class ConfigLoader:
         # Expand all placeholders recursively
         self.config = self._expand_vars(self._raw)
 
-        # Debug info
-        print("\n[DEBUG] Expanded paths:")
-        for k, v in self.config.get("paths", {}).items():
-            print(f"  {k}: {v}")
-        print()
+        # Check if 'chunking' section is present
+        if "chunking" not in self.config:
+            raise KeyError("The 'chunking' section is missing in the configuration file")
 
     # ------------------------------------------------------------------
     def _detect_project_root(self) -> Path:
@@ -49,7 +48,7 @@ class ConfigLoader:
     def _expand_single_var(self, value: str) -> str:
         """Replace placeholders only if ${...} patterns are present."""
         if not isinstance(value, str) or "${" not in value:
-            return value  # do not modify normal strings like "auto"
+            return value  # Do not modify normal strings like "auto"
 
         replacements = {
             "${PROJECT_ROOT}": str(self.project_root),

@@ -1,6 +1,3 @@
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\all_ingestion_files.txt ==== 
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\all_ingestion_files.txt ==== 
-
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\config_loader.py ==== 
 from __future__ import annotations
 import os
@@ -20,6 +17,7 @@ class ConfigLoader:
         if not self.path.exists():
             raise FileNotFoundError(f"Configuration file not found: {self.path}")
 
+        # Load the YAML file
         with open(self.path, "r", encoding="utf-8") as f:
             self._raw = yaml.safe_load(f) or {}
 
@@ -34,11 +32,9 @@ class ConfigLoader:
         # Expand all placeholders recursively
         self.config = self._expand_vars(self._raw)
 
-        # Debug info
-        print("\n[DEBUG] Expanded paths:")
-        for k, v in self.config.get("paths", {}).items():
-            print(f"  {k}: {v}")
-        print()
+        # Check if 'chunking' section is present
+        if "chunking" not in self.config:
+            raise KeyError("The 'chunking' section is missing in the configuration file")
 
     # ------------------------------------------------------------------
     def _detect_project_root(self) -> Path:
@@ -53,7 +49,7 @@ class ConfigLoader:
     def _expand_single_var(self, value: str) -> str:
         """Replace placeholders only if ${...} patterns are present."""
         if not isinstance(value, str) or "${" not in value:
-            return value  # do not modify normal strings like "auto"
+            return value  # Do not modify normal strings like "auto"
 
         replacements = {
             "${PROJECT_ROOT}": str(self.project_root),
@@ -101,14 +97,16 @@ from src.core.ingestion.utils.file_utils import ensure_dir
 from src.core.ingestion.parser.parser_factory import ParserFactory
 from src.core.ingestion.metadata.metadata_extractor_factory import MetadataExtractorFactory
 from src.core.ingestion.cleaner.rag_text_cleaner import RagTextCleaner
+from src.core.ingestion.chunking.chunking_orchestrator import ChunkingOrchestrator
 
 
 def main():
     # ------------------------------------------------------------------
     # 1. Load configuration
     # ------------------------------------------------------------------
-    cfg = ConfigLoader("configs/ingestion.yaml").config
-    opts: Dict[str, Any] = cfg.get("options", {})
+    cfg = ConfigLoader("configs/ingestion.yaml")  # Load YAML configuration
+
+    opts: Dict[str, Any] = cfg.config.get("options", {})  # Access options
     log_level = getattr(logging, opts.get("log_level", "INFO").upper(), logging.INFO)
 
     logging.basicConfig(level=log_level, format="%(levelname)s | %(message)s")
@@ -118,22 +116,27 @@ def main():
     # ------------------------------------------------------------------
     # 2. Initialize components
     # ------------------------------------------------------------------
-    factory = ParserFactory(cfg, logger=logger)
-    metadata_factory = MetadataExtractorFactory.from_config(cfg)
-    cleaner = RagTextCleaner.default()  # deterministic multi-stage cleaner
+    factory = ParserFactory(cfg.config, logger=logger)  # Pass full configuration to ParserFactory
+    metadata_factory = MetadataExtractorFactory.from_config(cfg.config)
+    cleaner = RagTextCleaner.default()  # Deterministic multi-stage cleaner
+
+    # Initialize the ChunkingOrchestrator with YAML config
+    chunking_orchestrator = ChunkingOrchestrator(config=cfg.config)  # Pass configuration to ChunkingOrchestrator
 
     active_metadata_fields = opts.get("metadata_fields", [])
     parallelism = opts.get("parallelism", "auto")
 
-    raw_dir = Path(cfg["paths"]["raw_pdfs"]).resolve()
-    parsed_dir = Path(cfg["paths"]["parsed"]).resolve()
-    cleaned_dir = Path(cfg["paths"].get("cleaned", "data/processed/cleaned")).resolve()
-    metadata_dir = Path(cfg["paths"]["metadata"]).resolve()
+    raw_dir = Path(cfg.config["paths"]["raw_pdfs"]).resolve()  # Resolve paths from configuration
+    parsed_dir = Path(cfg.config["paths"]["parsed"]).resolve()
+    cleaned_dir = Path(cfg.config["paths"].get("cleaned", "data/processed/cleaned")).resolve()
+    metadata_dir = Path(cfg.config["paths"]["metadata"]).resolve()
+    chunks_dir = Path(cfg.config["paths"].get("chunks", "data/processed/chunks")).resolve()  # Define new chunks directory
     ensure_dir(parsed_dir)
     ensure_dir(cleaned_dir)
     ensure_dir(metadata_dir)
+    ensure_dir(chunks_dir)  # Ensure the chunks directory exists
 
-    pdf_files = sorted(raw_dir.glob("*.pdf"))
+    pdf_files = sorted(raw_dir.glob("*.pdf"))  # Look for PDFs in the directory
     if not pdf_files:
         logger.warning(f"No PDF files found in {raw_dir}")
         return
@@ -158,7 +161,12 @@ def main():
                 if "text" in res:
                     res["text"] = cleaner.clean(res["text"])
 
-                # --- STEP 2: Extract and filter metadata ---
+                # --- STEP 2: Chunking ---
+                if "text" in res:
+                    chunked_data = chunking_orchestrator.process(res["text"], metadata=res["metadata"])
+                    res["chunks"] = chunked_data  # Add chunks to the result
+
+                # --- STEP 3: Extract and filter metadata ---
                 pdf_name = Path(res["metadata"]["source_file"]).stem
                 pdf_path = raw_dir / f"{pdf_name}.pdf"
                 all_meta = metadata_factory.extract_all(str(pdf_path))
@@ -168,18 +176,30 @@ def main():
                 }
                 res["metadata"].update(filtered_meta)
 
-                # --- STEP 3: Save outputs ---
+                # --- STEP 4: Save outputs ---
+                # Save raw parsed output (only text)
                 parsed_path = parsed_dir / f"{pdf_name}.parsed.json"
                 with open(parsed_path, "w", encoding="utf-8") as f:
-                    json.dump(res, f, ensure_ascii=False, indent=2)
+                    json.dump({"text": res["text"]}, f, ensure_ascii=False, indent=2)
 
+                # Save cleaned text only as JSON (without hash and length)
                 cleaned_path = cleaned_dir / f"{pdf_name}.cleaned.json"
-                with open(cleaned_path, "w", encoding="utf-8") as f:
-                    json.dump(res, f, ensure_ascii=False, indent=2)
+                if "text" in res:
+                    cleaned_data = {
+                        "cleaned_text": res["text"],
+                    }
+                    with open(cleaned_path, "w", encoding="utf-8") as f:
+                        json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
+                # Save metadata separately
                 meta_path = metadata_dir / f"{pdf_name}.metadata.json"
                 with open(meta_path, "w", encoding="utf-8") as f:
                     json.dump(res["metadata"], f, ensure_ascii=False, indent=2)
+
+                # Save chunked data in the 'chunks' directory as JSON
+                chunked_path = chunks_dir / f"{pdf_name}.chunks.json"  # Updated to save in the 'chunks' directory
+                with open(chunked_path, "w", encoding="utf-8") as f:
+                    json.dump({"chunks": res["chunks"]}, f, ensure_ascii=False, indent=2)
 
             logger.info(f"Parallel ingestion completed ({len(results)} file(s)).")
             return
@@ -190,7 +210,7 @@ def main():
     # ------------------------------------------------------------------
     # 4. Sequential fallback mode
     # ------------------------------------------------------------------
-    parser = factory.create_parser()
+    parser = factory.create_parser()  # Use the appropriate parser based on configuration
     for pdf in pdf_files:
         logger.info(f"Parsing {pdf.name} ...")
         try:
@@ -201,7 +221,12 @@ def main():
             if "text" in parsed_result:
                 parsed_result["text"] = cleaner.clean(parsed_result["text"])
 
-            # ---- STEP 3: Extract metadata (metadata module handles it fully) ----
+            # ---- STEP 3: Chunking ----
+            if "text" in parsed_result:
+                chunked_data = chunking_orchestrator.process(parsed_result["text"], metadata=parsed_result.get("metadata", {}))
+                parsed_result["chunks"] = chunked_data  # Add chunks to the result
+
+            # ---- STEP 4: Extract metadata (metadata module handles it fully) ----
             base_metadata = parsed_result.get("metadata", {})
             all_metadata = metadata_factory.extract_all(str(pdf))
             if active_metadata_fields:
@@ -211,23 +236,34 @@ def main():
             base_metadata.update(all_metadata)
             parsed_result["metadata"] = base_metadata
 
-            # ---- STEP 4: Save outputs ----
+            # ---- STEP 5: Save outputs ----
+            # Save raw parsed output (only text)
             parsed_path = parsed_dir / f"{pdf.stem}.parsed.json"
             with open(parsed_path, "w", encoding="utf-8") as f:
-                json.dump(parsed_result, f, ensure_ascii=False, indent=2)
+                json.dump({"text": parsed_result["text"]}, f, ensure_ascii=False, indent=2)
 
+            # Save cleaned text as JSON (without hash and length)
             cleaned_path = cleaned_dir / f"{pdf.stem}.cleaned.json"
+            cleaned_data = {
+                "cleaned_text": parsed_result["text"],
+            }
             with open(cleaned_path, "w", encoding="utf-8") as f:
-                json.dump(parsed_result, f, ensure_ascii=False, indent=2)
+                json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
+            # Save metadata separately
             meta_path = metadata_dir / f"{pdf.stem}.metadata.json"
             with open(meta_path, "w", encoding="utf-8") as f:
                 json.dump(base_metadata, f, ensure_ascii=False, indent=2)
 
-            logger.info(f"âœ“ Completed {pdf.name}")
+            # Save chunked data in the 'chunks' directory as JSON
+            chunked_path = chunks_dir / f"{pdf.stem}.chunks.json"  # Updated to save in the 'chunks' directory
+            with open(chunked_path, "w", encoding="utf-8") as f:
+                json.dump({"chunks": parsed_result["chunks"]}, f, ensure_ascii=False, indent=2)
+
+            logger.info(f"Completed {pdf.name}")
 
         except Exception as e:
-            logger.error(f"âœ— Failed to parse {pdf.name}: {e}")
+            logger.error(f"Failed to parse {pdf.name}: {e}")
 
     # ------------------------------------------------------------------
     # 5. Finish
@@ -308,58 +344,268 @@ class Ingestor(IIngestor):
         return toc
 
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata_merger.py ==== 
-# src/core/ingestion/metadata_merger.py
-from __future__ import annotations
-
-from typing import Dict, Any, List
-
-
-def merge_metadata(doc_metadata: Dict[str, Any], chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    # attaches document-level metadata to every chunk
-    merged: List[Dict[str, Any]] = []
-    for idx, ch in enumerate(chunks):
-        new_ch = {
-            "id": f"{doc_metadata.get('source_file', 'doc')}_{idx}",
-            "text": ch.get("text", ""),
-            "page": ch.get("page"),
-            "bbox": ch.get("bbox"),
-            "metadata": dict(doc_metadata),
-        }
-        merged.append(new_ch)
-    return merged
 
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\__init__.py ==== 
 
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\adaptive_chunker.py ==== 
+from __future__ import annotations
+from typing import Any, Dict, List, Optional
+from src.core.ingestion.chunking.i_chunker import IChunker
+from src.core.ingestion.metadata.interfaces.i_page_number_extractor import IPageNumberExtractor
+import spacy
+import logging
+
+class AdaptiveChunker(IChunker):
+    """Chunker that adapts to the content structure by splitting at semantic breaks."""
+
+    def __init__(self,
+                 chunk_size: int = 500,
+                 overlap: int = 200,
+                 min_chunk_length: int = 400,
+                 pdf_path: Optional[str] = None,
+                 page_number_extractor: Optional[IPageNumberExtractor] = None,
+                 text_length: Optional[int] = None):
+        self.chunk_size = chunk_size
+        self.overlap = overlap
+        self.min_chunk_length = min_chunk_length
+        self.pdf_path = pdf_path
+        self.page_number_extractor = page_number_extractor
+        self.text_length = text_length
+
+        # Initialize spaCy NLP model for sentence segmentation
+        self.nlp = spacy.load("en_core_web_sm")
+
+        # Extract page count if available
+        if pdf_path and page_number_extractor:
+            try:
+                self.page_count = self.page_number_extractor.extract_page_number(pdf_path)
+                self.adjust_chunking_based_on_page_count()
+            except Exception as e:
+                logging.warning(f"Error extracting page count from PDF: {e}")
+                self.page_count = None
+                self.chunk_size = 1000  # Fallback
+
+        if text_length:
+            self.adjust_chunking_based_on_text_length(text_length)
+
+    def adjust_chunking_based_on_page_count(self):
+        """Adjust chunk size and overlap based on the page count."""
+        if self.page_count:
+            if self.page_count > 50:
+                self.chunk_size = 1000
+                self.overlap = 700
+            elif self.page_count > 30:
+                self.chunk_size = 1500
+                self.overlap = 500
+            elif self.page_count > 10:
+                self.chunk_size = 2000
+                self.overlap = 300
+            else:
+                self.chunk_size = 2500
+                self.overlap = 200
+        else:
+            self.chunk_size = 1000
+            self.overlap = 200
+
+    def adjust_chunking_based_on_text_length(self, text_length: int):
+        """Adjust chunk size and overlap based on the length of the text."""
+        if text_length:
+            if text_length > 5000:
+                self.chunk_size = 1000
+                self.overlap = 600
+            elif text_length > 2000:
+                self.chunk_size = 1500
+                self.overlap = 400
+            else:
+                self.chunk_size = 2000
+                self.overlap = 200
+
+    def chunk(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        """Chunk the text into adaptive chunks based on content size and overlap."""
+        chunks = []
+        current_chunk = ""
+
+        doc = self.nlp(text)  # Use spaCy to process the text
+        sentences = [sent.text.strip() for sent in doc.sents]  # Extract sentences from the spaCy doc
+
+        for sentence in sentences:
+            # If the current chunk plus sentence exceeds chunk size, store the chunk and start a new one
+            if len(current_chunk) + len(sentence) > self.chunk_size:
+                if current_chunk:  # Prevent empty chunks
+                    chunks.append({
+                        "text": current_chunk.strip(),
+                        "chunk_size": len(current_chunk.strip()),  # Add the chunk size
+                        "overlap": self.overlap  # Add overlap value
+                    })
+                current_chunk = sentence
+            else:
+                current_chunk += " " + sentence
+
+            # Merge chunks if they are too small
+            if len(current_chunk) < self.min_chunk_length and chunks:
+                last_chunk = chunks[-1]
+                last_chunk["text"] += " " + current_chunk
+                current_chunk = ""
+
+        if current_chunk:
+            chunks.append({
+                "text": current_chunk.strip(),
+                "chunk_size": len(current_chunk.strip()),
+                "overlap": self.overlap
+            })
+
+        return chunks
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\chunking_orchestrator.py ==== 
+from __future__ import annotations
+import logging
+from typing import Any, Dict, Optional
+from src.core.ingestion.chunking.i_chunker import IChunker
+from src.core.ingestion.chunking.adaptive_chunker import AdaptiveChunker
+from src.core.ingestion.chunking.static_chunker import StaticChunker
+from src.core.ingestion.metadata.implementations.page_number_extractor import PageNumberExtractor
+
+
+class ChunkingOrchestrator:
+    """Handles the selection and execution of chunking strategies based on YAML config."""
+
+    def __init__(self, config: Dict[str, Any], pdf_path: Optional[str] = None):
+        """Initialize with YAML configuration and an optional PDF path."""
+        self.config = config
+        self.pdf_path = pdf_path
+        
+        # ÃœberprÃ¼fen, ob der 'chunking' Abschnitt in der Konfiguration vorhanden ist
+        if "chunking" not in self.config:
+            raise KeyError("The 'chunking' section is missing in the configuration file")
+
+        # Debugging: Gibt den 'chunking' Abschnitt aus
+        logging.debug(f"Chunking config: {self.config['chunking']}")
+
+        # WÃ¤hlt die passende Chunking-Strategie aus der Konfiguration
+        self.chunker = self.select_chunker()  
+
+    def select_chunker(self) -> IChunker:
+        """Select chunking strategy based on the configuration."""
+        chunking_config = self.config["chunking"]  # Zugriff auf den 'chunking'-Abschnitt der Konfiguration
+        chunking_mode = chunking_config["mode"]
+        chunk_size = chunking_config["chunk_size"]  # Get the chunk size from config
+        overlap = chunking_config["overlap"]
+        enable_overlap = chunking_config["enable_overlap"]
+        min_chunk_length = chunking_config["min_chunk_length"]
+        sentence_boundary_detection = chunking_config["sentence_boundary_detection"]
+        merge_short_chunks = chunking_config["merge_short_chunks"]
+
+        # Erstelle die Chunker-Instanz basierend auf dem gewÃ¤hlten Modus
+        if chunking_mode == "adaptive":
+            # Instanziiere AdaptiveChunker mit den relevanten Konfigurationswerten
+            page_number_extractor = PageNumberExtractor() if self.pdf_path else None
+            return AdaptiveChunker(
+                chunk_size=chunk_size,
+                overlap=overlap if enable_overlap else 0,
+                min_chunk_length=min_chunk_length,
+                pdf_path=self.pdf_path,
+                page_number_extractor=page_number_extractor,
+            )
+        elif chunking_mode == "static":
+            # Instanziiere StaticChunker mit den relevanten Konfigurationswerten
+            return StaticChunker(
+                chunk_size=chunk_size,  # Pass the chunk_size from config
+                overlap=overlap if enable_overlap else 0,
+                min_chunk_length=min_chunk_length,
+            )
+        else:
+            raise ValueError(f"Unknown chunking strategy: {chunking_mode}")
+
+    def process(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        """Process the text and return chunks with metadata using the selected chunking strategy."""
+        return self.chunker.chunk(text, metadata)
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\i_chunker.py ==== 
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 
 class IChunker(ABC):
     """Interface for all chunking strategies."""
 
     @abstractmethod
-    def chunk(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+    def chunk(self, text: str, metadata: Dict[str, Any] = None) -> List[Dict[str, Any]]:
         """
-        Split cleaned text into small units.
-        Each returned item should at least have: {"text": ..., "metadata": {...}}
+        Split the cleaned text into smaller chunks.
+        
+        Each returned item should be a dictionary with:
+        - "text": the chunked text as a string.
+        - "metadata": additional information (e.g., document info, chunking context).
+        
+        Args:
+            text: The cleaned text to be chunked.
+            metadata: Optional metadata related to the chunking process. Default is an empty dictionary.
+        
+        Returns:
+            A list of dictionaries, each containing:
+            - "text": A chunk of the input text.
+            - "metadata": The metadata associated with the chunk.
         """
+        if metadata is None:
+            metadata = {}
         raise NotImplementedError
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\static_chunker.py ==== 
+from __future__ import annotations
+from typing import Any, Dict, List, Optional
+from src.core.ingestion.chunking.i_chunker import IChunker
+import spacy
+
+class StaticChunker(IChunker):
+    """Chunker that uses fixed chunk size and overlap for chunking."""
+    
+    def __init__(self, 
+                 chunk_size: int,  # Configuration-based chunk size
+                 overlap: int, 
+                 min_chunk_length: int):
+        self.chunk_size = chunk_size
+        self.overlap = overlap
+        self.min_chunk_length = min_chunk_length
+
+        # Initialize spaCy NLP model for sentence segmentation
+        self.nlp = spacy.load("en_core_web_sm")
+
+    def chunk(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        chunks = []
+        current_chunk = ""
+
+        doc = self.nlp(text)  # Use spaCy to process the text
+        sentences = [sent.text.strip() for sent in doc.sents]  # Extract sentences from the spaCy doc
+
+        for sentence in sentences:
+            if len(current_chunk) + len(sentence) + 1 <= self.chunk_size:
+                current_chunk += ". " + sentence
+            else:
+                chunks.append({
+                    "text": current_chunk.strip(),
+                    "chunk_size": len(current_chunk.strip()),  # Add chunk size
+                    "overlap": self.overlap  # Add overlap value
+                })
+                current_chunk = sentence  # Start a new chunk
+
+            if len(current_chunk) < self.min_chunk_length and chunks:
+                last_chunk = chunks[-1]
+                last_chunk["text"] += " " + current_chunk
+                current_chunk = ""
+
+        if current_chunk:
+            chunks.append({
+                "text": current_chunk.strip(),
+                "chunk_size": len(current_chunk.strip()),  # Add chunk size
+                "overlap": self.overlap  # Add overlap value
+            })
+
+        return chunks
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\utils_chunking.py ==== 
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\__init__.py ==== 
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\all_cleaner_paths.txt ==== 
-C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\all_cleaner_paths.txt
-C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\i_text_cleaner.py
-C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\rag_text_cleaner.py
-C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__init__.py
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\base_cleaner.py ==== 
 from __future__ import annotations
@@ -380,6 +626,90 @@ class BaseTextCleaner(ITextCleaner):
     def _clean_impl(self, text: str) -> str:
         # Must be implemented by subclasses
         raise NotImplementedError
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\cleaner_orchestrator.py ==== 
+from __future__ import annotations
+import json
+import logging
+from pathlib import Path
+from typing import Any, Dict
+
+from src.core.ingestion.config_loader import ConfigLoader
+from src.core.ingestion.utils.file_utils import ensure_dir
+from src.core.ingestion.cleaner.rag_text_cleaner import RagTextCleaner
+
+
+def main() -> None:
+    # ------------------------------------------------------------------
+    # 1. Load configuration
+    # ------------------------------------------------------------------
+    cfg = ConfigLoader("configs/ingestion.yaml").config
+    opts: Dict[str, Any] = cfg.get("options", {})
+    log_level = getattr(logging, opts.get("log_level", "INFO").upper(), logging.INFO)
+
+    logging.basicConfig(level=log_level, format="%(levelname)s | %(message)s")
+    logger = logging.getLogger("CleanerOrchestrator")
+    logger.info("Starting cleaning phase")
+
+    # ------------------------------------------------------------------
+    # 2. Resolve paths
+    # ------------------------------------------------------------------
+    parsed_dir = Path(cfg["paths"]["parsed"]).resolve()
+    cleaned_dir = Path(cfg["paths"].get("cleaned", "data/processed/cleaned")).resolve()
+    ensure_dir(cleaned_dir)
+
+    parsed_files = sorted(parsed_dir.glob("*.parsed.json"))
+    if not parsed_files:
+        logger.warning(f"No parsed files found in {parsed_dir}")
+        return
+
+    logger.info(f"Found {len(parsed_files)} parsed file(s) for cleaning")
+
+    # ------------------------------------------------------------------
+    # 3. Initialize deterministic multi-stage cleaner
+    # ------------------------------------------------------------------
+    cleaner = RagTextCleaner.default()
+
+    # ------------------------------------------------------------------
+    # 4. Iterate over parsed JSONs
+    # ------------------------------------------------------------------
+    for idx, parsed_path in enumerate(parsed_files, start=1):
+        try:
+            with open(parsed_path, "r", encoding="utf-8") as f:
+                parsed_data = json.load(f)
+
+            raw_text = parsed_data.get("text", "")
+            if not raw_text:
+                logger.warning(f"Skipping {parsed_path.name}: no text field")
+                continue
+
+            # --- Step 1: Clean text ---
+            cleaned_text = cleaner.clean(raw_text)
+
+            # --- Step 2: Write cleaned output as JSON ---
+            cleaned_filename = parsed_path.stem.replace(".parsed", "") + ".cleaned.json"
+            cleaned_path = cleaned_dir / cleaned_filename
+
+            cleaned_data = {
+                "cleaned_text": cleaned_text,
+            }
+
+            with open(cleaned_path, "w", encoding="utf-8") as cf:
+                json.dump(cleaned_data, cf, ensure_ascii=False, indent=2)
+
+            logger.info(f"âœ“ Cleaned {parsed_path.name} ({idx}/{len(parsed_files)})")
+
+        except Exception as e:
+            logger.error(f"âœ— Failed to clean {parsed_path.name}: {e}")
+
+    # ------------------------------------------------------------------
+    # 5. Finish
+    # ------------------------------------------------------------------
+    logger.info("Cleaning phase completed successfully.")
+
+
+if __name__ == "__main__":
+    main()
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\i_text_cleaner.py ==== 
 from __future__ import annotations
@@ -405,8 +735,9 @@ from src.core.ingestion.cleaner.simple_cleaners import (
     HeaderFooterCleaner,
     LayoutLineJoinCleaner,
     TrailingWhitespaceCleaner,
+    HTMLCleaner,  # New cleaner for HTML tag removal
+    ScientificNotationCleaner,  # New cleaner for removing scientific notations
 )
-
 
 class RagTextCleaner(ITextCleaner):
     """
@@ -425,7 +756,9 @@ class RagTextCleaner(ITextCleaner):
             SoftHyphenCleaner(),       # remove soft hyphen and join "foo-\nbar"
             HeaderFooterCleaner(),     # drop obvious non-flow lines
             LayoutLineJoinCleaner(),   # fix line breaks
-            TrailingWhitespaceCleaner()  # final formatting
+            TrailingWhitespaceCleaner(),  # final formatting
+            HTMLCleaner(),            # New: Removes HTML tags and entities
+            ScientificNotationCleaner()  # New: Removes scientific notation terms like "Eq. 1"
         ]
         return cls(cleaners)
 
@@ -501,6 +834,26 @@ from src.core.ingestion.cleaner.base_cleaner import BaseTextCleaner
 from src.core.ingestion.cleaner import rules
 
 
+class HTMLCleaner(BaseTextCleaner):
+    """Removes HTML tags and entities like &nbsp;."""
+
+    def _clean_impl(self, text: str) -> str:
+        # Remove all HTML tags
+        text = re.sub(r'<.*?>', '', text)
+        # Remove HTML entities like &nbsp;
+        text = re.sub(r'&[a-zA-Z]+;', '', text)
+        return text
+
+
+class ScientificNotationCleaner(BaseTextCleaner):
+    """Removes scientific notations and references like 'Eq. 1', 'Theorem 3'."""
+
+    def _clean_impl(self, text: str) -> str:
+        # Remove scientific format like 'Eq. 1', 'Theorem 2'
+        text = re.sub(r'\b(Eq|Theorem|Lemma)\s+\d+\b', '', text)
+        return text
+
+
 class UnicodeNormalizer(BaseTextCleaner):
     """Normalize unicode spaces and zero-width chars."""
 
@@ -573,68 +926,6 @@ class TrailingWhitespaceCleaner(BaseTextCleaner):
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__init__.py ==== 
 .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__pycache__\base_cleaner.cpython-312.pyc ==== 
-Ë
-    ªøi  ã                  ó>   — d dl mZ d dlmZ d dlmZ  G d„ de«      Zy)é    )Úannotations)Úfinal)ÚITextCleanerc                  ó*   — e Zd ZdZedd„«       Zdd„Zy)ÚBaseTextCleanerz3Base class providing a stable clean(...) interface.c                ó*   — |sy| j                  |«      S )NÚ )Ú_clean_impl©ÚselfÚtexts     úSC:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\base_cleaner.pyÚcleanzBaseTextCleaner.clean	   s   € ñ ØØ×Ñ Ó%Ğ%ó    c                ó   — t         ‚)N)ÚNotImplementedErrorr   s     r   r
-   zBaseTextCleaner._clean_impl   s   € ä!Ğ!r   N)r   ÚstrÚreturnr   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r   r
-   © r   r   r   r      s   „ Ù=à
-ò&ó ğ&ô"r   r   N)Ú
-__future__r   Útypingr   Ú)src.core.ingestion.cleaner.i_text_cleanerr   r   r   r   r   Ú<module>r      s   ğİ "İ İ Bô"lõ "r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__pycache__\i_text_cleaner.cpython-312.pyc ==== 
-Ë
-    øiJ  ã                  ó6   — d dl mZ d dlmZmZ  G d„ de«      Zy)é    )Úannotations)ÚABCÚabstractmethodc                  ó"   — e Zd ZdZedd„«       Zy)ÚITextCleanerz:Interface for all text cleaners in the ingestion pipeline.c                ó   — t         ‚)z+Return a cleaned version of the given text.)ÚNotImplementedError)ÚselfÚtexts     úUC:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\i_text_cleaner.pyÚcleanzITextCleaner.clean   s
-   € ô "Ğ!ó    N)r   ÚstrÚreturnr   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r   © r   r   r   r      s   „ ÙDàò"ó ñ"r   r   N)Ú
-__future__r   Úabcr   r   r   r   r   r   Ú<module>r      s   ğİ "ß #ô"3õ "r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__pycache__\rag_text_cleaner.cpython-312.pyc ==== 
-Ë
-    rùi7  ã                  óZ   — d dl mZ d dlmZ d dlmZ d dlmZmZm	Z	m
-Z
-mZ  G d„ de«      Zy)é    )Úannotations)ÚList)ÚITextCleaner©ÚUnicodeNormalizerÚSoftHyphenCleanerÚHeaderFooterCleanerÚLayoutLineJoinCleanerÚTrailingWhitespaceCleanerc                  ó2   — e Zd ZdZdd„Zedd„«       Zdd„Zy)	ÚRagTextCleanerzm
-    Composite text cleaner for RAG ingestion.
-    Runs several deterministic cleaners in a fixed order.
-    c                ó   — || _         y ©N)Úcleaners)Úselfr   s     úWC:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\rag_text_cleaner.pyÚ__init__zRagTextCleaner.__init__   s	   € Ø ˆó    c                óp   — t        «       t        «       t        «       t        «       t	        «       g} | |«      S r   r   )Úclsr   s     r   ÚdefaultzRagTextCleaner.default   s5   € ô ÓÜÓÜÓ!Ü!Ó#Ü%Ó'ğ(
-ˆñ 8‹}Ğr   c                óJ   — | j                   D ]  }|j                  |«      }Œ |S r   )r   Úclean)r   ÚtextÚcleaners      r   r   zRagTextCleaner.clean#   s#   € à—}”}ˆGØ—=‘= Ó&‰Dğ %àˆr   N)r   zList[ITextCleaner])Úreturnz'RagTextCleaner')r   Ústrr   r   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   Úclassmethodr   r   © r   r   r   r      s%   „ ñó
-!ğ ò	ó ğ	ôr   r   N)Ú
-__future__r   Útypingr   Ú)src.core.ingestion.cleaner.i_text_cleanerr   Ú*src.core.ingestion.cleaner.simple_cleanersr   r   r	   r
-   r   r   r#   r   r   Ú<module>r(      s$   ğå "İ İ B÷õ ô\õ r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__pycache__\rules.cpython-312.pyc ==== 
-Ë
-    Úøi%  ã                  óü   — d dl mZ d dlZg d¢Zg d¢Zg d¢ZdZdZ ej                  e«      Z	 ej                  d«      Z
- ej                  d	«      Z ej                  d
-«      Z ej                  d«      Zdd„Zdd„Zy)é    )ÚannotationsN)z!(?i)^\s*table\s+of\s+contents\s*$z(?i)^\s*inhaltsverzeichnis\s*$z(?i)^\s*contents\s*$)z(?i)^\s*page\s+\d+\s*$z(?i)^\s*p\.?\s*\d+\s*$z^\s*\d+\s*$)z(?i)^\s*funded\s+by.*$z(?i)^\s*supported\s+by.*$z(?i)^\s*this\s+preprint\s+.*$z"(?i)^\s*arxiv:\s*\d{4}\.\d{4,5}.*$z-(?i)^\s*doi:\s*10\.\d{4,9}/[-._;()/:A-Z0-9]+$éP   ô   Â­z(\w+)-\n(\w+)z
-(\S)\n(\S)z\n{3,}z[\u00a0\u2000-\u200b]+c                óB   — t        | j                  «       «      t        k  S )N)ÚlenÚstripÚMAX_LEN_FOR_STRICT_DROP)Úlines    úLC:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\rules.pyÚis_short_liner   /   s   € äˆtz‰z‹|ÓÔ 7Ñ7Ğ7ó    c                óB   — | D ]  }t        j                  ||«      sŒ y y)NTF)ÚreÚmatch)Úpatternsr
-   Úpats      r   Ú	match_anyr   4   s"   € ÛˆÜ8‰8C˜ÕÙğ ğ r   )r
-   ÚstrÚreturnÚbool)r   z	list[str]r
-   r   r   r   )Ú
-__future__r   r   ÚSINGLE_LINE_HEADER_PATTERNSÚFOOTER_PATTERNSÚFUNDING_PATTERNSr	   ÚSOFT_HYPHENÚcompileÚSOFT_HYPHEN_REÚHYPHEN_LINEBREAK_REÚINLINE_LINEBREAK_REÚMULTI_NEWLINE_REÚUNICODE_SPACES_REr   r   © r   r   Ú<module>r#      s—   ğå "Û 	òĞ ò€òĞ ğ Ğ à€Ø—‘˜KÓ(€ğ !b—j‘jĞ!1Ó2Ğ ğ !b—j‘j Ó/Ğ ğ 2—:‘:˜iÓ(Ğ ğ B—J‘JĞ8Ó9Ğ ó8ô
-r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__pycache__\simple_cleaners.cpython-312.pyc ==== 
-Ë
-    ùi#
-  ã                  óª   — d dl mZ d dlZd dlmZ d dlmZ d dlmZ  G d„ de«      Z	 G d„ d	e«      Z
- G d
-„ de«      Z G d„ de«      Z G d„ de«      Zy)é    )ÚannotationsN)ÚList)ÚBaseTextCleaner)Úrulesc                  ó   — e Zd ZdZdd„Zy)ÚUnicodeNormalizerz.Normalize unicode spaces and zero-width chars.c                óF   — t         j                  j                  d|«      }|S )NÚ )r   ÚUNICODE_SPACES_REÚsub©ÚselfÚtexts     úVC:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\simple_cleaners.pyÚ_clean_implzUnicodeNormalizer._clean_impl   s   € ä×&Ñ&×*Ñ*¨3°Ó5ˆØˆó    N©r   ÚstrÚreturnr   ©Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   © r   r   r   r      s
-   „ Ù8ôr   r   c                  ó   — e Zd ZdZdd„Zy)ÚSoftHyphenCleanerz/Remove soft hyphens and join line-broken words.c                ó†   — |j                  t        j                  d«      }t        j                  j	                  d|«      }|S )NÚ z\1\2)Úreplacer   ÚSOFT_HYPHENÚHYPHEN_LINEBREAK_REr   r   s     r   r   zSoftHyphenCleaner._clean_impl   s5   € à|‰|œE×-Ñ-¨rÓ2ˆä×(Ñ(×,Ñ,¨W°dÓ;ˆØˆr   Nr   r   r   r   r   r   r      s
-   „ Ù9ôr   r   c                  ó   — e Zd ZdZdd„Zy)ÚLayoutLineJoinCleanerz
-    Join lines that were broken by the PDF layout but belong together.
-    We do this conservatively: only if both sides are non-space.
-    c                ó¢   — t         j                  j                  d|«      }t         j                  j                  d|«      }|j	                  «       S )Nz\1 \2ú
-
-)r   ÚINLINE_LINEBREAK_REr   ÚMULTI_NEWLINE_REÚstripr   s     r   r   z!LayoutLineJoinCleaner._clean_impl"   s>   € ä×(Ñ(×,Ñ,¨X°tÓ<ˆä×%Ñ%×)Ñ)¨&°$Ó7ˆØz‰z‹|Ğr   Nr   r   r   r   r   r$   r$      s   „ ñô
-r   r$   c                  ó   — e Zd ZdZdd„Zy)ÚHeaderFooterCleanerz/Remove obvious header/footer/single-line noise.c                óâ  — g }|j                  «       D ]¼  }|j                  «       }t        j                  t        j                  |«      rŒ8t        j                  t        j
-                  |«      rt        j                  |«      rŒrt        j                  t        j                  |«      rt        j                  |«      rŒ¬|j                  |«       Œ¾ dj                  |«      j                  «       S )NÚ
-)Ú
-splitlinesÚrstripr   Ú	match_anyÚSINGLE_LINE_HEADER_PATTERNSÚFOOTER_PATTERNSÚis_short_lineÚFUNDING_PATTERNSÚappendÚjoinr)   )r   r   Úcleaned_linesÚlineÚraws        r   r   zHeaderFooterCleaner._clean_impl-   s²   € Ø#%ˆØ—O‘OÖ%ˆDØ—+‘+“-ˆCô ‰œu×@Ñ@À#ÔFØô ‰œu×4Ñ4°cÔ:¼u×?RÑ?RĞSVÔ?WØô ‰œu×5Ñ5°sÔ;Ä×@SÑ@SĞTWÔ@XØà× Ñ  Õ%ğ &ğ" y‰y˜Ó'×-Ñ-Ó/Ğ/r   Nr   r   r   r   r   r+   r+   *   s
-   „ Ù9ô0r   r+   c                  ó   — e Zd ZdZdd„Zy)ÚTrailingWhitespaceCleanerzNormalize whitespace globally.c                óÒ   — |j                  «       D cg c]  }|j                  «       ‘Œ }}dj                  |«      }t        j                  dd|«      }|j                  «       S c c}w )Nr-   z\n{3,}r&   )r.   r/   r6   Úrer   r)   )r   r   ÚlnÚliness       r   r   z%TrailingWhitespaceCleaner._clean_implF   sV   € à'+§¡Ô'8Ó9Ñ'8 —‘•Ğ'8ˆĞ9Øy‰y˜Óˆäv‰vi ¨Ó.ˆØz‰z‹|Ğùò	 :s   “A$Nr   r   r   r   r   r;   r;   C   s
-   „ Ù(ôr   r;   )Ú
-__future__r   r=   Útypingr   Ú'src.core.ingestion.cleaner.base_cleanerr   Úsrc.core.ingestion.cleanerr   r   r   r$   r+   r;   r   r   r   Ú<module>rD      sP   ğİ "Û 	İ İ Cİ ,ô˜ô ô˜ô ô˜Oô ô0˜/ô 0ô2	 õ 	r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__pycache__\__init__.cpython-312.pyc ==== 
-Ë
-    {-i    ã                    ó   — y )N© r   ó    úOC:\Users\katha\historical-drift-analyzer\src\core\ingestion\cleaner\__init__.pyÚ<module>r      s   ñr   .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\interfaces\i_ingestor.py ==== 
 from abc import ABC, abstractmethod
 from typing import Any
@@ -689,10 +980,11 @@ class MetadataExtractorFactory:
             "title": "title_extractor",
             "authors": "author_extractor",
             "year": "year_extractor",
-            "abstract": "abstract_extractor",
+            # "abstract": "abstract_extractor",  # Deactivated abstract extraction
             "detected_language": "language_detector",
             "file_size": "file_size_extractor",
             "toc": "toc_extractor",
+            "page_number": "page_number_extractor",  # Page number extractor
         }
 
         for field in self.active_fields:
@@ -702,9 +994,13 @@ class MetadataExtractorFactory:
                 continue
 
             try:
+                # Dynamically import the module
                 module = importlib.import_module(f"{base_pkg}.{module_name}")
+                # Construct the extractor class name from the field (e.g., "PageNumberExtractor" from "page_number")
                 class_name = "".join([p.capitalize() for p in field.split("_")]) + "Extractor"
+                # Get the extractor class from the module
                 extractor_class = getattr(module, class_name)
+                # Instantiate the extractor class and store it in the dictionary
                 self.extractors[field] = extractor_class(base_dir=self.pdf_root)
                 self.logger.debug(f"Loaded extractor: {extractor_class.__name__} for '{field}'")
             except ModuleNotFoundError:
@@ -731,78 +1027,77 @@ class MetadataExtractorFactory:
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\__init__.py ==== 
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\abstract_extractor.py ==== 
-"""from __future__ import annotations
+from __future__ import annotations
 from typing import Optional
 from pathlib import Path
-from lxml import etree
-import re
 import fitz
 
 
-class AbstractExtractor:
-    """Extracts abstract text directly from GROBID TEI XML or PDF XMP metadata."""
+# class AbstractExtractor:
+#     """Extracts abstract text directly from GROBID TEI XML or PDF XMP metadata."""
 
-    def __init__(self, base_dir: Path | str | None = None):
-        self.base_dir = Path(base_dir).resolve() if base_dir else None
+#     def __init__(self, base_dir: Path | str | None = None):
+#         self.base_dir = Path(base_dir).resolve() if base_dir else None
 
-    # ------------------------------------------------------------------
-    def extract(self, pdf_path: str) -> Optional[str]:
-        pdf_file = Path(pdf_path)
+#     # ------------------------------------------------------------------
+#     def extract(self, pdf_path: str) -> Optional[str]:
+#         pdf_file = Path(pdf_path)
 
-        # 1. Try GROBID XML
-        xml_path = self._find_grobid_xml(pdf_file)
-        if xml_path and xml_path.exists():
-            abstract = self._extract_from_grobid(xml_path)
-            if abstract:
-                return abstract
+#         # 1. Try GROBID XML
+#         xml_path = self._find_grobid_xml(pdf_file)
+#         if xml_path and xml_path.exists():
+#             abstract = self._extract_from_grobid(xml_path)
+#             if abstract:
+#                 return abstract
 
-        # 2. Try PDF metadata (some PDFs include "subject"/"keywords"/"description")
-        abstract = self._extract_from_pdf_metadata(pdf_file)
-        if abstract:
-            return abstract
+#         # 2. Try PDF metadata (some PDFs include "subject"/"keywords"/"description")
+#         abstract = self._extract_from_pdf_metadata(pdf_file)
+#         if abstract:
+#             return abstract
 
-        # 3. Fallback: None (no text heuristics)
-        return None
+#         # 3. Fallback: None (no text heuristics)
+#         return None
 
-    # ------------------------------------------------------------------
-    def _extract_from_pdf_metadata(self, pdf_file: Path) -> Optional[str]:
-        """Read abstract-like information from PDF metadata fields."""
-        try:
-            with fitz.open(pdf_file) as doc:
-                meta = doc.metadata or {}
-                for key in ("subject", "Subject", "description", "Description", "keywords", "Keywords"):
-                    val = meta.get(key)
-                    if isinstance(val, str) and len(val.strip()) > 20:
-                        return re.sub(r"\s+", " ", val.strip())
-        except Exception:
-            return None
-        return None
+#     # ------------------------------------------------------------------
+#     def _extract_from_pdf_metadata(self, pdf_file: Path) -> Optional[str]:
+#         """Read abstract-like information from PDF metadata fields."""
+#         try:
+#             with fitz.open(pdf_file) as doc:
+#                 meta = doc.metadata or {}
+#                 for key in ("subject", "Subject", "description", "Description", "keywords", "Keywords"):
+#                     val = meta.get(key)
+#                     if isinstance(val, str) and len(val.strip()) > 20:
+#                         return re.sub(r"\s+", " ", val.strip())
+#         except Exception:
+#             return None
+#         return None
 
-    # ------------------------------------------------------------------
-    def _find_grobid_xml(self, pdf_file: Path) -> Path | None:
-        xml_candidate = pdf_file.with_suffix(".tei.xml")
-        if xml_candidate.exists():
-            return xml_candidate
-        if self.base_dir:
-            alt = self.base_dir / "grobid_xml" / f"{pdf_file.stem}.tei.xml"
-            if alt.exists():
-                return alt
-        return None
+#     # ------------------------------------------------------------------
+#     def _find_grobid_xml(self, pdf_file: Path) -> Path | None:
+#         xml_candidate = pdf_file.with_suffix(".tei.xml")
+#         if xml_candidate.exists():
+#             return xml_candidate
+#         if self.base_dir:
+#             alt = self.base_dir / "grobid_xml" / f"{pdf_file.stem}.tei.xml"
+#             if alt.exists():
+#                 return alt
+#         return None
 
-    # ------------------------------------------------------------------
-    def _extract_from_grobid(self, xml_path: Path) -> Optional[str]:
-        """Parse TEI XML to extract the abstract section."""
-        try:
-            with open(xml_path, "r", encoding="utf-8") as f:
-                xml = f.read()
-            root = etree.fromstring(xml.encode("utf-8"))
-            ns = {"tei": "http://www.tei-c.org/ns/1.0"}
-            abs_text = root.xpath("string(//tei:abstract)", namespaces=ns)
-            if abs_text and len(abs_text.strip()) > 10:
-                return re.sub(r"\s+", " ", abs_text.strip())
-        except Exception:
-            return None
-        return None""".
+#     # ------------------------------------------------------------------
+#     def _extract_from_grobid(self, xml_path: Path) -> Optional[str]:
+#         """Parse TEI XML to extract the abstract section."""
+#         try:
+#             with open(xml_path, "r", encoding="utf-8") as f:
+#                 xml = f.read()
+#             root = etree.fromstring(xml.encode("utf-8"))
+#             ns = {"tei": "http://www.tei-c.org/ns/1.0"}
+#             abs_text = root.xpath("string(//tei:abstract)", namespaces=ns)
+#             if abs_text and len(abs_text.strip()) > 10:
+#                 return re.sub(r"\s+", " ", abs_text.strip())
+#         except Exception:
+#             return None
+#         return None
+.
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\author_extractor.py ==== 
 # src/core/ingestion/metadata/implementations/author_extractor.py
 from __future__ import annotations
@@ -1139,11 +1434,41 @@ class DetectedLanguageExtractor:
             return "en"
         return None
 .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\title_extractor.py ==== 
-# ==============================================================
-# src/core/ingestion/metadata/implementations/title_extractor.py
-# ==============================================================
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\page_number_extractor.py ==== 
+from __future__ import annotations
+from pathlib import Path
+from typing import Optional
+import fitz  # PyMuPDF
+from src.core.ingestion.metadata.interfaces.i_page_number_extractor import IPageNumberExtractor
 
+
+class PageNumberExtractor(IPageNumberExtractor):
+    """Extracts the page number from the first page of the PDF document."""
+    
+    def __init__(self, base_dir: Path | str | None = None):
+        self.base_dir = Path(base_dir).resolve() if base_dir else None
+
+    def extract_page_number(self, pdf_path: str) -> Optional[int]:
+        """Extract the page number from the first page of the PDF.
+        
+        :param pdf_path: Path to the PDF file.
+        :return: The page number (if available), otherwise None.
+        """
+        pdf_file = Path(pdf_path)
+
+        try:
+            with fitz.open(pdf_file) as doc:
+                # Getting the total page count
+                total_pages = len(doc)
+                if total_pages > 0:
+                    # For this example, we're assuming the page number is extracted from the first page
+                    return 1  # For example, we return the first page number; adapt as needed
+        except Exception as e:
+            print(f"Error extracting page number from {pdf_file}: {e}")
+        
+        return None
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\title_extractor.py ==== 
 from __future__ import annotations
 from pathlib import Path
 from typing import Optional
@@ -1151,11 +1476,10 @@ import fitz
 import re
 from lxml import etree
 
-
 class TitleExtractor:
     """
     Robust, deterministic extractor for scientific paper titles.
-    Filename fallback *is not used* (explizit ausgeschlossen).
+    Filename fallback *is not used* (explicitly excluded).
     """
 
     def __init__(self, base_dir: Path | str | None = None):
@@ -1168,28 +1492,28 @@ class TitleExtractor:
           1. PDF metadata
           2. GROBID TEI XML
           3. Layout + heuristic on first page
-        Returns None if keine verlÃ¤ssliche Titel gefunden wird.
+        Returns None if no reliable title is found.
         """
         pdf_file = Path(pdf_path)
 
-        # 1. PDF metadata
+        # 1. Extract from PDF metadata
         title = self._extract_from_pdf_metadata(pdf_file)
         if self._is_valid(title):
             return title
 
-        # 2. GROBID TEI XML
+        # 2. Extract from GROBID TEI XML
         xml_path = self._find_grobid_xml(pdf_file)
         if xml_path and xml_path.exists():
             grobid_title = self._extract_from_grobid(xml_path)
             if self._is_valid(grobid_title):
                 return grobid_title
 
-        # 3. Layout + heuristic on first page
+        # 3. Layout-based extraction (heuristic on first page)
         title_from_layout = self._extract_from_first_page_layout(pdf_file)
         if self._is_valid(title_from_layout):
             return title_from_layout
 
-        # Keine Datei-Name Fallback!
+        # No valid title found after all methods
         return None
 
     def _extract_from_pdf_metadata(self, pdf_file: Path) -> Optional[str]:
@@ -1202,8 +1526,8 @@ class TitleExtractor:
                     cleaned = self._normalize(title_meta)
                     if self._is_valid(cleaned):
                         return cleaned
-        except Exception:
-            return None
+        except Exception as e:
+            print(f"Error extracting from PDF metadata: {e}")
         return None
 
     def _find_grobid_xml(self, pdf_file: Path) -> Optional[Path]:
@@ -1230,12 +1554,12 @@ class TitleExtractor:
                 "//tei:titleStmt/tei:title"
             ]
             for xp in xpaths:
-                t = root.xpath(f"string({xp})", namespaces=ns)
-                cleaned = self._normalize(t)
+                title = root.xpath(f"string({xp})", namespaces=ns)
+                cleaned = self._normalize(title)
                 if self._is_valid(cleaned):
                     return cleaned
-        except Exception:
-            return None
+        except Exception as e:
+            print(f"Error extracting from GROBID XML: {e}")
         return None
 
     def _extract_from_first_page_layout(self, pdf_file: Path) -> Optional[str]:
@@ -1248,18 +1572,18 @@ class TitleExtractor:
                 if doc.page_count == 0:
                     return None
                 page = doc.load_page(0)
-                # extract dict to get blocks with font size / positions
                 blocks = page.get_text("dict")["blocks"]
-        except Exception:
+        except Exception as e:
+            print(f"Error extracting layout from first page: {e}")
             return None
 
         # Collect text segments with font size & position
         candidates: list[tuple[float, float, str]] = []  # (fontsize, y0, text)
-        for b in blocks:
-            if "lines" not in b:
+        for block in blocks:
+            if "lines" not in block:
                 continue
-            for l in b["lines"]:
-                for span in l["spans"]:
+            for line in block["lines"]:
+                for span in line["spans"]:
                     text = span["text"].strip()
                     if not text:
                         continue
@@ -1270,7 +1594,7 @@ class TitleExtractor:
         if not candidates:
             return None
 
-        # Sort by fontsize descending, then y0 ascending (top of page)
+        # Sort by font size descending, then vertical position ascending (top of page)
         candidates.sort(key=lambda x: (-x[0], x[1]))
 
         # Choose top-N spans (e.g., top 3) as potential title block
@@ -1278,9 +1602,9 @@ class TitleExtractor:
         combined = " ".join(span[2] for span in top_spans)
         cleaned = self._normalize(combined)
 
-        # Filter out if looks like author/affiliation
+        # Filter out if it looks like author/affiliation block
         if self._looks_like_author_block(cleaned):
-            # try next spans
+            # Try next spans if possible
             if len(candidates) > 3:
                 alt_spans = candidates[3:6]
                 combined2 = " ".join(span[2] for span in alt_spans)
@@ -1295,46 +1619,16 @@ class TitleExtractor:
         return None
 
     def _looks_like_author_block(self, text: str) -> bool:
-        """Heuristic to detect if a line/block is likely authors/affiliations rather than title."""
+        """Heuristic to detect if a block is likely authors/affiliations rather than title."""
         if not text:
             return False
-        # frequent keywords in affiliations/authors
+        # Frequent keywords in affiliations/authors
         if re.search(r"\b(university|dept|department|institute|school|college|laboratory|lab|affiliat|author|authors?)\b", text, re.I):
             return True
-        # many names separated by commas/and before a newline
+        # Many names separated by commas/and before a newline
         if re.match(r"[A-Z][a-z]+(\s[A-Z][a-z]+)+,?\s(and|&)\s[A-Z][a-z]+", text):
             return True
         return False
-
-    def _looks_like_title(self, text: str) -> bool:
-        """Heuristic: check if a line looks like a plausible title."""
-        if not text or len(text) < 5 or len(text) > 250:
-            return False
-        # filter out common non-title keywords
-        forbidden = r"\b(abstract|introduction|keywords?|acknowledgements|references?)\b"
-        if re.search(forbidden, text, re.I):
-            return False
-        word_count = len(text.split())
-        if word_count < 3 or word_count > 30:
-            return False
-        # Must start with uppercase letter (simplified)
-        if not text[0].isupper():
-            return False
-        return True
-
-    def _normalize(self, text: Optional[str]) -> str:
-        """Normalize whitespace, remove soft-hyphens and ligatures."""
-        if not text:
-            return ""
-        # merge hyphen-line breaks
-        text = re.sub(r"(\w)-\s+(\w)", r"\1\2", text)
-        text = text.replace("ï¬", "fi").replace("ï¬‚", "fl")
-        text = text.replace("_", " ")
-        text = re.sub(r"\s+", " ", text)
-        # Remove arXiv IDs and version tags
-        text = re.sub(r"arXiv:\d+\.\d+", "", text)  # Remove arXiv ID
-        text = re.sub(r"v\d+", "", text)  # Remove version tags
-        return text.strip()
 
     def _is_valid(self, text: Optional[str]) -> bool:
         """Check if a title candidate is semantically plausible."""
@@ -1362,6 +1656,20 @@ class TitleExtractor:
             return False
 
         return True
+
+    def _normalize(self, text: Optional[str]) -> str:
+        """Normalize whitespace, remove soft-hyphens and ligatures."""
+        if not text:
+            return ""
+        # Merge hyphenated line breaks
+        text = re.sub(r"(\w)-\s+(\w)", r"\1\2", text)
+        text = text.replace("ï¬", "fi").replace("ï¬‚", "fl")
+        text = text.replace("_", " ")
+        text = re.sub(r"\s+", " ", text)
+        # Remove arXiv IDs and version tags
+        text = re.sub(r"arXiv:\d+\.\d+", "", text)  # Remove arXiv ID
+        text = re.sub(r"v\d+", "", text)  # Remove version tags
+        return text.strip()
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\toc_extractor.py ==== 
 from __future__ import annotations
@@ -1525,38 +1833,39 @@ class YearExtractor:
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\implementations\__init__.py ==== 
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\interfaces\i_abstract_extractor.py ==== 
-"""from __future__ import annotations
+from __future__ import annotations
 from typing import Any, Dict
 from lxml import etree
 import re
-from src.core.ingestion.metadata.interfaces.i_abstract_extractor import IAbstractExtractor
+# from src.core.ingestion.metadata.interfaces.i_abstract_extractor import IAbstractExtractor
 
-class AbstractExtractor(IAbstractExtractor):
-    """Extracts abstract section using GROBID TEI XML."""
 
-    def extract(self, pdf_path: str, parsed_document: Dict[str, Any]) -> str | None:
-        xml_data = parsed_document.get("grobid_xml")
-        if not xml_data or not xml_data.strip().startswith("<"):
-            return None
+# class AbstractExtractor(IAbstractExtractor):
+#     """Extracts abstract section using GROBID TEI XML."""
 
-        try:
-            ns = {"tei": "http://www.tei-c.org/ns/1.0"}
-            root = etree.fromstring(xml_data.encode("utf8"))
-            # collect all text under <abstract> or <div type='abstract'>
-            xpath_candidates = [
-                "//tei:abstract",
-                "//tei:div[@type='abstract']",
-                "//tei:profileDesc/tei:abstract",
-            ]
-            for path in xpath_candidates:
-                text = root.xpath(f"string({path})", namespaces=ns)
-                if text and len(text.strip()) > 20:
-                    cleaned = re.sub(r"\s+", " ", text.strip())
-                    return cleaned
-        except Exception:
-            return None
-        return None
-""".
+#     def extract(self, pdf_path: str, parsed_document: Dict[str, Any]) -> str | None:
+#         xml_data = parsed_document.get("grobid_xml")
+#         if not xml_data or not xml_data.strip().startswith("<"):
+#             return None
+
+#         try:
+#             ns = {"tei": "http://www.tei-c.org/ns/1.0"}
+#             root = etree.fromstring(xml_data.encode("utf8"))
+#             # collect all text under <abstract> or <div type='abstract'>
+#             xpath_candidates = [
+#                 "//tei:abstract",
+#                 "//tei:div[@type='abstract']",
+#                 "//tei:profileDesc/tei:abstract",
+#             ]
+#             for path in xpath_candidates:
+#                 text = root.xpath(f"string({path})", namespaces=ns)
+#                 if text and len(text.strip()) > 20:
+#                     cleaned = re.sub(r"\s+", " ", text.strip())
+#                     return cleaned
+#         except Exception:
+#             return None
+#         return None
+.
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\interfaces\i_author_extractor.py ==== 
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List
@@ -1592,6 +1901,24 @@ class ILanguageDetector(ABC):
     def detect(self, text: str, metadata: Dict[str, Any] | None = None) -> str | None:
         """Detect the dominant language code (e.g. 'en', 'de')."""
         raise NotImplementedError
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\interfaces\i_page_number_extractor.py ==== 
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import Optional
+
+
+class IPageNumberExtractor(ABC):
+    """Interface for extracting page numbers from a document."""
+
+    @abstractmethod
+    def extract_page_number(self, pdf_path: str) -> Optional[int]:
+        """Extract the page number from the given PDF path.
+        
+        :param pdf_path: Path to the PDF file
+        :return: The page number (if available), otherwise None.
+        """
+        pass
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\interfaces\i_title_extractor.py ==== 
 from abc import ABC, abstractmethod
@@ -1644,19 +1971,19 @@ class TocExtractorInterface(ABC):
 from .i_title_extractor import ITitleExtractor
 from .i_author_extractor import IAuthorExtractor
 from .i_year_extractor import IYearExtractor
-from .i_abstract_extractor import IAbstractExtractor
+#from .i_abstract_extractor import IAbstractExtractor
 from .i_language_detector import ILanguageDetector
 from .i_file_size_extractor import IFileSizeExtractor
-from .i_has_ocr_extractor import IHasOcrExtractor
+#from .i_has_ocr_extractor import IHasOcrExtractor
 
 __all__ = [
     "ITitleExtractor",
     "IAuthorExtractor",
     "IYearExtractor",
-    "IAbstractExtractor",
+    #"IAbstractExtractor",
     "ILanguageDetector",
     "IFileSizeExtractor",
-    "IHasOcrExtractor",
+    #"IHasOcrExtractor",
 ]
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\utils\name_verifier.py ==== 
@@ -1688,7 +2015,6 @@ class LocalNameVerifier:
         return valid_structure and valid_chars and not invalid_tokens
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\parallel_pdf_parser.py ==== 
-# src/core/ingestion/parser/parallel_pdf_parser.py
 from __future__ import annotations
 import concurrent.futures
 import logging
@@ -1696,6 +2022,7 @@ import multiprocessing
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 import json
+import time
 
 from src.core.ingestion.parser.parser_factory import ParserFactory
 
@@ -1708,16 +2035,25 @@ class ParallelPdfParser:
         self.logger = logger or logging.getLogger(__name__)
         self.parser_factory = ParserFactory(config, logger=self.logger)
 
+        # Konfiguriere die maximale Anzahl an Workern, basierend auf der Anzahl der CPU-Kerne
         parallel_cfg = config.get("options", {}).get("parallelism", "auto")
         if isinstance(parallel_cfg, int) and parallel_cfg > 0:
             self.num_workers = parallel_cfg
         else:
-            self.num_workers = max(1, multiprocessing.cpu_count() - 1)
+            # Maximal 4 Worker verwenden, wenn die CPU nicht so viele Kerne hat
+            self.num_workers = min(max(1, multiprocessing.cpu_count() - 1), 4)
 
         self.logger.info(f"Initialized ParallelPdfParser with {self.num_workers} worker(s)")
 
     # ------------------------------------------------------------------
     def parse_all(self, pdf_dir: str | Path, output_dir: str | Path) -> List[Dict[str, Any]]:
+        """
+        Parse all PDFs in the given directory and output the parsed results to the output directory.
+        
+        :param pdf_dir: Directory containing the PDF files.
+        :param output_dir: Directory where the parsed results should be saved.
+        :return: List of dictionaries containing parsed content from the PDFs.
+        """
         pdf_dir, output_dir = Path(pdf_dir), Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
         pdf_files = sorted(pdf_dir.glob("*.pdf"))
@@ -1731,21 +2067,36 @@ class ParallelPdfParser:
             for future in concurrent.futures.as_completed(future_to_pdf):
                 pdf = future_to_pdf[future]
                 try:
-                    result = future.result()
+                    # Set timeout for each future (e.g., 300 seconds = 5 minutes)
+                    result = future.result(timeout=300)  # Timeout set to 5 minutes
                     results.append(result)
                     out_path = output_dir / f"{pdf.stem}.parsed.json"
                     with open(out_path, "w", encoding="utf-8") as f:
                         json.dump(result, f, ensure_ascii=False, indent=2)
-                    self.logger.info(f"âœ“ Parsed {pdf.name}")
+                    self.logger.info(f"Parsed {pdf.name}")
+                except concurrent.futures.TimeoutError:
+                    self.logger.error(f"Timeout occurred while parsing {pdf.name}")
                 except Exception as e:
-                    self.logger.error(f"âœ— Failed to parse {pdf.name}: {e}")
+                    self.logger.error(f"Failed to parse {pdf.name}: {e}")
 
         return results
 
     # ------------------------------------------------------------------
     def _parse_single(self, pdf_path: str) -> Dict[str, Any]:
+        """
+        Parse a single PDF file using the appropriate parser and return the extracted data.
+        
+        :param pdf_path: Path to the PDF file to parse.
+        :return: A dictionary containing parsed content from the PDF.
+        """
         parser = self.parser_factory.create_parser()
-        return parser.parse(pdf_path)
+        try:
+            result = parser.parse(pdf_path)
+            return result
+        except Exception as e:
+            self.logger.error(f"Error parsing {pdf_path}: {e}")
+            return {"text": "", "metadata": {"source_file": pdf_path}}
+
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\parser_factory.py ==== 
 from __future__ import annotations
@@ -1755,7 +2106,7 @@ import multiprocessing
 
 from src.core.ingestion.parser.interfaces.i_pdf_parser import IPdfParser
 from src.core.ingestion.parser.pymupdf_parser import PyMuPDFParser
-
+from src.core.ingestion.parser.pdfplumber_parser import PdfPlumberParser  # Import PdfPlumberParser
 
 class ParserFactory:
     """
@@ -1768,13 +2119,13 @@ class ParserFactory:
         self.logger = logger or logging.getLogger(__name__)
         opts = config.get("options", {})
 
-        self.parser_mode = opts.get("pdf_parser", "auto").lower()
-        self.parallelism = opts.get("parallelism", "auto")
-        self.language = opts.get("language", "auto")
-        self.exclude_toc = True  # enforced globally
-        self.max_pages = opts.get("max_pages", None)
+        self.parser_mode = opts.get("pdf_parser", "auto").lower()  # Get parser mode (fitz, pdfplumber, auto)
+        self.parallelism = opts.get("parallelism", "auto")  # Get parallelism setting
+        self.language = opts.get("language", "auto")  # Get language setting
+        self.exclude_toc = True  # Enforce exclusion of table of contents globally
+        self.max_pages = opts.get("max_pages", None)  # Max pages to parse
 
-        # determine optimal CPU usage
+        # Determine optimal CPU usage based on parallelism
         if isinstance(self.parallelism, int) and self.parallelism > 0:
             self.num_workers = self.parallelism
         else:
@@ -1785,53 +2136,235 @@ class ParserFactory:
             f"workers={self.num_workers}, exclude_toc={self.exclude_toc}"
         )
 
-    # ------------------------------------------------------------------
     def create_parser(self) -> IPdfParser:
-        """Return configured parser instance (currently only PyMuPDF)."""
-        if self.parser_mode in ("fitz", "auto"):
-            return PyMuPDFParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)
-        raise ValueError(f"Unsupported parser mode: {self.parser_mode}")
+        """Return configured parser instance based on configuration (fitz, pdfplumber, etc.)."""
+        if self.parser_mode == "fitz":
+            return PyMuPDFParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)  # Use PyMuPDFParser
+        elif self.parser_mode == "pdfplumber":
+            return PdfPlumberParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)  # Use PdfPlumberParser
+        elif self.parser_mode == "auto":
+            # Automatically choose the best parser
+            try:
+                return PdfPlumberParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)
+            except Exception:
+                return PyMuPDFParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)  # Fallback to PyMuPDFParser
+        else:
+            raise ValueError(f"Unsupported parser mode: {self.parser_mode}")  # Error if parser mode is unsupported
 
-    # ------------------------------------------------------------------
     def create_parallel_parser(self):
         """Return a parallel orchestrator that distributes parsing tasks."""
         from src.core.ingestion.parser.parallel_pdf_parser import ParallelPdfParser
-        return ParallelPdfParser(self.config, logger=self.logger)
+        return ParallelPdfParser(self.config, logger=self.logger)  # Return parallel parser for distribution
 .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\pymupdf_parser.py ==== 
-from __future__ import annotations
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\pdfplumber_parser.py ==== 
+import pytesseract
+import fitz  # PyMuPDF
+import pdfplumber  # Import pdfplumber for better multi-column text extraction
+from PIL import Image, ImageEnhance, ImageFilter
+import os
+import re
 from typing import Dict, Any, List
 from pathlib import Path
-import fitz  # PyMuPDF
-import re
 from src.core.ingestion.parser.interfaces.i_pdf_parser import IPdfParser
 
+class PdfPlumberParser(IPdfParser):
+    """Robust PDF parser using pdfplumber to handle multi-column text extraction and OCR fallback."""
 
-class PyMuPDFParser(IPdfParser):
-    """Robust PDF parser using PyMuPDF with layout-based filtering of non-body text."""
-
-    def __init__(self, exclude_toc: bool = True, max_pages: int | None = None):
+    def __init__(self, exclude_toc: bool = True, max_pages: int | None = None, use_ocr: bool = True):
+        """
+        Initialize the parser with options for excluding the table of contents and limiting the number of pages.
+        
+        :param exclude_toc: Flag to exclude table of contents pages from extraction.
+        :param max_pages: Maximum number of pages to extract text from.
+        :param use_ocr: Flag to use OCR if no text is found.
+        """
         self.exclude_toc = exclude_toc
         self.max_pages = max_pages
+        self.use_ocr = use_ocr  # Flag to use OCR if no text is found
 
-    # ------------------------------------------------------------------
     def parse(self, pdf_path: str) -> Dict[str, Any]:
-        """Extract clean body text (excluding title, abstract, headers) and minimal metadata."""
+        """
+        Extract clean body text (including abstract) and minimal metadata from a PDF file.
+
+        :param pdf_path: Path to the PDF file to extract text from.
+        :return: A dictionary with 'text' (extracted body text) and 'metadata' (file metadata).
+        """
+        pdf_path = Path(pdf_path)
+        if not pdf_path.exists():
+            raise FileNotFoundError(f"File not found: {pdf_path}")
+
+        text_blocks: List[str] = []  # To hold the extracted text from each page
+        toc_titles = self._extract_toc_titles(pdf_path) if self.exclude_toc else []  # Extract TOC titles to filter out
+
+        # Extract body text from each page using pdfplumber
+        with pdfplumber.open(pdf_path) as pdf:
+            for page_index, page in enumerate(pdf.pages):
+                if self.max_pages and page_index >= self.max_pages:
+                    break
+
+                # Extract text from the page considering multi-column layout
+                page_body = self._extract_text_from_page(page)
+                if page_body:
+                    text_blocks.append(page_body)
+
+        clean_text = "\n".join(t for t in text_blocks if t)
+        clean_text = self._remove_residual_metadata(clean_text)
+
+        metadata = {
+            "source_file": str(pdf_path.name),
+            "page_count": len(pdf.pages),
+        }
+
+        return {"text": clean_text.strip(), "metadata": metadata}
+
+    def _extract_text_from_page(self, page) -> str:
+        """
+        Extract text from a page considering the multi-column layout using pdfplumber.
+        
+        :param page: The pdfplumber page object.
+        :return: Extracted text from the page.
+        """
+        # Split the page into columns using pdfplumber's layout extraction
+        width = page.width
+        left_column = page.within_bbox((0, 0, width / 3, page.height))  # Left column
+        middle_column = page.within_bbox((width / 3, 0, 2 * width / 3, page.height))  # Middle column
+        right_column = page.within_bbox((2 * width / 3, 0, width, page.height))  # Right column
+
+        # Extract text from each column
+        left_text = left_column.extract_text()
+        middle_text = middle_column.extract_text()
+        right_text = right_column.extract_text()
+
+        # Combine the text from all columns
+        combined_text = f"{left_text}\n{middle_text}\n{right_text}"
+
+        return combined_text
+
+    def _extract_toc_titles(self, pdf_path: Path) -> List[str]:
+        """
+        Extract table of contents (TOC) titles from the PDF document to filter them out from the main text.
+        
+        :param pdf_path: The path to the PDF file.
+        :return: A list of TOC titles.
+        """
+        toc_titles = []
+        with pdfplumber.open(pdf_path) as pdf:
+            for page in pdf.pages:
+                # Try to get TOC titles from the page (if any)
+                toc = page.extract_text()
+                if toc and re.search(r"(?i)\btable\s+of\s+contents\b", toc):
+                    toc_titles.append(toc)
+        return toc_titles
+
+    def _remove_residual_metadata(self, text: str) -> str:
+        """
+        Remove residual header/footer and metadata-like fragments, excluding abstract.
+        
+        :param text: The extracted text to clean up.
+        :return: Cleaned text with metadata removed.
+        """
+        patterns = [
+            r"(?im)^table\s+of\s+contents.*$",
+            r"(?im)^inhaltsverzeichnis.*$",
+            r"(?im)^\s*(title|author|doi|keywords|arxiv|university|faculty|institute|version).*?$",
+            r"(?im)\bpage\s+\d+\b",  # Remove page numbers
+            r"(?m)^\s*\d+\s*$",  # Remove single digit page numbers like "1", "2", "3"
+            r"(?i)\bhttps?://\S+",  # Remove URLs
+            r"(?i)\b\w+@\w+\.\w+",  # Remove email addresses
+        ]
+        for p in patterns:
+            text = re.sub(p, "", text, flags=re.DOTALL)
+
+        text = re.sub(r"\n{2,}", "\n\n", text)  # Merge consecutive line breaks
+        return text.strip()
+
+    def _apply_ocr_to_page(self, page) -> List[str]:
+        """
+        Apply OCR to a page if the page does not contain text. Uses Tesseract to extract text from scanned pages.
+        
+        :param page: The page to apply OCR on.
+        :return: A list with OCR extracted text.
+        """
+        # Convert the page to an image
+        pix = page.get_pixmap()
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        
+        # Preprocess the image (optional, if necessary)
+        img = self._preprocess_image_for_ocr(img)
+
+        # Apply OCR
+        ocr_text = pytesseract.image_to_string(img)
+        return [(0, 0, pix.width, pix.height, ocr_text)]  # Return OCR'd text as a block
+
+    def _preprocess_image_for_ocr(self, img: Image) -> Image:
+        """
+        Preprocess the image to improve OCR accuracy by enhancing contrast and sharpness.
+        
+        :param img: The image to preprocess.
+        :return: The preprocessed image ready for OCR.
+        """
+        # Sharpen the image
+        img = img.filter(ImageFilter.SHARPEN)
+        
+        # Increase the contrast of the image
+        enhancer = ImageEnhance.Contrast(img)
+        img = enhancer.enhance(2)  # Enhance the contrast by a factor of 2
+        
+        return img
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\pymupdf_parser.py ==== 
+import pytesseract
+import fitz  # PyMuPDF
+from PIL import Image, ImageEnhance, ImageFilter
+import os
+import re
+from typing import Dict, Any, List
+from pathlib import Path
+from src.core.ingestion.parser.interfaces.i_pdf_parser import IPdfParser
+
+class PyMuPDFParser(IPdfParser):
+    """Robust PDF parser using PyMuPDF with layout-based filtering of non-body text and OCR fallback for scanned PDFs."""
+
+    def __init__(self, exclude_toc: bool = True, max_pages: int | None = None, use_ocr: bool = True):
+        """
+        Initialize the parser with options for excluding the table of contents and limiting the number of pages.
+        
+        :param exclude_toc: Flag to exclude table of contents pages from extraction.
+        :param max_pages: Maximum number of pages to extract text from.
+        :param use_ocr: Flag to use OCR if no text is found.
+        """
+        self.exclude_toc = exclude_toc
+        self.max_pages = max_pages
+        self.use_ocr = use_ocr  # Flag to use OCR if no text is found
+
+    def parse(self, pdf_path: str) -> Dict[str, Any]:
+        """
+        Extract clean body text (including abstract) and minimal metadata from a PDF file.
+
+        :param pdf_path: Path to the PDF file to extract text from.
+        :return: A dictionary with 'text' (extracted body text) and 'metadata' (file metadata).
+        """
         pdf_path = Path(pdf_path)
         if not pdf_path.exists():
             raise FileNotFoundError(f"File not found: {pdf_path}")
 
         doc = fitz.open(pdf_path)
-        text_blocks: List[str] = []
-        toc_titles = self._extract_toc_titles(doc) if self.exclude_toc else []
+        text_blocks: List[str] = []  # To hold the extracted text from each page
+        toc_titles = self._extract_toc_titles(doc) if self.exclude_toc else []  # Extract TOC titles to filter out
 
+        # Extract body text from each page
         for page_index, page in enumerate(doc):
             if self.max_pages and page_index >= self.max_pages:
                 break
             blocks = page.get_text("blocks")
+
+            # If no text is found, use OCR
+            if not blocks and self.use_ocr:
+                blocks = self._apply_ocr_to_page(page)
+
             page_body = self._extract_body_from_blocks(blocks)
             if not page_body:
-                continue
+                continue  # Skip empty pages or pages without meaningful content
             # Skip ToC-like pages entirely
             if self.exclude_toc and self._looks_like_toc_page(page_body, toc_titles):
                 continue
@@ -1849,15 +2382,24 @@ class PyMuPDFParser(IPdfParser):
         doc.close()
         return {"text": clean_text.strip(), "metadata": metadata}
 
-    # ------------------------------------------------------------------
     def _extract_toc_titles(self, doc) -> List[str]:
-        """Extract TOC titles to later filter out from main text."""
+        """
+        Extract table of contents (TOC) titles from the PDF document to filter them out from the main text.
+        
+        :param doc: The PyMuPDF document object.
+        :return: A list of TOC titles.
+        """
         toc = doc.get_toc()
         return [entry[1].strip() for entry in toc if len(entry) >= 2]
 
-    # ------------------------------------------------------------------
     def _looks_like_toc_page(self, text: str, toc_titles: List[str]) -> bool:
-        """Heuristic to detect table of contents pages."""
+        """
+        Heuristic to detect table of contents pages by checking if the text contains typical TOC structure.
+
+        :param text: The text from a page.
+        :param toc_titles: The list of TOC titles to match against.
+        :return: True if the page looks like a TOC, False otherwise.
+        """
         if not text or len(text) < 100:
             return False
         if re.search(r"(?i)\btable\s+of\s+contents\b|\binhaltsverzeichnis\b", text):
@@ -1865,46 +2407,101 @@ class PyMuPDFParser(IPdfParser):
         match_count = sum(1 for t in toc_titles if t and t in text)
         return match_count > 5
 
-    # ------------------------------------------------------------------
     def _extract_body_from_blocks(self, blocks: list) -> str:
-        """Select only text blocks likely belonging to main body based on layout and heuristics."""
-        # Determine median vertical position â†’ ignore top 15â€“20%
-        y_positions = [b[1] for b in blocks if len(b) >= 5]
-        if not y_positions:
-            return ""
-        page_top_cutoff = sorted(y_positions)[int(len(y_positions) * 0.15)]
+        """
+        Optimized extraction to ensure only meaningful body text (e.g., abstract, sections) is included.
+        
+        :param blocks: The list of text blocks extracted from the page.
+        :return: A string of extracted body text.
+        """
+        # Initialize variables for abstract detection and block storage
+        abstract_found = False
+        abstract_block = []
         candidate_blocks = []
 
         for (x0, y0, x1, y1, text, *_ ) in blocks:
             if not text or len(text.strip()) < 30:
-                continue
-            # Exclude upper-page fragments (titles, authors, abstract)
-            if y1 < page_top_cutoff + 100:
-                if re.search(r"(?i)(abstract|title|author|doi|keywords|arxiv|university|faculty|institute|version)", text):
-                    continue
-                if len(text.strip().split()) < 20:
-                    continue
+                continue  # Skip empty or short text blocks
+
+            # If the abstract hasn't been found, try to capture it
+            if not abstract_found and re.search(r"(?i)\babstract\b", text):
+                abstract_found = True
+                abstract_block.append(text.strip())
+                continue  # Skip content after abstract until the main body starts
+
+            # Filter out metadata and irrelevant blocks
+            if re.search(r"(?i)(title|author|doi|keywords|arxiv|university|faculty|institute|version)", text):
+                continue  # Skip metadata blocks
+            if len(text.strip().split()) < 20:
+                continue  # Skip short blocks
+
+            # Add the remaining relevant blocks
             candidate_blocks.append(text.strip())
+
+        # Add the abstract at the beginning of the body if it was found
+        if abstract_found:
+            candidate_blocks.insert(0, "\n".join(abstract_block))
 
         return "\n".join(candidate_blocks)
 
-    # ------------------------------------------------------------------
     def _remove_residual_metadata(self, text: str) -> str:
-        """Remove residual header/footer and metadata-like fragments."""
+        """
+        Remove residual header/footer and metadata-like fragments, excluding abstract.
+        
+        :param text: The extracted text to clean up.
+        :return: Cleaned text with metadata removed.
+        """
+        # Extended patterns for filtering out metadata
         patterns = [
             r"(?im)^table\s+of\s+contents.*$",
             r"(?im)^inhaltsverzeichnis.*$",
-            r"(?im)^\s*(abstract|zusammenfassung)\b.*?(?=\n[A-Z][a-z]|$)",
-            r"(?im)^title\s*:.*$",
-            r"(?im)^author\s*:.*$",
-            r"(?im)^\s*(version|revision|doi|arxiv).*?$",
-            r"(?im)\bpage\s+\d+\b",
-            r"(?m)^\s*\d+\s*$",
+            r"(?im)^\s*(title|author|doi|keywords|arxiv|university|faculty|institute|version).*?$",
+            r"(?im)\bpage\s+\d+\b",  # Remove page numbers
+            r"(?m)^\s*\d+\s*$",  # Remove single digit page numbers like "1", "2", "3"
+            r"(?i)\bhttps?://\S+",  # Remove URLs
+            r"(?i)\b\w+@\w+\.\w+",  # Remove email addresses
+            r"(?i)(RSISE|NICTA|university|faculty|institute)\b.*",  # Remove institution names
         ]
         for p in patterns:
             text = re.sub(p, "", text, flags=re.DOTALL)
-        text = re.sub(r"\n{2,}", "\n\n", text)
+
+        # Optionally, remove excessive line breaks or extra spaces
+        text = re.sub(r"\n{2,}", "\n\n", text)  # Merge consecutive line breaks
         return text.strip()
+
+    def _apply_ocr_to_page(self, page) -> List[str]:
+        """
+        Apply OCR to a page if the page does not contain text. Uses Tesseract to extract text from scanned pages.
+        
+        :param page: The page to apply OCR on.
+        :return: A list with OCR extracted text.
+        """
+        # Convert the page to an image
+        pix = page.get_pixmap()
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        
+        # Preprocess the image (optional, if necessary)
+        img = self._preprocess_image_for_ocr(img)
+
+        # Apply OCR
+        ocr_text = pytesseract.image_to_string(img)
+        return [(0, 0, pix.width, pix.height, ocr_text)]  # Return OCR'd text as a block
+
+    def _preprocess_image_for_ocr(self, img: Image) -> Image:
+        """
+        Preprocess the image to improve OCR accuracy by enhancing contrast and sharpness.
+        
+        :param img: The image to preprocess.
+        :return: The preprocessed image ready for OCR.
+        """
+        # Sharpen the image
+        img = img.filter(ImageFilter.SHARPEN)
+        
+        # Increase the contrast of the image
+        enhancer = ImageEnhance.Contrast(img)
+        img = enhancer.enhance(2)  # Enhance the contrast by a factor of 2
+        
+        return img
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\__init__.py ==== 
 .
@@ -1923,72 +2520,20 @@ class IPdfParser(ABC):
         raise NotImplementedError
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\utils\file_utils.py ==== 
-# src/core/ingestion/utils/file_utils.py
-from __future__ import annotations
+import os
+from PyPDF2 import PdfFileReader
 from pathlib import Path
-
 
 def ensure_dir(path: Path):
     """Create directory if it doesn't exist."""
     path.mkdir(parents=True, exist_ok=True)
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\utils\language_detector.py ==== 
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\utils\performance_timer.py ==== 
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\utils\__init__.py ==== 
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\__pycache__\config_loader.cpython-312.pyc ==== 
-Ë
-    ¸ïi  ã                  óX   — d dl mZ d dlZd dlZd dlmZ d dlmZmZ  G d„ d«      Z	dd„Z
-y)	é    )ÚannotationsN)ÚPath)ÚAnyÚDictc                  ó:   — e Zd ZdZdd„Zd	d„Zd
-d„Zdd„Zddd„Zy)ÚConfigLoaderz‹
-    Loads YAML configuration files and replaces ${base_dir} / ${PROJECT_ROOT}
-    placeholders only when they are explicitly present.
-    c                óÀ  — t        |«      | _        | j                  j                  «       st        d| j                  › «      ‚t	        | j                  dd¬«      5 }t        j                  |«      xs i | _        d d d «       | j                  «       | _	        | j                  j                  di «      }|j                  dd«      }| j                  |«      | _        | j                  | j                  «      | _        t        d«       | j                  j                  d	i «      j!                  «       D ]  \  }}t        d
-|› d|› «       Œ t        «        y # 1 sw Y   ŒÛxY w)NzConfiguration file not found: Úrzutf-8)ÚencodingÚglobalÚbase_dirú${PROJECT_ROOT}z
-[DEBUG] Expanded paths:Úpathsz  z: )r   ÚpathÚexistsÚFileNotFoundErrorÚopenÚyamlÚ	safe_loadÚ_rawÚ_detect_project_rootÚproject_rootÚgetÚ_expand_single_varr   Ú_expand_varsÚconfigÚprintÚitems)Úselfr   ÚfÚglobal_sectionÚbase_dir_valueÚkÚvs          úLC:\Users\katha\historical-drift-analyzer\src\core\ingestion\config_loader.pyÚ__init__zConfigLoader.__init__   s  € Ü˜“JˆŒ	Øy‰y×ÑÔ!Ü#Ğ&DÀTÇYÁYÀKĞ$PÓQĞQä$—)‘)˜S¨7Õ3°qÜŸ™ qÓ)Ò/¨RˆDŒI÷ 4ğ !×5Ñ5Ó7ˆÔğ Ÿ™Ÿ™ x°Ó4ˆØ'×+Ñ+¨JĞ8IÓJˆØ×/Ñ/°Ó?ˆŒğ ×'Ñ'¨¯	©	Ó2ˆŒô 	Ğ)Ô*Ø—K‘K—O‘O G¨RÓ0×6Ñ6Ö8‰DˆAˆqÜBqc˜˜A˜3-Õ ğ 9ä÷% 4Ğ3ús   ÁEÅEc                óÊ   — | j                   j                  «       }d|j                  v r0|j                  j                  d«      }t	        |j                  d|  S |j
-                  S )z)Return the root directory of the project.ÚconfigsN)r   ÚresolveÚpartsÚindexr   Úparent)r   ÚpÚidxs      r%   r   z!ConfigLoader._detect_project_root(   sP   € àI‰I×ÑÓˆØ˜Ÿ™ÑØ—'‘'—-‘- 	Ó*ˆCÜ˜Ÿ™  #˜Ğ'Ğ'Øx‰xˆó    c                ól  — t        |t        «      rd|vr|S t        | j                  «      t        | j                  «      t        | j                  «      t        | j                  «      dœ}|j                  «       D ]  \  }}|j	                  ||«      }Œ t        t        |«      j                  «       «      S )z9Replace placeholders only if ${...} patterns are present.z${)r   z${project_root}z${BASE_DIR}z${base_dir})Ú
-isinstanceÚstrr   r   Úreplacer   r)   )r   ÚvalueÚreplacementsÚplaceholderÚreals        r%   r   zConfigLoader._expand_single_var1   s›   € ä˜%¤Ô%¨°UÑ):ØˆLô  # 4×#4Ñ#4Ó5Ü" 4×#4Ñ#4Ó5Ü˜t×0Ñ0Ó1Ü˜t×0Ñ0Ó1ñ	
-ˆğ ".×!3Ñ!3Ö!5ÑˆK˜Ø—M‘M +¨tÓ4‰Eğ "6ä”4˜“;×&Ñ&Ó(Ó)Ğ)r/   c                óB  — t        |t        «      r3|j                  «       D ci c]  \  }}|| j                  |«      “Œ c}}S t        |t        «      r|D cg c]  }| j                  |«      ‘Œ c}S t        |t
-        «      r| j                  |«      S |S c c}}w c c}w )z6Recursively replace placeholders in nested structures.)r1   Údictr   r   Úlistr2   r   )r   Údatar#   r$   s       r%   r   zConfigLoader._expand_varsB   s   € ädœDÔ!Ø8<¿
-¹
-¼ÔE¹±°°1At×(Ñ(¨Ó+Ñ+¸ÒEĞEÜ˜œdÔ#Ù26Ó7±$¨QD×%Ñ% aÕ(°$Ñ7Ğ7Ü˜œcÔ"Ø×*Ñ*¨4Ó0Ğ0àˆKùó Fùâ7s   ¤BÁBNc                ó:   — | j                   j                  ||«      S )z!Access top-level config sections.)r   r   )r   ÚkeyÚdefaults      r%   r   zConfigLoader.getN   s   € à{‰{‰˜s GÓ,Ğ,r/   )r   r2   )Úreturnr   )r4   r2   r?   r2   )r;   r   r?   r   )N)r=   r2   r>   r   r?   r   )	Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r&   r   r   r   r   © r/   r%   r   r      s    „ ñó
-ó4ó*ó"	õ-r/   r   c                ó,   — t        | «      j                  S )zEConvenience wrapper returning parsed and expanded configuration dict.)r   r   )r   s    r%   Úload_configrF   T   s   € ä˜Ó×$Ñ$Ğ$r/   )r   r2   r?   zDict[str, Any])Ú
-__future__r   Úosr   Úpathlibr   Útypingr   r   r   rF   rD   r/   r%   Ú<module>rK      s&   ğİ "Û 	Û İ ß ÷H-ñ H-ôX%r/   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\__pycache__\ingestion_orchestrator.cpython-312.pyc ==== 
-Ë
-    &úiL  ã                  ó˜   — d dl mZ d dlZd dlZd dlmZ d dlmZmZ d dl	m
-Z
- d dlmZ d dlmZ d dlmZ d d	lmZ d
-„ Zedk(  r e«        yy)é    )ÚannotationsN)ÚPath)ÚAnyÚDict)ÚConfigLoader)Ú
-ensure_dir)ÚParserFactory)ÚMetadataExtractorFactory)ÚRagTextCleanerc                 ó¾  — t        d«      j                  } | j                  di «      }t        t        |j                  dd«      j                  «       t        j                  «      }t	        j                  |d¬«       t	        j                  d«      }|j                  d«       t        | |¬	«      }t        j                  | «      }t        j                  «       }|j                  d
-g «      }|j                  dd«      }t        | d   d   «      j!                  «       }	t        | d   d   «      j!                  «       }
-t        | d   j                  dd«      «      j!                  «       }t        | d   d   «      j!                  «       }t#        |
-«       t#        |«       t#        |«       t%        |	j'                  d«      «      }|s|j)                  d|	› «       y |j                  dt+        |«      › d|	› «       t-        |t.        «      xr |dkD  xs% t-        |t0        «      xr |j3                  «       dk(  }|rœ	 |j5                  «       }|j                  d«       |j7                  |	|
-«      }|D ]C  }d|v r|j9                  |d   «      |d<   t        |d   d   «      j:                  }|	|› dz  }|j=                  t1        |«      «      }|j?                  «       D ci c]  \  }}|r||v r||“Œ }}}|d   jA                  |«       |
-|› dz  }tC        |dd¬«      5 }tE        jF                  ||d d!¬"«       d d d «       ||› d#z  }tC        |dd¬«      5 }tE        jF                  ||d d!¬"«       d d d «       ||› d$z  }tC        |dd¬«      5 }tE        jF                  |d   |d d!¬"«       d d d «       ŒF |j                  d%t+        |«      › d&«       y |jM                  «       }|D ]¨  }|j                  d(|jN                  › d)«       	 |jQ                  t1        |«      «      }d|v r|j9                  |d   «      |d<   |j                  di «      } |j=                  t1        |«      «      }!|r(|!j?                  «       D ci c]  \  }}||v sŒ||“Œ }!}}| jA                  |!«       | |d<   |
-|j:                  › dz  }tC        |dd¬«      5 }tE        jF                  ||d d!¬"«       d d d «       ||j:                  › d#z  }tC        |dd¬«      5 }tE        jF                  ||d d!¬"«       d d d «       ||j:                  › d$z  }tC        |dd¬«      5 }tE        jF                  | |d d!¬"«       d d d «       |j                  d*|jN                  › «       Œ« |j                  d-«       y c c}}w # 1 sw Y   ŒuxY w# 1 sw Y   ŒJxY w# 1 sw Y   Œ`xY w# tH        $ r}|jK                  d'|› «       Y d }~Œ d }~ww xY wc c}}w # 1 sw Y   ŒxY w# 1 sw Y   ŒéxY w# 1 sw Y   Œ³xY w# tH        $ r,}|jK                  d+|jN                  › d,|› «       Y d }~Œqd }~ww xY w).Nzconfigs/ingestion.yamlÚoptionsÚ	log_levelÚINFOz%(levelname)s | %(message)s)ÚlevelÚformatÚIngestionOrchestratorzStarting ingestion pipeline)ÚloggerÚmetadata_fieldsÚparallelismÚautoÚpathsÚraw_pdfsÚparsedÚcleanedzdata/processed/cleanedÚmetadataz*.pdfzNo PDF files found in zFound z PDF(s) in é   z&Running ingestion in parallel mode ...ÚtextÚsource_filez.pdfz.parsed.jsonÚwzutf-8)ÚencodingFé   )Úensure_asciiÚindentz.cleaned.jsonz.metadata.jsonzParallel ingestion completed (z
- file(s)).u:   Parallel ingestion failed â†’ falling back to sequential: zParsing z ...u   âœ“ Completed u   âœ— Failed to parse z: zIngestion complete.))r   ÚconfigÚgetÚgetattrÚloggingÚupperr   ÚbasicConfigÚ	getLoggerÚinfor	   r
-   Úfrom_configr   Údefaultr   Úresolver   ÚsortedÚglobÚwarningÚlenÚ
-isinstanceÚintÚstrÚlowerÚcreate_parallel_parserÚ	parse_allÚcleanÚstemÚextract_allÚitemsÚupdateÚopenÚjsonÚdumpÚ	ExceptionÚerrorÚcreate_parserÚnameÚparse)"ÚcfgÚoptsr   r   ÚfactoryÚmetadata_factoryÚcleanerÚactive_metadata_fieldsr   Úraw_dirÚ
-parsed_dirÚcleaned_dirÚmetadata_dirÚ	pdf_filesÚuse_parallelÚparallel_parserÚresultsÚresÚpdf_nameÚpdf_pathÚall_metaÚkÚvÚfiltered_metaÚparsed_pathÚfÚcleaned_pathÚ	meta_pathÚeÚparserÚpdfÚparsed_resultÚbase_metadataÚall_metadatas"                                     úUC:\Users\katha\historical-drift-analyzer\src\core\ingestion\ingestion_orchestrator.pyÚmainrf      s  € ô Ğ/Ó
-0×
-7Ñ
-7€CØŸ7™7 9¨bÓ1€DÜœ §¡¨+°vÓ!>×!DÑ!DÓ!FÌÏÉÓU€Iä×Ñ˜iĞ0MÕNÜ×ÑĞ6Ó7€FØ
-‡KKĞ-Ô.ô
- ˜C¨Ô/€GÜ/×;Ñ;¸CÓ@ĞÜ×$Ñ$Ó&€Gà!ŸX™XĞ&7¸Ó<ĞØ—(‘(˜=¨&Ó1€Kä3w‘< 
-Ñ+Ó,×4Ñ4Ó6€GÜc˜'‘l 8Ñ,Ó-×5Ñ5Ó7€JÜs˜7‘|×'Ñ'¨	Ğ3KÓLÓM×UÑUÓW€KÜ˜˜G™ ZÑ0Ó1×9Ñ9Ó;€LÜˆzÔÜˆ{ÔÜˆ|Ôäw—|‘| GÓ,Ó-€IÙØ‰Ğ/°¨yĞ9Ô:Øà
-‡KK&œ˜Y›Ğ(¨°G°9Ğ=Ô>ô 	;¤Ó$Ò8¨°q©òJä
-[¤#Ó
-&Ò
-H¨;×+<Ñ+<Ó+>À&Ñ+Hğ ò ğ%	[Ø%×<Ñ<Ó>ˆOØK‰KĞ@ÔAØ%×/Ñ/°¸ÓDˆGäà˜S‘=Ø")§-¡-°°F±Ó"<C˜‘Kô    J¡°Ñ >Ó?×DÑDØ"¨ z°Ğ%6Ñ6Ø+×7Ñ7¼¸H»ÓFà%-§^¡^Ô%5ô!Ù%5™T˜Q Ù1°QĞ:PÑ5Pğ q‘DĞ%5ğ ñ !ğ J‘×&Ñ& }Ô5ğ )¨h¨Z°|Ğ+DÑDÜ˜+ s°WÕ=ÀÜ—I‘I˜c 1°5ÀÕC÷ >ğ  +°¨z¸Ğ-GÑGÜ˜,¨°gÕ>À!Ü—I‘I˜c 1°5ÀÕC÷ ?ğ )¨h¨Z°~Ğ+FÑF	Ü˜) S°7Õ;¸qÜ—I‘I˜c *™o¨q¸uÈQÕO÷ <Ñ;ğ3 ğ8 K‰KĞ8¼¸W»¸ÀjĞQÔRØğ ×"Ñ"Ó$€FÜˆØ‰h˜sŸx™x˜j¨Ğ-Ô.ğ"	Aà"ŸL™L¬¨S«Ó2ˆMğ ˜Ñ&Ø(/¯©°mÀFÑ6KÓ(L˜fÑ%ğ *×-Ñ-¨j¸"Ó=ˆMØ+×7Ñ7¼¸C»ÓAˆLÙ%à%1×%7Ñ%7Ô%9ô Ù%9™T˜Q ¸QĞBXÒ=XAq‘DĞ%9ğ ñ  ğ × Ñ  Ô.Ø(5ˆM˜*Ñ%ğ %¨#¯(©(¨°<Ğ'@Ñ@ˆKÜk 3°Õ9¸QÜ—	‘	˜-¨¸ÀqÕI÷ :ğ '¨C¯H©H¨:°]Ğ)CÑCˆLÜl C°'Õ:¸aÜ—	‘	˜-¨¸ÀqÕI÷ ;ğ %¨#¯(©(¨°>Ğ'BÑBˆIÜi ¨wÕ7¸1Ü—	‘	˜-¨¸ÀqÕI÷ 8ğ K‰K˜.¨¯©¨
-Ğ3Ö4ğC ğR ‡KKĞ%Õ&ùóM!÷ >Ñ=ú÷ ?Ñ>ú÷ <Ñ;ûô ò 	[ØL‰LĞUĞVWĞUXĞY×ZÒZûğ	[üó* ÷ :Ñ9ú÷ ;Ğ:ú÷ 8Ğ7ûô
- ò 	AØL‰LĞ/°·±¨z¸¸A¸3Ğ?×@Ò@ûğ	Aúsì   È9B$W ËV$Ë0-W ÌV*Ì7W ÍV7Í/W ÎWÎ*)W Ğ
-A6X'Ò W<ÒW<Ò9X'ÓXÓ%(X'ÔXÔ'(X'ÕXÕ)&X'Ö$W Ö*V4	Ö/W Ö7W	Ö<W ×W	×	W ×	W9×W4×4W9×<X'ØX	ØX'ØX	ØX'ØX$	Ø X'Ø'	YØ0!YÙYÚ__main__)Ú
-__future__r   r'   r?   Úpathlibr   Útypingr   r   Ú src.core.ingestion.config_loaderr   Ú#src.core.ingestion.utils.file_utilsr   Ú(src.core.ingestion.parser.parser_factoryr	   Ú6src.core.ingestion.metadata.metadata_extractor_factoryr
-   Ú+src.core.ingestion.cleaner.rag_text_cleanerr   rf   Ú__name__© ó    re   Ú<module>rs      s>   ğİ "Û Û İ ß å 9İ :İ Bİ [İ FòA'ğH ˆzÒÙ…Fğ rr   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\__pycache__\__init__.cpython-312.pyc ==== 
-Ë
-    {-i    ã                    ó   — y )N© r   ó    úGC:\Users\katha\historical-drift-analyzer\src\core\ingestion\__init__.pyÚ<module>r      s   ñr   .
+
+def get_file_size(file_path: Path) -> int:
+    """Returns the file size in bytes."""
+    return os.path.getsize(file_path)
+
+def get_pdf_page_count(file_path: Path) -> int:
+    """Returns the number of pages in a PDF."""
+    with open(file_path, "rb") as file:
+        reader = PdfFileReader(file)
+        return reader.getNumPages()

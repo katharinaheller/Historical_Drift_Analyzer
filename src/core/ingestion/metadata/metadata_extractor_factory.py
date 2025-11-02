@@ -1,4 +1,3 @@
-# C:\Users\katha\historical-drift-analyzer\src\core\ingestion\metadata\metadata_extractor_factory.py
 from __future__ import annotations
 from typing import Any, Dict, List
 import importlib
@@ -38,11 +37,11 @@ class MetadataExtractorFactory:
             "title": "title_extractor",
             "authors": "author_extractor",
             "year": "year_extractor",
-            "abstract": "abstract_extractor",
+            # "abstract": "abstract_extractor",  # Deactivated abstract extraction
             "detected_language": "language_detector",
             "file_size": "file_size_extractor",
             "toc": "toc_extractor",
-            "page_number": "page_number_extractor",  # Added page number extractor
+            "page_number": "page_number_extractor",  # Page number extractor
         }
 
         for field in self.active_fields:
@@ -52,9 +51,13 @@ class MetadataExtractorFactory:
                 continue
 
             try:
+                # Dynamically import the module
                 module = importlib.import_module(f"{base_pkg}.{module_name}")
+                # Construct the extractor class name from the field (e.g., "PageNumberExtractor" from "page_number")
                 class_name = "".join([p.capitalize() for p in field.split("_")]) + "Extractor"
+                # Get the extractor class from the module
                 extractor_class = getattr(module, class_name)
+                # Instantiate the extractor class and store it in the dictionary
                 self.extractors[field] = extractor_class(base_dir=self.pdf_root)
                 self.logger.debug(f"Loaded extractor: {extractor_class.__name__} for '{field}'")
             except ModuleNotFoundError:

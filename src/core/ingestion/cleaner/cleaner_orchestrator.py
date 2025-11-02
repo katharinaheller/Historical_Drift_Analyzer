@@ -1,18 +1,12 @@
 from __future__ import annotations
 import json
 import logging
-import hashlib
 from pathlib import Path
 from typing import Any, Dict
 
 from src.core.ingestion.config_loader import ConfigLoader
 from src.core.ingestion.utils.file_utils import ensure_dir
 from src.core.ingestion.cleaner.rag_text_cleaner import RagTextCleaner
-
-
-def deterministic_hash(text: str) -> str:
-    # Compute deterministic SHA1 fingerprint of cleaned text
-    return hashlib.sha1(text.encode("utf-8")).hexdigest()
 
 
 def main() -> None:
@@ -62,25 +56,16 @@ def main() -> None:
             # --- Step 1: Clean text ---
             cleaned_text = cleaner.clean(raw_text)
 
-            # --- Step 2: Compute deterministic hash for auditability ---
-            text_hash = deterministic_hash(cleaned_text)
-
-            # --- Step 3: Write cleaned output ---
-            cleaned_filename = parsed_path.stem.replace(".parsed", "") + ".cleaned.txt"
+            # --- Step 2: Write cleaned output as JSON ---
+            cleaned_filename = parsed_path.stem.replace(".parsed", "") + ".cleaned.json"
             cleaned_path = cleaned_dir / cleaned_filename
-            with open(cleaned_path, "w", encoding="utf-8") as cf:
-                cf.write(cleaned_text)
 
-            # --- Step 4: Write minimal metadata file for reproducibility ---
-            meta_info = {
-                "source_parsed": str(parsed_path.name),
-                "cleaned_file": str(cleaned_path.name),
-                "sha1": text_hash,
-                "length_chars": len(cleaned_text),
+            cleaned_data = {
+                "cleaned_text": cleaned_text,
             }
-            meta_path = cleaned_dir / (cleaned_filename + ".meta.json")
-            with open(meta_path, "w", encoding="utf-8") as mf:
-                json.dump(meta_info, mf, ensure_ascii=False, indent=2)
+
+            with open(cleaned_path, "w", encoding="utf-8") as cf:
+                json.dump(cleaned_data, cf, ensure_ascii=False, indent=2)
 
             logger.info(f"✓ Cleaned {parsed_path.name} ({idx}/{len(parsed_files)})")
 

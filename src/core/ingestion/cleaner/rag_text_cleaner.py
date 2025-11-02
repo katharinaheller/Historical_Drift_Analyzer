@@ -8,8 +8,9 @@ from src.core.ingestion.cleaner.simple_cleaners import (
     HeaderFooterCleaner,
     LayoutLineJoinCleaner,
     TrailingWhitespaceCleaner,
+    HTMLCleaner,  # New cleaner for HTML tag removal
+    ScientificNotationCleaner,  # New cleaner for removing scientific notations
 )
-
 
 class RagTextCleaner(ITextCleaner):
     """
@@ -28,7 +29,9 @@ class RagTextCleaner(ITextCleaner):
             SoftHyphenCleaner(),       # remove soft hyphen and join "foo-\nbar"
             HeaderFooterCleaner(),     # drop obvious non-flow lines
             LayoutLineJoinCleaner(),   # fix line breaks
-            TrailingWhitespaceCleaner()  # final formatting
+            TrailingWhitespaceCleaner(),  # final formatting
+            HTMLCleaner(),            # New: Removes HTML tags and entities
+            ScientificNotationCleaner()  # New: Removes scientific notation terms like "Eq. 1"
         ]
         return cls(cleaners)
 
