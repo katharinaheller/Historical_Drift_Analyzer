@@ -67,3 +67,4 @@ class EmbedderFactory:
             )
         else:
             raise ValueError(f"Unsupported embedding backend: {backend}")
+ 

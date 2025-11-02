@@ -170,3 +170,4 @@ class VectorStoreFactory:
             return SQLiteVectorStore(persist_dir=persist_dir, dimension=dimension)
         else:
             raise ValueError(f"Unsupported vector store: {store_name}")
+ 
