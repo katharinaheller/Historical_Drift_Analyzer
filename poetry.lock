@@ -1334,6 +1334,28 @@ files = [
 ]
 
 [[package]]
+name = "habanero"
+version = "2.3.0"
+description = "Low Level Client for Crossref Search API"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "habanero-2.3.0-py3-none-any.whl", hash = "sha256:ba44dd33d562ff33bd778fd7f94bfac3bf805b0b0963976f379e0a1d6894329e"},
+    {file = "habanero-2.3.0.tar.gz", hash = "sha256:871e5d088ef641b05514d44b004af512852b309bcd0d81f10545e58d54a654ab"},
+]
+
+[package.dependencies]
+httpx = ">=0.27.2"
+packaging = ">=24.1"
+pyyaml = ">=6.0.2"
+tqdm = ">=4.66.5"
+urllib3 = ">=2.2.2,<3.0.0"
+
+[package.extras]
+bibtex = ["bibtexparser (>=2.0.0b7)"]
+
+[[package]]
 name = "hf-xet"
 version = "1.2.0"
 description = "Fast transfer of large files with the Hugging Face Hub."
@@ -5410,6 +5432,18 @@ files = [
 ]
 
 [[package]]
+name = "unidecode"
+version = "1.4.0"
+description = "ASCII transliterations of Unicode text"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "Unidecode-1.4.0-py3-none-any.whl", hash = "sha256:c3c7606c27503ad8d501270406e345ddb480a7b5f38827eafe4fa82a137f0021"},
+    {file = "Unidecode-1.4.0.tar.gz", hash = "sha256:ce35985008338b676573023acc382d62c264f307c8f7963733405add37ea2b23"},
+]
+
+[[package]]
 name = "unstructured"
 version = "0.18.15"
 description = "A library that prepares raw documents for downstream ML tasks."
@@ -5765,4 +5799,4 @@ dev = ["pytest", "setuptools"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<3.14"
-content-hash = "440509d9ea6abe6c903da733f443ab650e31595f22da97b5355aa2df83974920"
+content-hash = "b99efa20588205bf3f72233fcb2182d7552d1231637afb7c4404064af79cbf6e"
