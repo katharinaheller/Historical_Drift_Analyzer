@@ -1,0 +1,5 @@
+intent_labels:
+  chronological: "asks about temporal development or evolution of a concept"
+  conceptual: "asks for definition or theoretical explanation"
+  analytical: "asks for evaluation, critique, or analysis"
+  comparative: "asks for comparison or difference between ideas"

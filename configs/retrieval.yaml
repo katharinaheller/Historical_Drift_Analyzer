@@ -1,46 +1,5 @@
-# configs/retrieval.yaml
-global:
-  base_dir: "${PROJECT_ROOT}"                          # Resolved by ConfigLoader
-
 paths:
-  vector_store_dir: "${base_dir}/data/vector_store"    # FAISS index + metadata.jsonl
+  vector_store_dir: data/vector_store
 
 options:
-  # === Core Retrieval ===
-  embedding_model: "all-MiniLM-L6-v2"                  # Must match embedding stage
-  retriever_backend: "FAISS"                           # For future backends
-  similarity_metric: "cosine"                          # cosine or dot
-  normalize_embeddings: true                           # Stable cosine scoring
-  use_gpu: false                                       # CPU default for reproducibility
-  top_k_retrieve: 50                                   # Breadth before rerank
-  top_k: 10                                            # Final K after dedup
-  log_level: "INFO"
-
-  # === Query Expansion & Fusion ===
-  enable_query_expansion: true                         # Expand queries temporally/synonymically
-  expansion_strategy: "temporal"                       # Used by TemporalQueryExpander
-  max_expansions: 4                                    # Hard cap to avoid noise
-  use_rrf_fusion: true                                 # Reciprocal Rank Fusion across sub-queries
-  rrf_k: 60.0                                          # RRF smoothing constant
-
-  # === Temporal Reranking (handled inside RerankerFactory) ===
-  reranker: "temporal"                                 # Temporal + semantic fusion
-  lambda_weight: 0.55                                  # Lower → stronger time factor
-  age_score_boost: 0.35                                # Recency boost (interpreted by reranker)
-  nonlinear_boost: "sigmoid"                           # Smooth recentness curve
-  min_year: 1950                                       # Plausible lower bound
-  ignore_years: [1970]                                 # Drop corrupted defaults
-  enforce_decade_balance: true                         # Round-robin selection across decades
-  min_decade_threshold: 3                              # Target min number of distinct decades
-
-  # === Hard Constraints ===
-  must_include:                                        # Always include if present in pool
-    - "2407.21059v1"
-  blacklist_sources:                                   # Drop if name contains any token
-    - "preview-9781000064971_A38593932.pdf"
-
-  # === Diagnostics ===
-  show_metadata: true                                  # Print metadata for audit
-  max_snippet_length: 300                              # Truncate console snippets
-  log_decade_distribution: true                        # Show decade histogram
-  save_rerank_debug: false                             # Persist rerank trace if needed
+  top_k: 10

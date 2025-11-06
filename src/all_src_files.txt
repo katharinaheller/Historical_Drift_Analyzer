@@ -4,31 +4,50 @@
 ==== C:\Users\katha\historical-drift-analyzer\src\__init__.py ==== 
 
 ==== C:\Users\katha\historical-drift-analyzer\src\core\main_orchestrator.py ==== 
+# src/core/main_orchestrator.py
 from __future__ import annotations
 import argparse
 import logging
 import sys
+import os
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 from src.core.config.config_loader import ConfigLoader
 from src.core.ingestion.ingestion_orchestrator import main as run_ingestion
 from src.core.embedding.embedding_orchestrator import main as run_embedding
-from src.core.retrieval.retrieval_orchestrator import main as run_retrieval
-from src.core.llm.llm_orchestrator import main as run_llm
+from src.core.retrieval.retrieval_orchestrator import RetrievalOrchestrator
+from src.core.prompt.prompt_orchestrator import PromptOrchestrator
+from src.core.llm.llm_orchestrator import LLMOrchestrator
 
 
 class MainOrchestrator:
-    """Central controller coordinating all pipeline phases."""
+    """Central controller coordinating all pipeline phases of the Historical Drift Analyzer."""
 
     def __init__(self, config_path: str = "configs/config.yaml"):
+        # Ensure UTF-8 runtime consistency
+        os.environ["PYTHONIOENCODING"] = "utf-8"
+        os.environ["PYTHONUTF8"] = "1"
+        os.environ["LC_ALL"] = "C.UTF-8"
+        os.environ["LANG"] = "C.UTF-8"
+
+        # Reconfigure stdout/stderr for UTF-8
+        for stream_name in ("stdout", "stderr"):
+            stream = getattr(sys, stream_name, None)
+            if hasattr(stream, "reconfigure"):
+                try:
+                    stream.reconfigure(encoding="utf-8", errors="replace")
+                except Exception:
+                    pass
+
+        # Load global configuration and setup logging
         self.cfg_loader = ConfigLoader(config_path)
         self.cfg: Dict[str, Any] = self.cfg_loader.config
         self.logger = self._setup_logger()
 
     # ------------------------------------------------------------------
     def _setup_logger(self) -> logging.Logger:
-        """Initialize consistent logging based on master config."""
+        """Initialize global logger."""
         opts = self.cfg.get("global", {})
         level = getattr(logging, opts.get("log_level", "INFO").upper(), logging.INFO)
         logging.basicConfig(level=level, format="%(levelname)s | %(message)s")
@@ -38,11 +57,11 @@ class MainOrchestrator:
 
     # ------------------------------------------------------------------
     def run_phase(self, phase: str) -> None:
-        """Dispatch to the correct pipeline phase."""
+        """Dispatch the orchestrator to the specified phase."""
         self.logger.info(f"Starting phase: {phase.upper()}")
 
         base_dir = Path(self.cfg["global"]["base_dir"]).resolve()
-        sys.path.append(str(base_dir / "src"))  # ensure relative imports work
+        sys.path.append(str(base_dir / "src"))
 
         try:
             if phase == "ingestion":
@@ -52,17 +71,16 @@ class MainOrchestrator:
                 run_embedding()
 
             elif phase == "retrieval":
-                run_retrieval()
+                self._run_prompt_retrieval_chain()
 
             elif phase == "llm":
-                run_llm()
+                self._run_llm_interactive()
 
             elif phase == "all":
-                self.logger.info("Running full pipeline (ingestion → embedding → retrieval → llm)")
+                self.logger.info("Running full pipeline (ingestion → embedding → interactive LLM phase)")
                 run_ingestion()
                 run_embedding()
-                run_retrieval()
-                run_llm()
+                self._run_llm_interactive()
 
             else:
                 self.logger.error(f"Unknown phase: {phase}")
@@ -70,22 +88,90 @@ class MainOrchestrator:
 
             self.logger.info(f"Phase '{phase}' completed successfully.")
 
+        except UnicodeDecodeError as ue:
+            self.logger.error(f"Unicode decoding failed: {ue}. Retrying with UTF-8 replacement.")
+            try:
+                sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+                sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+            except Exception:
+                pass
+            raise
+
+        except KeyboardInterrupt:
+            self.logger.info("Execution manually interrupted by user.")
+            sys.exit(0)
+
         except Exception as e:
-            self.logger.error(f"Phase '{phase}' failed: {e}")
+            self.logger.exception(f"Phase '{phase}' failed: {e}")
             raise
 
     # ------------------------------------------------------------------
+    def _run_prompt_retrieval_chain(self) -> None:
+        """Execute prompt → retrieval → automatic LLM generation (single-shot mode)."""
+        self.logger.info("Executing prompt → retrieval → LLM phase")
+
+        prompt_orch = PromptOrchestrator()
+        prompt_data = prompt_orch.get_prompt_object()
+        if not prompt_data or "processed_query" not in prompt_data:
+            self.logger.warning("Prompt phase returned no valid query. Aborting retrieval.")
+            return
+
+        query = prompt_data["processed_query"]
+        intent = prompt_data["intent"]
+
+        retrieval = RetrievalOrchestrator(config_path="configs/retrieval.yaml")
+        self.logger.info(f"Query intent='{intent}' → executing retrieval flow")
+        retrieved: List[Dict[str, Any]] = retrieval.retrieve(query, intent)
+        retrieval.close()
+
+        if not retrieved:
+            self.logger.warning("No documents retrieved.")
+            return
+
+        print("\n" + "=" * 80)
+        print(f"Retrieved Top-{len(retrieved)} Chunks (intent={intent})")
+        for i, r in enumerate(retrieved, start=1):
+            meta = r.get("metadata", {}) or {}
+            year = meta.get("year", "n/a")
+            src = meta.get("source_file") or meta.get("title") or "Unknown"
+            print(f"[{i}] ({year}) {src} | score={r.get('score', 0.0):.3f}")
+        print("=" * 80 + "\n")
+
+        try:
+            self.logger.info("Launching Ollama model for contextual generation...")
+            llm_orch = LLMOrchestrator()
+            output = llm_orch.run_with_context(query, intent, retrieved)
+            print("\n=== MODEL OUTPUT ===\n")
+            print(output)
+            print("\n====================\n")
+            llm_orch.close()
+        except Exception as e:
+            self.logger.error(f"Automatic LLM generation failed: {e}")
+
+    # ------------------------------------------------------------------
+    def _run_llm_interactive(self) -> None:
+        """Start an interactive prompt → retrieval → LLM loop until Ctrl+C."""
+        self.logger.info("Starting interactive LLM session. Press Ctrl+C to exit.")
+        llm_orch = LLMOrchestrator()
+        try:
+            llm_orch.run_interactive()
+        except KeyboardInterrupt:
+            self.logger.info("Interactive session terminated by user.")
+        finally:
+            llm_orch.close()
+
+    # ------------------------------------------------------------------
     def run(self, args: argparse.Namespace) -> None:
-        """Entrypoint wrapper for CLI execution."""
+        """Entrypoint for orchestrator execution."""
         if args.phase:
             self.run_phase(args.phase)
         else:
-            self.logger.warning("No phase specified. Use --phase <name> or --phase all")
+            self.logger.warning("No phase specified. Use --phase <name> or --phase all.")
 
 
 # ----------------------------------------------------------------------
 def parse_args() -> argparse.Namespace:
-    """Define command-line interface."""
+    """CLI argument parser."""
     parser = argparse.ArgumentParser(description="Historical Drift Analyzer – Main Orchestrator")
     parser.add_argument(
         "--phase",
@@ -1103,6 +1189,7 @@ class IChunker(ABC):
         raise NotImplementedError
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\chunking\static_chunker.py ==== 
+# src/core/ingestion/chunking/static_chunker.py
 from __future__ import annotations
 from typing import Any, Dict, List, Optional
 from src.core.ingestion.chunking.i_chunker import IChunker
@@ -1110,7 +1197,7 @@ import spacy
 
 class StaticChunker(IChunker):
     """Chunker that uses fixed chunk size and overlap for chunking."""
-    
+
     def __init__(self, 
                  chunk_size: int,  # Configuration-based chunk size
                  overlap: int, 
@@ -1123,36 +1210,38 @@ class StaticChunker(IChunker):
         self.nlp = spacy.load("en_core_web_sm")
 
     def chunk(self, text: str, metadata: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+        """Split text into overlapping fixed-size chunks with sentence boundaries."""
         chunks = []
         current_chunk = ""
 
-        doc = self.nlp(text)  # Use spaCy to process the text
-        sentences = [sent.text.strip() for sent in doc.sents]  # Extract sentences from the spaCy doc
+        doc = self.nlp(text)
+        sentences = [sent.text.strip() for sent in doc.sents]
 
         for sentence in sentences:
-            # Add sentence if it fits into the current chunk
             if len(current_chunk) + len(sentence) + 1 <= self.chunk_size:
                 current_chunk += ". " + sentence
             else:
                 chunks.append({
                     "text": current_chunk.strip(),
-                    # "chunk_size": len(current_chunk.strip()),  # Removed from output
-                    # "overlap": self.overlap  # Removed from output
+                    "chunk_size": len(current_chunk.strip()),  # Display actual chunk length
+                    "configured_chunk_size": self.chunk_size,   # Config value for comparison
+                    "overlap": self.overlap                    # Configured overlap
                 })
-                current_chunk = sentence  # Start a new chunk
+                current_chunk = sentence
 
             # Merge small chunks if necessary
             if len(current_chunk) < self.min_chunk_length and chunks:
                 last_chunk = chunks[-1]
                 last_chunk["text"] += " " + current_chunk
+                last_chunk["chunk_size"] = len(last_chunk["text"])
                 current_chunk = ""
 
-        # Append any remaining text as the final chunk
         if current_chunk:
             chunks.append({
                 "text": current_chunk.strip(),
-                # "chunk_size": len(current_chunk.strip()),  # Removed from output
-                # "overlap": self.overlap  # Removed from output
+                "chunk_size": len(current_chunk.strip()),
+                "configured_chunk_size": self.chunk_size,
+                "overlap": self.overlap
             })
 
         return chunks
@@ -2928,6 +3017,516 @@ class LocalNameVerifier:
 
         return valid_structure and valid_chars and not invalid_tokens
 .
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\all_parser_files.txt ==== 
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\all_parser_files.txt ==== 
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\all_parser_files.txt ==== 
+
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\parallel_pdf_parser.py ==== 
+from __future__ import annotations
+import concurrent.futures
+import logging
+import multiprocessing
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+import json
+import time
+
+from src.core.ingestion.parser.parser_factory import ParserFactory
+
+
+class ParallelPdfParser:
+    """CPU-based parallel parser orchestrator using multiple processes."""
+
+    def __init__(self, config: Dict[str, Any], logger: Optional[logging.Logger] = None):
+        self.config = config
+        self.logger = logger or logging.getLogger(__name__)
+        self.parser_factory = ParserFactory(config, logger=self.logger)
+
+        # Konfiguriere die maximale Anzahl an Workern, basierend auf der Anzahl der CPU-Kerne
+        parallel_cfg = config.get("options", {}).get("parallelism", "auto")
+        if isinstance(parallel_cfg, int) and parallel_cfg > 0:
+            self.num_workers = parallel_cfg
+        else:
+            # Maximal 4 Worker verwenden, wenn die CPU nicht so viele Kerne hat
+            self.num_workers = min(max(1, multiprocessing.cpu_count() - 1), 4)
+
+        self.logger.info(f"Initialized ParallelPdfParser with {self.num_workers} worker(s)")
+
+    # ------------------------------------------------------------------
+    def parse_all(self, pdf_dir: str | Path, output_dir: str | Path) -> List[Dict[str, Any]]:
+        """
+        Parse all PDFs in the given directory and output the parsed results to the output directory.
+        
+        :param pdf_dir: Directory containing the PDF files.
+        :param output_dir: Directory where the parsed results should be saved.
+        :return: List of dictionaries containing parsed content from the PDFs.
+        """
+        pdf_dir, output_dir = Path(pdf_dir), Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
+        pdf_files = sorted(pdf_dir.glob("*.pdf"))
+        if not pdf_files:
+            self.logger.warning(f"No PDFs found in {pdf_dir}")
+            return []
+
+        results: List[Dict[str, Any]] = []
+        with concurrent.futures.ProcessPoolExecutor(max_workers=self.num_workers) as executor:
+            future_to_pdf = {executor.submit(self._parse_single, str(pdf)): pdf for pdf in pdf_files}
+            for future in concurrent.futures.as_completed(future_to_pdf):
+                pdf = future_to_pdf[future]
+                try:
+                    # Set timeout for each future (e.g., 300 seconds = 5 minutes)
+                    result = future.result(timeout=300)  # Timeout set to 5 minutes
+                    results.append(result)
+                    out_path = output_dir / f"{pdf.stem}.parsed.json"
+                    with open(out_path, "w", encoding="utf-8") as f:
+                        json.dump(result, f, ensure_ascii=False, indent=2)
+                    self.logger.info(f"Parsed {pdf.name}")
+                except concurrent.futures.TimeoutError:
+                    self.logger.error(f"Timeout occurred while parsing {pdf.name}")
+                except Exception as e:
+                    self.logger.error(f"Failed to parse {pdf.name}: {e}")
+
+        return results
+
+    # ------------------------------------------------------------------
+    def _parse_single(self, pdf_path: str) -> Dict[str, Any]:
+        """
+        Parse a single PDF file using the appropriate parser and return the extracted data.
+        
+        :param pdf_path: Path to the PDF file to parse.
+        :return: A dictionary containing parsed content from the PDF.
+        """
+        parser = self.parser_factory.create_parser()
+        try:
+            result = parser.parse(pdf_path)
+            return result
+        except Exception as e:
+            self.logger.error(f"Error parsing {pdf_path}: {e}")
+            return {"text": "", "metadata": {"source_file": pdf_path}}
+
+
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\parser_factory.py ==== 
+from __future__ import annotations
+from typing import Dict, Any, Optional
+import logging
+import multiprocessing
+
+from src.core.ingestion.parser.interfaces.i_pdf_parser import IPdfParser
+from src.core.ingestion.parser.pymupdf_parser import PyMuPDFParser
+from src.core.ingestion.parser.pdfplumber_parser import PdfPlumberParser  # Import PdfPlumberParser
+
+class ParserFactory:
+    """
+    Factory for creating local PDF parsers and optional parallel orchestrators.
+    Handles YAML parameters like 'parallelism' and parser configuration.
+    """
+
+    def __init__(self, config: Dict[str, Any], logger: Optional[logging.Logger] = None):
+        self.config = config
+        self.logger = logger or logging.getLogger(__name__)
+        opts = config.get("options", {})
+
+        self.parser_mode = opts.get("pdf_parser", "auto").lower()  # Get parser mode (fitz, pdfplumber, auto)
+        self.parallelism = opts.get("parallelism", "auto")  # Get parallelism setting
+        self.language = opts.get("language", "auto")  # Get language setting
+        self.exclude_toc = True  # Enforce exclusion of table of contents globally
+        self.max_pages = opts.get("max_pages", None)  # Max pages to parse
+
+        # Determine optimal CPU usage based on parallelism
+        if isinstance(self.parallelism, int) and self.parallelism > 0:
+            self.num_workers = self.parallelism
+        else:
+            self.num_workers = max(1, multiprocessing.cpu_count() - 1)
+
+        self.logger.info(
+            f"ParserFactory initialized | mode={self.parser_mode}, "
+            f"workers={self.num_workers}, exclude_toc={self.exclude_toc}"
+        )
+
+    def create_parser(self) -> IPdfParser:
+        """Return configured parser instance based on configuration (fitz, pdfplumber, etc.)."""
+        if self.parser_mode == "fitz":
+            return PyMuPDFParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)  # Use PyMuPDFParser
+        elif self.parser_mode == "pdfplumber":
+            return PdfPlumberParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)  # Use PdfPlumberParser
+        elif self.parser_mode == "auto":
+            # Automatically choose the best parser
+            try:
+                return PdfPlumberParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)
+            except Exception:
+                return PyMuPDFParser(exclude_toc=self.exclude_toc, max_pages=self.max_pages)  # Fallback to PyMuPDFParser
+        else:
+            raise ValueError(f"Unsupported parser mode: {self.parser_mode}")  # Error if parser mode is unsupported
+
+    def create_parallel_parser(self):
+        """Return a parallel orchestrator that distributes parsing tasks."""
+        from src.core.ingestion.parser.parallel_pdf_parser import ParallelPdfParser
+        return ParallelPdfParser(self.config, logger=self.logger)  # Return parallel parser for distribution
+
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\pdfplumber_parser.py ==== 
+import pytesseract
+import fitz  # PyMuPDF
+import pdfplumber  # Import pdfplumber for better multi-column text extraction
+from PIL import Image, ImageEnhance, ImageFilter
+import os
+import re
+from typing import Dict, Any, List
+from pathlib import Path
+from src.core.ingestion.parser.interfaces.i_pdf_parser import IPdfParser
+
+class PdfPlumberParser(IPdfParser):
+    """Robust PDF parser using pdfplumber to handle multi-column text extraction and OCR fallback."""
+
+    def __init__(self, exclude_toc: bool = True, max_pages: int | None = None, use_ocr: bool = True):
+        """
+        Initialize the parser with options for excluding the table of contents and limiting the number of pages.
+        
+        :param exclude_toc: Flag to exclude table of contents pages from extraction.
+        :param max_pages: Maximum number of pages to extract text from.
+        :param use_ocr: Flag to use OCR if no text is found.
+        """
+        self.exclude_toc = exclude_toc
+        self.max_pages = max_pages
+        self.use_ocr = use_ocr  # Flag to use OCR if no text is found
+
+    def parse(self, pdf_path: str) -> Dict[str, Any]:
+        """
+        Extract clean body text (including abstract) and minimal metadata from a PDF file.
+
+        :param pdf_path: Path to the PDF file to extract text from.
+        :return: A dictionary with 'text' (extracted body text) and 'metadata' (file metadata).
+        """
+        pdf_path = Path(pdf_path)
+        if not pdf_path.exists():
+            raise FileNotFoundError(f"File not found: {pdf_path}")
+
+        text_blocks: List[str] = []  # To hold the extracted text from each page
+        toc_titles = self._extract_toc_titles(pdf_path) if self.exclude_toc else []  # Extract TOC titles to filter out
+
+        # Extract body text from each page using pdfplumber
+        with pdfplumber.open(pdf_path) as pdf:
+            for page_index, page in enumerate(pdf.pages):
+                if self.max_pages and page_index >= self.max_pages:
+                    break
+
+                # Extract text from the page considering multi-column layout
+                page_body = self._extract_text_from_page(page)
+                if page_body:
+                    text_blocks.append(page_body)
+
+        clean_text = "\n".join(t for t in text_blocks if t)
+        clean_text = self._remove_residual_metadata(clean_text)
+
+        metadata = {
+            "source_file": str(pdf_path.name),
+            "page_count": len(pdf.pages),
+        }
+
+        return {"text": clean_text.strip(), "metadata": metadata}
+
+    def _extract_text_from_page(self, page) -> str:
+        """
+        Extract text from a page considering the multi-column layout using pdfplumber.
+        
+        :param page: The pdfplumber page object.
+        :return: Extracted text from the page.
+        """
+        # Split the page into columns using pdfplumber's layout extraction
+        width = page.width
+        left_column = page.within_bbox((0, 0, width / 3, page.height))  # Left column
+        middle_column = page.within_bbox((width / 3, 0, 2 * width / 3, page.height))  # Middle column
+        right_column = page.within_bbox((2 * width / 3, 0, width, page.height))  # Right column
+
+        # Extract text from each column
+        left_text = left_column.extract_text()
+        middle_text = middle_column.extract_text()
+        right_text = right_column.extract_text()
+
+        # Combine the text from all columns
+        combined_text = f"{left_text}\n{middle_text}\n{right_text}"
+
+        return combined_text
+
+    def _extract_toc_titles(self, pdf_path: Path) -> List[str]:
+        """
+        Extract table of contents (TOC) titles from the PDF document to filter them out from the main text.
+        
+        :param pdf_path: The path to the PDF file.
+        :return: A list of TOC titles.
+        """
+        toc_titles = []
+        with pdfplumber.open(pdf_path) as pdf:
+            for page in pdf.pages:
+                # Try to get TOC titles from the page (if any)
+                toc = page.extract_text()
+                if toc and re.search(r"(?i)\btable\s+of\s+contents\b", toc):
+                    toc_titles.append(toc)
+        return toc_titles
+
+    def _remove_residual_metadata(self, text: str) -> str:
+        """
+        Remove residual header/footer and metadata-like fragments, excluding abstract.
+        
+        :param text: The extracted text to clean up.
+        :return: Cleaned text with metadata removed.
+        """
+        patterns = [
+            r"(?im)^table\s+of\s+contents.*$",
+            r"(?im)^inhaltsverzeichnis.*$",
+            r"(?im)^\s*(title|author|doi|keywords|arxiv|university|faculty|institute|version).*?$",
+            r"(?im)\bpage\s+\d+\b",  # Remove page numbers
+            r"(?m)^\s*\d+\s*$",  # Remove single digit page numbers like "1", "2", "3"
+            r"(?i)\bhttps?://\S+",  # Remove URLs
+            r"(?i)\b\w+@\w+\.\w+",  # Remove email addresses
+        ]
+        for p in patterns:
+            text = re.sub(p, "", text, flags=re.DOTALL)
+
+        text = re.sub(r"\n{2,}", "\n\n", text)  # Merge consecutive line breaks
+        return text.strip()
+
+    def _apply_ocr_to_page(self, page) -> List[str]:
+        """
+        Apply OCR to a page if the page does not contain text. Uses Tesseract to extract text from scanned pages.
+        
+        :param page: The page to apply OCR on.
+        :return: A list with OCR extracted text.
+        """
+        # Convert the page to an image
+        pix = page.get_pixmap()
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        
+        # Preprocess the image (optional, if necessary)
+        img = self._preprocess_image_for_ocr(img)
+
+        # Apply OCR
+        ocr_text = pytesseract.image_to_string(img)
+        return [(0, 0, pix.width, pix.height, ocr_text)]  # Return OCR'd text as a block
+
+    def _preprocess_image_for_ocr(self, img: Image) -> Image:
+        """
+        Preprocess the image to improve OCR accuracy by enhancing contrast and sharpness.
+        
+        :param img: The image to preprocess.
+        :return: The preprocessed image ready for OCR.
+        """
+        # Sharpen the image
+        img = img.filter(ImageFilter.SHARPEN)
+        
+        # Increase the contrast of the image
+        enhancer = ImageEnhance.Contrast(img)
+        img = enhancer.enhance(2)  # Enhance the contrast by a factor of 2
+        
+        return img
+
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\pymupdf_parser.py ==== 
+import pytesseract
+import fitz  # PyMuPDF
+from PIL import Image, ImageEnhance, ImageFilter
+import os
+import re
+from typing import Dict, Any, List
+from pathlib import Path
+from src.core.ingestion.parser.interfaces.i_pdf_parser import IPdfParser
+
+class PyMuPDFParser(IPdfParser):
+    """Robust PDF parser using PyMuPDF with layout-based filtering of non-body text and OCR fallback for scanned PDFs."""
+
+    def __init__(self, exclude_toc: bool = True, max_pages: int | None = None, use_ocr: bool = True):
+        """
+        Initialize the parser with options for excluding the table of contents and limiting the number of pages.
+        
+        :param exclude_toc: Flag to exclude table of contents pages from extraction.
+        :param max_pages: Maximum number of pages to extract text from.
+        :param use_ocr: Flag to use OCR if no text is found.
+        """
+        self.exclude_toc = exclude_toc
+        self.max_pages = max_pages
+        self.use_ocr = use_ocr  # Flag to use OCR if no text is found
+
+    def parse(self, pdf_path: str) -> Dict[str, Any]:
+        """
+        Extract clean body text (including abstract) and minimal metadata from a PDF file.
+
+        :param pdf_path: Path to the PDF file to extract text from.
+        :return: A dictionary with 'text' (extracted body text) and 'metadata' (file metadata).
+        """
+        pdf_path = Path(pdf_path)
+        if not pdf_path.exists():
+            raise FileNotFoundError(f"File not found: {pdf_path}")
+
+        doc = fitz.open(pdf_path)
+        text_blocks: List[str] = []  # To hold the extracted text from each page
+        toc_titles = self._extract_toc_titles(doc) if self.exclude_toc else []  # Extract TOC titles to filter out
+
+        # Extract body text from each page
+        for page_index, page in enumerate(doc):
+            if self.max_pages and page_index >= self.max_pages:
+                break
+            blocks = page.get_text("blocks")
+
+            # If no text is found, use OCR
+            if not blocks and self.use_ocr:
+                blocks = self._apply_ocr_to_page(page)
+
+            page_body = self._extract_body_from_blocks(blocks)
+            if not page_body:
+                continue  # Skip empty pages or pages without meaningful content
+            # Skip ToC-like pages entirely
+            if self.exclude_toc and self._looks_like_toc_page(page_body, toc_titles):
+                continue
+            text_blocks.append(page_body)
+
+        clean_text = "\n".join(t for t in text_blocks if t)
+        clean_text = self._remove_residual_metadata(clean_text)
+
+        metadata = {
+            "source_file": str(pdf_path.name),
+            "page_count": len(doc),
+            "has_toc": bool(doc.get_toc()),
+        }
+
+        doc.close()
+        return {"text": clean_text.strip(), "metadata": metadata}
+
+    def _extract_toc_titles(self, doc) -> List[str]:
+        """
+        Extract table of contents (TOC) titles from the PDF document to filter them out from the main text.
+        
+        :param doc: The PyMuPDF document object.
+        :return: A list of TOC titles.
+        """
+        toc = doc.get_toc()
+        return [entry[1].strip() for entry in toc if len(entry) >= 2]
+
+    def _looks_like_toc_page(self, text: str, toc_titles: List[str]) -> bool:
+        """
+        Heuristic to detect table of contents pages by checking if the text contains typical TOC structure.
+
+        :param text: The text from a page.
+        :param toc_titles: The list of TOC titles to match against.
+        :return: True if the page looks like a TOC, False otherwise.
+        """
+        if not text or len(text) < 100:
+            return False
+        if re.search(r"(?i)\btable\s+of\s+contents\b|\binhaltsverzeichnis\b", text):
+            return True
+        match_count = sum(1 for t in toc_titles if t and t in text)
+        return match_count > 5
+
+    def _extract_body_from_blocks(self, blocks: list) -> str:
+        """
+        Optimized extraction to ensure only meaningful body text (e.g., abstract, sections) is included.
+        
+        :param blocks: The list of text blocks extracted from the page.
+        :return: A string of extracted body text.
+        """
+        # Initialize variables for abstract detection and block storage
+        abstract_found = False
+        abstract_block = []
+        candidate_blocks = []
+
+        for (x0, y0, x1, y1, text, *_ ) in blocks:
+            if not text or len(text.strip()) < 30:
+                continue  # Skip empty or short text blocks
+
+            # If the abstract hasn't been found, try to capture it
+            if not abstract_found and re.search(r"(?i)\babstract\b", text):
+                abstract_found = True
+                abstract_block.append(text.strip())
+                continue  # Skip content after abstract until the main body starts
+
+            # Filter out metadata and irrelevant blocks
+            if re.search(r"(?i)(title|author|doi|keywords|arxiv|university|faculty|institute|version)", text):
+                continue  # Skip metadata blocks
+            if len(text.strip().split()) < 20:
+                continue  # Skip short blocks
+
+            # Add the remaining relevant blocks
+            candidate_blocks.append(text.strip())
+
+        # Add the abstract at the beginning of the body if it was found
+        if abstract_found:
+            candidate_blocks.insert(0, "\n".join(abstract_block))
+
+        return "\n".join(candidate_blocks)
+
+    def _remove_residual_metadata(self, text: str) -> str:
+        """
+        Remove residual header/footer and metadata-like fragments, excluding abstract.
+        
+        :param text: The extracted text to clean up.
+        :return: Cleaned text with metadata removed.
+        """
+        # Extended patterns for filtering out metadata
+        patterns = [
+            r"(?im)^table\s+of\s+contents.*$",
+            r"(?im)^inhaltsverzeichnis.*$",
+            r"(?im)^\s*(title|author|doi|keywords|arxiv|university|faculty|institute|version).*?$",
+            r"(?im)\bpage\s+\d+\b",  # Remove page numbers
+            r"(?m)^\s*\d+\s*$",  # Remove single digit page numbers like "1", "2", "3"
+            r"(?i)\bhttps?://\S+",  # Remove URLs
+            r"(?i)\b\w+@\w+\.\w+",  # Remove email addresses
+            r"(?i)(RSISE|NICTA|university|faculty|institute)\b.*",  # Remove institution names
+        ]
+        for p in patterns:
+            text = re.sub(p, "", text, flags=re.DOTALL)
+
+        # Optionally, remove excessive line breaks or extra spaces
+        text = re.sub(r"\n{2,}", "\n\n", text)  # Merge consecutive line breaks
+        return text.strip()
+
+    def _apply_ocr_to_page(self, page) -> List[str]:
+        """
+        Apply OCR to a page if the page does not contain text. Uses Tesseract to extract text from scanned pages.
+        
+        :param page: The page to apply OCR on.
+        :return: A list with OCR extracted text.
+        """
+        # Convert the page to an image
+        pix = page.get_pixmap()
+        img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+        
+        # Preprocess the image (optional, if necessary)
+        img = self._preprocess_image_for_ocr(img)
+
+        # Apply OCR
+        ocr_text = pytesseract.image_to_string(img)
+        return [(0, 0, pix.width, pix.height, ocr_text)]  # Return OCR'd text as a block
+
+    def _preprocess_image_for_ocr(self, img: Image) -> Image:
+        """
+        Preprocess the image to improve OCR accuracy by enhancing contrast and sharpness.
+        
+        :param img: The image to preprocess.
+        :return: The preprocessed image ready for OCR.
+        """
+        # Sharpen the image
+        img = img.filter(ImageFilter.SHARPEN)
+        
+        # Increase the contrast of the image
+        enhancer = ImageEnhance.Contrast(img)
+        img = enhancer.enhance(2)  # Enhance the contrast by a factor of 2
+        
+        return img
+
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\__init__.py ==== 
+
+==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\interfaces\i_pdf_parser.py ==== 
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import Dict, Any
+
+
+class IPdfParser(ABC):
+    """Interface for all local PDF parsers."""
+
+    @abstractmethod
+    def parse(self, pdf_path: str) -> Dict[str, Any]:
+        """Parse a PDF file and return structured output with text and metadata."""
+        raise NotImplementedError
+.
+.
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\parser\parallel_pdf_parser.py ==== 
 from __future__ import annotations
 import concurrent.futures
@@ -3459,168 +4058,167 @@ def get_pdf_page_count(file_path: Path) -> int:
 ==== C:\Users\katha\historical-drift-analyzer\src\core\ingestion\utils\__init__.py ==== 
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\llm\llm_orchestrator.py ==== 
+# src/core/llm/llm_orchestrator.py
 from __future__ import annotations
 import logging
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+
 from src.core.config.config_loader import ConfigLoader
 from src.core.retrieval.retrieval_orchestrator import RetrievalOrchestrator
 from src.core.llm.ollama_llm import OllamaLLM
+from src.core.prompt.prompt_orchestrator import PromptOrchestrator
+from src.core.prompt.query.prompt_builder import PromptBuilder
 
 
 class LLMOrchestrator:
-    """Coordinates retrieval, chronological context ordering, and LLM-based analytical QA."""
+    """Full orchestration: Prompt → Retrieval → Reranking → LLM → IEEE-style Output."""
 
-    def __init__(self, config_path: str = "configs/config.yaml"):
+    def __init__(self, config_path: str = "configs/llm.yaml"):
+        # Load configuration
         self.cfg = ConfigLoader(config_path).config
         self.logger = logging.getLogger("LLMOrchestrator")
         self._setup_logging()
+
+        # Initialize pipeline components
+        self.prompt_phase = PromptOrchestrator()
         self.retriever = self._init_retriever()
+        self.prompt_builder = PromptBuilder()
         self.llm = self._init_llm()
+
+        self.logger.info("Initialized full LLM pipeline orchestrator (Prompt → Retrieval → LLM).")
 
     # ------------------------------------------------------------------
     def _setup_logging(self) -> None:
-        """Initialize consistent logging based on configuration."""
+        """Configure global logging based on configuration file."""
         log_level = self.cfg.get("global", {}).get("log_level", "INFO").upper()
         logging.basicConfig(level=getattr(logging, log_level), format="%(levelname)s | %(message)s")
-        self.logger.info("Initialized LLM orchestrator (chronological mode).")
+        self.logger.info("Logging configured.")
 
     # ------------------------------------------------------------------
     def _init_retriever(self) -> RetrievalOrchestrator:
-        """Initialize retrieval orchestrator."""
+        """Initialize the retrieval orchestrator."""
         try:
             retriever = RetrievalOrchestrator()
-            self.logger.info("Retriever initialized successfully from config.")
+            self.logger.info("Retriever ready.")
             return retriever
         except Exception as e:
-            self.logger.error(f"Failed to initialize retriever: {e}")
+            self.logger.exception(f"Failed to initialize retriever: {e}")
             raise
 
     # ------------------------------------------------------------------
     def _init_llm(self) -> OllamaLLM:
-        """Initialize local Ollama-based LLM backend."""
-        llm_cfg: Dict[str, Any] = self.cfg.get("generation", {}).get("llm", {})
-        model = llm_cfg.get("model", "mistral:7b-instruct")
-        temperature = float(llm_cfg.get("temperature", 0.2))
-        max_tokens = int(llm_cfg.get("max_tokens", 1024))
-
+        """Initialize the LLM backend (Ollama) from configuration."""
         try:
-            llm = OllamaLLM(model=model, temperature=temperature, max_tokens=max_tokens)
-            self.logger.info(f"LLM initialized: {model}")
+            profile_name = self.cfg.get("generation", {}).get("llm", {}).get("profile", "default")
+            llm = OllamaLLM(config_path="configs/llm.yaml", profile=profile_name)
+            self.logger.info(f"LLM initialized (profile={profile_name}).")
             return llm
         except Exception as e:
-            self.logger.error(f"Failed to initialize LLM: {e}")
+            self.logger.exception(f"Failed to initialize LLM: {e}")
             raise
 
     # ------------------------------------------------------------------
-    def _format_retrieved_context(self, results: List[Dict[str, Any]], top_k: int = 10) -> str:
-        """Format retrieved results sorted by publication year (oldest first)."""
-        seen = set()
-        formatted_lines = []
-
-        # sort ascending → oldest first
-        results_sorted = sorted(
-            results,
-            key=lambda x: int(x.get("metadata", {}).get("year") or x.get("year") or 0),
-        )[:top_k]
-
-        for i, r in enumerate(results_sorted, start=1):
-            meta = r.get("metadata", {})
-            title = meta.get("title") or meta.get("source_file") or "Unknown"
-            year = meta.get("year") or r.get("year", "n/a")
-            if title in seen:
-                continue
-            seen.add(title)
-            formatted_lines.append(f"[{i}] ({year}) {title}")
-
-        context_header = "Retrieved Context (chronological order: oldest → newest):\n" + "\n".join(formatted_lines)
-        context_header += "\n" + "=" * 100 + "\n"
-        return context_header
-
-    # ------------------------------------------------------------------
-    def _build_prompt(self, query: str, retrieved: List[Dict[str, Any]]) -> str:
-        """Construct chronological, citation-aware prompt for LLM generation."""
-        # enforce ascending temporal order
-        retrieved_sorted = sorted(
-            retrieved,
-            key=lambda r: int(r.get("metadata", {}).get("year") or r.get("year") or 0),
-        )
-
-        # formatted overview block
-        context_block = self._format_retrieved_context(retrieved_sorted)
-
-        # extract text snippets for each source
-        snippets = "\n\n".join(
-            f"[{i+1}] ({r.get('metadata', {}).get('year', 'n/a')}) "
-            f"{r.get('text', '').encode('utf-8', errors='ignore').decode('utf-8')[:500]}"
-            for i, r in enumerate(retrieved_sorted[:10])
-        )
-
-        # precise system prompt for timeline reasoning
-        system_prompt = (
-            "You are an analytical historian of Artificial Intelligence. "
-            "Use the following chronological sources to explain how the concept evolved over time. "
-            "Begin with the earliest developments and progress step-by-step toward the most recent events. "
-            "Clearly mark transitions between decades or paradigm shifts, and reference each source [1]-[10] only once."
-        )
-
-        # combine final structured prompt
-        prompt = (
-            f"{system_prompt}\n\n"
-            f"{context_block}\n"
-            f"User Question:\n{query}\n\n"
-            f"Context Snippets:\n{snippets}\n\n"
-            "Now provide an analytical narrative that starts from the oldest sources and ends with the newest. "
-            "Ensure the answer maintains chronological coherence and factual grounding."
-        )
-        return prompt
-
-    # ------------------------------------------------------------------
-    def run(self) -> None:
-        """Interactive analytical QA session with chronological reasoning."""
-        self.logger.info("LLM phase ready for chronological analytical queries.")
-        print("\nAsk something like:")
-        print('   "How did the term Artificial Intelligence evolve over time?"')
-        print("   Type 'exit' to quit.\n")
-
+    def run_interactive(self) -> None:
+        """Interactive mode for continuous Prompt → Retrieval → LLM interaction."""
+        self.logger.info("Ready for interactive mode. Press Ctrl+C to exit.")
         while True:
             try:
-                query = input("> ").strip()
-            except (KeyboardInterrupt, EOFError):
-                self.logger.info("Exiting LLM phase.")
-                break
-
-            if query.lower() in {"exit", "quit"}:
+                # Step 1: get user query
+                query_obj = self.prompt_phase.get_prompt_object()
+                if not query_obj:
+                    continue
+                # Step 2: process the query
+                answer = self.process_query(query_obj)
+                if answer:
+                    print("\n=== MODEL OUTPUT ===\n")
+                    print(answer)
+                    print("\n====================\n")
+            except KeyboardInterrupt:
                 self.logger.info("Session terminated by user.")
                 break
-            if not query:
-                continue
-
-            # --- Retrieval Phase ---
-            self.logger.info(f"Retrieving context for query: {query}")
-            retrieved_docs: List[Dict[str, Any]] = self.retriever.retrieve(query, top_k=10)
-            if not retrieved_docs:
-                print("No relevant documents found.\n")
-                continue
-
-            # --- Context Display ---
-            context_block = self._format_retrieved_context(retrieved_docs)
-            print("\n" + context_block)
-
-            # --- LLM Generation ---
-            try:
-                full_prompt = self._build_prompt(query, retrieved_docs)
-                answer = self.llm.generate(full_prompt, context=retrieved_docs)
             except Exception as e:
-                self.logger.error(f"LLM generation failed: {e}")
-                print("LLM generation failed. See logs for details.\n")
-                continue
+                self.logger.error(f"Unexpected runtime error: {e}")
 
-            # --- Output ---
-            print("\nModel Output:\n")
-            print(answer)
-            print("\n" + "=" * 100 + "\n")
+    # ------------------------------------------------------------------
+    def process_query(self, query_obj: Optional[Dict[str, Any]]) -> str:
+        """End-to-end query execution: retrieval, reranking, prompt building, generation."""
+        if not query_obj or not query_obj.get("processed_query"):
+            self.logger.warning("Invalid or empty query object.")
+            return ""
 
-        self.close()
+        query = query_obj["processed_query"]
+        intent = query_obj.get("intent", "conceptual")
+        temporal_mode = intent in ["chronological", "temporal"]
+
+        # --- Retrieval ---
+        try:
+            self.logger.info(f"Retrieving context (temporal_mode={temporal_mode}) for: '{query}'")
+            retrieved_docs = self.retriever.retrieve(query, intent)
+        except Exception as e:
+            self.logger.exception(f"Retrieval failed: {e}")
+            return ""
+
+        if not retrieved_docs:
+            self.logger.warning("No relevant documents retrieved.")
+            return ""
+
+        self.logger.info(f"Retrieved {len(retrieved_docs)} top-ranked chunks.")
+
+        # --- Prompt Building ---
+        try:
+            full_prompt = self.prompt_builder.build_prompt(query, intent, retrieved_docs)
+        except Exception as e:
+            self.logger.exception(f"Prompt building failed: {e}")
+            return ""
+
+        # --- Generation ---
+        try:
+            output = self.llm.generate(full_prompt, context=retrieved_docs)
+            refs = self._format_references_grouped(retrieved_docs)
+            self.logger.info("LLM generation successful.")
+            return output.strip() + "\n\n" + refs
+        except Exception as e:
+            self.logger.exception(f"LLM generation failed: {e}")
+            return ""
+
+    # ------------------------------------------------------------------
+    def run_with_context(self, query: str, intent: str, retrieved_chunks: List[Dict[str, Any]]) -> str:
+        """Run generation phase with externally provided retrieval context."""
+        self.logger.info(f"Running automatic contextual generation for intent='{intent}'")
+        if not retrieved_chunks:
+            return "No context provided."
+
+        try:
+            full_prompt = self.prompt_builder.build_prompt(query, intent, retrieved_chunks)
+        except Exception as e:
+            self.logger.error(f"Prompt construction failed: {e}")
+            return f"Prompt build failed: {e}"
+
+        try:
+            output = self.llm.generate(full_prompt, context=retrieved_chunks)
+            refs = self._format_references_grouped(retrieved_chunks)
+            self.logger.info("Contextual generation completed successfully.")
+            return output.strip() + "\n\n" + refs
+        except Exception as e:
+            self.logger.error(f"Contextual LLM generation failed: {e}")
+            return f"[Error] Contextual generation failed: {e}"
+
+    # ------------------------------------------------------------------
+    def _format_references_grouped(self, results: List[Dict[str, Any]]) -> str:
+        """Create IEEE-style reference list (one per unique PDF)."""
+        if not results:
+            return "References: none"
+
+        grouped = {}
+        for r in results:
+            meta = r.get("metadata", {}) or {}
+            src = meta.get("source_file") or "Unknown.pdf"
+            year = meta.get("year") or r.get("year", "n/a")
+            grouped[src] = year
+
+        ordered = sorted(grouped.items(), key=lambda x: str(x[1]))
+        refs = [f"[{i}] {src}, {year}" for i, (src, year) in enumerate(ordered, start=1)]
+        return "References:\n" + "\n".join(refs)
 
     # ------------------------------------------------------------------
     def close(self) -> None:
@@ -3628,64 +4226,144 @@ class LLMOrchestrator:
         try:
             self.retriever.close()
         except Exception as e:
-            self.logger.warning(f"Error closing retriever: {e}")
-
+            self.logger.warning(f"Retriever close failed: {e}")
         try:
             self.llm.close()
         except Exception as e:
-            self.logger.warning(f"Error closing LLM: {e}")
+            self.logger.warning(f"LLM close failed: {e}")
+        self.logger.info("Pipeline shutdown complete.")
 
-        self.logger.info("LLM generation phase finished successfully.")
 
-
-# ----------------------------------------------------------------------
 def main() -> None:
-    """Standalone execution for RAG + chronological LLM QA."""
+    """Standalone entry point for full interactive LLM orchestration."""
     orchestrator = LLMOrchestrator()
-    orchestrator.run()
+    orchestrator.run_interactive()
+    orchestrator.close()
 
 
 if __name__ == "__main__":
     main()
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\llm\ollama_llm.py ==== 
+# src/core/llm/ollama_llm.py
 from __future__ import annotations
 import subprocess
-from typing import List, Dict
+import logging
+import json
+from datetime import datetime
+from pathlib import Path
+from typing import List, Dict, Any
 from src.core.llm.interfaces.i_llm import ILLM
+from src.core.config.config_loader import ConfigLoader
+
+logger = logging.getLogger(__name__)
 
 class OllamaLLM(ILLM):
-    """Local interface to Ollama (e.g., mistral:7b-instruct)."""
+    """Local Ollama backend (configurable via YAML profile, logs structured JSON)."""
 
-    def __init__(self, model: str = "mistral:7b-instruct",
-                 temperature: float = 0.2, max_tokens: int = 512):
-        self.model = model
-        self.temperature = temperature
-        self.max_tokens = max_tokens
+    def __init__(self, config_path: str = "configs/llm.yaml", profile: str | None = None):
+        cfg = ConfigLoader(config_path).config
+        global_cfg = cfg.get("global", {})
+        profiles = cfg.get("profiles", {})
+        self.profile = profile or "default"
+        profile_cfg = profiles.get(self.profile, {})
 
-    def generate(self, prompt: str, context: List[Dict[str, str]]) -> str:
-        # Build context text
-        context_text = "\n\n".join(f"[{i+1}] {c['text']}" for i, c in enumerate(context[:5]))
-        full_prompt = (
-            f"System: You are an analytical assistant summarizing semantic change in terminology.\n"
-            f"Parameters: temperature={self.temperature}, max_tokens={self.max_tokens}\n"
-            f"User: {prompt}\n\nContext:\n{context_text}\n\n"
-            "Answer analytically and cite document indices like [1], [2], etc."
-        )
+        self.model = profile_cfg.get("model", "mistral:7b-instruct")
+        self.temperature = float(profile_cfg.get("temperature", 0.2))
+        self.max_tokens = int(profile_cfg.get("max_tokens", 512))
+        self.auto_pull = bool(profile_cfg.get("auto_pull", True))
 
-        # “ollama run” with prompt as positional arg
-        cmd = ["ollama", "run", self.model, full_prompt]
+        log_level = global_cfg.get("log_level", "INFO").upper()
+        logging.basicConfig(level=getattr(logging, log_level), format="%(levelname)s | %(message)s")
 
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        self.log_dir = Path("data/logs")
+        self.log_dir.mkdir(parents=True, exist_ok=True)
+        logger.info(f"OllamaLLM ready (profile={self.profile}, model={self.model})")
 
-        if result.returncode != 0:
-            raise RuntimeError(
-                f"Ollama execution failed (code {result.returncode}):\n{result.stderr.strip()}"
+        self._ensure_model_available()
+
+    # ------------------------------------------------------------------
+    def _ensure_model_available(self) -> None:
+        """Ensure selected Ollama model exists (pull if missing)."""
+        try:
+            result = subprocess.run(
+                ["ollama", "list"], capture_output=True, text=True,
+                encoding="utf-8", errors="replace"
             )
+            if result.returncode != 0:
+                raise RuntimeError(result.stderr.strip())
 
-        return result.stdout.strip()
+            if self.model.lower() not in result.stdout.lower():
+                if not self.auto_pull:
+                    logger.warning(f"Model '{self.model}' missing (auto_pull disabled).")
+                    return
+                logger.info(f"Pulling model '{self.model}' ...")
+                pull_result = subprocess.run(
+                    ["ollama", "pull", self.model],
+                    capture_output=True, text=True,
+                    encoding="utf-8", errors="replace"
+                )
+                if pull_result.returncode != 0:
+                    raise RuntimeError(pull_result.stderr.strip())
+                logger.info(f"Successfully pulled '{self.model}'.")
+            else:
+                logger.info(f"Model '{self.model}' available locally.")
+        except Exception as e:
+            logger.error(f"Model check failed: {e}")
 
+    # ------------------------------------------------------------------
+    def generate(self, prompt: str, context: List[Dict[str, Any]]) -> str:
+        """Run Ollama model, logging prompt and context as structured JSON."""
+        n_ctx = len(context)
+        snippets = [
+            {
+                "index": i + 1,
+                "source_file": (c.get("metadata", {}) or {}).get("source_file"),
+                "year": (c.get("metadata", {}) or {}).get("year"),
+                "text": c.get("text", "")
+            }
+            for i, c in enumerate(context[:n_ctx])
+        ]
+
+        timestamp = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
+        log_path = self.log_dir / f"llm_{timestamp}.json"
+        log_data = {
+            "timestamp": timestamp,
+            "profile": self.profile,
+            "model": self.model,
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens,
+            "prompt": prompt,
+            "context_snippets": snippets
+        }
+
+        try:
+            with log_path.open("w", encoding="utf-8") as f:
+                json.dump(log_data, f, ensure_ascii=False, indent=2)
+            logger.info(f"Logged LLM input to {log_path}")
+        except Exception as e:
+            logger.warning(f"Failed to write input log: {e}")
+
+        cmd = ["ollama", "run", self.model, prompt]
+        result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+        if result.returncode != 0:
+            raise RuntimeError(result.stderr.strip())
+
+        output = result.stdout.strip()
+        log_data["model_output"] = output
+
+        try:
+            with log_path.open("w", encoding="utf-8") as f:
+                json.dump(log_data, f, ensure_ascii=False, indent=2)
+            logger.info(f"Updated log with model output → {log_path}")
+        except Exception as e:
+            logger.warning(f"Failed to append model output: {e}")
+
+        return output
+
+    # ------------------------------------------------------------------
     def close(self) -> None:
+        """No persistent connections to close."""
         pass
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\llm\interfaces\i_llm.py ==== 
@@ -3827,32 +4505,369 @@ class StructuredLogger:
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\logging\__init__.py ==== 
 .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\faiss_retriever.py ==== 
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\prompt_orchestrator.py ==== 
+# src/core/prompt/prompt_orchestrator.py
 from __future__ import annotations
-from typing import Any, Dict, List, Optional
+import logging
+from typing import Dict, Any, Optional
+
+from src.core.prompt.query.query_input import QueryInput
+from src.core.prompt.query.query_preprocessor import QueryPreprocessor
+
+
+class PromptOrchestrator:
+    """Coordinates the full prompt understanding pipeline:
+       (1) user input → (2) preprocessing → (3) intent classification.
+    """
+
+    def __init__(self, log_level: str = "INFO"):
+        # Initialize logger
+        self.logger = logging.getLogger("PromptOrchestrator")
+        if not self.logger.handlers:
+            logging.basicConfig(level=getattr(logging, log_level.upper(), logging.INFO),
+                                format="%(levelname)s | %(message)s")
+
+        # Initialize submodules
+        self.query_input = QueryInput()
+        self.preprocessor = QueryPreprocessor()
+        self.logger.info("PromptOrchestrator initialized successfully.")
+
+    # ------------------------------------------------------------------
+    def get_prompt_object(self) -> Dict[str, Any]:
+        """Execute the complete prompt phase: read, clean, classify.
+
+        Returns
+        -------
+        dict
+            Structured prompt object with:
+            {
+                "raw_query": str,
+                "processed_query": str,
+                "intent": str,
+                "timestamp": str,
+                ...
+            }
+            Returns an empty dict if no valid input was given.
+        """
+        try:
+            # Step 1: read user input interactively
+            raw_query: Optional[str] = self.query_input.read_interactive()
+            if not raw_query or not raw_query.strip():
+                self.logger.warning("No input provided. Skipping prompt phase.")
+                return {}
+
+            # Step 2: preprocess and classify
+            result: Dict[str, Any] = self.preprocessor.process(raw_query)
+            if not result or "processed_query" not in result:
+                self.logger.warning("Preprocessing failed or returned empty result.")
+                return {}
+
+            self.logger.info(f"Prompt phase complete: intent='{result.get('intent', 'unknown')}'")
+            return result
+
+        except KeyboardInterrupt:
+            self.logger.info("Prompt input cancelled by user.")
+            return {}
+
+        except Exception as e:
+            self.logger.exception(f"Unexpected error in prompt phase: {e}")
+            return {}
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\__init__.py ==== 
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\prompt_builder.py ==== 
+# src/core/prompt/query/prompt_builder.py
+from __future__ import annotations
+import logging
+from dataclasses import dataclass
+from typing import Any, Dict, List, Literal, Optional
+
+logger = logging.getLogger(__name__)
+Intent = Literal["chronological", "conceptual", "analytical", "comparative"]
+
+
+@dataclass
+class PromptBuilderConfig:
+    snippet_char_limit: int = 700       # allows slightly larger excerpts
+    sort_chronologically: bool = True
+    include_overview: bool = True
+    numeric_citations_only: bool = True
+
+
+class PromptBuilder:
+    """Compose the final LLM prompt using grouped, IEEE-style context references."""
+
+    def __init__(self, cfg: Optional[PromptBuilderConfig] = None):
+        self.cfg = cfg or PromptBuilderConfig()
+        if not logger.handlers:
+            logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
+
+    # ------------------------------------------------------------------
+    def _safe_year(self, item: Dict[str, Any]) -> int:
+        meta = item.get("metadata", {}) or {}
+        year = meta.get("year") or item.get("year") or 0
+        try:
+            return int(year)
+        except Exception:
+            return 0
+
+    # ------------------------------------------------------------------
+    def _group_by_source(self, items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Group chunks belonging to the same PDF and preserve chronological order."""
+        grouped: Dict[str, Dict[str, Any]] = {}
+        for chunk in items:
+            meta = chunk.get("metadata", {}) or {}
+            src = meta.get("source_file") or "Unknown.pdf"
+            year = meta.get("year") or chunk.get("year", "n/a")
+            if src not in grouped:
+                grouped[src] = {"year": year, "chunks": []}
+            grouped[src]["chunks"].append(chunk.get("text", ""))
+
+        # Sort by year (oldest → newest)
+        ordered = sorted(grouped.items(), key=lambda x: self._safe_year({"metadata": {"year": x[1]["year"]}}))
+        grouped_list = [
+            {"index": i + 1, "source_file": src, "year": meta["year"], "text": " ".join(meta["chunks"])}
+            for i, (src, meta) in enumerate(ordered)
+        ]
+        return grouped_list
+
+    # ------------------------------------------------------------------
+    def _context_overview(self, grouped: List[Dict[str, Any]]) -> str:
+        lines = [f"[{g['index']}] ({g['year']}) {g['source_file']}" for g in grouped]
+        return "Retrieved Context (oldest → newest):\n" + "\n".join(lines)
+
+    # ------------------------------------------------------------------
+    def _system_prompt_for(self, intent: Intent) -> str:
+        if intent == "chronological":
+            return (
+                "You are an analytical historian of Artificial Intelligence. "
+                "Explain how the concept evolved over time, focusing on paradigm shifts, research trends, and milestones. "
+                "Use numeric citations [1], [2], etc., and avoid author names or years in parentheses."
+            )
+        if intent == "conceptual":
+            return (
+                "You are an AI expert. Provide a precise definition, core principles, and clear explanation of the concept. "
+                "Use numeric citations [1], [2], etc., and avoid author names or years in parentheses."
+            )
+        return (
+            "You are an analytical researcher. Compare, contrast, and evaluate the ideas in a rigorous manner. "
+            "Use numeric citations [1], [2], etc., and avoid author names or years in parentheses."
+        )
+
+    # ------------------------------------------------------------------
+    def _snippets_block(self, grouped: List[Dict[str, Any]]) -> str:
+        """Build consolidated context snippets per unique PDF."""
+        limit = max(1, self.cfg.snippet_char_limit)
+        parts: List[str] = []
+        for g in grouped:
+            text = g["text"][:limit].replace("\n", " ").strip()
+            parts.append(f"[{g['index']}] ({g['year']}) {text}")
+        return "\n\n".join(parts)
+
+    # ------------------------------------------------------------------
+    def build_prompt(self, query: str, intent: Intent, retrieved_topk: List[Dict[str, Any]]) -> str:
+        """Construct a clean, grouped, IEEE-conform LLM prompt."""
+        if not query or not query.strip():
+            raise ValueError("Empty query passed to PromptBuilder")
+        if not isinstance(retrieved_topk, list) or len(retrieved_topk) == 0:
+            raise ValueError("Empty retrieved list passed to PromptBuilder")
+
+        grouped = self._group_by_source(retrieved_topk)
+        sys_prompt = self._system_prompt_for(intent)
+        overview = self._context_overview(grouped) if self.cfg.include_overview else ""
+        snippets = self._snippets_block(grouped)
+
+        prompt = f"{sys_prompt}\n\n"
+        if overview:
+            prompt += f"{overview}\n\n"
+        prompt += (
+            f"User Question:\n{query.strip()}\n\n"
+            f"Context Snippets:\n{snippets}\n\n"
+            "Answer requirements:\n"
+            "- Be concise, logically structured, and evidence-based.\n"
+            "- Base claims only on the Context Snippets.\n"
+            "- Cite using only numeric indices like [1], [2], etc.\n"
+            "- Do not include author names or explicit years in parentheses.\n"
+        )
+        return prompt
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\query_classifier.py ==== 
+# src/core/prompt/query/query_classifier.py 
+from __future__ import annotations
+import logging
+import numpy as np
+from typing import Literal, Dict, List, Optional
+from sentence_transformers import SentenceTransformer, util
+
+Intent = Literal["chronological", "conceptual", "analytical", "comparative"]
+
+class QueryClassifier:
+    """
+    Embedding-based intent classifier.
+    No heuristics, no language dependency, fully model-driven.
+    """
+    def __init__(
+        self,
+        model_name: str = "all-MiniLM-L6-v2",
+        label_texts: Optional[Dict[str, str]] = None
+    ):
+        self.logger = logging.getLogger(self.__class__.__name__)
+        if not self.logger.handlers:
+            logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
+
+        self.model = SentenceTransformer(model_name)
+        # Canonical label representations (configurable)
+        self.label_texts = label_texts or {
+            "chronological": "questions about historical development or changes over time",
+            "conceptual": "questions asking for definition, explanation or theoretical meaning",
+            "analytical": "questions asking for comparison, evaluation or analysis",
+            "comparative": "questions asking for contrast or difference between ideas",
+        }
+
+        self.labels = list(self.label_texts.keys())
+        # Precompute label embeddings for efficient similarity calculation
+        self.label_embeddings = self.model.encode(
+            list(self.label_texts.values()), normalize_embeddings=True
+        )
+        self.logger.info(f"Initialized semantic intent classifier with {len(self.labels)} labels")
+
+    # ------------------------------------------------------------------
+    def classify(self, query: str) -> Intent:
+        """Compute embedding similarity to predefined intent prototypes."""
+        if not query or not query.strip():
+            return "conceptual"
+        # Encode user query
+        q_emb = self.model.encode(query, normalize_embeddings=True)
+        # Compute cosine similarity between query and label embeddings
+        sims = util.cos_sim(q_emb, self.label_embeddings)[0].cpu().numpy()
+        # Select intent with highest similarity
+        idx = int(np.argmax(sims))
+        intent = self.labels[idx]
+        self.logger.info(f"Predicted semantic intent='{intent}' (sim={sims[idx]:.3f})")
+        return intent  # type: ignore
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\query_input.py ==== 
+from __future__ import annotations
+import logging
+from dataclasses import dataclass
+from typing import Optional
+
+logger = logging.getLogger(__name__)
+
+@dataclass
+class QueryInputConfig:
+    prompt_text: str = "> "
+    strip_input: bool = True
+    allow_empty: bool = False
+
+class QueryInput:
+    """Handles raw query intake (interactive or programmatic)."""
+    def __init__(self, cfg: Optional[QueryInputConfig] = None):
+        self.cfg = cfg or QueryInputConfig()
+        if not logger.handlers:
+            logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
+
+    def read_interactive(self) -> Optional[str]:
+        """Read query from stdin (interactive mode)."""
+        try:
+            raw = input(self.cfg.prompt_text)
+        except (KeyboardInterrupt, EOFError):
+            # Raise further to allow graceful termination at orchestrator level
+            print()  # newline for clean CLI exit
+            raise
+        q = raw.strip() if self.cfg.strip_input else raw
+        if not q and not self.cfg.allow_empty:
+            logger.warning("Empty query ignored.")
+            return None
+        return q
+
+    def from_program(self, query: Optional[str]) -> Optional[str]:
+        """Receive query from another process or script."""
+        if query is None:
+            return None
+        return query.strip() if self.cfg.strip_input else query
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\query_preprocessor.py ==== 
+# src/core/prompt/query/query_preprocessor.py
+from __future__ import annotations
+import logging
+from dataclasses import dataclass
+from typing import Optional
+from src.core.prompt.query.query_classifier import QueryClassifier
+
+logger = logging.getLogger(__name__)
+
+@dataclass
+class QueryPreprocessorConfig:
+    lowercase: bool = True
+    remove_double_spaces: bool = True
+    embedding_model: str = "all-MiniLM-L6-v2"
+
+class QueryPreprocessor:
+    """Clean, normalize, and classify queries without heuristics."""
+    def __init__(self, cfg: Optional[QueryPreprocessorConfig] = None):
+        self.cfg = cfg or QueryPreprocessorConfig()
+        if not logger.handlers:
+            logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
+        # Initialize classifier for semantic intent detection
+        self.classifier = QueryClassifier(model_name=self.cfg.embedding_model)
+
+    def validate(self, query: Optional[str]) -> str:
+        """Ensure query is not empty or invalid."""
+        if not query or not query.strip():
+            raise ValueError("Empty query is not allowed")
+        return query.strip()
+
+    def clean(self, query: str) -> str:
+        """Normalize casing and spacing according to configuration."""
+        q = query.lower() if self.cfg.lowercase else query
+        if self.cfg.remove_double_spaces:
+            q = " ".join(q.split())
+        return q.strip()
+
+    def process(self, raw_query: Optional[str]) -> dict:
+        """Return cleaned text + semantic intent."""
+        q = self.validate(raw_query)
+        clean_q = self.clean(q)
+        intent = self.classifier.classify(clean_q)
+        logger.info(f"Processed query='{clean_q}' intent='{intent}'")
+        return {"raw_query": q, "processed_query": clean_q, "intent": intent}
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\__init__.py ==== 
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\faiss_retriever.py ==== 
+# src/core/retrieval/faiss_retriever.py
+from __future__ import annotations
+from typing import Any, Dict, List, Optional, Tuple
 from pathlib import Path
 import json
+import re
 import numpy as np
 import logging
+from math import exp
 from src.core.retrieval.interfaces.i_retriever import IRetriever
 
 
 class FAISSRetriever(IRetriever):
-    """Semantic retriever using FAISS vector similarity search with optional cosine/dot mode."""
+    """FAISS-based semantic retriever with optional temporal modulation."""
 
     def __init__(
         self,
         vector_store_dir: str,
         model_name: str,
-        top_k_retrieve: int = 50,        # broad initial search
+        top_k_retrieve: int = 50,            # # wide initial recall
         normalize_embeddings: bool = True,
         use_gpu: bool = False,
-        similarity_metric: str = "cosine",  # new parameter
+        similarity_metric: str = "cosine",   # # 'cosine' or 'dot'
+        temporal_awareness: bool = True,     # # enable temporal prior
+        temporal_tau: float = 8.0,           # # smoothing for |year - query_year|
+        temporal_weight: float = 0.30,       # # strength of temporal modulation
+        valid_year_range: Tuple[int, int] = (1900, 2100),  # # plausible year range
     ):
         self.logger = logging.getLogger(self.__class__.__name__)
 
         try:
-            import faiss
+            import faiss  # type: ignore
             from sentence_transformers import SentenceTransformer
         except ImportError as e:
             raise ImportError(
@@ -3866,21 +4881,24 @@ class FAISSRetriever(IRetriever):
         self.meta_path = self.vector_store_dir / "metadata.jsonl"
 
         if not self.index_path.exists() or not self.meta_path.exists():
-            raise FileNotFoundError(f"Vector store incomplete: {self.vector_store_dir}")
+            raise FileNotFoundError(f"Incomplete vector store: {self.vector_store_dir}")
 
         self.model = SentenceTransformer(model_name)
-        self.top_k_retrieve = top_k_retrieve
-        self.normalize_embeddings = normalize_embeddings
-        self.use_gpu = use_gpu
+        self.top_k_retrieve = int(top_k_retrieve)
+        self.normalize_embeddings = bool(normalize_embeddings)
+        self.use_gpu = bool(use_gpu)
         self.similarity_metric = similarity_metric.lower().strip()
+        self.temporal_awareness = bool(temporal_awareness)
+        self.temporal_tau = float(temporal_tau)
+        self.temporal_weight = float(temporal_weight)
+        self.valid_year_range = valid_year_range
 
         if self.similarity_metric not in {"cosine", "dot"}:
             raise ValueError(f"Unsupported similarity metric: {self.similarity_metric}")
 
-        # Load FAISS index
-        self.logger.info(f"Loading FAISS index from {self.index_path}")
+        # # Load FAISS index (optionally move to GPU)
+        self.logger.info(f"Loading FAISS index: {self.index_path}")
         self.index = faiss.read_index(str(self.index_path))
-
         if self.use_gpu:
             try:
                 res = faiss.StandardGpuResources()
@@ -3889,132 +4907,138 @@ class FAISSRetriever(IRetriever):
             except Exception as e:
                 self.logger.warning(f"GPU mode failed, falling back to CPU: {e}")
 
-        # Load metadata into memory once
+        # # Load metadata into memory once
         with open(self.meta_path, "r", encoding="utf-8") as f:
             self.metadata = [json.loads(line) for line in f]
 
         self.logger.info(
-            f"FAISSRetriever initialized | entries={len(self.metadata)} | metric={self.similarity_metric.upper()}"
+            f"FAISSRetriever ready | entries={len(self.metadata)} | metric={self.similarity_metric.upper()} "
+            f"| temporal_awareness={self.temporal_awareness}"
         )
 
     # ------------------------------------------------------------------
     def _encode_query(self, query: str) -> np.ndarray:
-        """Encode query to embedding vector with optional normalization."""
+        # # Encode with optional normalization
         vec = self.model.encode([query], normalize_embeddings=self.normalize_embeddings)
         return np.asarray(vec, dtype="float32")
 
     # ------------------------------------------------------------------
     def _normalize_scores(self, distances: np.ndarray) -> np.ndarray:
-        """Normalize FAISS distances to similarity scores."""
-        if self.similarity_metric == "cosine":
-            # FAISS inner product (cosine) returns higher = better
+        # # For cosine/dot (IP), higher is better -> use as-is
+        if self.similarity_metric in {"cosine", "dot"}:
             return distances
-        elif self.similarity_metric == "dot":
-            # dot similarity is equivalent here; optional for clarity
-            return distances
-        else:
-            # fallback normalization
-            return 1 - distances
+        return 1 - distances
 
     # ------------------------------------------------------------------
-    def search(self, query: str, top_k: Optional[int] = None) -> List[Dict[str, Any]]:
-        """Perform similarity search for a given text query."""
-        k = top_k or self.top_k_retrieve
-        k = max(1, min(k, self.index.ntotal))  # keep within safe bounds
+    def _extract_years_from_query(self, query: str) -> List[int]:
+        # # Only keep plausible 4-digit years
+        yrs = [int(y) for y in re.findall(r"\b(19\d{2}|20\d{2})\b", query)]
+        lo, hi = self.valid_year_range
+        return [y for y in yrs if lo <= y <= hi]
+
+    # ------------------------------------------------------------------
+    def _temporal_modulate(self, base_score: float, doc_year: Optional[int], query_years: List[int]) -> float:
+        # # Exponential distance weighting: nearer years -> higher boost
+        if doc_year is None or not query_years:
+            return base_score
+        nearest = min(abs(doc_year - y) for y in query_years)
+        w = exp(-nearest / max(self.temporal_tau, 1e-6))
+        return base_score * (1.0 + self.temporal_weight * w)
+
+    # ------------------------------------------------------------------
+    def _safe_doc_year(self, entry: Dict[str, Any]) -> Optional[int]:
+        # # Parse year from metadata robustly
+        meta = entry.get("metadata", {}) or {}
+        y = meta.get("year", None)
+        try:
+            yi = int(str(y))
+            lo, hi = self.valid_year_range
+            if lo <= yi <= hi:
+                return yi
+        except Exception:
+            pass
+        return None
+
+    # ------------------------------------------------------------------
+    def search(self, query: str, top_k: Optional[int] = None, temporal_mode: bool = True) -> List[Dict[str, Any]]:
+        """Similarity search with optional temporal modulation."""
+        # # Toggle temporal behavior per-call for deterministic flows
+        self.temporal_awareness = bool(temporal_mode)
+
+        k = int(top_k or self.top_k_retrieve)
+        k = max(1, min(k, self.index.ntotal))
 
         q_vec = self._encode_query(query)
-        self.logger.debug(f"FAISS search | k={k} | query='{query[:60]}'")
+        self.logger.debug(f"FAISS search | k={k} | query='{query[:60]}' | temporal={self.temporal_awareness}")
 
-        distances, indices = self.index.search(q_vec, k)
-        scores = self._normalize_scores(distances[0])
+        D, I = self.index.search(q_vec, k)
+        scores = self._normalize_scores(D[0])
 
         results: List[Dict[str, Any]] = []
-        for score, idx in zip(scores, indices[0]):
+        query_years = self._extract_years_from_query(query) if self.temporal_awareness else []
+
+        for score, idx in zip(scores, I[0]):
             if idx < 0 or idx >= len(self.metadata):
                 continue
             entry = self.metadata[idx]
+            doc_year = self._safe_doc_year(entry)
+            mod_score = (
+                self._temporal_modulate(float(score), doc_year, query_years)
+                if self.temporal_awareness else float(score)
+            )
             results.append({
-                "score": float(score),
-                "text": entry.get("text", "")[:500],
-                "metadata": entry.get("metadata", {}),
+                "score": float(mod_score),
+                "text": (entry.get("text", "") or "")[:500],
+                "metadata": entry.get("metadata", {}) or {},
             })
 
-        self.logger.info(f"Retrieved {len(results)} candidates for query: '{query[:60]}'")
+        results.sort(key=lambda r: r.get("score", 0.0), reverse=True)
+        self.logger.info(
+            f"Retrieved {len(results)} candidates | temporal_mode={self.temporal_awareness} "
+            f"| years_in_query={query_years if query_years else 'none'}"
+        )
         return results
 
     # ------------------------------------------------------------------
     def close(self) -> None:
-        """Gracefully close retriever."""
+        """No-op for symmetry; kept for interface compliance."""
         self.logger.info("FAISS retriever closed")
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\query_expander.py ==== 
-from __future__ import annotations
-import re
-from typing import List
-
-class TemporalQueryExpander:
-    """Generates temporally diverse query variants to improve historical coverage."""
-
-    def __init__(self):
-        # Static synonym sets for common AI terminology
-        self.synonym_map = {
-            "ai": ["artificial intelligence", "machine intelligence", "intelligent systems"],
-            "neural": ["connectionist", "perceptron", "deep learning"],
-            "algorithm": ["heuristic", "procedure", "rule-based system"],
-        }
-
-        # Temporal cues for encouraging retrieval across decades
-        self.temporal_modifiers = [
-            "history of", "timeline of", "evolution of", "early developments in",
-            "recent trends in", "origins of", "milestones in", "historical overview of"
-        ]
-
-    # ------------------------------------------------------------------
-    def expand(self, query: str) -> List[str]:
-        """Return a small, meaningful set of semantically related and temporally expanded variants."""
-        q = query.strip()
-        q_lower = q.lower()
-
-        expansions: List[str] = []
-
-        # Synonym substitution (single keyword replacements)
-        for key, syns in self.synonym_map.items():
-            if re.search(rf"\b{re.escape(key)}\b", q_lower):
-                for s in syns:
-                    variant = re.sub(rf"\b{re.escape(key)}\b", s, q_lower)
-                    expansions.append(variant)
-
-        # Temporal modifier combinations
-        for t in self.temporal_modifiers:
-            if not any(t in q_lower for t in self.temporal_modifiers):
-                expansions.append(f"{t} {q_lower}")
-
-        # Deduplicate while preserving order
-        seen = set()
-        unique_exp = []
-        for e in expansions:
-            if e not in seen:
-                unique_exp.append(e)
-                seen.add(e)
-
-        return unique_exp
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\reranker_factory.py ==== 
 # src/core/retrieval/reranker_factory.py
 from __future__ import annotations
-from typing import Any, Dict
+import logging
+from typing import Any, Dict, Type
 from src.core.retrieval.temporal_reranker import TemporalReranker
+from src.core.retrieval.semantic_reranker import SemanticReranker
 from src.core.retrieval.interfaces.i_reranker import IReranker
 
+logger = logging.getLogger(__name__)
+
 class RerankerFactory:
-    """Factory for creating reranker instances from configuration."""
+    """Factory for deterministic reranker construction."""
+
+    _registry: Dict[str, Type[IReranker]] = {
+        "temporal": TemporalReranker,
+        "semantic": SemanticReranker,
+    }
 
     @staticmethod
     def from_config(cfg: Dict[str, Any]) -> IReranker:
+        """Instantiate reranker from configuration dictionary."""
         opts = cfg.get("options", {})
-        rtype = str(opts.get("reranker", "temporal")).lower()
+        rtype = str(opts.get("reranker", "semantic")).lower()
 
-        if rtype == "temporal":
+        if rtype not in RerankerFactory._registry:
+            raise ValueError(
+                f"Unsupported reranker type: {rtype}. "
+                f"Available: {list(RerankerFactory._registry.keys())}"
+            )
+
+        cls = RerankerFactory._registry[rtype]
+        logger.info(f"Initializing reranker of type='{rtype}'")
+
+        if cls is TemporalReranker:
             return TemporalReranker(
                 lambda_weight=float(opts.get("lambda_weight", 0.55)),
                 min_year=int(opts.get("min_year", 1900)),
@@ -4022,329 +5046,320 @@ class RerankerFactory:
                 age_score_boost=float(opts.get("age_score_boost", 0.25)),
                 min_decade_threshold=int(opts.get("min_decade_threshold", 3)),
                 nonlinear_boost=str(opts.get("nonlinear_boost", "sigmoid")),
-                ignore_years=opts.get("ignore_years", []),
-                recency_cutoff_year=opts.get("recency_cutoff_year", None),
+                ignore_years=list(opts.get("ignore_years", [])),
+                recency_cutoff_year=opts.get("recency_cutoff_year"),
                 allow_legacy_backfill=bool(opts.get("allow_legacy_backfill", True)),
                 legacy_backfill_max_ratio=float(opts.get("legacy_backfill_max_ratio", 0.3)),
-                must_include=opts.get("must_include", []),
-                blacklist_sources=opts.get("blacklist_sources", []),
+                must_include=list(opts.get("must_include", [])),
+                blacklist_sources=list(opts.get("blacklist_sources", [])),
+                zscore_normalization=bool(opts.get("zscore_normalization", False)),
             )
 
-        raise ValueError(f"Unsupported reranker type: {rtype}")
+        if cls is SemanticReranker:
+            return SemanticReranker(
+                model_name=str(
+                    opts.get("semantic_model", "cross-encoder/ms-marco-MiniLM-L-6-v2")
+                ),
+                top_k=int(opts.get("top_k_rerank", 25)),
+                semantic_weight=float(opts.get("semantic_weight", 0.75)),
+                use_gpu=bool(opts.get("use_gpu", False)),
+            )
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\retrieval_orchestrator.py ==== 
 # src/core/retrieval/retrieval_orchestrator.py
 from __future__ import annotations
 import logging
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional
 from collections import defaultdict
+from sentence_transformers import SentenceTransformer, util
+import numpy as np
+
 from src.core.retrieval.faiss_retriever import FAISSRetriever
-from src.core.retrieval.query_expander import TemporalQueryExpander
 from src.core.retrieval.reranker_factory import RerankerFactory
 from src.core.config.config_loader import ConfigLoader
 
 
-def _safe_float(v: Any, default: float = 0.0) -> float:
-    # Robust float parsing with default fallback
-    try:
-        return float(v)
-    except Exception:
-        return default
-
-
 class RetrievalOrchestrator:
-    """Coordinates retrieval, query expansion, score fusion, reranking, and deduplication."""
+    """
+    Unified retrieval orchestrator — controlled externally by prompt intent.
+    Pipeline:
+      1. Receive (query, intent)
+      2. Retrieve chunks from FAISS
+      3. Apply reranker (semantic / temporal)
+      4. Return exactly top_k results
+    """
 
     def __init__(self, config_path: str = "configs/retrieval.yaml"):
         self.logger = logging.getLogger("RetrievalOrchestrator")
-
-        # Load merged config (phase + master) for stable paths and options
-        cfg_loader = ConfigLoader(config_path, master_path="configs/config.yaml")
+        cfg_loader = ConfigLoader(config_path)
         self.cfg: Dict[str, Any] = cfg_loader.config
-        self.paths: Dict[str, Any] = self.cfg.get("paths", {})
-        self.opts: Dict[str, Any] = self.cfg.get("options", {})
 
-        # Core options with safe defaults
-        log_level = getattr(logging, str(self.opts.get("log_level", "INFO")).upper(), logging.INFO)
-        logging.basicConfig(level=log_level, format="%(levelname)s | %(message)s")
+        opts = self.cfg.get("options", {})
+        paths = self.cfg.get("paths", {})
 
-        # Query expansion switch and limits
-        self.enable_expansion: bool = bool(self.opts.get("enable_query_expansion", True))
-        self.max_expansions: int = int(self.opts.get("max_expansions", 4))
-        self.use_rrf: bool = bool(self.opts.get("use_rrf_fusion", True))
-        self.rrf_k: float = _safe_float(self.opts.get("rrf_k", 60.0), default=60.0)
+        self.top_k = int(opts.get("top_k", 10))
+        self.vector_store_dir = str(paths.get("vector_store_dir", "data/vector_store"))
+        self.embedding_model = opts.get("embedding_model", "all-MiniLM-L6-v2")
 
-        # Diversity / constraints
-        self.enforce_decade_balance: bool = bool(self.opts.get("enforce_decade_balance", True))
-        self.min_decade_threshold: int = int(self.opts.get("min_decade_threshold", 3))
-        self.must_include: List[str] = list(self.opts.get("must_include", []))
-        self.blacklist_sources: List[str] = list(self.opts.get("blacklist_sources", []))
-        self.ignore_years: List[int] = list(self.opts.get("ignore_years", []))
-        self.min_year: int = int(self.opts.get("min_year", 1900))
-
-        # Controls for retrieval breadth
-        self.pre_rerank_k: int = int(self.opts.get("top_k_retrieve", 50))
-        self.final_k_default: int = int(self.opts.get("top_k", 10))
-
-        # Initialize retriever with consistent option names
+        # Initialize FAISS retriever
         self.retriever = FAISSRetriever(
-            vector_store_dir=str(self.paths.get("vector_store_dir", "data/vector_store")),
-            model_name=str(self.opts.get("embedding_model", "all-MiniLM-L6-v2")),
-            top_k_retrieve=self.pre_rerank_k,  # Wide pre-rerank search
-            normalize_embeddings=bool(self.opts.get("normalize_embeddings", True)),
-            use_gpu=bool(self.opts.get("use_gpu", False)),
-            similarity_metric=str(self.opts.get("similarity_metric", "cosine")).lower(),
+            vector_store_dir=self.vector_store_dir,
+            model_name=self.embedding_model,
+            top_k_retrieve=max(self.top_k * 8, 80),
+            normalize_embeddings=True,
+            use_gpu=False,
+            similarity_metric="cosine",
+            temporal_awareness=False,
         )
 
-        # Initialize reranker and temporal query expander
-        self.reranker = RerankerFactory.from_config(self.cfg)
-        self.expander = TemporalQueryExpander() if self.enable_expansion else None
+        # Embedding model for similarity and diversity computations
+        self.embed_model = SentenceTransformer(self.embedding_model)
 
-        self.logger.info("Retriever + reranker pipeline initialized successfully.")
+        self.logger.info(f"RetrievalOrchestrator initialized | top_k={self.top_k}")
 
     # ------------------------------------------------------------------
-    def retrieve(self, query: str, top_k: Optional[int] = None) -> List[Dict[str, Any]]:
-        # Main entry: retrieval -> expansion -> fusion -> rerank -> constraints -> dedup
-        self.logger.info(f"Retrieving for query: {query}")
-
-        # Step 1: Build expanded query set (unique, bounded)
-        queries = [query]
-        if self.expander:
-            expansions = self.expander.expand(query)
-            # Keep unique order-preserving subset and respect max_expansions
-            seen = set([query.strip().lower()])
-            for e in expansions:
-                e_norm = e.strip().lower()
-                if e_norm not in seen:
-                    queries.append(e)
-                    seen.add(e_norm)
-                if len(queries) - 1 >= self.max_expansions:
-                    break
-            self.logger.debug(f"Expanded queries: {queries[1:]}")
-
-        # Step 2: Collect raw results per subquery
-        per_query_results: List[Tuple[str, List[Dict[str, Any]]]] = []
-        total = 0
-        for q in queries:
-            batch = self.retriever.search(q)
-            for r in batch:
-                r["__subquery"] = q  # annotate for later fusion/audit
-            per_query_results.append((q, batch))
-            total += len(batch)
-
-        if total == 0:
-            self.logger.warning("No results found.")
+    def retrieve(self, query: str, intent: str) -> List[Dict[str, Any]]:
+        """
+        Retrieve relevant chunks according to user intent.
+        intent ∈ {'conceptual', 'chronological', 'analytical', 'comparative'}
+        """
+        if not query or not query.strip():
+            self.logger.warning("Empty query ignored.")
             return []
 
-        self.logger.info(f"Initial retrieval produced {total} results across {len(queries)} query variants.")
+        is_historical = intent == "chronological"
+        self.logger.info(f"Retrieval started | intent={intent} | top_k={self.top_k}")
 
-        # Step 3: Optional RRF/score fusion before reranking to diversify inputs
-        fused = self._reciprocal_rank_fusion(per_query_results) if self.use_rrf and len(queries) > 1 \
-            else [r for _, batch in per_query_results for r in batch]
+        # Step 1: retrieve raw candidates from FAISS
+        try:
+            raw_results = self.retriever.search(query, top_k=self.top_k * 8, temporal_mode=is_historical)
+        except Exception as e:
+            self.logger.exception(f"FAISS retrieval failed: {e}")
+            return []
 
-        # Step 4: Apply blacklist early to prevent undesired items from dominating
-        fused = self._apply_blacklist(fused, self.blacklist_sources)
+        if not raw_results:
+            self.logger.warning("No retrieval results found.")
+            return []
 
-        # Step 5: Rerank with temporal/semantic fusion (uses config lambda/boost etc.)
-        rerank_budget = top_k or self.final_k_default
-        reranked = self.reranker.rerank(fused, top_k=len(fused))  # rerank all fused candidates
+        # Step 2: choose reranker (semantic or temporal)
+        reranker_type = "temporal" if is_historical else "semantic"
+        self.reranker = RerankerFactory.from_config({"options": {"reranker": reranker_type}})
+        try:
+            reranked = self.reranker.rerank(raw_results, top_k=len(raw_results))
+        except Exception as e:
+            self.logger.exception(f"Reranking failed ({reranker_type}): {e}")
+            reranked = raw_results
 
-        # Step 6: Hard must-include injection (if present in pool)
-        reranked = self._inject_must_include(reranked, self.must_include)
+        # Sort by reranked scores
+        reranked.sort(key=lambda x: x.get("final_score", x.get("score", 0.0)), reverse=True)
 
-        # Step 7: Deduplicate and enforce final top-k with optional decade balance
-        final = self._deduplicate_with_diversity(reranked, top_k=rerank_budget)
+        # Step 3: enforce diversity (historical only)
+        final = self._ensure_exact_k(
+            self._enforce_diversity(reranked, self.top_k, is_historical),
+            self.top_k,
+        )
 
-        # Step 8: Log temporal distribution if requested
-        if bool(self.opts.get("log_decade_distribution", True)):
-            self._log_decade_distribution(final)
-
-        self.logger.info(f"Final results after reranking and deduplication: {len(final)} unique items.")
+        self._log_decade_distribution(final)
+        self.logger.info(f"Retrieval finished | returned={len(final)} | mode={intent}")
         return final
 
     # ------------------------------------------------------------------
-    def _reciprocal_rank_fusion(
-        self,
-        per_query_results: List[Tuple[str, List[Dict[str, Any]]]]
-    ) -> List[Dict[str, Any]]:
-        # RRF: combine per-query rankings to reward items that rank well across variants
-        # score_rrf(doc) = sum_q 1 / (k + rank_q(doc)), with k ~ 60 to smooth tails
-        rrf_scores: Dict[str, float] = {}
-        best_payload: Dict[str, Dict[str, Any]] = {}
+    def _enforce_diversity(self, results: List[Dict[str, Any]], k: int, historical: bool) -> List[Dict[str, Any]]:
+        """Diversify by decade and source for chronological intent, otherwise maximize precision."""
+        if not results:
+            return []
 
-        for _, batch in per_query_results:
-            for rank, item in enumerate(batch, start=1):
-                meta = item.get("metadata", {}) or {}
-                key = (meta.get("source_file") or meta.get("title") or "unknown").strip().lower()
-                rrf_scores[key] = rrf_scores.get(key, 0.0) + 1.0 / (self.rrf_k + rank)
-                # Keep representative payload with highest base score for tie-breaking
-                base = item.get("score", 0.0)
-                if key not in best_payload or base > best_payload[key].get("score", -1.0):
-                    best_payload[key] = item
+        selected, seen = [], set()
+        used_sources, used_decades = set(), set()
+        kept_embs = []
 
-        fused = []
-        for k, payload in best_payload.items():
-            p = dict(payload)
-            p["score_rrf"] = rrf_scores.get(k, 0.0)
-            # Preserve a unified 'score' channel for downstream components
-            p["score"] = max(_safe_float(payload.get("score", 0.0)), _safe_float(p["score_rrf"], 0.0))
-            fused.append(p)
-
-        # Sort by fused score descending
-        fused.sort(key=lambda x: _safe_float(x.get("score", 0.0)), reverse=True)
-        return fused
-
-    # ------------------------------------------------------------------
-    def _apply_blacklist(self, results: List[Dict[str, Any]], blacklist: List[str]) -> List[Dict[str, Any]]:
-        # Remove any result whose source_file/title contains a blacklisted token
-        if not blacklist:
-            return results
-        bl = {b.strip().lower() for b in blacklist if b}
-        out = []
         for r in results:
-            m = r.get("metadata", {}) or {}
-            name = (m.get("source_file") or m.get("title") or "").strip().lower()
-            if any(t in name for t in bl):
+            if len(selected) >= k:
+                break
+            text = (r.get("text") or "").strip()
+            if not text:
                 continue
-            out.append(r)
-        return out
 
-    # ------------------------------------------------------------------
-    def _inject_must_include(self, results: List[Dict[str, Any]], must: List[str]) -> List[Dict[str, Any]]:
-        # Ensure presence of required sources if they exist within results
-        if not must:
-            return results
-        must_lc = {m.strip().lower() for m in must}
-        # Promote must-include items to the front while preserving relative order
-        must_hits, others = [], []
-        for r in results:
-            m = r.get("metadata", {}) or {}
-            name = (m.get("source_file") or m.get("title") or "").strip().lower()
-            if any(t in name for t in must_lc):
-                must_hits.append(r)
-            else:
-                others.append(r)
-        return must_hits + others
-
-    # ------------------------------------------------------------------
-    def _deduplicate_with_diversity(self, results: List[Dict[str, Any]], top_k: int) -> List[Dict[str, Any]]:
-        # Keep best per (source_file/title) and enforce optional decade-balance
-        unique: Dict[str, Dict[str, Any]] = {}
-        for r in results:
             meta = r.get("metadata", {}) or {}
-            key = (meta.get("source_file") or meta.get("title") or "unknown").strip().lower()
-            score = _safe_float(r.get("final_score", r.get("score_adjusted", r.get("score", 0.0))), 0.0)
-            if key not in unique or score > _safe_float(unique[key].get("score", -1.0)):
-                r["score"] = score
-                unique[key] = r
+            src = meta.get("source_file", "unknown").lower()
+            year = self._safe_year(r)
+            decade = (year // 10) * 10 if year else None
 
-        deduped = list(unique.values())
-        # Optional decade-aware selection to mitigate tunnel vision
-        if self.enforce_decade_balance:
-            buckets: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
-            for r in deduped:
-                y = self._safe_year(r)
-                decade = f"{(y // 10) * 10}s" if y else "unknown"
-                buckets[decade].append(r)
-            # Sort each bucket by score desc
-            for d in buckets:
-                buckets[d].sort(key=lambda x: _safe_float(x.get("score", 0.0)), reverse=True)
-            # Round-robin pick across decades
-            ordered_decades = sorted(buckets.keys(), key=lambda d: (d == "unknown", d))
-            out: List[Dict[str, Any]] = []
-            idx = 0
-            while len(out) < top_k:
-                progressed = False
-                for d in ordered_decades:
-                    if idx < len(buckets[d]):
-                        out.append(buckets[d][idx])
-                        if len(out) >= top_k:
-                            break
-                        progressed = True
-                if not progressed:
-                    break
-                idx += 1
-            return out
-        else:
-            deduped.sort(key=lambda x: _safe_float(x.get("score", 0.0)), reverse=True)
-            return deduped[:top_k]
+            if not historical:
+                # For conceptual/analytical queries, avoid duplicates only
+                if hash(text) in seen:
+                    continue
+                seen.add(hash(text))
+                selected.append(r)
+                continue
+
+            # For historical mode, enforce source/decade diversity
+            if src in used_sources and decade in used_decades and len(selected) < k * 0.8:
+                continue
+
+            emb = self.embed_model.encode(text, normalize_embeddings=True)
+            if kept_embs:
+                sims = util.cos_sim(emb, kept_embs)[0]
+                if float(sims.max()) > 0.95:
+                    continue
+
+            selected.append(r)
+            kept_embs.append(emb)
+            used_sources.add(src)
+            if decade:
+                used_decades.add(decade)
+
+        return selected
+
+    # ------------------------------------------------------------------
+    def _ensure_exact_k(self, results: List[Dict[str, Any]], k: int) -> List[Dict[str, Any]]:
+        """Ensure deterministic top-k output length."""
+        if not results:
+            return []
+        if len(results) > k:
+            return results[:k]
+        if len(results) < k:
+            return results + results[-1:] * (k - len(results))
+        return results
 
     # ------------------------------------------------------------------
     def _safe_year(self, r: Dict[str, Any]) -> Optional[int]:
-        # Extract a plausible year from metadata with guards
+        """Safely extract valid publication year from metadata."""
         meta = r.get("metadata", {}) or {}
         y = meta.get("year", r.get("year"))
         try:
             y = int(y)
-            if y in self.ignore_years or y < self.min_year or y > 2100:
-                return None
-            return y
+            if 1900 <= y <= 2100:
+                return y
         except Exception:
-            return None
+            pass
+        return None
 
-    # ------------------------------------------------------------------
     def _log_decade_distribution(self, items: List[Dict[str, Any]]) -> None:
-        # Print a compact histogram over decades for auditability
+        """Log decade distribution for temporal diagnostics."""
         hist: Dict[str, int] = defaultdict(int)
         for r in items:
             y = self._safe_year(r)
-            d = f"{(y // 10) * 10}s" if y else "unknown"
-            hist[d] += 1
-        msg = ", ".join([f"{k}:{v}" for k, v in sorted(hist.items())])
+            decade = f"{(y // 10) * 10}s" if y else "unknown"
+            hist[decade] += 1
+        msg = ", ".join(f"{k}:{v}" for k, v in sorted(hist.items()))
         self.logger.info(f"Decade distribution: {msg}")
 
     # ------------------------------------------------------------------
     def close(self) -> None:
-        # Cleanly close FAISS retriever
+        """Close retriever resources gracefully."""
         try:
             self.retriever.close()
         except Exception as e:
             self.logger.warning(f"Failed to close retriever: {e}")
+        self.logger.info("RetrievalOrchestrator closed cleanly.")
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\retriever_factory.py ==== 
+# src/core/retrieval/retriever_factory.py
+from __future__ import annotations
+import logging
+from typing import Dict, Any
+from src.core.retrieval.faiss_retriever import FAISSRetriever
 
+logger = logging.getLogger(__name__)
 
-# ----------------------------------------------------------------------
-def main() -> None:
-    # Standalone execution for quick smoke tests
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
-    logger = logging.getLogger("RetrievalOrchestrator")
+class RetrieverFactory:
+    """Factory für Intent-spezifische Retriever-Instanzen (vollständig entkoppelte Datenflüsse)."""
 
-    orchestrator = RetrievalOrchestrator()
-    query = "Wie hat sich der Begriff KI im Laufe der Zeit entwickelt?"
-    results = orchestrator.retrieve(query, top_k=10)
+    @staticmethod
+    def build(intent: str, cfg: Dict[str, Any]) -> FAISSRetriever:
+        """Erzeuge deterministischen Retriever für den angegebenen Intent."""
+        paths = cfg.get("paths", {})
+        opts = cfg.get("options", {})
 
-    logger.info(f"Top {len(results)} temporally diverse and unique results:")
-    for i, r in enumerate(results, start=1):
-        meta = r.get("metadata", {}) or {}
-        title = meta.get("title") or meta.get("source_file") or "Unknown"
-        year = meta.get("year") or r.get("year", "n/a")
-        score = _safe_float(r.get("final_score", r.get("score_adjusted", r.get("score", 0.0))), 0.0)
-        logger.info(f"[{i}] ({year}) {title} | Score={score:.4f}")
+        # Basisparameter, deterministisch
+        common_args = dict(
+            model_name=opts.get("embedding_model", "all-MiniLM-L6-v2"),
+            normalize_embeddings=True,
+            use_gpu=False,
+            similarity_metric="cosine",
+            temporal_tau=float(opts.get("temporal_tau", 8.0)),
+            temporal_weight=float(opts.get("temporal_weight", 0.30)),
+            top_k_retrieve=int(opts.get("top_k_retrieve", 80)),
+        )
 
-    orchestrator.close()
+        # Intent → Index-Ordner Mapping
+        index_map = {
+            "conceptual": paths.get("conceptual_vector_dir", "data/vector_store/conceptual"),
+            "chronological": paths.get("chronological_vector_dir", "data/vector_store/chronological"),
+            "analytical": paths.get("analytical_vector_dir", "data/vector_store/analytical"),
+            "comparative": paths.get("comparative_vector_dir", "data/vector_store/comparative"),
+        }
 
+        # Fallback auf globales Standardverzeichnis
+        vdir = index_map.get(intent, paths.get("vector_store_dir", "data/vector_store/default"))
+        temporal_flag = (intent == "chronological")
 
-if __name__ == "__main__":
-    main()
+        logger.info(f"Building FAISSRetriever for intent='{intent}' | dir={vdir} | temporal={temporal_flag}")
+
+        return FAISSRetriever(
+            vector_store_dir=vdir,
+            temporal_awareness=temporal_flag,
+            **common_args,
+        )
+.
+==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\semantic_reranker.py ==== 
+# src/core/retrieval/semantic_reranker.py
+from __future__ import annotations
+import logging
+from typing import List, Dict, Any
+from sentence_transformers import CrossEncoder
+from src.core.retrieval.interfaces.i_reranker import IReranker
+
+logger = logging.getLogger(__name__)
+
+class SemanticReranker(IReranker):
+    """Cross-Encoder-basiertes Re-Ranking nach semantischer Relevanz."""
+
+    def __init__(
+        self,
+        model_name: str,
+        top_k: int = 25,
+        semantic_weight: float = 0.75,
+        use_gpu: bool = False,
+    ):
+        self.model_name = model_name
+        self.top_k = top_k
+        self.semantic_weight = semantic_weight
+        self.device = "cuda" if use_gpu else "cpu"
+        self.model = CrossEncoder(model_name, device=self.device)
+        logger.info(f"Semantic Cross-Encoder loaded: {model_name} ({self.device})")
+
+    def rerank(self, docs: List[Dict[str, Any]], top_k: int | None = None) -> List[Dict[str, Any]]:
+        """Score documents via Cross-Encoder similarity."""
+        if not docs:
+            return []
+
+        k = top_k or self.top_k
+        pairs = [(d.get("query", ""), d.get("text", "")) for d in docs]
+        scores = self.model.predict(pairs)
+
+        for d, score in zip(docs, scores):
+            base = float(d.get("score", 0.0))
+            d["final_score"] = self.semantic_weight * float(score) + (1 - self.semantic_weight) * base
+
+        docs.sort(key=lambda x: x["final_score"], reverse=True)
+        return docs[:k]
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\temporal_reranker.py ==== 
 # src/core/retrieval/temporal_reranker.py
 from __future__ import annotations
-import logging
-import math
-from collections import defaultdict
-from statistics import median
+import logging, math
+from statistics import mean, pstdev, median
 from datetime import datetime
-from typing import Any, Dict, List, Set
+from collections import defaultdict
+from typing import List, Dict, Any, Set
 from src.core.retrieval.interfaces.i_reranker import IReranker
 
 logger = logging.getLogger(__name__)
 
 class TemporalReranker(IReranker):
-    """
-    Temporal reranker combining semantic similarity and temporal diversity.
-    Incorporates recency bias, nonlinear age boost, decade balancing,
-    must-include enforcement, and blacklist exclusion.
-    """
+    """Combines semantic scores with temporal diversity balancing."""
 
     def __init__(
         self,
@@ -4360,169 +5375,118 @@ class TemporalReranker(IReranker):
         legacy_backfill_max_ratio: float = 0.3,
         must_include: List[str] | None = None,
         blacklist_sources: List[str] | None = None,
+        zscore_normalization: bool = False,
     ):
-        # Core weighting and balancing parameters
         self.lambda_weight = lambda_weight
         self.age_score_boost = age_score_boost
         self.enforce_decade_balance = enforce_decade_balance
         self.min_decade_threshold = min_decade_threshold
         self.nonlinear_boost = nonlinear_boost.lower()
         self.min_year = min_year
-
-        # Control sets and filters
         self.ignore_years: Set[int] = set(ignore_years or [])
         self.recency_cutoff_year = recency_cutoff_year
         self.allow_legacy_backfill = allow_legacy_backfill
         self.legacy_backfill_max_ratio = legacy_backfill_max_ratio
         self.must_include = must_include or []
         self.blacklist_sources = blacklist_sources or []
+        self.zscore_normalization = zscore_normalization
 
     # ------------------------------------------------------------------
     def rerank(self, results: List[Dict[str, Any]], top_k: int = 10) -> List[Dict[str, Any]]:
-        """Main entry: apply temporal weighting, decade balancing, and inclusion/exclusion logic."""
         if not results:
-            logger.warning("No results to rerank.")
             return []
 
-        # --- Step 1: Clean and filter input ---
+        # Jahr extrahieren + Filter anwenden
         for r in results:
             r["year"] = self._extract_year(r)
         results = [r for r in results if r["year"] not in self.ignore_years]
         results = [r for r in results if not self._is_blacklisted(r)]
-
         if not results:
-            logger.warning("All results filtered by blacklist or invalid years.")
             return []
 
-        # --- Step 2: Compute boosted semantic scores ---
-        now = self._current_year()
+        # Z-Score-Normalisierung optional
+        if self.zscore_normalization:
+            self._normalize_scores(results)
+
+        # Zeitliche Gewichtung
+        now = datetime.utcnow().year
         for r in results:
             y = r["year"]
-            r["score_adjusted"] = self._apply_time_boost(r.get("score", 0.0), y, now)
+            r["adjusted_score"] = self._apply_age_boost(r.get("score", 0.0), y, now)
 
-        results.sort(key=lambda x: x["score_adjusted"], reverse=True)
+        results.sort(key=lambda x: x["adjusted_score"], reverse=True)
         decade_groups = self._group_by_decade(results)
         decades = sorted(decade_groups.keys())
 
         if not decades:
-            logger.warning("No valid decades detected; skipping temporal reranking.")
             return results[:top_k]
 
-        # --- Step 3: Adjust lambda adaptively ---
-        if len(decades) < self.min_decade_threshold:
-            effective_lambda = min(self.lambda_weight, 0.5)
-            logger.debug(f"Few decades ({len(decades)}); reducing λ → {effective_lambda}")
-        else:
-            effective_lambda = self.lambda_weight
-
-        # --- Step 4: Select diverse subset ---
+        λ = self._adaptive_lambda(len(decades))
         selected = (
-            self._select_balanced(decade_groups, decades, top_k)
+            self._balanced_decade_selection(decade_groups, decades, top_k)
             if self.enforce_decade_balance
             else results[:top_k]
         )
 
-        # --- Step 5: Combine semantic + temporal diversity ---
-        median_decade = int(median(decades))
+        median_dec = int(median(decades))
         for r in selected:
-            sim = r.get("score_adjusted", 0.0)
-            decade_diff = abs((r["year"] // 10) * 10 - median_decade)
-            temporal_div = 1.0 / (1.0 + decade_diff / 10.0)
-            r["final_score"] = effective_lambda * sim + (1 - effective_lambda) * temporal_div
+            base = r.get("adjusted_score", 0.0)
+            dec_diff = abs((r["year"] // 10) * 10 - median_dec)
+            temporal_div = 1 / (1 + dec_diff / 10)
+            r["final_score"] = λ * base + (1 - λ) * temporal_div
 
         ranked = sorted(selected, key=lambda x: x["final_score"], reverse=True)
-
-        # --- Step 6: Apply recency cutoff and backfill ---
-        ranked = self._apply_recency_filter(ranked, results, top_k)
-
-        # --- Step 7: Inject must-include sources ---
+        ranked = self._apply_recency_cutoff(ranked, results, top_k)
         ranked = self._inject_must_include(ranked, results, top_k)
 
         logger.info(
-            f"Temporal reranking applied | decades={len(decades)} | selected={len(ranked)} | "
-            f"λ={effective_lambda:.2f} | age_boost={self.age_score_boost:.2f} | cutoff={self.recency_cutoff_year}"
+            f"Temporal reranking complete | decades={len(decades)} | λ={λ:.2f} | age_boost={self.age_score_boost:.2f}"
         )
         return ranked[:top_k]
 
     # ------------------------------------------------------------------
-    def _apply_time_boost(self, base: float, year: int, now: int) -> float:
-        """Apply nonlinear recency boost to semantic score."""
+    def _extract_year(self, r: Dict[str, Any]) -> int:
+        meta = r.get("metadata", {})
+        y = meta.get("year") or r.get("year")
+        try:
+            val = int(str(y))
+            if val < self.min_year or val > 2100:
+                raise ValueError
+            return val
+        except Exception:
+            return self.min_year
+
+    def _group_by_decade(self, results: List[Dict[str, Any]]) -> Dict[int, List[Dict[str, Any]]]:
+        out: Dict[int, List[Dict[str, Any]]] = defaultdict(list)
+        for r in results:
+            d = (r["year"] // 10) * 10
+            out[d].append(r)
+        for d in out:
+            out[d].sort(key=lambda x: x.get("adjusted_score", 0.0), reverse=True)
+        return out
+
+    def _apply_age_boost(self, base: float, year: int, now: int) -> float:
         age = max(0, now - year)
         if self.nonlinear_boost == "sigmoid":
             s = 1 / (1 + math.exp((age - 6) / 4.0))
         elif self.nonlinear_boost == "sqrt":
-            s = math.sqrt(max(0.0, 1.0 - min(age / 40.0, 1.0)))
+            s = math.sqrt(max(0, 1 - min(age / 40, 1)))
         else:
-            s = max(0.0, 1.0 - min(age / 30.0, 1.0))
+            s = max(0, 1 - min(age / 30, 1))
         return base + self.age_score_boost * s
 
-    # ------------------------------------------------------------------
-    def _apply_recency_filter(self, ranked: List[Dict[str, Any]], all_results: List[Dict[str, Any]], top_k: int):
-        """Favor recent items while allowing limited legacy backfill."""
-        if not self.recency_cutoff_year:
-            return ranked[:top_k]
+    def _adaptive_lambda(self, n_decades: int) -> float:
+        if n_decades < self.min_decade_threshold:
+            return max(0.3, self.lambda_weight * (n_decades / self.min_decade_threshold))
+        return min(1.0, self.lambda_weight + 0.05 * math.log1p(n_decades))
 
-        modern = [r for r in ranked if r["year"] >= self.recency_cutoff_year]
-        legacy = [r for r in ranked if r["year"] < self.recency_cutoff_year]
-
-        if len(modern) >= top_k:
-            return modern[:top_k]
-        if not self.allow_legacy_backfill:
-            return modern
-
-        max_legacy = int(top_k * self.legacy_backfill_max_ratio)
-        return (modern + legacy[:max_legacy])[:top_k]
-
-    # ------------------------------------------------------------------
-    def _inject_must_include(self, ranked: List[Dict[str, Any]], all_results: List[Dict[str, Any]], top_k: int):
-        """Ensure must-include items appear in final list."""
-        required = [r for r in all_results if self._matches_must_include(r)]
-        if not required:
-            return ranked
-
-        merged, seen = [], set()
-        for r in required + ranked:
-            key = self._source_key(r)
-            if key not in seen:
-                seen.add(key)
-                merged.append(r)
-            if len(merged) >= top_k:
-                break
-        return merged
-
-    # ------------------------------------------------------------------
-    def _extract_year(self, r: Dict[str, Any]) -> int:
-        """Safely parse year with fallback to min_year."""
-        meta = r.get("metadata", {})
-        y = meta.get("year") or r.get("year")
-        try:
-            y = int(str(y).strip())
-            return y if y >= self.min_year else self.min_year
-        except Exception:
-            return self.min_year
-
-    # ------------------------------------------------------------------
-    def _group_by_decade(self, results: List[Dict[str, Any]]) -> Dict[int, List[Dict[str, Any]]]:
-        """Group results by decade for diversity enforcement."""
-        groups: Dict[int, List[Dict[str, Any]]] = defaultdict(list)
-        for r in results:
-            d = (r["year"] // 10) * 10
-            groups[d].append(r)
-        for d in groups:
-            groups[d].sort(key=lambda x: x.get("score_adjusted", 0.0), reverse=True)
-        return groups
-
-    # ------------------------------------------------------------------
-    def _select_balanced(self, groups: Dict[int, List[Dict[str, Any]]], decades: List[int], top_k: int) -> List[Dict[str, Any]]:
-        """Round-robin select to ensure temporal diversity."""
+    def _balanced_decade_selection(self, groups: Dict[int, List[Dict[str, Any]]], decades: List[int], top_k: int):
         selected: List[Dict[str, Any]] = []
-        # one per decade first
         for d in decades:
             if groups[d]:
                 selected.append(groups[d].pop(0))
                 if len(selected) >= top_k:
                     return selected
-        # then round-robin fill
         i = 0
         while len(selected) < top_k and any(groups.values()):
             d = decades[i % len(decades)]
@@ -4531,24 +5495,53 @@ class TemporalReranker(IReranker):
             i += 1
         return selected
 
-    # ------------------------------------------------------------------
-    def _source_key(self, r: Dict[str, Any]) -> str:
+    def _normalize_scores(self, results: List[Dict[str, Any]]):
+        vals = [r.get("score", 0.0) for r in results]
+        if len(vals) < 2:
+            return
+        μ, σ = mean(vals), pstdev(vals)
+        if σ < 1e-8:
+            return
+        for r in results:
+            r["score"] = (r["score"] - μ) / σ
+
+    def _apply_recency_cutoff(self, ranked: List[Dict[str, Any]], all_results: List[Dict[str, Any]], top_k: int):
+        if not self.recency_cutoff_year:
+            return ranked[:top_k]
+        recent = [r for r in ranked if r["year"] >= self.recency_cutoff_year]
+        legacy = [r for r in ranked if r["year"] < self.recency_cutoff_year]
+        if len(recent) >= top_k:
+            return recent[:top_k]
+        if not self.allow_legacy_backfill:
+            return recent
+        max_legacy = int(top_k * self.legacy_backfill_max_ratio)
+        return (recent + legacy[:max_legacy])[:top_k]
+
+    def _inject_must_include(self, ranked: List[Dict[str, Any]], all_results: List[Dict[str, Any]], top_k: int):
+        must = [r for r in all_results if self._matches_must_include(r)]
+        if not must:
+            return ranked
+        merged, seen = [], set()
+        for r in must + ranked:
+            key = self._src_key(r)
+            if key not in seen:
+                seen.add(key)
+                merged.append(r)
+            if len(merged) >= top_k:
+                break
+        return merged
+
+    def _src_key(self, r: Dict[str, Any]) -> str:
         meta = r.get("metadata", {})
         return (meta.get("source_file") or meta.get("title") or "unknown").lower()
 
-    # ------------------------------------------------------------------
     def _matches_must_include(self, r: Dict[str, Any]) -> bool:
-        key = self._source_key(r)
+        key = self._src_key(r)
         return any(m.lower() in key for m in self.must_include)
 
-    # ------------------------------------------------------------------
     def _is_blacklisted(self, r: Dict[str, Any]) -> bool:
-        key = self._source_key(r)
+        key = self._src_key(r)
         return any(b.lower() in key for b in self.blacklist_sources)
-
-    # ------------------------------------------------------------------
-    def _current_year(self) -> int:
-        return datetime.utcnow().year
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__init__.py ==== 
 .

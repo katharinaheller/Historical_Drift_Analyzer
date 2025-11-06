@@ -1,0 +1,21 @@
+global:
+  log_level: INFO
+
+profiles:
+  default:
+    model: "mistral:7b-instruct"
+    temperature: 0.25
+    max_tokens: 1024
+    auto_pull: true
+
+  concise:
+    model: "mistral:latest"
+    temperature: 0.3
+    max_tokens: 512
+    auto_pull: false
+
+  reasoning:
+    model: "llama3:8b"               # optional, falls du noch ziehen möchtest
+    temperature: 0.15
+    max_tokens: 2048
+    auto_pull: true
