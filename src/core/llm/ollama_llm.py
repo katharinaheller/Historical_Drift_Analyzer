@@ -1,16 +1,20 @@
 from __future__ import annotations
 import subprocess
 import logging
-from typing import List, Dict, Any
+from typing import Any
 from src.core.llm.interfaces.i_llm import ILLM
 from src.core.config.config_loader import ConfigLoader
 
 logger = logging.getLogger(__name__)
 
+
 class OllamaLLM(ILLM):
-    """Lightweight local Ollama backend.
-    Executes the model and returns text output.
-    Logging to file is intentionally disabled — handled by LLMOrchestrator.
+    """
+    Lightweight local Ollama backend.
+
+    WICHTIG:
+    - Bekommt nur noch einen einzigen Prompt-String.
+    - KEIN separates context-Argument mehr – alles steht im Prompt.
     """
 
     def __init__(self, config_path: str = "configs/llm.yaml", profile: str | None = None):
@@ -41,7 +45,7 @@ class OllamaLLM(ILLM):
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
-                errors="replace"
+                errors="replace",
             )
             if result.returncode != 0:
                 raise RuntimeError(result.stderr.strip())
@@ -56,7 +60,7 @@ class OllamaLLM(ILLM):
                     capture_output=True,
                     text=True,
                     encoding="utf-8",
-                    errors="replace"
+                    errors="replace",
                 )
                 if pull_result.returncode != 0:
                     raise RuntimeError(pull_result.stderr.strip())
@@ -67,9 +71,14 @@ class OllamaLLM(ILLM):
             logger.error(f"Model check failed: {e}")
 
     # ------------------------------------------------------------------
-    def generate(self, prompt: str, context: List[Dict[str, Any]]) -> str:
-        """Run the Ollama model and return its output.
-        No files are written — logging is delegated to the orchestrator."""
+    def generate(self, prompt: str) -> str:
+        """
+        Run the Ollama model and return its output.
+
+        Erwartung:
+        - `prompt` ist bereits der komplette zusammengesetzte Prompt
+          (Instruktion + Query + alle Context-Chunks).
+        """
         try:
             cmd = ["ollama", "run", self.model, prompt]
             result = subprocess.run(
@@ -77,7 +86,7 @@ class OllamaLLM(ILLM):
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
-                errors="replace"
+                errors="replace",
             )
 
             if result.returncode != 0:

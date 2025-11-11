@@ -8,9 +8,10 @@ from src.core.ingestion.cleaner.simple_cleaners import (
     HeaderFooterCleaner,
     LayoutLineJoinCleaner,
     TrailingWhitespaceCleaner,
-    HTMLCleaner,                 # removes HTML tags and entities
-    ScientificNotationCleaner,   # removes scientific notation terms like "Eq. 1"
-    ReferencesCleaner,           # removes everything after 'References' or 'Bibliography'
+    HTMLCleaner,                  # removes HTML tags and entities
+    ScientificNotationCleaner,    # removes scientific notation terms like "Eq. 1"
+    ReferencePatternCleaner,      # NEW – removes APA / IEEE / arXiv / ACM / MLA style refs
+    ReferencesCleaner,            # removes everything after 'References' or 'Bibliography'
 )
 
 from src.core.ingestion.cleaner.deep_text_cleaner import DeepTextCleaner  # advanced cleaning
@@ -32,15 +33,16 @@ class RagTextCleaner(ITextCleaner):
         Build a deterministic chain of text cleaners combining rule-based and deep cleaning.
         """
         cleaners: List[ITextCleaner] = [
-            UnicodeNormalizer(),         # normalize spaces and zero-width chars
-            SoftHyphenCleaner(),         # remove soft hyphens and join split words
-            HeaderFooterCleaner(),       # drop headers, footers, funding info
-            LayoutLineJoinCleaner(),     # repair layout-induced line breaks
-            TrailingWhitespaceCleaner(), # trim redundant spaces and newlines
-            HTMLCleaner(),               # remove HTML tags and entities
-            ScientificNotationCleaner(), # remove equations, theorem/lemma markers
-            ReferencesCleaner(),         # cut after "References"/"Bibliography"
-            DeepTextCleaner(),           # deep filter for noise, refs, tables, math etc.
+            UnicodeNormalizer(),          # normalize spaces and zero-width chars
+            SoftHyphenCleaner(),          # remove soft hyphens and join split words
+            HeaderFooterCleaner(),        # drop headers, footers, funding info
+            LayoutLineJoinCleaner(),      # repair layout-induced line breaks
+            TrailingWhitespaceCleaner(),  # trim redundant spaces and newlines
+            HTMLCleaner(),                # remove HTML tags and entities
+            ScientificNotationCleaner(),  # remove equations, theorem/lemma markers
+            ReferencePatternCleaner(),    # remove inline citation patterns, DOIs, arXiv etc.
+            ReferencesCleaner(),          # cut after "References"/"Bibliography"
+            DeepTextCleaner(),            # deep filter for noise, refs, tables, math etc.
         ]
         return cls(cleaners)
 

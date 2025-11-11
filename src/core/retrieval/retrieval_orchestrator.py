@@ -12,16 +12,7 @@ from src.core.evaluation.utils import make_chunk_id  # # stable id builder for e
 
 
 class RetrievalOrchestrator:
-    """
-    Unified retrieval orchestrator — controlled externally by prompt intent.
-    Pipeline:
-      1. Receive (query, intent)
-      2. Retrieve chunks from FAISS
-      3. Apply reranker (semantic / temporal)
-      4. Enforce optional diversity
-      5. Calibrate graded relevance (0..3) via score distribution (proxy)
-      6. Assign stable id + rank and return exactly top_k results
-    """
+    """Unified retrieval orchestrator — orchestrates query→retrieval→reranking pipeline."""
 
     def __init__(self, config_path: str = "configs/retrieval.yaml"):
         self.logger = logging.getLogger("RetrievalOrchestrator")
@@ -31,15 +22,21 @@ class RetrievalOrchestrator:
         opts = self.cfg.get("options", {})
         paths = self.cfg.get("paths", {})
 
+        # Core parameters
         self.top_k = int(opts.get("top_k", 10))
         self.vector_store_dir = str(paths.get("vector_store_dir", "data/vector_store"))
-        self.embedding_model = opts.get("embedding_model", "all-MiniLM-L6-v2")
-
-        # # Feature flags
+        self.embedding_model = opts.get("embedding_model", "multi-qa-mpnet-base-dot-v1")
         self.diversify_sources = bool(opts.get("diversify_sources", True))
-        self.max_initial = max(self.top_k * 8, int(opts.get("oversample_factor", 8)) * self.top_k)
+        oversample_factor = int(opts.get("oversample_factor", 10))
+        self.max_initial = max(self.top_k * oversample_factor, self.top_k * 8)
 
-        # # Initialize FAISS retriever
+        # Validate embedding model
+        try:
+            self.embed_model = SentenceTransformer(self.embedding_model)
+        except Exception as e:
+            raise RuntimeError(f"Failed to load embedding model '{self.embedding_model}': {e}")
+
+        # Initialize FAISS retriever
         self.retriever = FAISSRetriever(
             vector_store_dir=self.vector_store_dir,
             model_name=self.embedding_model,
@@ -51,20 +48,18 @@ class RetrievalOrchestrator:
             diversify_sources=self.diversify_sources,
         )
 
-        # # Embedding model for diversity computations
-        self.embed_model = SentenceTransformer(self.embedding_model)
-
-        # # Cache for reranker to avoid re-instantiation overhead
+        # Cached reranker instance
         self._cached_reranker_type: Optional[str] = None
         self._cached_reranker = None
 
         self.logger.info(
-            f"RetrievalOrchestrator initialized | top_k={self.top_k} | diversify_sources={self.diversify_sources}"
+            f"RetrievalOrchestrator initialized | top_k={self.top_k} | "
+            f"diversify_sources={self.diversify_sources} | model={self.embedding_model}"
         )
 
     # ------------------------------------------------------------------
     def retrieve(self, query: str, intent: str) -> List[Dict[str, Any]]:
-        # # retrieve relevant chunks according to user intent
+        """Retrieve, rerank and return top-k chunks based on query and intent."""
         if not query or not query.strip():
             self.logger.warning("Empty query ignored.")
             return []
@@ -73,7 +68,9 @@ class RetrievalOrchestrator:
         self.logger.info(f"Retrieval started | intent={intent} | top_k={self.top_k}")
 
         try:
-            raw_results = self.retriever.search(query, top_k=self.max_initial, temporal_mode=is_historical)
+            raw_results = self.retriever.search(
+                query, top_k=self.max_initial, temporal_mode=is_historical
+            )
         except Exception as e:
             self.logger.exception(f"FAISS retrieval failed: {e}")
             return []
@@ -82,10 +79,16 @@ class RetrievalOrchestrator:
             self.logger.warning("No retrieval results found.")
             return []
 
-        # # Step 2: reranking with cached instance
+        # Inject query text for downstream reranker
+        for r in raw_results:
+            r["query"] = query.strip()
+
+        # Choose reranker dynamically
         reranker_type = "temporal" if is_historical else "semantic"
         if reranker_type != self._cached_reranker_type or self._cached_reranker is None:
-            self._cached_reranker = RerankerFactory.from_config({"options": {"reranker": reranker_type}})
+            self._cached_reranker = RerankerFactory.from_config(
+                {"options": {"reranker": reranker_type}}
+            )
             self._cached_reranker_type = reranker_type
 
         try:
@@ -94,42 +97,40 @@ class RetrievalOrchestrator:
             self.logger.exception(f"Reranking failed ({reranker_type}): {e}")
             reranked = raw_results
 
-        # # normalize score field and sort deterministically
+        # Normalize and sort
         for x in reranked:
             x["final_score"] = float(x.get("final_score", x.get("score", 0.0)) or 0.0)
         reranked.sort(key=lambda x: (x["final_score"], x.get("id", "")), reverse=True)
 
-        # # Step 3: optional historical diversity enforcement
+        # Apply diversity, relevance scoring and ranking
         diversified = self._enforce_diversity(reranked, self.top_k, is_historical)
-
-        # # Step 4: graded relevance (0..3) via score quantiles as white-box proxy
-        diversified = self._attach_graded_relevance(diversified, ref_population=reranked)
-
-        # # Step 5: ensure exact k and assign stable ids + ranks
+        diversified = self._attach_graded_relevance(diversified, reranked)
         final = self._ensure_exact_k(diversified, self.top_k)
+
         for i, x in enumerate(final, start=1):
             if not x.get("id"):
-                x["id"] = make_chunk_id(x)  # # stable id for evaluation mapping
-            x["rank"] = i                  # # deterministic rank for citation mapping
+                x["id"] = make_chunk_id(x)
+            x["rank"] = i
 
         self._log_decade_distribution(final)
         self.logger.info(f"Retrieval finished | returned={len(final)} | mode={intent}")
         return final
 
     # ------------------------------------------------------------------
-    def _enforce_diversity(self, results: List[Dict[str, Any]], k: int, historical: bool) -> List[Dict[str, Any]]:
-        # # diversify by decade and source for chronological intent
+    def _enforce_diversity(
+        self, results: List[Dict[str, Any]], k: int, historical: bool
+    ) -> List[Dict[str, Any]]:
+        """Diversify retrieval results by source and decade (for chronological mode)."""
         if not results:
             return []
 
         if not historical or not self.diversify_sources:
-            # # simple deduplication on text hash to avoid near-duplicates
             seen, out = set(), []
             for r in results:
-                t = (r.get("text") or "").strip()
-                if not t:
+                text = (r.get("text") or "").strip()
+                if not text:
                     continue
-                h = hash(t)
+                h = hash(text)
                 if h in seen:
                     continue
                 seen.add(h)
@@ -138,15 +139,16 @@ class RetrievalOrchestrator:
                     break
             return out
 
-        # # historical: add semantic diversity + decade/source spread
+        # Historical mode: enforce semantic and temporal spread
         selected, used_sources, used_decades = [], set(), set()
         pool_texts = [self._clean_text(r.get("text", "")) for r in results]
         pool_idxs = [i for i, t in enumerate(pool_texts) if t]
         if not pool_idxs:
             return results[:k]
 
-        # # batch-encode to reduce latency for diversity check
-        embs = self.embed_model.encode([pool_texts[i] for i in pool_idxs], normalize_embeddings=True)
+        embs = self.embed_model.encode(
+            [pool_texts[i] for i in pool_idxs], normalize_embeddings=True
+        )
         kept_embs = []
 
         for j, idx in enumerate(pool_idxs):
@@ -173,25 +175,27 @@ class RetrievalOrchestrator:
             if decade:
                 used_decades.add(decade)
 
-        # # if not enough, fill up with remaining best scores
         if len(selected) < k:
             used_ids = {id(x) for x in selected}
             for r in results:
-                if id(r) in used_ids:
-                    continue
-                selected.append(r)
-                if len(selected) >= k:
-                    break
-
+                if id(r) not in used_ids:
+                    selected.append(r)
+                    if len(selected) >= k:
+                        break
         return selected
 
     # ------------------------------------------------------------------
-    def _attach_graded_relevance(self, items: List[Dict[str, Any]], ref_population: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        # # attach graded relevance labels (0..3) derived from score quantiles
+    def _attach_graded_relevance(
+        self, items: List[Dict[str, Any]], ref_population: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        """Assign relevance labels (0–3) based on score quantiles."""
         if not items:
             return items
 
-        scores = np.array([float(x.get("final_score", x.get("score", 0.0)) or 0.0) for x in ref_population], dtype=float)
+        scores = np.array(
+            [float(x.get("final_score", x.get("score", 0.0)) or 0.0) for x in ref_population],
+            dtype=float,
+        )
         if scores.size == 0 or np.allclose(scores.std(), 0.0):
             for x in items:
                 x["relevance"] = 1
@@ -206,34 +210,26 @@ class RetrievalOrchestrator:
 
         for x in items:
             s = float(x.get("final_score", x.get("score", 0.0)) or 0.0)
-            if s <= q1:
-                rel = 0
-            elif s <= q2:
-                rel = 1
-            elif s <= q3:
-                rel = 2
-            else:
-                rel = 3
-            x["relevance"] = int(rel)
-
+            x["relevance"] = int(
+                0 if s <= q1 else 1 if s <= q2 else 2 if s <= q3 else 3
+            )
         return items
 
     # ------------------------------------------------------------------
     def _ensure_exact_k(self, results: List[Dict[str, Any]], k: int) -> List[Dict[str, Any]]:
-        # # ensure deterministic top-k output length
+        """Guarantee exactly k output results (pad if necessary)."""
         if not results:
             return []
         if len(results) > k:
             return results[:k]
-        if 0 < len(results) < k:
+        if len(results) < k:
             pad = results[-1].copy()
-            padding = [pad.copy() for _ in range(k - len(results))]
-            return results + padding
+            results.extend(pad.copy() for _ in range(k - len(results)))
         return results
 
     # ------------------------------------------------------------------
     def _safe_year(self, r: Dict[str, Any]) -> Optional[int]:
-        # # safely extract valid publication year
+        """Safely extract year from metadata."""
         meta = r.get("metadata", {}) or {}
         y = meta.get("year", r.get("year"))
         try:
@@ -246,15 +242,14 @@ class RetrievalOrchestrator:
 
     # ------------------------------------------------------------------
     def _clean_text(self, t: str) -> str:
-        # # conservative cleanup to stabilize hashing/embeddings
+        """Normalize whitespace for embedding stability."""
         if not t:
             return ""
-        s = t.replace("\n", " ").replace("\r", " ")
-        return " ".join(s.split())
+        return " ".join(t.replace("\n", " ").replace("\r", " ").split())
 
     # ------------------------------------------------------------------
     def _log_decade_distribution(self, items: List[Dict[str, Any]]) -> None:
-        # # log decade distribution for diagnostics
+        """Log temporal distribution of retrieved documents."""
         hist: Dict[str, int] = defaultdict(int)
         for r in items:
             y = self._safe_year(r)
@@ -265,7 +260,7 @@ class RetrievalOrchestrator:
 
     # ------------------------------------------------------------------
     def close(self) -> None:
-        # # close retriever resources gracefully
+        """Gracefully close retriever resources."""
         try:
             self.retriever.close()
         except Exception as e:

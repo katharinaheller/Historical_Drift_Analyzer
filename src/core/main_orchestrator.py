@@ -137,9 +137,7 @@ class MainOrchestrator:
         # Retrieval phase
         retrieval = RetrievalOrchestrator(config_path="configs/retrieval.yaml")
         self.logger.info(f"Query intent='{intent}' → executing retrieval flow")
-        retrieved: List[Dict[str, Any]] = retrieval.retrieve(
-            query, temporal_mode=(intent == "chronological")
-        )
+        retrieved: List[Dict[str, Any]] = retrieval.retrieve(query, intent)
         retrieval.close()
 
         if not retrieved:

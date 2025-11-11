@@ -1,4 +1,3 @@
-# src/core/prompt/query/query_preprocessor.py
 from __future__ import annotations
 import logging
 from dataclasses import dataclass

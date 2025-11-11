@@ -13,15 +13,15 @@ options:
   parallelism: "auto"
   metadata_fields:
     - title
-    - authors
+    #- authors
     - year
-    - detected_language
-    - file_size
-    - toc
+    #- detected_language
+    #- file_size
+    #- toc
 
 chunking:
   mode: "static"  # "adaptive" chooses optimal chunk sizes automatically
-  chunk_size: 200  # Used only if mode = "static", define the fixed chunk size (in tokens)
+  chunk_size: 400  # Used only if mode = "static", define the fixed chunk size (in tokens)
   overlap: 5  # Overlap size in tokens (used when `enable_overlap` is true)
   enable_overlap: true  # Enable overlapping chunks between adjacent chunks
   sentence_boundary_detection: true  # Prefer splitting at sentence boundaries to maintain context

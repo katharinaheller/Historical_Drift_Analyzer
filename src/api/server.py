@@ -1,3 +1,4 @@
+# src/api/server.py
 from __future__ import annotations
 import uvicorn
 import logging
@@ -12,7 +13,7 @@ from src.core.retrieval.retrieval_orchestrator import RetrievalOrchestrator
 # ---------------------------------------------------------------------
 # App setup
 # ---------------------------------------------------------------------
-app = FastAPI(title="HDA API", version="1.2")
+app = FastAPI(title="HDA API", version="1.3")
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,7 +42,7 @@ class ChatResponse(BaseModel):
     retrieved: List[Dict[str, Any]] | None = None
 
 # ---------------------------------------------------------------------
-# Singletons (avoid reloading)
+# Singletons (avoid reloading heavy components)
 # ---------------------------------------------------------------------
 _llm_orch: LLMOrchestrator | None = None
 _ret_orch: RetrievalOrchestrator | None = None
@@ -69,20 +70,33 @@ def retrieve(req: RetrieveRequest):
     try:
         return _retriever().retrieve(req.query, req.intent or "conceptual")
     except Exception as e:
-        logger.exception("Retrieval failed")
+        logger.exception("Retrieval failed.")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
-    """Simple non-streaming chat endpoint."""
+    """
+    Chat endpoint:
+    Runs the full RAG pipeline including retrieval, prompt composition,
+    LLM generation, and automatic logging of prompt + response.
+    """
     try:
-        chunks = _retriever().retrieve(req.query, req.intent or "conceptual")
-        if not chunks:
-            return ChatResponse(answer="No relevant context found.", retrieved=[])
-        answer = _llm().run_with_context(req.query, req.intent or "conceptual", chunks)
-        return ChatResponse(answer=answer, retrieved=chunks if req.return_context else None)
+        llm = _llm()
+
+        # Übergabe des refined query an den Orchestrator (inkl. automatischem Logging)
+        query_obj = {"refined_query": req.query, "intent": req.intent or "conceptual"}
+        answer = llm.process_query(query_obj)
+
+        if not answer:
+            return ChatResponse(answer="No relevant context found or generation failed.", retrieved=[])
+
+        # Optional: Kontext zurückgeben (bereits im LLMOrchestrator enthalten)
+        retrieved_chunks = llm.retriever.retrieve(req.query, req.intent or "conceptual")
+
+        return ChatResponse(answer=answer.strip(), retrieved=retrieved_chunks if req.return_context else None)
+
     except Exception as e:
-        logger.exception("Chat failed")
+        logger.exception("Chat failed.")
         raise HTTPException(status_code=500, detail=str(e))
 
 # ---------------------------------------------------------------------

@@ -4,15 +4,17 @@ from typing import Dict, Any, Optional
 
 from src.core.prompt.query.query_input import QueryInput
 from src.core.prompt.query.query_preprocessor import QueryPreprocessor
+from src.core.prompt.query.prompt_builder import PromptBuilder
 
 
 class PromptOrchestrator:
-    """Coordinates the full prompt understanding pipeline:
-       (1) user input → (2) preprocessing → (3) intent classification.
+    """
+    Coordinates the full prompt understanding pipeline:
+    (1) user input → (2) preprocessing → (3) intent classification → (4) intent-guided query reformulation.
+    Returns a refined query that aligns with the detected analytical intent.
     """
 
     def __init__(self, log_level: str = "INFO"):
-        # Initialize logger once
         self.logger = logging.getLogger("PromptOrchestrator")
         if not self.logger.handlers:
             logging.basicConfig(
@@ -20,54 +22,53 @@ class PromptOrchestrator:
                 format="%(levelname)s | %(message)s"
             )
 
-        # Initialize submodules
         self.query_input = QueryInput()
         self.preprocessor = QueryPreprocessor()
+        self.prompt_builder = PromptBuilder()
         self.logger.info("PromptOrchestrator initialized successfully.")
 
     # ------------------------------------------------------------------
     def get_prompt_object(self) -> Dict[str, Any]:
-        """Execute the complete prompt phase: read, clean, classify.
+        """
+        Execute the complete prompt phase: read, clean, classify, reformulate.
 
         Returns
         -------
         dict
-            Structured prompt object:
             {
-                "raw_query": str,
-                "processed_query": str,
-                "intent": str,
-                "timestamp": str,
-                ...
+                "refined_query": str,
+                "intent": str
             }
         """
         try:
-            # Step 1: Read user input interactively
             raw_query: Optional[str] = self.query_input.read_interactive()
             if not raw_query or not raw_query.strip():
                 self.logger.warning("No input provided. Skipping prompt phase.")
                 return {}
 
-            # Step 2: Preprocess and classify
+            # Preprocess & classify
             result: Dict[str, Any] = self.preprocessor.process(raw_query)
             if not result or "processed_query" not in result:
                 self.logger.warning("Preprocessing failed or returned empty result.")
                 return {}
 
-            self.logger.info(f"Prompt phase complete: intent='{result.get('intent', 'unknown')}'")
-            return result
+            processed_query = result["processed_query"]
+            intent = result["intent"]
+
+            # Intent-guided reformulation
+            refined_query = self.prompt_builder.reformulate_query(processed_query, intent)
+
+            self.logger.info(f"Prompt phase complete → intent='{intent}', refined query='{refined_query}'")
+            return {"refined_query": refined_query, "intent": intent}
 
         except KeyboardInterrupt:
-            # Re-raise to allow graceful termination by outer orchestrator
             self.logger.info("Prompt input cancelled by user (Ctrl+C). Exiting interactive mode.")
             raise
 
         except EOFError:
-            # Handle Ctrl+D or input stream closure
             self.logger.info("Input stream closed (EOF). Terminating prompt phase.")
-            raise KeyboardInterrupt  # unify behavior for clean exit
+            raise KeyboardInterrupt
 
         except Exception as e:
-            # Log unexpected runtime errors but keep session alive
             self.logger.exception(f"Unexpected error in prompt phase: {e}")
             return {}

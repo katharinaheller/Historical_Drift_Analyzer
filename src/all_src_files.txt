@@ -4,6 +4,7 @@
 ==== C:\Users\katha\historical-drift-analyzer\src\__init__.py ==== 
 
 ==== C:\Users\katha\historical-drift-analyzer\src\api\server.py ==== 
+# src/api/server.py
 from __future__ import annotations
 import uvicorn
 import logging
@@ -18,7 +19,7 @@ from src.core.retrieval.retrieval_orchestrator import RetrievalOrchestrator
 # ---------------------------------------------------------------------
 # App setup
 # ---------------------------------------------------------------------
-app = FastAPI(title="HDA API", version="1.2")
+app = FastAPI(title="HDA API", version="1.3")
 
 app.add_middleware(
     CORSMiddleware,
@@ -47,7 +48,7 @@ class ChatResponse(BaseModel):
     retrieved: List[Dict[str, Any]] | None = None
 
 # ---------------------------------------------------------------------
-# Singletons (avoid reloading)
+# Singletons (avoid reloading heavy components)
 # ---------------------------------------------------------------------
 _llm_orch: LLMOrchestrator | None = None
 _ret_orch: RetrievalOrchestrator | None = None
@@ -75,20 +76,33 @@ def retrieve(req: RetrieveRequest):
     try:
         return _retriever().retrieve(req.query, req.intent or "conceptual")
     except Exception as e:
-        logger.exception("Retrieval failed")
+        logger.exception("Retrieval failed.")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(req: ChatRequest):
-    """Simple non-streaming chat endpoint."""
+    """
+    Chat endpoint:
+    Runs the full RAG pipeline including retrieval, prompt composition,
+    LLM generation, and automatic logging of prompt + response.
+    """
     try:
-        chunks = _retriever().retrieve(req.query, req.intent or "conceptual")
-        if not chunks:
-            return ChatResponse(answer="No relevant context found.", retrieved=[])
-        answer = _llm().run_with_context(req.query, req.intent or "conceptual", chunks)
-        return ChatResponse(answer=answer, retrieved=chunks if req.return_context else None)
+        llm = _llm()
+
+        # Übergabe des refined query an den Orchestrator (inkl. automatischem Logging)
+        query_obj = {"refined_query": req.query, "intent": req.intent or "conceptual"}
+        answer = llm.process_query(query_obj)
+
+        if not answer:
+            return ChatResponse(answer="No relevant context found or generation failed.", retrieved=[])
+
+        # Optional: Kontext zurückgeben (bereits im LLMOrchestrator enthalten)
+        retrieved_chunks = llm.retriever.retrieve(req.query, req.intent or "conceptual")
+
+        return ChatResponse(answer=answer.strip(), retrieved=retrieved_chunks if req.return_context else None)
+
     except Exception as e:
-        logger.exception("Chat failed")
+        logger.exception("Chat failed.")
         raise HTTPException(status_code=500, detail=str(e))
 
 # ---------------------------------------------------------------------
@@ -240,9 +254,7 @@ class MainOrchestrator:
         # Retrieval phase
         retrieval = RetrievalOrchestrator(config_path="configs/retrieval.yaml")
         self.logger.info(f"Query intent='{intent}' → executing retrieval flow")
-        retrieved: List[Dict[str, Any]] = retrieval.retrieve(
-            query, temporal_mode=(intent == "chronological")
-        )
+        retrieved: List[Dict[str, Any]] = retrieval.retrieve(query, intent)
         retrieval.close()
 
         if not retrieved:
@@ -2758,9 +2770,10 @@ from src.core.ingestion.cleaner.simple_cleaners import (
     HeaderFooterCleaner,
     LayoutLineJoinCleaner,
     TrailingWhitespaceCleaner,
-    HTMLCleaner,                 # removes HTML tags and entities
-    ScientificNotationCleaner,   # removes scientific notation terms like "Eq. 1"
-    ReferencesCleaner,           # removes everything after 'References' or 'Bibliography'
+    HTMLCleaner,                  # removes HTML tags and entities
+    ScientificNotationCleaner,    # removes scientific notation terms like "Eq. 1"
+    ReferencePatternCleaner,      # NEW – removes APA / IEEE / arXiv / ACM / MLA style refs
+    ReferencesCleaner,            # removes everything after 'References' or 'Bibliography'
 )
 
 from src.core.ingestion.cleaner.deep_text_cleaner import DeepTextCleaner  # advanced cleaning
@@ -2782,15 +2795,16 @@ class RagTextCleaner(ITextCleaner):
         Build a deterministic chain of text cleaners combining rule-based and deep cleaning.
         """
         cleaners: List[ITextCleaner] = [
-            UnicodeNormalizer(),         # normalize spaces and zero-width chars
-            SoftHyphenCleaner(),         # remove soft hyphens and join split words
-            HeaderFooterCleaner(),       # drop headers, footers, funding info
-            LayoutLineJoinCleaner(),     # repair layout-induced line breaks
-            TrailingWhitespaceCleaner(), # trim redundant spaces and newlines
-            HTMLCleaner(),               # remove HTML tags and entities
-            ScientificNotationCleaner(), # remove equations, theorem/lemma markers
-            ReferencesCleaner(),         # cut after "References"/"Bibliography"
-            DeepTextCleaner(),           # deep filter for noise, refs, tables, math etc.
+            UnicodeNormalizer(),          # normalize spaces and zero-width chars
+            SoftHyphenCleaner(),          # remove soft hyphens and join split words
+            HeaderFooterCleaner(),        # drop headers, footers, funding info
+            LayoutLineJoinCleaner(),      # repair layout-induced line breaks
+            TrailingWhitespaceCleaner(),  # trim redundant spaces and newlines
+            HTMLCleaner(),                # remove HTML tags and entities
+            ScientificNotationCleaner(),  # remove equations, theorem/lemma markers
+            ReferencePatternCleaner(),    # remove inline citation patterns, DOIs, arXiv etc.
+            ReferencesCleaner(),          # cut after "References"/"Bibliography"
+            DeepTextCleaner(),            # deep filter for noise, refs, tables, math etc.
         ]
         return cls(cleaners)
 
@@ -2884,7 +2898,7 @@ class ScientificNotationCleaner(BaseTextCleaner):
     """Removes scientific notations and references like 'Eq. 1', 'Theorem 3'."""
 
     def _clean_impl(self, text: str) -> str:
-        # Remove scientific format like 'Eq. 1', 'Theorem 2'
+        # Remove scientific expressions such as Eq. 1 or Lemma 3
         text = re.sub(r'\b(Eq|Theorem|Lemma)\s+\d+\b', '', text)
         return text
 
@@ -2893,7 +2907,7 @@ class UnicodeNormalizer(BaseTextCleaner):
     """Normalize unicode spaces and zero-width chars."""
 
     def _clean_impl(self, text: str) -> str:
-        # Replace unicode spaces by normal space
+        # Replace unicode spaces with a normal space
         text = rules.UNICODE_SPACES_RE.sub(" ", text)
         return text
 
@@ -2904,7 +2918,7 @@ class SoftHyphenCleaner(BaseTextCleaner):
     def _clean_impl(self, text: str) -> str:
         # Remove soft hyphen character
         text = text.replace(rules.SOFT_HYPHEN, "")
-        # Join hyphenated line breaks
+        # Join words split by hyphen and linebreak
         text = rules.HYPHEN_LINEBREAK_RE.sub(r"\1\2", text)
         return text
 
@@ -2912,7 +2926,6 @@ class SoftHyphenCleaner(BaseTextCleaner):
 class LayoutLineJoinCleaner(BaseTextCleaner):
     """
     Join lines that were broken by the PDF layout but belong together.
-    We do this conservatively: only if both sides are non-space.
     """
 
     def _clean_impl(self, text: str) -> str:
@@ -2931,15 +2944,15 @@ class HeaderFooterCleaner(BaseTextCleaner):
         for line in text.splitlines():
             raw = line.rstrip()
 
-            # Drop header-like lines
+            # Skip headers
             if rules.match_any(rules.SINGLE_LINE_HEADER_PATTERNS, raw):
                 continue
 
-            # Drop footer-like things only if short
+            # Skip short footers
             if rules.match_any(rules.FOOTER_PATTERNS, raw) and rules.is_short_line(raw):
                 continue
 
-            # Drop funding/preprint if short
+            # Skip short funding or preprint notices
             if rules.match_any(rules.FUNDING_PATTERNS, raw) and rules.is_short_line(raw):
                 continue
 
@@ -2952,27 +2965,96 @@ class TrailingWhitespaceCleaner(BaseTextCleaner):
     """Normalize whitespace globally."""
 
     def _clean_impl(self, text: str) -> str:
-        # Strip each line
+        # Strip trailing spaces per line
         lines = [ln.rstrip() for ln in text.splitlines()]
         text = "\n".join(lines)
-        # Final collapse of multiple newlines
+        # Collapse 3+ newlines into 2
         text = re.sub(r"\n{3,}", "\n\n", text)
         return text.strip()
 
 
-class ReferencesCleaner(BaseTextCleaner):
-    """Removes everything starting from 'References', 'Bibliography', or 'Literaturverzeichnis' sections."""
+# ----------------------------------------------------------------------
+# NEW CLEANER: removes APA / IEEE / arXiv / ACM / MLA style in-text citations
+# ----------------------------------------------------------------------
+class ReferencePatternCleaner(BaseTextCleaner):
+    """
+    Removes inline reference patterns such as (Smith, 2020), [12], [1–5], (Smith et al., 2021),
+    DOIs, arXiv IDs, and conference citation snippets (Proc. IEEE, JMLR, NeurIPS, etc.).
+    """
 
     def _clean_impl(self, text: str) -> str:
-        # Pattern for reference section headers (case-insensitive)
+        # APA/Harvard-style: (Smith, 2020), (Doe & Roe, 2021)
+        text = re.sub(
+            r"\([A-Z][A-Za-z\-]+(?:,?\s(?:[A-Z]\.)+)*(?:\s&\s[A-Z][A-Za-z\-]+)*,\s?\d{4}[a-z]?\)",
+            "",
+            text,
+        )
+
+        # et al. style: (Smith et al., 2020)
+        text = re.sub(
+            r"\([A-Z][A-Za-z\-]+\s+et\s+al\.,\s*\d{4}[a-z]?\)",
+            "",
+            text,
+        )
+
+        # IEEE numeric: [1], [12], [1,2], [1–5], [1-3]
+        text = re.sub(
+            r"\[\s?\d+(?:[\-,–]\s?\d+)*(?:\s*,\s*\d+)*\s?\]",
+            "",
+            text,
+        )
+
+        # Year-only: (2020), (1999a)
+        text = re.sub(
+            r"\(\s?\d{4}[a-z]?\s?\)",
+            "",
+            text,
+        )
+
+        # Inline DOIs and arXiv references
+        text = re.sub(r"\bdoi:\s*\S+", "", text, flags=re.IGNORECASE)
+        text = re.sub(r"\barXiv:\s*\S+", "", text, flags=re.IGNORECASE)
+
+        # Conference/journal abbreviations with year numbers
+        text = re.sub(
+            r"\b(Proc\.|Proceedings|Conf\.|Conference|JMLR|ICML|NeurIPS|NIPS|AAAI|IJCAI|ACL|EMNLP|COLING|IEEE|ACM)\b.*?\d{4}",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        # Author-name style in brackets: [Smith 2020]
+        text = re.sub(
+            r"\[[A-Z][A-Za-z\-]+(?:\s+et\s+al\.)?,?\s*\d{4}[a-z]?\]",
+            "",
+            text,
+        )
+
+        # “In Proceedings of …” phrases
+        text = re.sub(
+            r"(?i)\bin\s+proceedings\s+of\b.*?(?=[\.\n])",
+            "",
+            text,
+        )
+
+        # Normalize multiple spaces and punctuation spacing
+        text = re.sub(r"\s{2,}", " ", text)
+        text = re.sub(r"\s+([\.,;:])", r"\1", text)
+
+        return text.strip()
+
+
+class ReferencesCleaner(BaseTextCleaner):
+    """Removes everything starting from 'References', 'Bibliography', or 'Literaturverzeichnis'."""
+
+    def _clean_impl(self, text: str) -> str:
         pattern = re.compile(
             r"(?im)^\s*(references|bibliography|literaturverzeichnis)\s*$"
         )
         match = pattern.search(text)
         if match:
-            # Cut everything from the start of the reference section
             cutoff_index = match.start()
-            # Only cut if it occurs after the first 20% of the document to avoid false positives
+            # Only cut if reference section is beyond 20% of text
             if cutoff_index > len(text) * 0.2:
                 text = text[:cutoff_index]
         return text.strip()
@@ -5393,221 +5475,187 @@ from src.core.prompt.query.prompt_builder import PromptBuilder
 
 
 class LLMOrchestrator:
-    """Full orchestration: Prompt → Retrieval → Reranking → LLM → IEEE-style Output + unified logging for evaluation."""
+    """Refined query → Retrieval → Prompt assembly → LLM"""
 
     def __init__(self, config_path: str = "configs/llm.yaml"):
-        # Load configuration
         self.cfg = ConfigLoader(config_path).config
         self.logger = logging.getLogger("LLMOrchestrator")
         self._setup_logging()
-
-        # Initialize pipeline components
         self.prompt_phase = PromptOrchestrator()
         self.retriever = self._init_retriever()
         self.prompt_builder = PromptBuilder()
         self.llm = self._init_llm()
+        self.logger.info("LLMOrchestrator initialized successfully.")
 
-        self.logger.info("Initialized full LLM pipeline orchestrator (Prompt → Retrieval → LLM).")
-
-    # ------------------------------------------------------------------
     def _setup_logging(self) -> None:
-        # Configure global logging based on configuration file
         log_level = self.cfg.get("global", {}).get("log_level", "INFO").upper()
         logging.basicConfig(level=getattr(logging, log_level), format="%(levelname)s | %(message)s")
         self.logger.info("Logging configured.")
 
-    # ------------------------------------------------------------------
     def _init_retriever(self) -> RetrievalOrchestrator:
-        # Initialize the retrieval orchestrator
-        try:
-            retriever = RetrievalOrchestrator()
-            self.logger.info("Retriever ready.")
-            return retriever
-        except Exception as e:
-            self.logger.exception(f"Failed to initialize retriever: {e}")
-            raise
+        retriever = RetrievalOrchestrator()
+        self.logger.info("Retriever initialized.")
+        return retriever
 
-    # ------------------------------------------------------------------
     def _init_llm(self) -> OllamaLLM:
-        # Initialize the LLM backend (Ollama) from configuration
-        try:
-            profile_name = self.cfg.get("generation", {}).get("llm", {}).get("profile", "default")
-            llm = OllamaLLM(config_path="configs/llm.yaml", profile=profile_name)
-            self.logger.info(f"LLM initialized (profile={profile_name}).")
-            return llm
-        except Exception as e:
-            self.logger.exception(f"Failed to initialize LLM: {e}")
-            raise
+        profile_name = self.cfg.get("generation", {}).get("llm", {}).get("profile", "default")
+        llm = OllamaLLM(config_path="configs/llm.yaml", profile=profile_name)
+        self.logger.info(f"LLM backend ready (profile='{profile_name}').")
+        return llm
 
-    # ------------------------------------------------------------------
-    def run_interactive(self) -> None:
-        # Interactive mode for continuous Prompt → Retrieval → LLM interaction
-        self.logger.info("Ready for interactive mode. Press Ctrl+C to exit.")
-        while True:
-            try:
-                query_obj = self.prompt_phase.get_prompt_object()
-                if not query_obj:
-                    continue
-                answer = self.process_query(query_obj)
-                if answer:
-                    print("\n=== MODEL OUTPUT ===\n")
-                    print(answer)
-                    print("\n====================\n")
-            except KeyboardInterrupt:
-                self.logger.info("Session terminated by user.")
-                break
-            except Exception as e:
-                self.logger.error(f"Unexpected runtime error: {e}")
-
-    # ------------------------------------------------------------------
     def process_query(self, query_obj: Optional[Dict[str, Any]]) -> str:
-        # End-to-end query execution: retrieval, reranking, prompt building, generation, logging
-        if not query_obj or not query_obj.get("processed_query"):
-            self.logger.warning("Invalid or empty query object.")
+        """Full pipeline execution."""
+        if not query_obj or not query_obj.get("refined_query"):
+            self.logger.warning("Invalid or empty refined query object.")
             return ""
 
-        query = query_obj["processed_query"]
+        query = query_obj["refined_query"]
         intent = query_obj.get("intent", "conceptual")
-        temporal_mode = intent in ["chronological", "temporal"]
 
-        # Retrieval
+        self.logger.info(f"Retrieving context for refined query='{query}' (intent='{intent}')")
         try:
-            self.logger.info(f"Retrieving context (temporal_mode={temporal_mode}) for: '{query}'")
             retrieved_docs = self.retriever.retrieve(query, intent)
         except Exception as e:
             self.logger.exception(f"Retrieval failed: {e}")
             return ""
-
         if not retrieved_docs:
             self.logger.warning("No relevant documents retrieved.")
             return ""
 
-        # Ensure evaluation-ready fields
-        for i, ch in enumerate(retrieved_docs, start=1):
-            ch.setdefault("rank", i)  # # deterministic rank
-            if "text" not in ch:
-                ch["text"] = ch.get("snippet", "")  # # ensure text field exists
-            if not ch.get("id"):
-                meta = ch.get("metadata", {}) or {}
-                src = meta.get("source_file") or "unknown"
-                year = meta.get("year", "na")
-                h = abs(hash((ch.get("text") or "")[:120])) % (10**8)
-                ch["id"] = f"{src}::{year}::{h}"  # # last-resort stable id
-
-        # Prompt building
         try:
-            full_prompt = self.prompt_builder.build_prompt(query, intent, retrieved_docs)
+            final_prompt = self._compose_full_prompt(query, intent, retrieved_docs)
         except Exception as e:
-            self.logger.exception(f"Prompt building failed: {e}")
+            self.logger.exception(f"Prompt construction failed: {e}")
             return ""
 
-        # Generation + log
+        llm_input = {
+            "system_prompt": final_prompt,
+            "query_refined": query.strip(),
+            "intent": intent,
+            "context_chunks": retrieved_docs,
+        }
+        self._log_llm_input(llm_input)
+
         try:
-            output = self.llm.generate(full_prompt, context=retrieved_docs)
-            qid = self._log_llm_run(query, retrieved_docs, output, full_prompt)
+            output = self.llm.generate(final_prompt.strip())
+            qid = self._log_llm_run(query, intent, retrieved_docs, output, final_prompt)
             self.logger.info(f"LLM generation successful. Run logged (query_id={qid}).")
-            refs = self._format_references_grouped(retrieved_docs)
-            return output.strip() + "\n\n" + refs
+            return output.strip()
         except Exception as e:
             self.logger.exception(f"LLM generation failed: {e}")
             return ""
 
-    # ------------------------------------------------------------------
-    def run_with_context(self, query: str, intent: str, retrieved_chunks: List[Dict[str, Any]]) -> str:
-        # Run generation phase with externally provided retrieval context
-        self.logger.info(f"Running automatic contextual generation for intent='{intent}'")
-        if not retrieved_chunks:
-            return "No context provided."
+    # ---------------------------------------------------------------
+    def _compose_full_prompt(
+        self,
+        refined_query: str,
+        intent: str,
+        retrieved_chunks: List[Dict[str, Any]]
+    ) -> str:
+        """Builds final prompt with refined query (no raw user query)."""
+        system_prompt = self.prompt_builder.build_prompt(refined_query, intent)
 
-        try:
-            full_prompt = self.prompt_builder.build_prompt(query, intent, retrieved_chunks)
-        except Exception as e:
-            self.logger.error(f"Prompt construction failed: {e}")
-            return f"Prompt build failed: {e}"
+        if intent == "chronological":
+            def safe_year(meta: Dict[str, Any]) -> int:
+                y = meta.get("year")
+                try:
+                    return int(y)
+                except Exception:
+                    return 9999
+            retrieved_chunks = sorted(
+                retrieved_chunks,
+                key=lambda c: safe_year(c.get("metadata", {}))
+            )
+            self.logger.info("Chunks sorted chronologically (ascending).")
 
-        try:
-            output = self.llm.generate(full_prompt, context=retrieved_chunks)
-            qid = self._log_llm_run(query, retrieved_chunks, output, full_prompt)
-            self.logger.info(f"Contextual generation completed successfully. Run logged (query_id={qid}).")
-            refs = self._format_references_grouped(retrieved_chunks)
-            return output.strip() + "\n\n" + refs
-        except Exception as e:
-            self.logger.error(f"Contextual LLM generation failed: {e}")
-            return f"[Error] Contextual generation failed: {e}"
+        lines: List[str] = []
+        lines.append(system_prompt.strip())
+        lines.append("")
+        lines.append(f"Refined query:\n{refined_query.strip()}\n")
+        lines.append(
+            "You are given the following context snippets from historical AI-related documents. "
+            "Each snippet is associated with a numeric source id in square brackets. "
+            "When you answer, cite these sources using their numeric ids, e.g. [1], [2]. "
+            "Do not invent new references or sources that are not listed below."
+        )
+        lines.append("")
+        lines.append("Context snippets:")
 
-    # ------------------------------------------------------------------
-    def _log_llm_run(self, query: str, retrieved: List[Dict[str, Any]], output: str, prompt_text: str) -> str:
-        # Persist a single run log consumed by evaluation (unified schema)
+        for idx, chunk in enumerate(retrieved_chunks, start=1):
+            meta = chunk.get("metadata", {}) or {}
+            src = meta.get("source_file", "Unknown.pdf")
+            year = meta.get("year", "n/a")
+            header = f"[{idx}] {src} ({year})"
+            lines.append(header)
+            lines.append(chunk.get("text", ""))
+            lines.append("")
+
+        lines.append(
+            "Now answer the refined query above using ONLY the information from the context snippets. "
+            "Use numeric citations like [1], [3] that refer to the snippet ids. "
+            "Do not add a bibliography or 'References' section; use inline numeric citations only."
+        )
+        return "\n".join(lines)
+
+    # ---------------------------------------------------------------
+    def _log_llm_input(self, llm_input: Dict[str, Any]) -> Path:
+        ts = time.strftime("%Y-%m-%dT%H-%M-%S")
+        log_dir = Path("data/logs_llm")
+        log_dir.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "timestamp": ts,
+            "query_refined": llm_input["query_refined"],
+            "intent": llm_input["intent"],
+            "prompt_final_to_llm": llm_input["system_prompt"],
+            "chunks_final_to_llm": llm_input["context_chunks"],
+        }
+        out_path = log_dir / f"llm_input_{ts}.json"
+        out_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        self.logger.info(f"Logged refined LLM input → {out_path}")
+        return out_path
+
+    def _log_llm_run(
+        self,
+        query: str,
+        intent: str,
+        retrieved: List[Dict[str, Any]],
+        output: str,
+        final_prompt: str,
+    ) -> str:
         ts = time.strftime("%Y-%m-%dT%H-%M-%S")
         qid = "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in query)[:80] or "query"
-        log_dir = Path("data/logs"); log_dir.mkdir(parents=True, exist_ok=True)
+        log_dir = Path("data/logs")
+        log_dir.mkdir(parents=True, exist_ok=True)
         payload = {
             "timestamp": ts,
             "query_id": qid,
-            "query": query,
-            "prompt": prompt_text,
-            "retrieved_chunks": retrieved,   # # unified schema for evaluation
-            "context_snippets": retrieved,   # # alias to support parsers relying on 'context_snippets'
-            "model_output": output
+            "query_refined": query,
+            "intent": intent,
+            "prompt_final_to_llm": final_prompt,
+            "retrieved_chunks": retrieved,
+            "model_output": output,
         }
         (log_dir / f"llm_{ts}.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         return qid
-
-    # ------------------------------------------------------------------
-    def _format_references_grouped(self, results: List[Dict[str, Any]]) -> str:
-        # Create IEEE-style reference list (one per unique PDF)
-        if not results:
-            return "References: none"
-
-        grouped = {}
-        for r in results:
-            meta = r.get("metadata", {}) or {}
-            src = meta.get("source_file") or "Unknown.pdf"
-            year = meta.get("year") or r.get("year", "n/a")
-            grouped[src] = year
-
-        ordered = sorted(grouped.items(), key=lambda x: str(x[1]))
-        refs = [f"[{i}] {src}, {year}" for i, (src, year) in enumerate(ordered, start=1)]
-        return "References:\n" + "\n".join(refs)
-
-    # ------------------------------------------------------------------
-    def close(self) -> None:
-        # Gracefully close all components
-        try:
-            self.retriever.close()
-        except Exception as e:
-            self.logger.warning(f"Retriever close failed: {e}")
-        try:
-            self.llm.close()
-        except Exception as e:
-            self.logger.warning(f"LLM close failed: {e}")
-        self.logger.info("Pipeline shutdown complete.")
-
-
-def main() -> None:
-    # Standalone entry point for full interactive LLM orchestration
-    orchestrator = LLMOrchestrator()
-    orchestrator.run_interactive()
-    orchestrator.close()
-
-
-if __name__ == "__main__":
-    main()
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\llm\ollama_llm.py ==== 
 from __future__ import annotations
 import subprocess
 import logging
-from typing import List, Dict, Any
+from typing import Any
 from src.core.llm.interfaces.i_llm import ILLM
 from src.core.config.config_loader import ConfigLoader
 
 logger = logging.getLogger(__name__)
 
+
 class OllamaLLM(ILLM):
-    """Lightweight local Ollama backend.
-    Executes the model and returns text output.
-    Logging to file is intentionally disabled — handled by LLMOrchestrator.
+    """
+    Lightweight local Ollama backend.
+
+    WICHTIG:
+    - Bekommt nur noch einen einzigen Prompt-String.
+    - KEIN separates context-Argument mehr – alles steht im Prompt.
     """
 
     def __init__(self, config_path: str = "configs/llm.yaml", profile: str | None = None):
@@ -5638,7 +5686,7 @@ class OllamaLLM(ILLM):
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
-                errors="replace"
+                errors="replace",
             )
             if result.returncode != 0:
                 raise RuntimeError(result.stderr.strip())
@@ -5653,7 +5701,7 @@ class OllamaLLM(ILLM):
                     capture_output=True,
                     text=True,
                     encoding="utf-8",
-                    errors="replace"
+                    errors="replace",
                 )
                 if pull_result.returncode != 0:
                     raise RuntimeError(pull_result.stderr.strip())
@@ -5664,9 +5712,14 @@ class OllamaLLM(ILLM):
             logger.error(f"Model check failed: {e}")
 
     # ------------------------------------------------------------------
-    def generate(self, prompt: str, context: List[Dict[str, Any]]) -> str:
-        """Run the Ollama model and return its output.
-        No files are written — logging is delegated to the orchestrator."""
+    def generate(self, prompt: str) -> str:
+        """
+        Run the Ollama model and return its output.
+
+        Erwartung:
+        - `prompt` ist bereits der komplette zusammengesetzte Prompt
+          (Instruktion + Query + alle Context-Chunks).
+        """
         try:
             cmd = ["ollama", "run", self.model, prompt]
             result = subprocess.run(
@@ -5674,7 +5727,7 @@ class OllamaLLM(ILLM):
                 capture_output=True,
                 text=True,
                 encoding="utf-8",
-                errors="replace"
+                errors="replace",
             )
 
             if result.returncode != 0:
@@ -5697,15 +5750,21 @@ class OllamaLLM(ILLM):
 ==== C:\Users\katha\historical-drift-analyzer\src\core\llm\interfaces\i_llm.py ==== 
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from typing import List, Dict
 
 
 class ILLM(ABC):
     """Interface for any local or remote LLM backend."""
 
     @abstractmethod
-    def generate(self, prompt: str, context: List[Dict[str, str]]) -> str:
-        """Generate an answer given a prompt and retrieved context chunks."""
+    def generate(self, prompt: str) -> str:
+        """
+        Generate an answer given a COMPLETE prompt.
+
+        Der Prompt enthält:
+        - Systeminstruktion,
+        - User-Query,
+        - eingebettete Kontextsnippets (falls RAG).
+        """
         raise NotImplementedError
 
     @abstractmethod
@@ -5840,15 +5899,17 @@ from typing import Dict, Any, Optional
 
 from src.core.prompt.query.query_input import QueryInput
 from src.core.prompt.query.query_preprocessor import QueryPreprocessor
+from src.core.prompt.query.prompt_builder import PromptBuilder
 
 
 class PromptOrchestrator:
-    """Coordinates the full prompt understanding pipeline:
-       (1) user input → (2) preprocessing → (3) intent classification.
+    """
+    Coordinates the full prompt understanding pipeline:
+    (1) user input → (2) preprocessing → (3) intent classification → (4) intent-guided query reformulation.
+    Returns a refined query that aligns with the detected analytical intent.
     """
 
     def __init__(self, log_level: str = "INFO"):
-        # Initialize logger once
         self.logger = logging.getLogger("PromptOrchestrator")
         if not self.logger.handlers:
             logging.basicConfig(
@@ -5856,55 +5917,54 @@ class PromptOrchestrator:
                 format="%(levelname)s | %(message)s"
             )
 
-        # Initialize submodules
         self.query_input = QueryInput()
         self.preprocessor = QueryPreprocessor()
+        self.prompt_builder = PromptBuilder()
         self.logger.info("PromptOrchestrator initialized successfully.")
 
     # ------------------------------------------------------------------
     def get_prompt_object(self) -> Dict[str, Any]:
-        """Execute the complete prompt phase: read, clean, classify.
+        """
+        Execute the complete prompt phase: read, clean, classify, reformulate.
 
         Returns
         -------
         dict
-            Structured prompt object:
             {
-                "raw_query": str,
-                "processed_query": str,
-                "intent": str,
-                "timestamp": str,
-                ...
+                "refined_query": str,
+                "intent": str
             }
         """
         try:
-            # Step 1: Read user input interactively
             raw_query: Optional[str] = self.query_input.read_interactive()
             if not raw_query or not raw_query.strip():
                 self.logger.warning("No input provided. Skipping prompt phase.")
                 return {}
 
-            # Step 2: Preprocess and classify
+            # Preprocess & classify
             result: Dict[str, Any] = self.preprocessor.process(raw_query)
             if not result or "processed_query" not in result:
                 self.logger.warning("Preprocessing failed or returned empty result.")
                 return {}
 
-            self.logger.info(f"Prompt phase complete: intent='{result.get('intent', 'unknown')}'")
-            return result
+            processed_query = result["processed_query"]
+            intent = result["intent"]
+
+            # Intent-guided reformulation
+            refined_query = self.prompt_builder.reformulate_query(processed_query, intent)
+
+            self.logger.info(f"Prompt phase complete → intent='{intent}', refined query='{refined_query}'")
+            return {"refined_query": refined_query, "intent": intent}
 
         except KeyboardInterrupt:
-            # Re-raise to allow graceful termination by outer orchestrator
             self.logger.info("Prompt input cancelled by user (Ctrl+C). Exiting interactive mode.")
             raise
 
         except EOFError:
-            # Handle Ctrl+D or input stream closure
             self.logger.info("Input stream closed (EOF). Terminating prompt phase.")
-            raise KeyboardInterrupt  # unify behavior for clean exit
+            raise KeyboardInterrupt
 
         except Exception as e:
-            # Log unexpected runtime errors but keep session alive
             self.logger.exception(f"Unexpected error in prompt phase: {e}")
             return {}
 .
@@ -5912,163 +5972,97 @@ class PromptOrchestrator:
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\prompt_builder.py ==== 
 from __future__ import annotations
-import html
 import logging
-from dataclasses import dataclass
-from typing import Any, Dict, List, Literal, Optional
+from typing import Literal
 
 logger = logging.getLogger(__name__)
 Intent = Literal["chronological", "conceptual", "analytical", "comparative"]
 
 
-@dataclass
-class PromptBuilderConfig:
-    # # max chars per consolidated source snippet
-    snippet_char_limit: int = 700
-    # # sort sources by year ascending for temporal stability
-    sort_chronologically: bool = True
-    # # include a compact source overview header
-    include_overview: bool = True
-    # # enforce numeric-only citations in requirements
-    numeric_citations_only: bool = True
-    # # drop snippets below a minimal informational length
-    min_snippet_len: int = 60
-
-
 class PromptBuilder:
-    """Compose the final LLM prompt using grouped, IEEE-style context references."""
+    """
+    Builds intent-specific system prompts for RAG/LLM orchestration
+    and provides intent-guided query reformulation for improved retrieval alignment.
+    """
 
-    def __init__(self, cfg: Optional[PromptBuilderConfig] = None):
-        self.cfg = cfg or PromptBuilderConfig()
+    def __init__(self):
         if not logger.handlers:
             logging.basicConfig(level=logging.INFO, format="%(levelname)s | %(message)s")
 
     # ------------------------------------------------------------------
-    def _safe_year(self, item: Dict[str, Any]) -> int:
-        # # parse year defensively
-        meta = item.get("metadata", {}) or {}
-        year = meta.get("year") or item.get("year") or 0
-        try:
-            y = int(year)
-            return y if 0 < y < 3000 else 0
-        except Exception:
-            return 0
-
-    # ------------------------------------------------------------------
-    def _clean_text(self, text: str) -> str:
-        # # normalize whitespace and escape control chars
-        t = (text or "").replace("\n", " ").replace("\r", " ")
-        t = " ".join(t.split())
-        return html.unescape(t)
-
-    # ------------------------------------------------------------------
-    def _group_by_source(self, items: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        # # group chunks per PDF; keep oldest→newest ordering
-        grouped: Dict[str, Dict[str, Any]] = {}
-        for chunk in items:
-            meta = chunk.get("metadata", {}) or {}
-            src = meta.get("source_file") or "Unknown.pdf"
-            year = meta.get("year") or chunk.get("year", "n/a")
-            text = self._clean_text(chunk.get("text", ""))
-            if len(text) < self.cfg.min_snippet_len:
-                continue
-            if src not in grouped:
-                grouped[src] = {"year": year, "chunks": []}
-            grouped[src]["chunks"].append(text)
-
-        ordered = list(grouped.items())
-        if self.cfg.sort_chronologically:
-            ordered.sort(key=lambda x: self._safe_year({"metadata": {"year": x[1]["year"]}}))
-
-        result: List[Dict[str, Any]] = []
-        for i, (src, meta) in enumerate(ordered, start=1):
-            joined = " ".join(meta["chunks"])
-            result.append(
-                {
-                    "index": i,
-                    "source_file": src,
-                    "year": meta["year"],
-                    "text": joined,
-                }
-            )
-        return result
-
-    # ------------------------------------------------------------------
-    def _context_overview(self, grouped: List[Dict[str, Any]]) -> str:
-        # # compact list for quick visual scan
-        lines = [f"[{g['index']}] ({g['year']}) {g['source_file']}" for g in grouped]
-        return "Retrieved Context (oldest → newest):\n" + "\n".join(lines)
-
-    # ------------------------------------------------------------------
     def _system_prompt_for(self, intent: Intent) -> str:
-        # # intent-specific instruction; consistent citation rule
-        cite_rule = "Use numeric citations [1], [2], etc., and avoid author names or years in parentheses."
+        """Return intent-specific base instruction with citation control."""
+        cite_rule = (
+            "Use numeric citations [1], [2], etc. "
+            "Do not output a bibliography or any 'References' section. "
+            "Do not list full literature items, author names, or publication years in parentheses. "
+            "Only use numeric markers to refer to the provided document indices."
+        )
+
         if intent == "chronological":
             return (
                 "You are an analytical historian of Artificial Intelligence. "
-                "Explain how the concept evolved over time, highlighting paradigm shifts, research trends, and milestones. "
+                "Explain how the concept evolved over time, emphasizing paradigm shifts, milestones, and key research phases. "
+                "Present the findings strictly in chronological order of publication years. "
                 f"{cite_rule}"
             )
+
         if intent == "conceptual":
             return (
-                "You are an AI expert. Provide a precise definition, core principles, and a clear explanation of the concept. "
+                "You are an AI expert. Provide a precise definition, describe its theoretical foundations, "
+                "and explain its essential principles. "
                 f"{cite_rule}"
             )
+
         if intent == "analytical":
             return (
-                "You are a rigorous AI researcher. Analyze mechanisms, trade-offs, and implications with clear argumentation. "
+                "You are a rigorous AI researcher. Analyze mechanisms, trade-offs, and implications "
+                "with logically structured reasoning and explicit reference to retrieved sources. "
                 f"{cite_rule}"
             )
-        # # comparative
+
+        # comparative intent
         return (
-            "You are an analytical researcher. Compare and contrast positions and assess their empirical support. "
+            "You are an analytical researcher. Compare and contrast positions, frameworks, or definitions, "
+            "and evaluate their empirical or theoretical grounding. "
             f"{cite_rule}"
         )
 
     # ------------------------------------------------------------------
-    def _snippets_block(self, grouped: List[Dict[str, Any]]) -> str:
-        # # build consolidated per-source snippet with char cap
-        limit = max(1, self.cfg.snippet_char_limit)
-        parts: List[str] = []
-        for g in grouped:
-            text = self._clean_text(g["text"])[:limit].rstrip()
-            parts.append(f"[{g['index']}] ({g['year']}) {text}")
-        return "\n\n".join(parts)
+    def reformulate_query(self, query: str, intent: Intent) -> str:
+        """
+        Intent-guided reformulation of the user's query into a canonical analytical form.
+
+        The goal is to standardize phrasing for better retrieval and prompt conditioning.
+        """
+        if not query or not query.strip():
+            raise ValueError("Empty query cannot be reformulated")
+
+        q = query.strip()
+
+        if intent == "chronological":
+            return f"Trace the historical development and evolution of {q} over time."
+
+        if intent == "conceptual":
+            return f"Define {q}, describe its theoretical foundations, and explain its core principles."
+
+        if intent == "analytical":
+            return f"Analyze the mechanisms, advantages, and limitations of {q}."
+
+        if intent == "comparative":
+            return f"Compare and contrast key perspectives, frameworks, or interpretations of {q}."
+
+        return q
 
     # ------------------------------------------------------------------
-    def build_prompt(self, query: str, intent: Intent, retrieved_topk: List[Dict[str, Any]]) -> str:
-        # # construct a clean, grouped, IEEE-conform LLM prompt
+    def build_prompt(self, query: str, intent: Intent) -> str:
+        """Return the clean base system prompt without context."""
         if not query or not query.strip():
             raise ValueError("Empty query passed to PromptBuilder")
-        if not isinstance(retrieved_topk, list) or len(retrieved_topk) == 0:
-            raise ValueError("Empty retrieved list passed to PromptBuilder")
 
-        grouped = self._group_by_source(retrieved_topk)
-        if not grouped:
-            raise ValueError("No valid snippets available after grouping/filtering")
-
-        sys_prompt = self._system_prompt_for(intent)
-        overview = self._context_overview(grouped) if self.cfg.include_overview else ""
-        snippets = self._snippets_block(grouped)
-
-        requirements = [
-            "Be concise, logically structured, and evidence-based.",
-            "Base claims only on the Context Snippets.",
-            "Cite using only numeric indices like [1], [2], etc.",
-            "If a required fact is missing, state: 'not stated in the context'.",
-            "Do not include author names or explicit years in parentheses.",
-            "Prefer exact quotations (short) over paraphrases when wording matters.",
-        ]
-
-        prompt = f"{sys_prompt}\n\n"
-        if overview:
-            prompt += f"{overview}\n\n"
-        prompt += (
-            f"User Question:\n{query.strip()}\n\n"
-            f"Context Snippets:\n{snippets}\n\n"
-            "Answer requirements:\n- " + "\n- ".join(requirements) + "\n"
-        )
-        return prompt
+        system_prompt = self._system_prompt_for(intent)
+        logger.debug(f"Built system prompt for intent='{intent}' (no context embedded).")
+        return system_prompt
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\query_classifier.py ==== 
 # src/core/prompt/query/query_classifier.py 
@@ -6167,7 +6161,6 @@ class QueryInput:
         return query.strip() if self.cfg.strip_input else query
 .
 ==== C:\Users\katha\historical-drift-analyzer\src\core\prompt\query\query_preprocessor.py ==== 
-# src/core/prompt/query/query_preprocessor.py
 from __future__ import annotations
 import logging
 from dataclasses import dataclass
