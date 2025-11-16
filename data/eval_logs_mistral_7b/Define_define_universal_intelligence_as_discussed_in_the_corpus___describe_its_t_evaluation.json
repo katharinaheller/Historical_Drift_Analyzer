@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_define_universal_intelligence_as_discussed_in_the_corpus___describe_its_t",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.42774442529027323,
+  "dominant_decade": 2000,
+  "decade_counts": {
+    "2000s": 4,
+    "2010s": 1
+  },
+  "citation_hit_rate": 0.8571428571428571,
+  "model_name": "mistral_7b"
+}

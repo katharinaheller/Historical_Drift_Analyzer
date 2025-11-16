@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_what_is_artificial_intelligence___describe_its_theoretical_foundations__a",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5751456502615941,
+  "dominant_decade": 2000,
+  "decade_counts": {
+    "2000s": 2,
+    "2020s": 2,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

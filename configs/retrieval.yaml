@@ -5,7 +5,7 @@ options:
   # ---------------------------------------------------------
   # Retrieval core settings (multi-stage)
   # ---------------------------------------------------------
-  final_k: 10                 # number of chunks handed to the LLM
+  final_k: 5                 # number of chunks handed to the LLM
   oversample_factor: 15       # FAISS candidates = final_k * oversample_factor
   diversify_sources: true     # used in DiversityPipeline, not in FAISS itself
 

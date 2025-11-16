@@ -1,71 +1,92 @@
-# src/core/evaluation/evaluation_orchestrator.py
 from __future__ import annotations
 import json
 import logging
 from pathlib import Path
 from typing import Dict, Any, List, Tuple, Optional
+from dataclasses import replace
 
 from src.core.evaluation.interfaces.i_metric import IMetric
 from src.core.evaluation.metrics.ndcg_metric import NDCGMetric
 from src.core.evaluation.metrics.faithfulness_metric import FaithfulnessMetric
 from src.core.evaluation.ground_truth_builder import GroundTruthBuilder
 from src.core.evaluation.utils import make_chunk_id
+from src.core.evaluation.settings import EvaluationSettings, DEFAULT_EVAL_SETTINGS
 
 logger = logging.getLogger("EvaluationOrchestrator")
 
 
 class EvaluationOrchestrator:
     """
-    Fully deterministic evaluation orchestrator.
+    Deterministic evaluation orchestrator.
 
-    Important:
-    - The caller is responsible for giving a model-specific eval_dir, e.g. data/eval_logs_phi3_4b
-    - This class writes *_evaluation.json + evaluation_summary.json into that directory.
+    Responsibilities:
+    - Construct immutable settings (with safe overrides)
+    - Evaluate single or batch LLM outputs
+    - Persist per-query evaluation results and summary
     """
 
     def __init__(
         self,
         base_output_dir: str = "data/eval_logs",
         model_name: str = "default",
-        k: int = 10
+        settings: EvaluationSettings = DEFAULT_EVAL_SETTINGS,
+        metrics: Dict[str, IMetric] | None = None,
+        gt_builder: GroundTruthBuilder | None = None,
+        k: int | None = None,
+        bootstrap_iters: int | None = None,  # kept for compatibility, not in settings
     ):
-        # Use the directory exactly as provided by the caller
+        # Prepare output directory
         self.model_name = model_name
         self.out = Path(base_output_dir)
         self.out.mkdir(parents=True, exist_ok=True)
 
-        self.k = k
+        # Override only fields that tatsächlich im Dataclass existieren
+        settings_overrides: Dict[str, Any] = {}
+        if k is not None:
+            settings_overrides["ndcg_k"] = int(k)
 
-        # Core evaluation metrics
-        self.metrics: Dict[str, IMetric] = {
-            "ndcg@k": NDCGMetric(k=k),
-            "faithfulness": FaithfulnessMetric(),
+        if settings_overrides:
+            # Create a new immutable settings instance
+            self.settings = replace(settings, **settings_overrides)
+        else:
+            self.settings = settings
+
+        # Store bootstrap_iters separately (used by visualizers, not by settings)
+        self.bootstrap_iters = bootstrap_iters
+
+        # Extract effective k
+        self.k = self.settings.ndcg_k
+
+        # Metrics subsystem
+        self.metrics = metrics or {
+            "ndcg@k": NDCGMetric(k=self.k),
+            "faithfulness": FaithfulnessMetric(settings=self.settings),
         }
 
-        # Semantic ground truth builder
-        self.gt_builder = GroundTruthBuilder()
+        # Ground truth builder
+        self.gt_builder = gt_builder or GroundTruthBuilder(settings=self.settings)
 
         logger.info(
-            f"Evaluation orchestrator ready | k={self.k} | out={self.out} | model={self.model_name}"
+            f"EvaluationOrchestrator ready | model={self.model_name} | k={self.k} | out={self.out}"
         )
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def _ensure_chunk_ids(self, items: List[Dict[str, Any]]) -> None:
-        # Ensure every retrieved chunk has a stable, unique ID
+        # Ensure each retrieved chunk has a stable ID
         for ch in items:
             if not ch.get("id"):
                 ch["id"] = make_chunk_id(ch)
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def _safe_id(self, s: str | None) -> str:
-        # Generate a filesystem-safe identifier for query strings
+        # Generate a filesystem-safe query identifier
         if not s:
             return "query"
         return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in s)[:80] or "query"
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def _safe_year(self, meta: Dict[str, Any]) -> Optional[int]:
-        # Extract a plausible publication year
+        # Extract a plausible publication year from metadata
         y = meta.get("year")
         try:
             yi = int(str(y))
@@ -75,9 +96,9 @@ class EvaluationOrchestrator:
             pass
         return None
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def _dominant_decade(self, chunks: List[Dict[str, Any]]) -> Tuple[Optional[int], Dict[str, int]]:
-        # Compute the dominant decade distribution over retrieved chunks
+        # Compute decade histogram and dominant decade
         counts: Dict[str, int] = {}
         for ch in chunks:
             y = self._safe_year(ch.get("metadata", {}) or {})
@@ -88,7 +109,6 @@ class EvaluationOrchestrator:
             return None, {}
 
         dom_dec_str = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
-
         try:
             dom = int(dom_dec_str[:-1])
         except Exception:
@@ -96,41 +116,35 @@ class EvaluationOrchestrator:
 
         return dom, counts
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def _parse_citation_map_from_prompt(self, prompt_text: str) -> Dict[int, str]:
-        # Parse the [n] → filename mapping from the prompt preamble
+        # Parse "[n] filename (year)" style lines from the prompt preamble
         if not prompt_text:
             return {}
-
         import re
-        citation_map: Dict[int, str] = {}
-        pattern = re.compile(
-            r"^\[(\d+)\]\s+(.+?)\s+\((?:\d{4}|n/a)\)\s*$",
-            re.MULTILINE
-        )
 
+        pattern = re.compile(r"^\[(\d+)\]\s+(.+?)\s+\((?:\d{4}|n/a)\)$", re.MULTILINE)
+        mapping: Dict[int, str] = {}
         for m in pattern.finditer(prompt_text):
             try:
-                idx = int(m.group(1))
-                fname = m.group(2).strip()
-                citation_map[idx] = fname
+                mapping[int(m.group(1))] = m.group(2).strip()
             except Exception:
                 continue
+        return mapping
 
-        return citation_map
-
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def _citation_hit_rate(
         self,
         model_output: str,
         retrieved_chunks: List[Dict[str, Any]],
-        citation_map: Dict[int, str]
+        citation_map: Dict[int, str],
     ) -> float:
-        # Ratio of citations in the answer that actually point to retrieved sources
+        # Compute proportion of citations that point to actually retrieved sources
         if not model_output or not citation_map:
             return 0.0
 
         import re
+
         nums = [int(x) for x in re.findall(r"\[(\d+)\]", model_output)]
         if not nums:
             return 0.0
@@ -140,26 +154,24 @@ class EvaluationOrchestrator:
             for ch in retrieved_chunks
         }
 
-        hits = 0
-        for n in nums:
-            fname = (citation_map.get(n) or "").strip().lower()
-            if fname and fname in retrieved_sources:
-                hits += 1
-
+        hits = sum(
+            1
+            for n in nums
+            if citation_map.get(n, "").strip().lower() in retrieved_sources
+        )
         return hits / len(nums)
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def evaluate_single(
         self,
         query: str,
         retrieved_chunks: List[Dict[str, Any]],
         model_output: str,
-        prompt_text: str | None = None
+        prompt_text: str | None = None,
     ) -> Dict[str, float]:
-        # Evaluate a single query-answer pair
+        # Evaluate one query-answer pair and persist per-query metrics
         self._ensure_chunk_ids(retrieved_chunks)
 
-        # Semantic ground truth for intrinsic metric
         gt_map = self.gt_builder.build(query, retrieved_chunks)
         relevance_scores = [
             int(gt_map.get(ch["id"], ch.get("relevance", 0)))
@@ -177,6 +189,7 @@ class EvaluationOrchestrator:
         cit_hit = self._citation_hit_rate(model_output, retrieved_chunks, cit_map)
 
         qid = self._safe_id(query)
+
         result = {
             "query_id": qid,
             "ndcg@k": float(ndcg_val),
@@ -187,40 +200,27 @@ class EvaluationOrchestrator:
             "model_name": self.model_name,
         }
 
-        out_file = self.out / f"{qid}_evaluation.json"
-        out_file.write_text(json.dumps(result, indent=2), encoding="utf-8")
-        logger.info(f"Evaluation completed → {out_file}")
+        out_f = self.out / f"{qid}_evaluation.json"
+        out_f.write_text(json.dumps(result, indent=2), encoding="utf-8")
 
+        logger.info(f"Evaluation complete → {out_f}")
         return result
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------------
     def evaluate_batch_from_logs(
         self,
         logs_dir: str = "data/logs",
-        pattern: str = "llm_*.json"
+        pattern: str = "llm_*.json",
     ) -> Dict[str, float]:
-        """
-        Batch-evaluate all LLM logs in logs_dir.
-
-        Important:
-        - logs_dir should usually be something like data/logs_phi3_4b
-        - Only files matching pattern (default: llm_*.json) are evaluated
-        - Files like llm_input_*.json are intentionally ignored
-        """
-
+        # Evaluate all matching LLM logs and write a global summary
         logs_path = Path(logs_dir)
-
-        # Fallback: if the exact directory does not exist, try suffix with model_name
         if not logs_path.exists():
             alt = logs_path.parent / f"{logs_path.name}_{self.model_name}"
             if alt.exists():
                 logs_path = alt
-                logger.warning(f"Using fallback logs directory: {logs_path}")
+                logger.warning(f"Fallback logs directory used: {logs_path}")
             else:
-                logger.error(
-                    f"No log directory found for model '{self.model_name}': "
-                    f"{logs_path} or {alt}"
-                )
+                logger.error(f"Missing log directory: {logs_path}")
                 return {
                     "model_name": self.model_name,
                     "files": 0,
@@ -276,8 +276,8 @@ class EvaluationOrchestrator:
                 evaluated += 1
 
             except Exception as e:
-                err_path = self.out / f"{fp.stem}_eval_error.json"
-                err_path.write_text(json.dumps({"error": str(e)}, indent=2), encoding="utf-8")
+                err = self.out / f"{fp.stem}_eval_error.json"
+                err.write_text(json.dumps({"error": str(e)}, indent=2), encoding="utf-8")
                 logger.error(f"Evaluation failed for {fp.name}: {e}")
 
         mean_nd = float(sum(nd_vals) / len(nd_vals)) if nd_vals else 0.0
@@ -292,12 +292,11 @@ class EvaluationOrchestrator:
         }
 
         (self.out / "evaluation_summary.json").write_text(
-            json.dumps(summary, indent=2),
-            encoding="utf-8"
+            json.dumps(summary, indent=2), encoding="utf-8"
         )
 
         logger.info(
-            f"Batch evaluation completed for model={self.model_name} | "
-            f"files={len(files)} | evaluated={evaluated}"
+            f"Batch evaluation complete | model={self.model_name} | files={len(files)} | evaluated={evaluated}"
         )
+
         return summary

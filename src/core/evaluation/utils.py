@@ -2,7 +2,9 @@ from __future__ import annotations
 from typing import Dict, Any
 import hashlib
 
+
 def make_chunk_id(chunk: Dict[str, Any]) -> str:
+    # Create a deterministic chunk identifier based on metadata and text prefix
     meta = chunk.get("metadata", {}) or {}
     src = meta.get("source_file") or meta.get("title") or "unknown"
     year = meta.get("year", "na")

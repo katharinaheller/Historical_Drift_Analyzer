@@ -8,36 +8,33 @@ from typing import Dict, List, Tuple, Any
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from scipy.stats import spearmanr  # for rank-based correlation
+from scipy.stats import spearmanr
 
-from src.core.evaluation.plot_style import (
-    apply_scientific_style,
-)
+from src.core.evaluation.plot_style import apply_scientific_style
+from src.core.evaluation.settings import DEFAULT_EVAL_SETTINGS, EvaluationSettings
 
-# TUM/Harvard palette plus traffic-light bands
-PRIMARY_COLOR = "#003359"      # deep blue (NDCG)
-SECONDARY_COLOR = "#CC0000"    # crimson (Faithfulness line plots)
-ACCENT_COLOR = "#FFB300"       # warm accent for scatter
+PRIMARY_COLOR = "#003359"
+SECONDARY_COLOR = "#CC0000"
+ACCENT_COLOR = "#FFB300"
 
-FAITH_GOOD_COLOR = "#1a9850"   # green for high faithfulness
-FAITH_MED_COLOR = "#fee08b"    # yellow for medium faithfulness
-FAITH_LOW_COLOR = "#d73027"    # red for low faithfulness
+FAITH_GOOD_COLOR = "#1a9850"
+FAITH_MED_COLOR = "#fee08b"
+FAITH_LOW_COLOR = "#d73027"
 
 
 @dataclass
 class VizConfig:
+    # Configuration wrapper for visualizer
     logs_dir: str = "data/eval_logs"
     out_dir: str = "data/eval_charts"
     pattern: str = "*_evaluation.json"
-    bootstrap_iters: int = 2000
-    random_seed: int = 42
-    iqr_k: float = 1.5
-    z_thresh: float = 3.0
-
-    # MODERATE BANDS (angepasst)
-    faith_high_thr: float = 0.70     # vorher 0.80
-    faith_mid_thr: float = 0.40      # vorher 0.50
-    # below mid_thr is considered poor
+    bootstrap_iters: int = DEFAULT_EVAL_SETTINGS.visualization.bootstrap_iters
+    random_seed: int = DEFAULT_EVAL_SETTINGS.visualization.random_seed
+    iqr_k: float = DEFAULT_EVAL_SETTINGS.visualization.iqr_k
+    z_thresh: float = DEFAULT_EVAL_SETTINGS.visualization.z_thresh
+    faith_high_thr: float = DEFAULT_EVAL_SETTINGS.visualization.faith_band_high
+    faith_mid_thr: float = DEFAULT_EVAL_SETTINGS.visualization.faith_band_mid
+    eval_settings: EvaluationSettings = DEFAULT_EVAL_SETTINGS
 
 
 class EvaluationVisualizer:
@@ -60,23 +57,32 @@ class EvaluationVisualizer:
         for fp in sorted(self.logs_dir.glob(self.cfg.pattern)):
             try:
                 data = json.loads(fp.read_text(encoding="utf-8"))
-                rows.append({
-                    "query_id": data.get("query_id", fp.stem),
-                    "ndcg@k": float(data.get("ndcg@k", np.nan)),
-                    "faithfulness": float(data.get("faithfulness", np.nan)),
-                    "citation_hit_rate": float(data.get("citation_hit_rate", np.nan)),
-                    "dominant_decade": data.get("dominant_decade", None),
-                    "model": data.get("model")
-                             or data.get("llm_profile")
-                             or data.get("model_name"),
-                })
+                rows.append(
+                    {
+                        "query_id": data.get("query_id", fp.stem),
+                        "ndcg@k": float(data.get("ndcg@k", np.nan)),
+                        "faithfulness": float(data.get("faithfulness", np.nan)),
+                        "citation_hit_rate": float(data.get("citation_hit_rate", np.nan)),
+                        "dominant_decade": data.get("dominant_decade", None),
+                        "model": data.get("model")
+                        or data.get("llm_profile")
+                        or data.get("model_name"),
+                    }
+                )
             except Exception:
                 continue
 
         df = pd.DataFrame(rows)
         if df.empty:
             return pd.DataFrame(
-                columns=["query_id", "ndcg@k", "faithfulness", "citation_hit_rate", "dominant_decade", "model"]
+                columns=[
+                    "query_id",
+                    "ndcg@k",
+                    "faithfulness",
+                    "citation_hit_rate",
+                    "dominant_decade",
+                    "model",
+                ]
             )
         return df.dropna(how="all", subset=["ndcg@k", "faithfulness"])
 
@@ -181,16 +187,8 @@ class EvaluationVisualizer:
         series = pd.Series(bands)
         counts = series.value_counts().reindex(["high", "medium", "low"], fill_value=0)
 
-        colors = [
-            FAITH_GOOD_COLOR,
-            FAITH_MED_COLOR,
-            FAITH_LOW_COLOR,
-        ]
-        labels = [
-            "High (≥ 0.70)",
-            "Medium (0.40–0.69)",
-            "Low (< 0.40)"
-        ]
+        colors = [FAITH_GOOD_COLOR, FAITH_MED_COLOR, FAITH_LOW_COLOR]
+        labels = ["High (≥ 0.70)", "Medium (0.40–0.69)", "Low (< 0.40)"]
 
         fig = plt.figure(figsize=(6, 4))
         x = np.arange(len(counts))
@@ -218,14 +216,12 @@ class EvaluationVisualizer:
             return
 
         df_model = df_model.copy()
-        df_model["faith_band"] = df_model["faithfulness"].astype(float).apply(self._faithfulness_band)
+        df_model["faith_band"] = df_model["faithfulness"].astype(float).apply(
+            self._faithfulness_band
+        )
 
         band_order = ["high", "medium", "low"]
-        band_labels = [
-            "High (≥ 0.70)",
-            "Medium (0.40–0.69)",
-            "Low (< 0.40)"
-        ]
+        band_labels = ["High (≥ 0.70)", "Medium (0.40–0.69)", "Low (< 0.40)"]
         band_color_map = {
             "high": FAITH_GOOD_COLOR,
             "medium": FAITH_MED_COLOR,
@@ -271,7 +267,8 @@ class EvaluationVisualizer:
         mask = (~np.isnan(x)) & (~np.isnan(y))
 
         if mask.sum() < 3:
-            rp = rs = float("nan")
+            rp = float("nan")
+            rs = float("nan")
         else:
             rp = float(np.corrcoef(x[mask], y[mask])[0, 1])
             rs, _ = spearmanr(x[mask], y[mask])

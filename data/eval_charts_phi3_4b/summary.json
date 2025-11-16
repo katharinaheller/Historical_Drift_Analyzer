@@ -1,0 +1,18 @@
+{
+  "files": 10,
+  "ndcg@k_mean": 1.0,
+  "ndcg@k_ci95_lo": 1.0,
+  "ndcg@k_ci95_hi": 1.0,
+  "faith_mean": 0.581631389565017,
+  "faith_ci95_lo": 0.4888867580771964,
+  "faith_ci95_hi": 0.6714710303162118,
+  "ndcg@k_median": 1.0,
+  "faith_median": 0.5705133193862404,
+  "ndcg@k_std": 0.0,
+  "faith_std": 0.15454856731526692,
+  "bootstrap_iters": 2000,
+  "iqr_k": 1.5,
+  "z_thresh": 3.0,
+  "faith_high_thr": 0.7,
+  "faith_mid_thr": 0.4
+}

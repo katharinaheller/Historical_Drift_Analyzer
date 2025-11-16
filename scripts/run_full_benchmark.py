@@ -1,7 +1,5 @@
-# scripts/run_full_benchmark.py
 from __future__ import annotations
 
-# Ensure project root on sys.path
 import sys
 import os
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -24,12 +22,12 @@ from src.core.evaluation.evaluation_table_exporter import EvaluationTableExporte
 
 
 def _count_files(dir_path: Path, pattern: str) -> int:
-    # Count files using a glob pattern
+    # Count files using glob
     return sum(1 for _ in dir_path.glob(pattern))
 
 
 def _load_json(path: Path) -> dict | None:
-    # Safe JSON loading
+    # Safe JSON loader
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
@@ -37,7 +35,7 @@ def _load_json(path: Path) -> dict | None:
 
 
 def _clean_directory(path: Path) -> None:
-    # Delete all contents of a directory and recreate it
+    # Delete directory contents
     if path.exists():
         for f in path.glob("*"):
             if f.is_file():
@@ -51,6 +49,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(
         description="Full automated benchmark: LLM → Evaluation → Visualization → Table export."
     )
+
     parser.add_argument("--prompt_file", type=str, default="data/prompts/benchmark_prompts.txt")
     parser.add_argument("--num_prompts", type=int, default=100)
     parser.add_argument("--logs_dir", type=str, default="data/logs")
@@ -64,7 +63,7 @@ def main() -> None:
         type=str,
         default=None,
         choices=["conceptual", "chronological", "analytical", "comparative"],
-        help="Optional fixed intent; if omitted, automatic classification is used."
+        help="Fixed intent; if omitted, automatic classification is used."
     )
     args = parser.parse_args()
 
@@ -77,7 +76,7 @@ def main() -> None:
     eval_dir = Path(args.eval_dir)
     charts_dir = Path(args.charts_dir)
 
-    # Clean deterministic directories for this run
+    # Clean directories
     _clean_directory(logs_dir)
     _clean_directory(eval_dir)
     _clean_directory(charts_dir)
@@ -94,7 +93,7 @@ def main() -> None:
     print(f"intent       : {args.intent or 'auto'}")
     print()
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------
     print("=== Phase 1: LLM Generation ===")
     prompt_file = Path(args.prompt_file)
     if not prompt_file.exists():
@@ -152,16 +151,16 @@ def main() -> None:
         print("No LLM outputs. Stopping.")
         return
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------
     print("=== Phase 2: Evaluation ===")
 
-    # Derive model_name from logs_dir, e.g. data/logs_phi3_4b → phi3_4b
     model_name = Path(args.logs_dir).name.replace("logs_", "") or "benchmark"
 
     evaluator = EvaluationOrchestrator(
         base_output_dir=str(eval_dir),
         model_name=model_name,
-        k=args.k
+        k=args.k,
+        bootstrap_iters=args.bootstrap_iters
     )
 
     summary_eval = evaluator.evaluate_batch_from_logs(logs_dir=str(logs_dir))
@@ -171,7 +170,7 @@ def main() -> None:
         print("No evaluatable data. Stopping before visualization.")
         return
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------
     print("=== Phase 3: Visualization ===")
     cfg = VizConfig(
         logs_dir=str(eval_dir),
@@ -186,7 +185,7 @@ def main() -> None:
     summary = _load_json(summary_json)
     has_summary = bool(summary and "ndcg@k_mean" in summary and "faith_mean" in summary)
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------
     print("=== Phase 4: Table Export ===")
     if has_summary:
         exp = EvaluationTableExporter(charts_dir=str(charts_dir))
@@ -200,7 +199,7 @@ def main() -> None:
     else:
         print("Skipping table export (no summary.json with means).")
 
-    # ------------------------------------------------------------------
+    # -------------------------------------------------------
     print("=== Phase 5: PDF Report ===")
     if has_summary:
         try:

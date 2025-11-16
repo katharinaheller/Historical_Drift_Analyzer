@@ -1,15 +1,19 @@
+# src/core/evaluation/convergence_plotter.py
 from __future__ import annotations
 import json
 import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 from typing import List
+
 from src.core.evaluation.plot_style import apply_scientific_style, annotate_sample_info
+
 
 class ConvergencePlotter:
     """Aggregates summary.json files across n-stages and visualizes mean ±95% CI convergence."""
 
     def __init__(self, charts_dir: str = "data/eval_charts"):
+        # Store charts directory and apply unified plotting style
         self.charts_dir = Path(charts_dir)
         apply_scientific_style()
 
@@ -43,11 +47,9 @@ class ConvergencePlotter:
 
         fig, ax = plt.subplots(figsize=(6.5, 4.5))
 
-        # NDCG@k line
         ax.plot(ns, nd_mean, "-o", color="#1b9e77", label="NDCG@k mean")
         ax.fill_between(ns, nd_lo, nd_hi, color="#1b9e77", alpha=0.2)
 
-        # Faithfulness line
         ax.plot(ns, fa_mean, "-o", color="#d95f02", label="Faithfulness mean")
         ax.fill_between(ns, fa_lo, fa_hi, color="#d95f02", alpha=0.2)
 

@@ -1,4 +1,3 @@
-# scripts/run_multi_model_benchmark.py
 from __future__ import annotations
 
 # Add project root
@@ -54,7 +53,7 @@ def run(cmd: list[str]) -> None:
 # ---------------------------------------------------------
 
 def load_eval_df(eval_dir: Path) -> pd.DataFrame:
-    # Load all evaluation json files in the directory
+    # Load all per-query evaluation json files in a directory
     rows = []
     for fp in eval_dir.glob("*_evaluation.json"):
         try:
@@ -73,6 +72,9 @@ def load_eval_df(eval_dir: Path) -> pd.DataFrame:
         })
 
     df = pd.DataFrame(rows)
+    if df.empty:
+        # Ensure expected columns exist even when no rows are present
+        df = pd.DataFrame(columns=["query_id", "ndcg", "faith", "model"])
     if "faith" not in df:
         df["faith"] = np.nan
     return df
@@ -81,7 +83,7 @@ def load_eval_df(eval_dir: Path) -> pd.DataFrame:
 # ---------------------------------------------------------
 
 def faith_band(f: float) -> str:
-    # Six-level categorization
+    # Six-level categorization of faithfulness scores
     if np.isnan(f):
         return "missing"
     v = float(f)
@@ -117,6 +119,10 @@ def clear_and_prepare(path: Path) -> None:
 def plot_global_comparison(df: pd.DataFrame, out_path: Path) -> None:
     # Draw multi-model band distribution
     df = df.copy()
+    if df.empty:
+        print("No evaluation data available for global comparison plot.")
+        return
+
     df["band"] = df["faith"].apply(faith_band)
 
     models = sorted(df["model"].unique())
@@ -190,7 +196,7 @@ def main() -> None:
         clear_and_prepare(eval_dir)
         clear_and_prepare(charts_dir)
 
-        # Run isolated benchmark
+        # Run isolated benchmark for this profile
         cmd = [
             "poetry", "run", "python", "scripts/run_full_benchmark.py",
             "--prompt_file", args.prompt_file,
@@ -205,6 +211,8 @@ def main() -> None:
         run(cmd)
 
         df = load_eval_df(eval_dir)
+        if df.empty:
+            print(f"No evaluation files found for model '{profile}' in {eval_dir}")
         df["model"] = profile
         all_dfs.append(df)
 
@@ -214,6 +222,10 @@ def main() -> None:
     outdir.mkdir(parents=True, exist_ok=True)
 
     df_all.to_csv(outdir / "all_models_evaluation.csv", index=False, encoding="utf-8")
+
+    if df_all.empty:
+        print("No evaluation data across models. Skipping plots and multi-model report.")
+        return
 
     plot_global_comparison(df_all, outdir / "faithfulness_model_comparison")
 
