@@ -1,0 +1,191 @@
+{
+  "timestamp": "2025-11-16T23-44-13",
+  "query_id": "Define_summarize_the_discussion_of_cognitive_plausibility_in_ai_modeling___descr",
+  "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[3] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[4] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[5] 2303.18223v16.pdf (2025)\n. Considering the ever-growing interest in ChatGPT and GPT models, we add a special discussion about the technical evolution of the GPT-series models, to briefly summarize the progress how they have been developed in the past years. Meanwhile, we drew a schematic diagram depicting the technological evolution of the GPT-series models in Figure 4.\n\n[6] 2201.05273v4.pdf (2022)\n. mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa\n\n[1] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[3] 0311031v1.pdf (2018)\n. Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co\n\n[6] 2201.05273v4.pdf (2022)\n. Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n[5] 2303.18223v16.pdf (2025)\n[6] 2201.05273v4.pdf (2022)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5402907729148865,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.6510086208581924,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.43302464485168457,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.153492748737335,
+      "relevance": 3,
+      "rank": 2,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.5186558961868286,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.3905822932720184,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    },
+    {
+      "score": 0.4984820485115051,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.4967500418424606,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.4669511914253235,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.7371527403593063,
+      "relevance": 3,
+      "rank": 5,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.4437774419784546,
+      "text": ". Considering the ever-growing interest in ChatGPT and GPT models, we add a special discussion about the technical evolution of the GPT-series models, to briefly summarize the progress how they have been developed in the past years. Meanwhile, we drew a schematic diagram depicting the technological evolution of the GPT-series models in Figure 4.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.169234663248062,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2303.18223v16.pdf::2025::ba66543280b5"
+    },
+    {
+      "score": 0.45019567012786865,
+      "text": ". mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.291980177164078,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2201.05273v4.pdf::2022::9316daacef76"
+    },
+    {
+      "score": 0.494204044342041,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.40830934047699,
+      "relevance": 3,
+      "rank": 8,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.40922534465789795,
+      "text": ". Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.625529795885086,
+      "relevance": 3,
+      "rank": 9,
+      "id": "0311031v1.pdf::2018::d8a1ca3b655a"
+    },
+    {
+      "score": 0.46280351281166077,
+      "text": ". Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define summarize the discussion of cognitive plausibility in ai modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.669963680207729,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2201.05273v4.pdf::2022::bcb2357ff742"
+    }
+  ],
+  "model_output": "Cognitive plausibility in AI modeling refers to the pursuit of developing artificial intelligence systems that emulate human cognition as closely as possible, aiming to create machines that think and learn like humans [1]. The Turing Test, proposed in the 1950s [7], has been a long-standing benchmark for assessing the level of intelligence in AI. Theoretical foundations of cognitive plausibility are rooted in various theories and approaches over time. One significant example is the SP theory, introduced in 2018 [3], which aims to integrate and simplify concepts from computing and cognitive science with a focus on artificial intelligence. Another approach is the Soar system, developed in the late 1980s [3]. The evolution of definitions and interpretations related to cognitive plausibility has shifted as AI technology has progressed. In recent years, the focus has been on Large Language Models (LLMs) and their potential for achieving artificial general intelligence (AGI) [1]. However, it is essential to note that LLMs' performance does not necessarily guarantee a higher level of social knowledge or cognitive plausibility [1]. References:\n[1] 3641289.pdf (2024)\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n[5] 2303.18223v16.pdf (2025)\n[6] 2201.05273v4.pdf (2022)"
+}

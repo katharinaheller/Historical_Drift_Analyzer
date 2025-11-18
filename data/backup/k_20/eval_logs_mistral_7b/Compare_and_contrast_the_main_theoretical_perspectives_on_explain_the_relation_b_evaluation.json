@@ -1,0 +1,15 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_explain_the_relation_b",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.820847684105442,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8,
+    "1990s": 6,
+    "2000s": 4,
+    "2010s": 1,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

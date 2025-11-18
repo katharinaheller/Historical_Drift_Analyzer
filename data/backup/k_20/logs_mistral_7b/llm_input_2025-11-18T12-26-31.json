@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T12-26-31",
+  "query_refined": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[2] D14-1162.pdf (2014)\nThe result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi\n\n[3] 1304.1082v1.pdf (1990)\n. Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f\n\n[4] 1910.10683v4.pdf (2023)\n. With this unified approach, we can compare the effectiveness of different transfer learning objectives, unlabeled data sets, and other factors, while exploring the limits of transfer learning for NLP by scaling up models and data sets beyond what has previously been considered. We emphasize that our goal is not to propose new methods but instead to provide a comprehensive perspective on where the field stands. . As such, our work primarily comprises a survey, exploration, and empirical compari\n\n[5] 2201.05273v4.pdf (2022)\n. mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa\n\n[1] NatureDeepReview.pdf (2025)\n. This rather naive way of performing machine translation has quickly become competitive with the state-of-the-art, and this raises serious doubts about whether understanding a sen tence requires anything like the internal symbolic expressions that are manipulated by using inference rules. It is more compatible with the view that everyday reasoning involves many simultaneous analogies Figure 4 | Visualizing the learned word vectors. . On the left is an illustration of word representations learne\n\n[1] NatureDeepReview.pdf (2025)\n. By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.\n\n[5] 2201.05273v4.pdf (2022)\nSimilarly, Liu et al. proposed two topic-aware contrastive learning objectives, among which the coherence detection objective identifies topics of a dialogue by detecting the coherence change among topics and the sub-summary generation objective forces the model to capture the most salient information and generate a sub-summary for each topic. Representation Learning Efficiency. . Efficiency is a crucial aspect for modeling long documents, especially when generating long text. . Since the self-a\n\n[6] 1304.1106v1.pdf (1990)\n. The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re\n\n[7] 3641289.pdf (2024)\nIn the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.\n\n[5] 2201.05273v4.pdf (2022)\n. Such a statistical approach is known to suffer from the data sparsity issue, and a number of smoothing methods have been developed to alleviate this problem so as to better estimate unobserved term occurrences. Still, word tokens are used as the basic representation units in these approaches, which leads to the issue that similar tokens cannot be easily mapped with each other. . With the emergence of deep learning techniques, neural network models have dominated the mainstream methods in text\n\n[2] D14-1162.pdf (2014)\n. Our model efficiently leverages statistical information by training only on the nonzero elements in a word-word cooccurrence matrix, rather than on the entire sparse matrix or on individual context windows in a large corpus. The model produces a vector space with meaningful substructure, as evidenced by its performance of 75% on a recent word analogy task. . It also outperforms related models on similarity tasks and named entity recognition. . Semantic vector space models of language represent\n\n[4] 1910.10683v4.pdf (2023)\nThe rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.\n\n[3] 1304.1082v1.pdf (1990)\nWhile there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than\n\n[8] 0311031v1.pdf (2018)\n. In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.\n\n[1] NatureDeepReview.pdf (2025)\n. This paper introduced neural language models, which learn to convert a word symbol into a word vector or word embedding composed of learned semantic features in order to predict the next word in a sequence.. 72.. Cho, K. et al. Learning phrase representations using RNN encoder-decoder 2 8 M A Y 2 0 1 5 | V O L 5 2 1 | N . A T U R E | 4 4 3 for statistical machine translation. . In Proc. –1734. . 73. . Schwenk, H. Continuous space language models. . Computer Speech Lang. 21, natural language wi\n\n[9] 1301.3781v3.pdf (2013)\n. In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to\n\n[2] D14-1162.pdf (2014)\nc⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families\n\n[3] 1304.1082v1.pdf (1990)\n. This can·drastically simplify the explanation, since many real cases seem to be like the example above, where a few (two to four) scenarios turn out to have the bulk of the probability, and the vast mass can be ignored without significant error. Thirdly, in comparisons of the relative probability of pairs of scenarios, only those events with substantially different probabilities are mentioned. . Additional abstraction techniques could provide further simplification. . Some linked variables mig\n\n[8] 0311031v1.pdf (2018)\nRelative probabilities of inferences may be calculated strictly in 3The technique that has been developed in the SP models has advantages compared with standard techniques for dynamic programming: it can process arbitrarily long patterns without excessive demands on memory, it can find many alternative matches, and the 'depth' or thoroughness of searching can be determined by the user. • . Unsupervised learning.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] NatureDeepReview.pdf (2025)\n[2] D14-1162.pdf (2014)\n[3] 1304.1082v1.pdf (1990)\n[4] 1910.10683v4.pdf (2023)\n[5] 2201.05273v4.pdf (2022)\n[6] 1304.1106v1.pdf (1990)\n[7] 3641289.pdf (2024)\n[8] 0311031v1.pdf (2018)\n[9] 1301.3781v3.pdf (2013)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.3942090570926666,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.258327804505825,
+      "relevance": 3,
+      "rank": 1,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.4171496629714966,
+      "text": "The result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.968359798192978,
+      "relevance": 3,
+      "rank": 2,
+      "id": "D14-1162.pdf::2014::a47cb0a05267"
+    },
+    {
+      "score": 0.463636577129364,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.892099812626839,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3"
+    },
+    {
+      "score": 0.47065985202789307,
+      "text": ". With this unified approach, we can compare the effectiveness of different transfer learning objectives, unlabeled data sets, and other factors, while exploring the limits of transfer learning for NLP by scaling up models and data sets beyond what has previously been considered. We emphasize that our goal is not to propose new methods but instead to provide a comprehensive perspective on where the field stands. . As such, our work primarily comprises a survey, exploration, and empirical compari",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.21116229891777,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1910.10683v4.pdf::2023::665a1633ba5c"
+    },
+    {
+      "score": 0.4373743534088135,
+      "text": ". mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.290717780590057,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2201.05273v4.pdf::2022::9316daacef76"
+    },
+    {
+      "score": 0.4542847275733948,
+      "text": ". This rather naive way of performing machine translation has quickly become competitive with the state-of-the-art, and this raises serious doubts about whether understanding a sen tence requires anything like the internal symbolic expressions that are manipulated by using inference rules. It is more compatible with the view that everyday reasoning involves many simultaneous analogies Figure 4 | Visualizing the learned word vectors. . On the left is an illustration of word representations learne",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.373576149344444,
+      "relevance": 3,
+      "rank": 6,
+      "id": "NatureDeepReview.pdf::2025::63e4caf94d9a"
+    },
+    {
+      "score": 0.3816800117492676,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.65331494808197,
+      "relevance": 3,
+      "rank": 7,
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d"
+    },
+    {
+      "score": 0.37040451169013977,
+      "text": "Similarly, Liu et al. proposed two topic-aware contrastive learning objectives, among which the coherence detection objective identifies topics of a dialogue by detecting the coherence change among topics and the sub-summary generation objective forces the model to capture the most salient information and generate a sub-summary for each topic. Representation Learning Efficiency. . Efficiency is a crucial aspect for modeling long documents, especially when generating long text. . Since the self-a",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.6834666058421135,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2201.05273v4.pdf::2022::4feb806a3096"
+    },
+    {
+      "score": 0.4361894726753235,
+      "text": ". The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.740488216280937,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1304.1106v1.pdf::1990::0b2161b2f928"
+    },
+    {
+      "score": 0.4735836982727051,
+      "text": "In the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.768115162849426,
+      "relevance": 3,
+      "rank": 10,
+      "id": "3641289.pdf::2024::f3f9faee6ad8"
+    },
+    {
+      "score": 0.3771124482154846,
+      "text": ". Such a statistical approach is known to suffer from the data sparsity issue, and a number of smoothing methods have been developed to alleviate this problem so as to better estimate unobserved term occurrences. Still, word tokens are used as the basic representation units in these approaches, which leads to the issue that similar tokens cannot be easily mapped with each other. . With the emergence of deep learning techniques, neural network models have dominated the mainstream methods in text ",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.774213537573814,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2201.05273v4.pdf::2022::b16b3b66590a"
+    },
+    {
+      "score": 0.4259257912635803,
+      "text": ". Our model efficiently leverages statistical information by training only on the nonzero elements in a word-word cooccurrence matrix, rather than on the entire sparse matrix or on individual context windows in a large corpus. The model produces a vector space with meaningful substructure, as evidenced by its performance of 75% on a recent word analogy task. . It also outperforms related models on similarity tasks and named entity recognition. . Semantic vector space models of language represent",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.859918341040611,
+      "relevance": 3,
+      "rank": 12,
+      "id": "D14-1162.pdf::2014::4672a66fe4a2"
+    },
+    {
+      "score": 0.49360498785972595,
+      "text": "The rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.927134431898594,
+      "relevance": 3,
+      "rank": 13,
+      "id": "1910.10683v4.pdf::2023::a7d0f7cc72f9"
+    },
+    {
+      "score": 0.488632470369339,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.028347425162792,
+      "relevance": 3,
+      "rank": 14,
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1"
+    },
+    {
+      "score": 0.3938547968864441,
+      "text": ". In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.077178791165352,
+      "relevance": 3,
+      "rank": 15,
+      "id": "0311031v1.pdf::2018::eeca8cb55b8c"
+    },
+    {
+      "score": 0.45453301072120667,
+      "text": ". This paper introduced neural language models, which learn to convert a word symbol into a word vector or word embedding composed of learned semantic features in order to predict the next word in a sequence.. 72.. Cho, K. et al. Learning phrase representations using RNN encoder-decoder 2 8 M A Y 2 0 1 5 | V O L 5 2 1 | N . A T U R E | 4 4 3 for statistical machine translation. . In Proc. –1734. . 73. . Schwenk, H. Continuous space language models. . Computer Speech Lang. 21, natural language wi",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.152603529393673,
+      "relevance": 3,
+      "rank": 16,
+      "id": "NatureDeepReview.pdf::2025::1ba7c2db2c6d"
+    },
+    {
+      "score": 0.41682004928588867,
+      "text": ". In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.195304751396179,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1301.3781v3.pdf::2013::baadc05c3b47"
+    },
+    {
+      "score": 0.43848705291748047,
+      "text": "c⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families ",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.211603879928589,
+      "relevance": 3,
+      "rank": 18,
+      "id": "D14-1162.pdf::2014::b83e2f00e683"
+    },
+    {
+      "score": 0.41022807359695435,
+      "text": ". This can·drastically simplify the explanation, since many real cases seem to be like the example above, where a few (two to four) scenarios turn out to have the bulk of the probability, and the vast mass can be ignored without significant error. Thirdly, in comparisons of the relative probability of pairs of scenarios, only those events with substantially different probabilities are mentioned. . Additional abstraction techniques could provide further simplification. . Some linked variables mig",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.269915267825127,
+      "relevance": 3,
+      "rank": 19,
+      "id": "1304.1082v1.pdf::1990::d12be7bfee56"
+    },
+    {
+      "score": 0.460301011800766,
+      "text": "Relative probabilities of inferences may be calculated strictly in 3The technique that has been developed in the SP models has advantages compared with standard techniques for dynamic programming: it can process arbitrarily long patterns without excessive demands on memory, it can find many alternative matches, and the 'depth' or thoroughness of searching can be determined by the user. • . Unsupervised learning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare symbolic reasoning and statistical learning paradigms in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.319153644144535,
+      "relevance": 3,
+      "rank": 20,
+      "id": "0311031v1.pdf::2018::a5df5ebd8067"
+    }
+  ]
+}

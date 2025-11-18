@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T11-15-41",
+  "query_refined": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 1304.1082v1.pdf (1990)\nA study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason\n\n[2] NatureDeepReview.pdf (2025)\nN-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4). Recurrent neural networks When backpropagation was first introduced, its most exciting use was for training recurrent neural networks (RNNs). . For tasks that involve sequential inputs, s\n\n[2] NatureDeepReview.pdf (2025)\nThe network learns word vectors that contain many active components each of which can be interpreted as a separate feature of the word, as was first demonstrated27 in the context of learning distributed representations for symbols.. These semantic features were not explicitly present in the input. They were discovered by the learning procedure as a good way of factorizing the structured relationships between the input and output symbols into multiple 'micro-rules'. . Learning word vectors turned\n\n[3] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[2] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[1] 1304.1082v1.pdf (1990)\n. The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i\n\n[3] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[3] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[2] NatureDeepReview.pdf (2025)\n. By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.\n\n[4] 2303.18223v16.pdf (2025)\n. As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s\n\n[5] 2201.05273v4.pdf (2022)\n. An important merit of deep neural networks for text generation is that they enable end-to-end learning of semantic mappings from the input data to output texts without labor-intensive feature engineering. Moreover, deep neural models employ low-dimensional semantic representations to capture linguistic features of language, which is useful to alleviate data sparsity. . Despite the success of deep neural models for text generation, a major performance bottleneck lies in the availability of larg\n\n[1] 1304.1082v1.pdf (1990)\n. Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f\n\n[3] 3641289.pdf (2024)\n. However, Lee et al. observed LLMs perform poorly in the scope of NLI and further fail in representing human disagreement, which indicates that LLMs still have large room for improvement in this field. Semantic understanding refers to the meaning or understanding of language and its associated concepts. . It involves the interpretation and comprehension of words, phrases, sentences, and the relationships between them. . Semantic processing goes beyond the surface level and focuses on understand\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[4] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[3] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[1] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[7] Expert_Systems.pdf (2016)\n. The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest\n\n[4] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[8] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1082v1.pdf (1990)\n[2] NatureDeepReview.pdf (2025)\n[3] 3641289.pdf (2024)\n[4] 2303.18223v16.pdf (2025)\n[5] 2201.05273v4.pdf (2022)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[7] Expert_Systems.pdf (2016)\n[8] 0311031v1.pdf (2018)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.39555102586746216,
+      "text": "A study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.2900704592466354,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1082v1.pdf::1990::9137bbfbb206"
+    },
+    {
+      "score": 0.4524010419845581,
+      "text": "N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4). Recurrent neural networks When backpropagation was first introduced, its most exciting use was for training recurrent neural networks (RNNs). . For tasks that involve sequential inputs, s",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.4979512989521027,
+      "relevance": 3,
+      "rank": 2,
+      "id": "NatureDeepReview.pdf::2025::ffe57f5c2458"
+    },
+    {
+      "score": 0.48640692234039307,
+      "text": "The network learns word vectors that contain many active components each of which can be interpreted as a separate feature of the word, as was first demonstrated27 in the context of learning distributed representations for symbols.. These semantic features were not explicitly present in the input. They were discovered by the learning procedure as a good way of factorizing the structured relationships between the input and output symbols into multiple 'micro-rules'. . Learning word vectors turned",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.723076671361923,
+      "relevance": 3,
+      "rank": 3,
+      "id": "NatureDeepReview.pdf::2025::3eb140ca0592"
+    },
+    {
+      "score": 0.47659724950790405,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.831165924668312,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.4766828417778015,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.8513222485780716,
+      "relevance": 3,
+      "rank": 5,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.48116618394851685,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.081993982195854,
+      "relevance": 3,
+      "rank": 6,
+      "id": "1304.1082v1.pdf::1990::40911c1531a3"
+    },
+    {
+      "score": 0.4174153208732605,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.16697533428669,
+      "relevance": 3,
+      "rank": 7,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4551854133605957,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.267396807670593,
+      "relevance": 3,
+      "rank": 8,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.47546613216400146,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.301433593034744,
+      "relevance": 3,
+      "rank": 9,
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d"
+    },
+    {
+      "score": 0.4391893744468689,
+      "text": ". As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.310519590973854,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2303.18223v16.pdf::2025::53cf2c81bbe2"
+    },
+    {
+      "score": 0.47786277532577515,
+      "text": ". An important merit of deep neural networks for text generation is that they enable end-to-end learning of semantic mappings from the input data to output texts without labor-intensive feature engineering. Moreover, deep neural models employ low-dimensional semantic representations to capture linguistic features of language, which is useful to alleviate data sparsity. . Despite the success of deep neural models for text generation, a major performance bottleneck lies in the availability of larg",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.34796978533268,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2201.05273v4.pdf::2022::c4aabd439d41"
+    },
+    {
+      "score": 0.4221641719341278,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.494559712707996,
+      "relevance": 3,
+      "rank": 12,
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3"
+    },
+    {
+      "score": 0.5122523307800293,
+      "text": ". However, Lee et al. observed LLMs perform poorly in the scope of NLI and further fail in representing human disagreement, which indicates that LLMs still have large room for improvement in this field. Semantic understanding refers to the meaning or understanding of language and its associated concepts. . It involves the interpretation and comprehension of words, phrases, sentences, and the relationships between them. . Semantic processing goes beyond the surface level and focuses on understand",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.539793848991394,
+      "relevance": 3,
+      "rank": 13,
+      "id": "3641289.pdf::2024::b563ad475f4a"
+    },
+    {
+      "score": 0.46080467104911804,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.723738498985767,
+      "relevance": 3,
+      "rank": 14,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.48690274357795715,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.79120647162199,
+      "relevance": 3,
+      "rank": 15,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.44306784868240356,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.877807065844536,
+      "relevance": 3,
+      "rank": 16,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.451278954744339,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.901663713157177,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.45491260290145874,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.090652838349342,
+      "relevance": 3,
+      "rank": 18,
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4"
+    },
+    {
+      "score": 0.46906593441963196,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.339922718703747,
+      "relevance": 3,
+      "rank": 19,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.47204649448394775,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.3482159078121185,
+      "relevance": 3,
+      "rank": 20,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    }
+  ]
+}

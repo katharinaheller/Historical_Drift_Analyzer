@@ -1,3 +1,3 @@
 Metric,Mean ± CI,Median,Std
-NDCG@k,1.000 ± 0.000,1.000,0.000
-Faithfulness,0.582 ± 0.091,0.571,0.155
+NDCG@k,0.964 ± 0.021,0.971,0.034
+Faithfulness,0.504 ± 0.102,0.477,0.168

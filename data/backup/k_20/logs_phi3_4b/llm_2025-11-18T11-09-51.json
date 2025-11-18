@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-09-51",
+  "query_id": "Define_describe_how_reinforcement_learning_is_portrayed_in_the_corpus___describe",
+  "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 2210.07321v4.pdf (2023)\n. A related area of work is the usage of inverse reinforcement learning (IRL), which has included work that aims to address reward sparsity and mode collapse problems in GAN-based text generation by learning an optimal reward function and generation policy.. 2.3.3. Transformer. The multi-head attention architecture of Transformer language models currently represents the state-of-the-art in natural language generation across natural language tasks.\n\n[2] 2201.05273v4.pdf (2022)\nFor example, CALM developed a mutually reinforced pre-training framework with generative and contrastive objectives, thus achieving comparable results to other larger PLMs such as T5 while only being pre-trained on a small corpus for a few steps.. 6.3.1. Satisfying Special Text Properties. In Section 5.3, we introduced three basic text properties. . In this section, we will present three more difficult properties for text generation tasks, i.e., coherence, factuality, and controllability. . Cohe\n\n[3] NatureDeepReview.pdf (2025)\n. Representation learning is a set of methods that allows a machine to be fed with raw data and to automatically discover the representations needed for detection or classification.\n\n[4] 2005.14165v4.pdf (2020)\nThese terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:\n\n[5] D14-1162.pdf (2014)\nThe statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa\n\n[5] D14-1162.pdf (2014)\nOf course a large number of functions satisfy these properties, but one class of functions that we found to work well can be parameterized as, Because all unsupervised methods for learning word vectors are ultimately based on the occurrence statistics of a corpus, there should be commonalities between the models. Nevertheless, certain models remain somewhat opaque in this regard, particularly the recent window-based methods like skip-gram and ivLBL. . Therefore, in this subsection we show how th\n\n[4] 2005.14165v4.pdf (2020)\nRecent work [RWC+19] attempts to do this via what we call \"in-context learning\", using the text input of a pretrained language model as a form of task specification: the model is conditioned on a natural language instruction and/or a few demonstrations of the task and is then expected to complete further instances of the task simply by predicting what comes next.\n\n[6] 2303.18223v16.pdf (2025)\n. Since LLMs are trained to capture the data characteristics of pre-training corpora (including both high-quality and low-quality data), they are likely to generate toxic, biased, or even harmful content for humans. It is necessary to align LLMs with human values, e.g., helpful, honest, and harmless. . For this purpose, InstructGPT designs an effective tuning approach that enables LLMs to follow the expected instructions, which utilizes the technique of reinforcement learning with human feedback\n\n[4] 2005.14165v4.pdf (2020)\nOne potential route towards addressing these issues is meta-learning1 – which in the context of language models means the model develops a broad set of skills and pattern recognition abilities at training time, and then uses those abilities at inference time to rapidly adapt to or recognize the desired task (illustrated in Figure 1.1).\n\n[3] NatureDeepReview.pdf (2025)\nDeep-learning methods are representation-learning methods with multiple levels of representa tion, obtained by composing simple but non-linear modules that each transform the representation at one level (starting with the raw input) into a representation at a higher, slightly more abstract level. With the composition of enough such transformations, very complex functions can be learned. . For classification tasks, higher layers of representation amplify aspects of the input that are important fo\n\n[7] Expert_Systems.pdf (2016)\n. Also, a learning process of neurons is defined by Hebb in 1949, and the efficiency of this Hebbian neuron learning model is determined by the emulation and transferring each impulse of one neuron to another neuron successfully and this process is defined as firing rules between each neuron.\n\n[8] 0311031v1.pdf (2018)\n. In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.\n\n[9] N18-1202.pdf (2018)\n. We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.\n\n[2] 2201.05273v4.pdf (2022)\n. A representative example is Manakul et al., which proposed local self-attention, allowing longer input spans during training; and explicit content selection, reducing memory and compute requirements.. Furthermore, several researchers adopted divide-and-conquer encoding methods. By splitting the long document into short sentences, it is easier to summarize each short part of the document separately, reducing the computational complexity. . 3.1.3 Multi-lingual Representation Learning. . Existing\n\n[6] 2303.18223v16.pdf (2025)\n. As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s\n\n[10] 1810.04805v2.pdf (2019)\n. Learning widely applicable representations of words has been an active area of research for decades, including non-neural (Brown et al., 1992; Ando and Zhang, 2005; Blitzer et al., 2006) and neural (Mikolov et al., 2013; Pennington et al., 2014) methods. Pre-trained word embeddings are an integral part of modern NLP systems, offering significant improvements over embeddings learned from scratch.\n\n[6] 2303.18223v16.pdf (2025)\n. Specially, the language ability would relatively stable within a time interval, but qualitative change only occurs when evolving into another ability level (e.g., from speaking simple words to speaking simple sentences). Such a learning process is essentially not smooth and stable (i.e., language ability does not develop at a constant rate over time), though a child actually grows 10. . Grokking refers that \"a pattern in the data, improving generalization performance from random chance level t\n\n[11] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[7] Expert_Systems.pdf (2016)\nInductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.\n\n[12] 1910.10683v4.pdf (2023)\n. We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2210.07321v4.pdf (2023)\n[2] 2201.05273v4.pdf (2022)\n[3] NatureDeepReview.pdf (2025)\n[4] 2005.14165v4.pdf (2020)\n[5] D14-1162.pdf (2014)\n[6] 2303.18223v16.pdf (2025)\n[7] Expert_Systems.pdf (2016)\n[8] 0311031v1.pdf (2018)\n[9] N18-1202.pdf (2018)\n[10] 1810.04805v2.pdf (2019)\n[11] 0712.3329v1.pdf (2007)\n[12] 1910.10683v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.4635322093963623,
+      "text": ". A related area of work is the usage of inverse reinforcement learning (IRL), which has included work that aims to address reward sparsity and mode collapse problems in GAN-based text generation by learning an optimal reward function and generation policy.. 2.3.3. Transformer. The multi-head attention architecture of Transformer language models currently represents the state-of-the-art in natural language generation across natural language tasks.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.202255427837372,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2210.07321v4.pdf::2023::e7375b63844d"
+    },
+    {
+      "score": 0.37861716747283936,
+      "text": "For example, CALM developed a mutually reinforced pre-training framework with generative and contrastive objectives, thus achieving comparable results to other larger PLMs such as T5 while only being pre-trained on a small corpus for a few steps.. 6.3.1. Satisfying Special Text Properties. In Section 5.3, we introduced three basic text properties. . In this section, we will present three more difficult properties for text generation tasks, i.e., coherence, factuality, and controllability. . Cohe",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.261379033327103,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2201.05273v4.pdf::2022::35646703e4fd"
+    },
+    {
+      "score": 0.45766499638557434,
+      "text": ". Representation learning is a set of methods that allows a machine to be fed with raw data and to automatically discover the representations needed for detection or classification.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.504031531512737,
+      "relevance": 3,
+      "rank": 3,
+      "id": "NatureDeepReview.pdf::2025::18f38311376f"
+    },
+    {
+      "score": 0.47741764783859253,
+      "text": "These terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.5988572388887405,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2005.14165v4.pdf::2020::9b9db0d1b061"
+    },
+    {
+      "score": 0.4442392885684967,
+      "text": "The statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.677098833024502,
+      "relevance": 3,
+      "rank": 5,
+      "id": "D14-1162.pdf::2014::00df45133e01"
+    },
+    {
+      "score": 0.368458092212677,
+      "text": "Of course a large number of functions satisfy these properties, but one class of functions that we found to work well can be parameterized as, Because all unsupervised methods for learning word vectors are ultimately based on the occurrence statistics of a corpus, there should be commonalities between the models. Nevertheless, certain models remain somewhat opaque in this regard, particularly the recent window-based methods like skip-gram and ivLBL. . Therefore, in this subsection we show how th",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.976814910769463,
+      "relevance": 3,
+      "rank": 6,
+      "id": "D14-1162.pdf::2014::872597d3a9db"
+    },
+    {
+      "score": 0.387448787689209,
+      "text": "Recent work [RWC+19] attempts to do this via what we call \"in-context learning\", using the text input of a pretrained language model as a form of task specification: the model is conditioned on a natural language instruction and/or a few demonstrations of the task and is then expected to complete further instances of the task simply by predicting what comes next.",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.202544093132019,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2005.14165v4.pdf::2020::307a3f6ac3c5"
+    },
+    {
+      "score": 0.36049437522888184,
+      "text": ". Since LLMs are trained to capture the data characteristics of pre-training corpora (including both high-quality and low-quality data), they are likely to generate toxic, biased, or even harmful content for humans. It is necessary to align LLMs with human values, e.g., helpful, honest, and harmless. . For this purpose, InstructGPT designs an effective tuning approach that enables LLMs to follow the expected instructions, which utilizes the technique of reinforcement learning with human feedback",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.319999992847443,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2303.18223v16.pdf::2025::19dd600d142f"
+    },
+    {
+      "score": 0.42292141914367676,
+      "text": "One potential route towards addressing these issues is meta-learning1 – which in the context of language models means the model develops a broad set of skills and pattern recognition abilities at training time, and then uses those abilities at inference time to rapidly adapt to or recognize the desired task (illustrated in Figure 1.1).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.320596277713776,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2005.14165v4.pdf::2020::b9ea4b9b9b3d"
+    },
+    {
+      "score": 0.3628203272819519,
+      "text": "Deep-learning methods are representation-learning methods with multiple levels of representa tion, obtained by composing simple but non-linear modules that each transform the representation at one level (starting with the raw input) into a representation at a higher, slightly more abstract level. With the composition of enough such transformations, very complex functions can be learned. . For classification tasks, higher layers of representation amplify aspects of the input that are important fo",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.3600242882966995,
+      "relevance": 3,
+      "rank": 10,
+      "id": "NatureDeepReview.pdf::2025::9b5afeebb301"
+    },
+    {
+      "score": 0.4220127463340759,
+      "text": ". Also, a learning process of neurons is defined by Hebb in 1949, and the efficiency of this Hebbian neuron learning model is determined by the emulation and transferring each impulse of one neuron to another neuron successfully and this process is defined as firing rules between each neuron.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.3766874223947525,
+      "relevance": 3,
+      "rank": 11,
+      "id": "Expert_Systems.pdf::2016::c6b40b021121"
+    },
+    {
+      "score": 0.38241323828697205,
+      "text": ". In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.483699716627598,
+      "relevance": 3,
+      "rank": 12,
+      "id": "0311031v1.pdf::2018::eeca8cb55b8c"
+    },
+    {
+      "score": 0.451028436422348,
+      "text": ". We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.736419416964054,
+      "relevance": 3,
+      "rank": 13,
+      "id": "N18-1202.pdf::2018::77b5ba936913"
+    },
+    {
+      "score": 0.40770623087882996,
+      "text": ". A representative example is Manakul et al., which proposed local self-attention, allowing longer input spans during training; and explicit content selection, reducing memory and compute requirements.. Furthermore, several researchers adopted divide-and-conquer encoding methods. By splitting the long document into short sentences, it is easier to summarize each short part of the document separately, reducing the computational complexity. . 3.1.3 Multi-lingual Representation Learning. . Existing",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.75748348981142,
+      "relevance": 3,
+      "rank": 14,
+      "id": "2201.05273v4.pdf::2022::2ab4a11cfa70"
+    },
+    {
+      "score": 0.4153473973274231,
+      "text": ". As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.780399724841118,
+      "relevance": 3,
+      "rank": 15,
+      "id": "2303.18223v16.pdf::2025::53cf2c81bbe2"
+    },
+    {
+      "score": 0.46876364946365356,
+      "text": ". Learning widely applicable representations of words has been an active area of research for decades, including non-neural (Brown et al., 1992; Ando and Zhang, 2005; Blitzer et al., 2006) and neural (Mikolov et al., 2013; Pennington et al., 2014) methods. Pre-trained word embeddings are an integral part of modern NLP systems, offering significant improvements over embeddings learned from scratch.",
+      "metadata": {
+        "source_file": "1810.04805v2.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2019",
+        "detected_language": null,
+        "page_count": 16,
+        "origin_chunk_file": "1810.04805v2.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.922558709979057,
+      "relevance": 3,
+      "rank": 16,
+      "id": "1810.04805v2.pdf::2019::d870d3ee930a"
+    },
+    {
+      "score": 0.37952694296836853,
+      "text": ". Specially, the language ability would relatively stable within a time interval, but qualitative change only occurs when evolving into another ability level (e.g., from speaking simple words to speaking simple sentences). Such a learning process is essentially not smooth and stable (i.e., language ability does not develop at a constant rate over time), though a child actually grows 10. . Grokking refers that \"a pattern in the data, improving generalization performance from random chance level t",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.958915509283543,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2303.18223v16.pdf::2025::3f65be8c455b"
+    },
+    {
+      "score": 0.3807382583618164,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.00826358795166,
+      "relevance": 3,
+      "rank": 18,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.3946381211280823,
+      "text": "Inductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.019808277487755,
+      "relevance": 3,
+      "rank": 19,
+      "id": "Expert_Systems.pdf::2016::a3208e34f3a9"
+    },
+    {
+      "score": 0.42534616589546204,
+      "text": ". We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define describe how reinforcement learning is portrayed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.028698734939098,
+      "relevance": 3,
+      "rank": 20,
+      "id": "1910.10683v4.pdf::2023::872369300e89"
+    }
+  ],
+  "model_output": "Reinforcement Learning is a technique within Artificial Intelligence that aims to train an agent to make decisions by interacting with its environment, learning which actions maximize some reward signal [6]. The agent learns a policy, or a mapping from states to actions, through trial and error. Theoretical foundations of reinforcement learning can be traced back to the 1950s, where the Markov Decision Process (MDP) was introduced as a framework for modeling decision-making under uncertainty [7]. In MDPs, an agent aims to find the optimal policy that maximizes the expected cumulative reward over time. The concept of reinforcement learning has evolved and gained significant attention since then. One important milestone was the development of Q-learning in 1992 by Watkins [10]. Q-learning is a popular algorithm for finding the optimal policy by approximating the value function, which estimates the expected cumulative reward for each state-action pair. More recently, deep reinforcement learning has been proposed, where deep neural networks are used to approximate the value function or policy [6]. Deep Q-Networks (DQN), introduced in 2015 by Mnih et al., are a prominent example of this approach [6]. In the context of language models, reinforcement learning has been employed to align models with human values and ensure they generate helpful, honest, and harmless content [6]. This is achieved through feedback from humans, guiding the model's learning process towards desired behavior. Definition of reinforcement learning evolved over time, becoming more precise and encompassing various aspects like reward functions, agents, environments, and policies. However, there might be a lack of explicit historical timelines in some publications, making it challenging to trace exact evolution steps (event year not stated; described in 2016 PDF [7]). References:\n[1] 2210.07321v4.pdf (2023)\n[2] 2201.05273v4.pdf (2022)\n[3] NatureDeepReview.pdf (2025)\n[4] 2005.14165v4.pdf (2020)\n[5] D14-1162.pdf (2014)\n[6] 2303.18223v16.pdf (2025)\n[7] Expert_Systems.pdf (2016)\n[8] 0311031v1.pdf (2018)\n[9] N18-1202.pdf (2018)\n[10] 1810.04805v2.pdf (2019)\n[11] 0712.3329v1.pdf (2007)\n[12] 1910.10683v4.pdf (2023)"
+}

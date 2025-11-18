@@ -1,0 +1,11 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_describe_how_ai_evaluation",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.24063753630937723,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 20
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

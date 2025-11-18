@@ -1,0 +1,1393 @@
+{
+  "timestamp": "2025-11-19T00-42-15",
+  "query_id": "Define_what_is_artificial_intelligence___describe_its_theoretical_foundations__a",
+  "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 0712.3329v1.pdf (2007)\n. A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.\n\n[2] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[3] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[1] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[4] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 0712.3329v1.pdf (2007)\n[2] 3641289.pdf (2024)\n[3] 0311031v1.pdf (2018)\n[4] 2303.18223v16.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks_raw": [
+    {
+      "score": 0.6670891046524048,
+      "text": ". A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::763164362c30",
+      "raw_rank": 1,
+      "final_score": -0.822625607252121,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.6410280466079712,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::e1d85cdbb466",
+      "raw_rank": 2,
+      "final_score": -1.1324737668037415,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.5230555534362793,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::e0c690d03c51",
+      "raw_rank": 6,
+      "final_score": -1.1698537468910217,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.65104740858078,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::b551e995a739",
+      "raw_rank": 21,
+      "final_score": -1.2749728113412857,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.5696646571159363,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70",
+      "raw_rank": 3,
+      "final_score": -1.6269502192735672,
+      "relevance": 3,
+      "rank": 5
+    },
+    {
+      "score": 0.4412432909011841,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1083v1.pdf::1989::e330b10ef834",
+      "raw_rank": 12,
+      "final_score": -1.656484216451645
+    },
+    {
+      "score": 0.6425161957740784,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed",
+      "raw_rank": 22,
+      "final_score": -1.716151937842369
+    },
+    {
+      "score": 0.6654447317123413,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794",
+      "raw_rank": 20,
+      "final_score": -1.9578711092472076
+    },
+    {
+      "score": 0.4504682123661041,
+      "text": ". Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::d8a1ca3b655a",
+      "raw_rank": 49,
+      "final_score": -2.1680588349699974
+    },
+    {
+      "score": 0.5190645456314087,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b",
+      "raw_rank": 29,
+      "final_score": -2.5227887332439423
+    },
+    {
+      "score": 0.6080009937286377,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::d93703f6d548",
+      "raw_rank": 23,
+      "final_score": -2.6265742778778076
+    },
+    {
+      "score": 0.5596947073936462,
+      "text": "To measure the intelligence of such diverse systems in a meaningful way we must step back from the specifics of particular systems and establish the underlying fundamentals of what it is that we are really trying to measure. The difficulty of developing an abstract and highly general notion of intelligence is readily apparent. . Consider, for example, the memory and numerical computation tasks that appear in some intelligence tests and which were once regarded as defining hallmarks of human inte",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::78a3ab2819b2",
+      "raw_rank": 24,
+      "final_score": -2.8124925047159195
+    },
+    {
+      "score": 0.4574894309043884,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e",
+      "raw_rank": 45,
+      "final_score": -2.882921651005745
+    },
+    {
+      "score": 0.4367406666278839,
+      "text": "That said, most applications that have been developed to date have a 'declarative' flavour and the ways in which the system may be applied to arithmetic or other mathematical operations have not yet been explored in any depth (but see Wolff ). This has a bearing on how the system may be developed for database applications, as will be discussed in Section 7. . Many problems in artificial intelligence are known to be intractable if one wishes to obtain the best possible answer. . But if one is con",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::fcca44ab2ee4",
+      "raw_rank": 56,
+      "final_score": -2.988889627158642
+    },
+    {
+      "score": 0.5158984065055847,
+      "text": "It provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::1d8bb9d6b450",
+      "raw_rank": 30,
+      "final_score": -3.1814428120851517
+    },
+    {
+      "score": 0.552610456943512,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::85dff6bd2fb4",
+      "raw_rank": 25,
+      "final_score": -3.5279743522405624
+    },
+    {
+      "score": 0.5588514804840088,
+      "text": ". Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::1f0818e4c126",
+      "raw_rank": 4,
+      "final_score": -3.5330405831336975
+    },
+    {
+      "score": 0.501163899898529,
+      "text": ". Turing's proposed \"imitation game\" in 1950 considered the question of machine intelligence based on the ability of a machine to conduct human-like conversation over a text channel, for which the first widely-published method dates back to 1966 with the ELIZA chatbot.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::4bdab79968a9",
+      "raw_rank": 34,
+      "final_score": -3.9254601150751114
+    },
+    {
+      "score": 0.44487249851226807,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::de479b9a4253",
+      "raw_rank": 51,
+      "final_score": -4.863064378499985
+    },
+    {
+      "score": 0.5193684697151184,
+      "text": ". Where the full versatility of this scheme is not needed, it is also possible to create networks and hierarchies from patterns like '... ', '... ' and '... ' that can be linked end-to-end by alignment within a multiple alignment. This section briefly reviews aspects of intelligence that have been shown to fall within the scope of the SP system, highlighting those with particular relevance to intelligent databases. . The main points of difference between the SP system and other artificial intell",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::24ea58fd4673",
+      "raw_rank": 28,
+      "final_score": -4.907517716288567
+    },
+    {
+      "score": 0.502955436706543,
+      "text": ". In some cases, a machine may display properties that we equate with human intelligence, in such cases it might be \"Innumerable tests are available for measuring intelligence, yet no one is quite certain of what intelligence is, or even just what it is that the available tests are measuring.\" — R. L. Gregory . [Gre98] reasonable to describe the machine as also being intelligent. . In other situations this view is far too limited and anthropocentric.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::d52f5669b2e8",
+      "raw_rank": 32,
+      "final_score": -4.998921513557434
+    },
+    {
+      "score": 0.4245404303073883,
+      "text": ". These debates have in many instances been very heated as what is at stake is not merely a scientific definition, but a fundamental issue of how we measure and value humans: Is one employee smarter than another?. Are men on average more intelligent than women? Are white people smarter than black people? . As a result intelligence tests, and their creators, have on occasion been the subject of intense public scrutiny.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::30a32cbd7a5c",
+      "raw_rank": 67,
+      "final_score": -5.976925395429134
+    },
+    {
+      "score": 0.45155638456344604,
+      "text": ". Ideally we would like to be able to measure the intelligence of a wide range of systems; humans, dogs, flies, robots or even disembodied systems such as chat-bots, expert systems, classification systems and prediction algorithms. [Joh92, Alb91]. One response to this problem might be to develop specific kinds of tests for specific kinds of entities; just as intelligence tests for children differ to intelligence tests for adults.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::eb91400b289b",
+      "raw_rank": 47,
+      "final_score": -6.00317545235157
+    },
+    {
+      "score": 0.4590778052806854,
+      "text": ". \"Artificial intelligence founding father, MIT professor emeritus, and voice-of-HAL-consultant Marvin Minsky will be taking questions tomorrow after the 7 p.m. screening of Stanley Kubrick's '2001: A Space Odyssey' at the Coolidge Corner Theatre. Back when Kubrick was developing the movie, which was released in 1968, he turned to Minsky for advice on making the talking computer accurate.\" . Open the pod bay doors, HAL. . New Scientist (Issue 2550: ). . May 4, 2006 (<URL>). . \"HAL 9000, the chat",
+      "metadata": {
+        "source_file": "1887-Article Text-1883-1-10-20080129.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2006",
+        "detected_language": null,
+        "page_count": 1,
+        "origin_chunk_file": "1887-Article Text-1883-1-10-20080129.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1887-Article Text-1883-1-10-20080129.pdf::2006::d9b754ea176d",
+      "raw_rank": 8,
+      "final_score": -6.142459399998188
+    },
+    {
+      "score": 0.5253328084945679,
+      "text": ". The issues that continue to draw debate are the questions such as whether the tests test only a part or a particular type of intelligence, or whether they are somehow biased towards a particular group or set of mental skills. Great effort has gone into dealing with these issues, but they are difficult problems with no easy solutions. . Somewhat disconnected from this exists a parallel debate over the nature of intelligence in the context of machines. . While the debate is less politically char",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::7a353eff6735",
+      "raw_rank": 27,
+      "final_score": -6.430143266916275
+    },
+    {
+      "score": 0.43333345651626587,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a",
+      "raw_rank": 59,
+      "final_score": -6.576521143317223
+    },
+    {
+      "score": 0.4226478636264801,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8",
+      "raw_rank": 68,
+      "final_score": -6.818173788487911
+    },
+    {
+      "score": 0.44322824478149414,
+      "text": ". Opened just last week, with the help of National Museums of Scotland funds and a gaggle of sponsors, the gallery at the Royal Museum offers a wealth of interactive, visually-stunning and unique displays.... The exhibition space has been divided into five main subject areas covering transport (Move It!), artificial intelligence (Robots), cloning (Me2), space travel (Blast Off!) and energy (Power Up). . Each subject area is designed around a number of significant museum objects, complemented by ",
+      "metadata": {
+        "source_file": "1887-Article Text-1883-1-10-20080129.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2006",
+        "detected_language": null,
+        "page_count": 1,
+        "origin_chunk_file": "1887-Article Text-1883-1-10-20080129.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1887-Article Text-1883-1-10-20080129.pdf::2006::fa88a06ed47a",
+      "raw_rank": 52,
+      "final_score": -7.0897053480148315
+    },
+    {
+      "score": 0.4151851534843445,
+      "text": "Approach 2.1 Model and Architectures......................................... 2.2 Training Dataset.............................................. 2.3 Training Process............................................. 2.4 Evaluation................................................. Results 3.1 Language Modeling, Cloze, and Completion Tasks........................... 3.2 Closed Book Question Answering.................................... 3.3 Translation................................................ 3.4 ",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::b18961a6fe8c",
+      "raw_rank": 73,
+      "final_score": -7.31505723297596
+    },
+    {
+      "score": 0.44995129108428955,
+      "text": "These terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::9b9db0d1b061",
+      "raw_rank": 9,
+      "final_score": -7.315108269453049
+    },
+    {
+      "score": 0.5100430250167847,
+      "text": "2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::bd1a671a542c",
+      "raw_rank": 31,
+      "final_score": -7.34653976559639
+    },
+    {
+      "score": 0.4298645555973053,
+      "text": "Wayne Xin Zhao, Kun Zhou*, Junyi Li*, Tianyi Tang, Xiaolei Wang, Yupeng Hou, Yingqian Min, Beichen Zhang, Junjie Zhang, Zican Dong, Yifan Du, Chen Yang, Yushuo Chen, Zhipeng Chen, Jinhao Jiang, Ruiyang Ren, Yifan Li, Xinyu Tang, Zikang Liu, Peiyu Liu, Jian-Yun Nie and Ji-Rong Wen ANGUAGE is a prominent ability in human beings to express and communicate, which develops in early childhood and evolves over a lifetime. Machines, however, cannot naturally grasp the abilities of understanding and comm",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::dd88757b050b",
+      "raw_rank": 62,
+      "final_score": -7.398052774369717
+    },
+    {
+      "score": 0.4227190613746643,
+      "text": "THE APPLICATION OF EXPERT SYSTEM: A REVIEW OF RESEARCH AND APPLICATIONS C. F. Tan1, L. S. Wahidin1, S. N. Khalil1, N. Tamaldin1, J. Hu2 and G.W. M. Rauterberg2 1Integrated Design Research Group, Centre for Advanced Research on Energy, Universiti Teknikal Malaysia Melaka, Durian Tunggal, Melaka, Malaysia 2Designed Intelligence Group, Department of Industrial Design, Eindhoven",
+      "metadata": {
+        "source_file": "tanappli2016.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 7,
+        "origin_chunk_file": "tanappli2016.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "tanappli2016.pdf::2025::c8269e056e0a",
+      "raw_rank": 15,
+      "final_score": -7.427263483405113
+    },
+    {
+      "score": 0.45223554968833923,
+      "text": ". Simply determining whether a test, perhaps quite unintentionally, is partly a reflection of the race, gender, culture or social class of its creator is a subtle, complex and often politically charged issue. [Gou81, HM96]. Not surprisingly, many have concluded that it is wise to stay well clear of this topic. . In reality the situation is not as bad as it is sometimes made out to be. . Although the details of the definition are debated, in broad terms a fair degree of consensus about the scient",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::e7f9c32a6141",
+      "raw_rank": 46,
+      "final_score": -7.462735332548618
+    },
+    {
+      "score": 0.4954759478569031,
+      "text": ". The SP system should be able to organise its knowledge automatically in a way that minimises redundancies and reveals the natural structures in that knowledge, including class hierarchies, part-whole hierarchies and their integration. It should also be able to abstract rules and other generalisations from its stored knowledge, in the manner of datamining systems. . Of course, existing datamining techniques may also be applied to an SP database. . It would take us too far afield to attempt a de",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::367243e3eebc",
+      "raw_rank": 35,
+      "final_score": -7.46681971848011
+    },
+    {
+      "score": 0.4426661729812622,
+      "text": "Specifically, we define an LLM-based data agent as an autonomous or semi-autonomous software system powered by LLMs, capable of understanding natural language instructions, planning and executing data-centric tasks, and interacting with users or external tools to accomplish complex objectivesfrom exploratory data analysis to machine learning model development. In this article, the terms \"LLM-based data science agent,\" \"LLM-based data agent,\" and \"data science agent\" are collectively referred to ",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::4701f38dbb41",
+      "raw_rank": 11,
+      "final_score": -7.491748064756393
+    },
+    {
+      "score": 0.41644051671028137,
+      "text": ". Considering the ever-growing interest in ChatGPT and GPT models, we add a special discussion about the technical evolution of the GPT-series models, to briefly summarize the progress how they have been developed in the past years. Meanwhile, we drew a schematic diagram depicting the technological evolution of the GPT-series models in Figure 4.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::ba66543280b5",
+      "raw_rank": 71,
+      "final_score": -7.5098258182406425
+    },
+    {
+      "score": 0.39254724979400635,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1106v1.pdf::1990::6ce03695c520",
+      "raw_rank": 18,
+      "final_score": -7.5458312928676605
+    },
+    {
+      "score": 0.4733278155326843,
+      "text": ". (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::97b789622b90",
+      "raw_rank": 39,
+      "final_score": -7.574738457798958
+    },
+    {
+      "score": 0.4146741032600403,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3",
+      "raw_rank": 74,
+      "final_score": -7.577356979250908
+    },
+    {
+      "score": 0.4858981966972351,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4",
+      "raw_rank": 37,
+      "final_score": -7.607752040028572
+    },
+    {
+      "score": 0.4484906494617462,
+      "text": "For decades, con structing a pattern-recognition or machine-learning system required careful engineering and considerable domain expertise to design a fea ture extractor that transformed the raw data (such as the pixel values of an image) into a suitable internal representation or feature vector from which the learning subsystem, often a classifier, could detect or classify patterns in the input. Deep learning is making major advances in solving problems that have resisted the best attempts of t",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::3e333976691b",
+      "raw_rank": 10,
+      "final_score": -7.6629489585757256
+    },
+    {
+      "score": 0.44782111048698425,
+      "text": ". As previously mentioned, NLG encompasses a large variety of tasks and research areas, with this brief section serving as context for understanding machine generated text threat models and detection methods.. 2.3.1 Non-Neural Models. Predating the popularization of neural approaches in the NLG domain, a range of systems were used to accomplish NLG tasks. . These early approaches can broadly be summarized as \"rule-based\", though there existed variety in terms of processes, pipelines, and targets",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::6469aa988ef2",
+      "raw_rank": 50,
+      "final_score": -7.666473753750324
+    },
+    {
+      "score": 0.5348235368728638,
+      "text": ". CCS Concepts: • Computing methodologies →Machine learning approaches; Neural networks; Natural language generation; • Security and privacy →Human and societal aspects of security and privacy.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::b19c863e302e",
+      "raw_rank": 5,
+      "final_score": -7.66823074221611
+    },
+    {
+      "score": 0.49351954460144043,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::62810bd2dcad",
+      "raw_rank": 36,
+      "final_score": -7.669684708118439
+    },
+    {
+      "score": 0.4164031147956848,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::132a9876fb38",
+      "raw_rank": 72,
+      "final_score": -7.710284873843193
+    },
+    {
+      "score": 0.4632546603679657,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::341f89823db2",
+      "raw_rank": 42,
+      "final_score": -7.732928581535816
+    },
+    {
+      "score": 0.4750904440879822,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::40911c1531a3",
+      "raw_rank": 7,
+      "final_score": -7.738267317414284
+    },
+    {
+      "score": 0.4287245273590088,
+      "text": ". Building an ES is an iterative process involving the creation of a prototype system and then over a number of cycles of testing, repair, and extension, incrementally improving the system so that it eventually performs in a way that is satisfactory and beneficial to the users. The problem identification, conceptualization, formalization, construction, and testing are the stages of ES development process (4). . Once a system has been built and debugged it is a simple matter to extend its coverag",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::0d59c63e3fa6",
+      "raw_rank": 63,
+      "final_score": -7.743504464626312
+    },
+    {
+      "score": 0.5259730815887451,
+      "text": ". After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::bab1f1e7ac80",
+      "raw_rank": 26,
+      "final_score": -7.75382000207901
+    },
+    {
+      "score": 0.4509740471839905,
+      "text": ". MACHINE GENERATED TEXT Before reviewing threat models and detection methodologies for machine generated text, it is helpful to briefly provide a formal definition of machine generated text, and a condensed overview of natural language generation (NLG) models. We recommend further reading of dedicated surveys on natural language generation for greater insight into the wide breadth of NLG models and applications.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::e03808f04a5d",
+      "raw_rank": 48,
+      "final_score": -7.800306662917137
+    },
+    {
+      "score": 0.4633745551109314,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1",
+      "raw_rank": 41,
+      "final_score": -7.8552287966012955
+    },
+    {
+      "score": 0.4145345687866211,
+      "text": ". These effects include 'parsing' (as in the example just shown), 'recognition' of an unknown entity, 'retrieval' of stored information, probabilistic 'reasoning', logical 'deduction', mathematical 'calculation', and more.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::4527736523e6",
+      "raw_rank": 75,
+      "final_score": -7.879116773605347
+    },
+    {
+      "score": 0.42806553840637207,
+      "text": "The EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::44d5f016167a",
+      "raw_rank": 65,
+      "final_score": -7.904493749141693
+    },
+    {
+      "score": 0.45771875977516174,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::ecc662314003",
+      "raw_rank": 44,
+      "final_score": -7.924865983426571
+    },
+    {
+      "score": 0.4384693503379822,
+      "text": "The rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::a7d0f7cc72f9",
+      "raw_rank": 13,
+      "final_score": -7.928917303681374
+    },
+    {
+      "score": 0.43857449293136597,
+      "text": ". Deep learning discovers intricate structure in large data sets by using the backpropagation algorithm to indicate how a machine should change its internal parameters that are used to compute the representation in each layer from the representation in the previous layer. Deep convolutional nets have brought about breakthroughs in processing images, video, speech and audio, whereas recurrent nets have shone light on sequential data such as text and speech. . 4 3 6 | N . A T U R E | V O L 5 2 1 |",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::1b7bb54a2b2e",
+      "raw_rank": 55,
+      "final_score": -7.933832004666328
+    },
+    {
+      "score": 0.4201236367225647,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d",
+      "raw_rank": 69,
+      "final_score": -7.935703858733177
+    },
+    {
+      "score": 0.43388593196868896,
+      "text": "We think that deep learning will have many more successes in the near future because it requires very little engineering by hand, so it can easily take advantage of increases in the amount of available com putation and data. New learning algorithms and architectures that are currently being developed for deep neural networks will only acceler ate this progress. . Supervised learning The most common form of machine learning, deep or not, is super vised learning. . Imagine that we want to build a ",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::129cbe57e6e3",
+      "raw_rank": 58,
+      "final_score": -7.973945528268814
+    },
+    {
+      "score": 0.44242650270462036,
+      "text": ". Systems combining deep learning and rein forcement learning are in their infancy, but they already outperform passive vision systems99 at classification tasks and produce impressive results in learning to play many different video games100. Natural language understanding is another area in which deep learn ing is poised to make a large impact over the next few years. . We expect systems that use RNNs to understand sentences or whole documents will become much better when they learn strategies ",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::3208228c93a8",
+      "raw_rank": 53,
+      "final_score": -8.022647187113762
+    },
+    {
+      "score": 0.48423463106155396,
+      "text": ". Knowledge-based expert systems will continue to increase individual and social potential by preserving know-how, distributing knowledge more effectively, and improving performance of tasks that require expertise. 24. I. M. Dokas and A. Alapetite, A Development Process Meta-Model for Web Based Expert Systems: The Web Engineering Point of View, Risø National Laboratory, Denmark, 2006. . 25. . R. Islam and K. Andersson, Mohammad Shahadat Hossain, A Web Based Belief Rule Based Expert System to Pre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::3f868e4f3792",
+      "raw_rank": 38,
+      "final_score": -8.053890272974968
+    },
+    {
+      "score": 0.43435195088386536,
+      "text": ". The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::ce60bd8ccf2e",
+      "raw_rank": 57,
+      "final_score": -8.063888303935528
+    },
+    {
+      "score": 0.4299250841140747,
+      "text": ". Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::83662aa275fb",
+      "raw_rank": 61,
+      "final_score": -8.077543467283249
+    },
+    {
+      "score": 0.3842809796333313,
+      "text": "The models proposed recently for neural machine translation often belong to a family of encoder–decoders and encode a source sentence into a fixed-length vector from which a decoder generates a translation.",
+      "metadata": {
+        "source_file": "1409.0473v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1409.0473v7.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1409.0473v7.pdf::2016::a0137710df58",
+      "raw_rank": 19,
+      "final_score": -8.112509295344353
+    },
+    {
+      "score": 0.4249686002731323,
+      "text": "Detection of machine generated text is typically framed as a binary classification problem in which a classifier is trained to differentiate samples of machine generated text from human generated text, though there exists related research in attribution of machine generated text to the model that generated it which we will discuss in §5.2. In this section, we outline the methods used for detection of machine generated text. . In §4.1 we summarize feature-based approaches in machine generated tex",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::98b75543d44f",
+      "raw_rank": 66,
+      "final_score": -8.117190390825272
+    },
+    {
+      "score": 0.5027823448181152,
+      "text": "3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::9de497dca2cc",
+      "raw_rank": 33,
+      "final_score": -8.142873883247375
+    },
+    {
+      "score": 0.42854154109954834,
+      "text": ". An image, for example, comes in the form of an array of pixel values, and the learned features in the first layer of representation typically represent the presence or absence of edges at particular orientations and locations in the image. The second layer typically detects motifs by spotting particular arrangements of edges, regardless of small variations in the edge positions. . The third layer may assemble motifs into larger combinations that correspond to parts of familiar objects, and sub",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::d42ae4e4e7bf",
+      "raw_rank": 64,
+      "final_score": -8.157627493143082
+    },
+    {
+      "score": 0.46111828088760376,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc",
+      "raw_rank": 43,
+      "final_score": -8.16983948647976
+    },
+    {
+      "score": 0.43035924434661865,
+      "text": "The neural network consists of cells that correspond to symptoms in the input layer, the diseases are presented in the intermediate or hidden layer and neural cells (nodes) for the treatments defined in the output layer. Training patterns consist of 0's (lack of knowledge about presence or absence of the disease), 1's (presence of the disease), and 1's (absence of the disease). . A sample rule from Hepar, a medical expert system for the diagnosis of liver and biliary tract diseases is (16) . The",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::5bf9e2d582d7",
+      "raw_rank": 60,
+      "final_score": -8.191106230020523
+    },
+    {
+      "score": 0.4390110373497009,
+      "text": ". This paper introduced neural language models, which learn to convert a word symbol into a word vector or word embedding composed of learned semantic features in order to predict the next word in a sequence.. 72.. Cho, K. et al. Learning phrase representations using RNN encoder-decoder 2 8 M A Y 2 0 1 5 | V O L 5 2 1 | N . A T U R E | 4 4 3 for statistical machine translation. . In Proc. –1734. . 73. . Schwenk, H. Continuous space language models. . Computer Speech Lang. 21, natural language wi",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::1ba7c2db2c6d",
+      "raw_rank": 54,
+      "final_score": -8.191658392548561
+    },
+    {
+      "score": 0.39601191878318787,
+      "text": ". Our baseline, the ESIM sequence model from Chen et al., uses a biLSTM to encode the premise and hypothesis, followed by a matrix attention layer, a local inference layer, another biLSTM inference composition layer, and finally a pooling operation before the output layer. Overall, adding ELMo to the ESIM model improves accuracy by an average of 0.7% across five random seeds. . A five member ensemble pushes the overall accuracy to 89.3%, exceeding the previous ensemble best of 88.9%. . Semantic ",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "N18-1202.pdf::2018::b65019079157",
+      "raw_rank": 17,
+      "final_score": -8.2030583396554
+    },
+    {
+      "score": 0.46505361795425415,
+      "text": ". (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::0247478323b2",
+      "raw_rank": 40,
+      "final_score": -8.2621800750494
+    },
+    {
+      "score": 0.40082797408103943,
+      "text": ". Computer vision research has also demonstrated the importance of transfer learning from large pre-trained models, where an effective recipe is to fine-tune models pre-trained with ImageNet (Deng et al., 2009; Yosinski et al., 2014). We introduce BERT and its detailed implementation in this section. . There are two steps in our framework: pre-training and fine-tuning. . During pre-training, the model is trained on unlabeled data over different pre-training tasks. . For finetuning, the BERT mode",
+      "metadata": {
+        "source_file": "1810.04805v2.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2019",
+        "detected_language": null,
+        "page_count": 16,
+        "origin_chunk_file": "1810.04805v2.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1810.04805v2.pdf::2019::cee4ee4c2d94",
+      "raw_rank": 16,
+      "final_score": -8.276604987680912
+    },
+    {
+      "score": 0.43619799613952637,
+      "text": ". For the query-focused summarization task, Pasunuru et al. used a search engine, i.e., Bing, to retrieve the answer paragraph as the synthetic summary and used the top ranked documents as input text.. Another line of work is to use perturbation-based methods by corrupting the original text. For example, Chen et al. presented a set of data augmentation methods for conversation summarization, such as random swapping/deletion to randomly swap or delete utterances in conversations. . Multi-Task Lea",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::7e185834e6cc",
+      "raw_rank": 14,
+      "final_score": -8.294436514377594
+    },
+    {
+      "score": 0.41957682371139526,
+      "text": ". Machine generated text detection should then be used among multiple features, such as account creation times, activity patterns, registered phone numbers, and IP addresses, to determine whether activity is linked together as part of an online influence operation. 3.4.2 Applications and Cover Letters. . Contemporary NLG models can be used to generate large numbers of cover letters or essays for applying for scholarships or to employment opportunities. . Commercial websites already exist for pro",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::85c51e273261",
+      "raw_rank": 70,
+      "final_score": -8.295361712574959
+    }
+  ],
+  "retrieved_chunks_final": [
+    {
+      "score": 0.6670891046524048,
+      "text": ". A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::763164362c30",
+      "raw_rank": 1,
+      "final_score": -0.822625607252121,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.6410280466079712,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::e1d85cdbb466",
+      "raw_rank": 2,
+      "final_score": -1.1324737668037415,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.5230555534362793,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::e0c690d03c51",
+      "raw_rank": 6,
+      "final_score": -1.1698537468910217,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.65104740858078,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::b551e995a739",
+      "raw_rank": 21,
+      "final_score": -1.2749728113412857,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.5696646571159363,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define what is artificial intelligence?, describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70",
+      "raw_rank": 3,
+      "final_score": -1.6269502192735672,
+      "relevance": 3,
+      "rank": 5
+    }
+  ],
+  "model_output": "Artificial Intelligence (AI) is a field aimed at developing machine-based intelligence, mimicking or replicating human cognitive functions such as reasoning and learning [2]. The theoretical foundations of AI are rooted in several domains including computing, mathematics, psychology, and linguistics [1][3]. In the 1950s, the Turing Test was proposed as a benchmark for evaluating machine intelligence by gauging a machine's ability to imitate human-like conversation without disclosing its artificial identity [4]. This test serves as one of the primary historical definitions of AI. The evolution of definitions and interpretations of AI across publications reveals a focus on establishing a broad understanding that applies to arbitrary systems and contexts, rather than just humans [1]. Another emphasis has been on the development of machine-based reasoning capabilities, testing hypotheses, and preparing for future eventualities [2]. Additionally, there is an ongoing interest in comprehending and grasping complex linguistic systems [4]. References:\n[1] 0712.3329v1.pdf (2007)\n[2] 3641289.pdf (2024)\n[3] 0311031v1.pdf (2018)\n[4] 2303.18223v16.pdf (2025)"
+}

@@ -1,0 +1,14 @@
+{
+  "query_id": "Trace_the_historical_development_and_evolution_of_describe_the_historical_transi",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6203445146553157,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 9,
+    "2000s": 3,
+    "2010s": 7,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

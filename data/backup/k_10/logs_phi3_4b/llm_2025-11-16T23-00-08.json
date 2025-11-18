@@ -1,0 +1,191 @@
+{
+  "timestamp": "2025-11-16T23-00-08",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_the_notion_o",
+  "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[1] 0712.3329v1.pdf (2007)\nTo measure the intelligence of such diverse systems in a meaningful way we must step back from the specifics of particular systems and establish the underlying fundamentals of what it is that we are really trying to measure. The difficulty of developing an abstract and highly general notion of intelligence is readily apparent. . Consider, for example, the memory and numerical computation tasks that appear in some intelligence tests and which were once regarded as defining hallmarks of human inte\n\n[1] 0712.3329v1.pdf (2007)\nIn this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[1] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[2] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[3] 2201.05273v4.pdf (2022)\n. mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa\n\n[4] 0311031v1.pdf (2018)\n. The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •\n\n[5] 1910.10683v4.pdf (2023)\n. By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.\n\n[1] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 0712.3329v1.pdf (2007)\n[2] 3641289.pdf (2024)\n[3] 2201.05273v4.pdf (2022)\n[4] 0311031v1.pdf (2018)\n[5] 1910.10683v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5158805251121521,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.836409345269203,
+      "relevance": 3,
+      "rank": 1,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.44269922375679016,
+      "text": "To measure the intelligence of such diverse systems in a meaningful way we must step back from the specifics of particular systems and establish the underlying fundamentals of what it is that we are really trying to measure. The difficulty of developing an abstract and highly general notion of intelligence is readily apparent. . Consider, for example, the memory and numerical computation tasks that appear in some intelligence tests and which were once regarded as defining hallmarks of human inte",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.4426541849970818,
+      "relevance": 3,
+      "rank": 2,
+      "id": "0712.3329v1.pdf::2007::78a3ab2819b2"
+    },
+    {
+      "score": 0.5499634742736816,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.034918785095215,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794"
+    },
+    {
+      "score": 0.4843127727508545,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.0521915555000305,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.5643589496612549,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.060300648212433,
+      "relevance": 3,
+      "rank": 5,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.5054709911346436,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.784758746623993,
+      "relevance": 3,
+      "rank": 6,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.4572845697402954,
+      "text": ". mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.040203303098679,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2201.05273v4.pdf::2022::9316daacef76"
+    },
+    {
+      "score": 0.40633624792099,
+      "text": ". The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.164133325219154,
+      "relevance": 3,
+      "rank": 8,
+      "id": "0311031v1.pdf::2018::915dff8c9b50"
+    },
+    {
+      "score": 0.46201688051223755,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.243842288851738,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1910.10683v4.pdf::2023::c685c979c854"
+    },
+    {
+      "score": 0.5232360363006592,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize the notion of general intelligence versus narrow ai in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.338240921497345,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    }
+  ],
+  "model_output": "The main theoretical perspectives on general intelligence and narrow AI can be compared as follows:\n\n1. General Intelligence (also known as Artificial General Intelligence, AGI):\n   - Definition: According to [1] (2007), a general measure of intelligence for arbitrary machines is formalized by extracting essential features from well-known informal definitions of human intelligence and mathematically formalizing them. The resulting definition aims to capture the concept of machine intelligence in the broadest reasonable sense. - Notable Test: The Turing Test, introduced by [2] (1950s), is a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin. A machine passing the Turing Test can be considered as intelligent [2] (2024). - Text Summarization: Research on text summarization, such as the mRASP2 approach [3] (2022), can potentially contribute to understanding and developing general intelligence by condensing complex information into a brief summary. However, there is no direct mention of this in the provided context. 2. Narrow AI:\n   - Definition: Narrow AI refers to artificial intelligence systems that are designed to perform specific tasks [4] (2018). These systems do not have the ability to transfer learning from one task to another or exhibit human-like general intelligence. - Notable Test: No explicit test for narrow AI is mentioned in the provided context, but the Turing Test can be considered relevant as it involves assessing a machine's ability to perform specific tasks (i.e., responding like a human). - Text Summarization: Extractive and abstractive summarization techniques [3] (2022) are examples of narrow AI applications, as they are designed to perform specific tasks related to text processing. In summary, both general intelligence and narrow AI aim to understand and emulate human-like intelligence, but they differ in scope: AGI encompasses the ability to transfer learning from one task to another and exhibit human-like general intelligence, while narrow AI is designed for specific tasks without the capability for generalization. References:\n[1] 0712.3329v1.pdf (2007)\n[2] 3641289.pdf (2024)\n[3] 2201.05273v4.pdf (2022)\n[4] 0311031v1.pdf (2018)"
+}

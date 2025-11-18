@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_define_the_term_artificial_agent_as_used_in_the_corpus___describe_its_the",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7665719698808936,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 4,
+    "2000s": 1
+  },
+  "citation_hit_rate": 0.75,
+  "model_name": "phi3_4b"
+}

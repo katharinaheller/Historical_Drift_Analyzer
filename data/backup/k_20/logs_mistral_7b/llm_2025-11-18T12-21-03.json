@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T12-21-03",
+  "query_id": "Define_rephrase_and_define_ai_concisely_based_only_on_the_retrieved_context___de",
+  "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. Another method involves the Retrieval-Augmented Generation (RAG) technique (Lewis et al. 2020), where relevant code is first retrieved and then embedded within the context to facilitate incontext learning. LLM-based agents can also access and interact with external knowledge sources, such as databases or knowledge graphs, to augment their reasoning capabilities (Wang et al. 2024b). . Sun et al. proposes a Knowledge Integration method that builds on this concept. . In LAMBDA, analysis codes are\n\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[3] 0311031v1.pdf (2018)\n. In the context of knowledge-based systems, a benefit of this versatile 'universal' format for knowledge is the scope that it offers for the seamless integration of different kinds of knowledge, minimising the awkward incompatibilities that arise in many computing systems.. • Ontologies and 'semantic' retrieval of information.\n\n[4] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[1] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[5] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[6] 1304.1106v1.pdf (1990)\n. Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime\n\n[5] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[7] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[4] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[7] 0712.3329v1.pdf (2007)\nIn this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo\n\n[4] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[4] 2210.07321v4.pdf (2023)\nAdditional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the\n\n[8] 1810.04805v2.pdf (2019)\nThese include sentence-level tasks such as natural language inference (Bowman et al., 2015; Williams et al., 2018) and paraphrasing (Dolan and Brockett, 2005), which aim to predict the relationships between sentences by analyzing them holistically, as well as token-level tasks such as named entity recognition and question answering, where models are required to produce fine-grained output at the token level (Tjong Kim Sang and De Meulder, 2003; Rajpurkar et al., 2016). word based only on its con\n\n[4] 2210.07321v4.pdf (2023)\nThe EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.\n\n[7] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[4] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[7] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n[5] 2303.18223v16.pdf (2025)\n[6] 1304.1106v1.pdf (1990)\n[7] 0712.3329v1.pdf (2007)\n[8] 1810.04805v2.pdf (2019)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5094179511070251,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.3030777126550674,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.40839308500289917,
+      "text": ". Another method involves the Retrieval-Augmented Generation (RAG) technique (Lewis et al. 2020), where relevant code is first retrieved and then embedded within the context to facilitate incontext learning. LLM-based agents can also access and interact with external knowledge sources, such as databases or knowledge graphs, to augment their reasoning capabilities (Wang et al. 2024b). . Sun et al. proposes a Knowledge Integration method that builds on this concept. . In LAMBDA, analysis codes are",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.6264000684022903,
+      "relevance": 3,
+      "rank": 2,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::172c5daf9044"
+    },
+    {
+      "score": 0.3989470601081848,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.052787348628044,
+      "relevance": 3,
+      "rank": 3,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.36600932478904724,
+      "text": ". In the context of knowledge-based systems, a benefit of this versatile 'universal' format for knowledge is the scope that it offers for the seamless integration of different kinds of knowledge, minimising the awkward incompatibilities that arise in many computing systems.. • Ontologies and 'semantic' retrieval of information.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.34305963665247,
+      "relevance": 3,
+      "rank": 4,
+      "id": "0311031v1.pdf::2018::4e87dbc3eb7f"
+    },
+    {
+      "score": 0.43666112422943115,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.422548800706863,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.4330899119377136,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.552625015377998,
+      "relevance": 3,
+      "rank": 6,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.566269040107727,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.71454319357872,
+      "relevance": 3,
+      "rank": 7,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.4851226210594177,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.791594281792641,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.3840557634830475,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.857923112809658,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1304.1106v1.pdf::1990::6ce03695c520"
+    },
+    {
+      "score": 0.4433450996875763,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.888729088008404,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.594914436340332,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.932399153709412,
+      "relevance": 3,
+      "rank": 11,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.4277304410934448,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.983463793992996,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.5809540748596191,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.124165654182434,
+      "relevance": 3,
+      "rank": 13,
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794"
+    },
+    {
+      "score": 0.4314423203468323,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.1262961477041245,
+      "relevance": 3,
+      "rank": 14,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.4354320764541626,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.13297376036644,
+      "relevance": 3,
+      "rank": 15,
+      "id": "2210.07321v4.pdf::2023::de479b9a4253"
+    },
+    {
+      "score": 0.39685681462287903,
+      "text": "These include sentence-level tasks such as natural language inference (Bowman et al., 2015; Williams et al., 2018) and paraphrasing (Dolan and Brockett, 2005), which aim to predict the relationships between sentences by analyzing them holistically, as well as token-level tasks such as named entity recognition and question answering, where models are required to produce fine-grained output at the token level (Tjong Kim Sang and De Meulder, 2003; Rajpurkar et al., 2016). word based only on its con",
+      "metadata": {
+        "source_file": "1810.04805v2.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2019",
+        "detected_language": null,
+        "page_count": 16,
+        "origin_chunk_file": "1810.04805v2.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.2712380811572075,
+      "relevance": 3,
+      "rank": 16,
+      "id": "1810.04805v2.pdf::2019::2dfd474a5b5f"
+    },
+    {
+      "score": 0.4269258379936218,
+      "text": "The EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.434734895825386,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2210.07321v4.pdf::2023::44d5f016167a"
+    },
+    {
+      "score": 0.5590614080429077,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.447156220674515,
+      "relevance": 3,
+      "rank": 18,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.4091266989707947,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.464418187737465,
+      "relevance": 3,
+      "rank": 19,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.5458838939666748,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define rephrase and define ai concisely based only on the retrieved context., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.506139695644379,
+      "relevance": 3,
+      "rank": 20,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    }
+  ],
+  "model_output": "Artificial Intelligence (AI) and Rephrasing\n\nDefinition: AI is a field of computer science that focuses on creating intelligent machines capable of performing tasks that typically require human intelligence, such as understanding natural language, recognizing patterns, solving problems, and making decisions [7]. A rephrasing refers to the process of expressing the same information in different words without changing its original meaning. Theoretical Foundations: The Turing Test, proposed by Alan Turing in 1950, is a widely recognized benchmark for assessing AI's ability to demonstrate intelligent behavior by emulating human-like conversations [5]. Over the years, several definitions of AI have been put forward, focusing on its ability to reason, learn, and adapt [7]. Evolution: The evolution of AI definitions has largely revolved around attempts to capture the essence of human intelligence in a machine. Early researchers focused on creating machines capable of passing the Turing Test [5], while more recent efforts emphasize understanding and preventing unintended or dual-use applications of AI systems to ensure trustworthy AI [4]. References:\n[1] 3641289.pdf (2024)\n[2] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n[5] 2303.18223v16.pdf (2025)\n[6] 1304.1106v1.pdf (1990)\n[7] 0712.3329v1.pdf (2007)\n[8] 1810.04805v2.pdf (2019)"
+}

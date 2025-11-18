@@ -7,6 +7,7 @@ from typing import List
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import cm
 from reportlab.platypus import (
@@ -23,24 +24,26 @@ from reportlab.lib import colors
 
 from src.core.evaluation.settings import DEFAULT_EVAL_SETTINGS
 
+
+# Color map (no thresholds visible to the user)
 FAITH_COLORS = {
     "high": "#1a9850",
     "medium": "#fee08b",
     "low": "#d73027",
 }
 
+# Clean semantic labels
 FAITH_LABELS = {
-    "high": "High (≥0.70)",
-    "medium": "Medium (0.40–0.69)",
-    "low": "Low (<0.40)",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
 }
 
 
 class MultiModelReportBuilder:
-    """Aggregated PDF report comparing multiple LLMs on NDCG and faithfulness."""
+    # Build comparative PDF benchmark report across models
 
     def __init__(self, base_dir: str = "data"):
-        # Base directory scanned for eval_logs_* folders
         self.base = Path(base_dir)
         self.eval_dirs = sorted(self.base.glob("eval_logs_*"))
         self.out_dir = self.base / "model_comparison"
@@ -72,14 +75,14 @@ class MultiModelReportBuilder:
         return pd.DataFrame(rows)
 
     # ---------------------------------------------------------
-    def _faith_band(self, v: float) -> str:
-        if np.isnan(v):
-            return "missing"
+    def _faith_band(self, value: float) -> str:
+        if np.isnan(value):
+            return "low"
         high = DEFAULT_EVAL_SETTINGS.visualization.faith_band_high
         mid = DEFAULT_EVAL_SETTINGS.visualization.faith_band_mid
-        if v >= high:
+        if value >= high:
             return "high"
-        if v >= mid:
+        if value >= mid:
             return "medium"
         return "low"
 
@@ -87,6 +90,7 @@ class MultiModelReportBuilder:
     def _plot_faithfulness_band_comparison(self, df: pd.DataFrame) -> Path:
         df = df.copy()
         df["band"] = df["faith"].apply(self._faith_band)
+
         bands = ["high", "medium", "low"]
         models = sorted(df["model"].unique())
 
@@ -118,12 +122,21 @@ class MultiModelReportBuilder:
         ax.set_xticklabels(models, rotation=10)
         ax.set_ylabel("Number of queries")
         ax.set_title("Faithfulness band comparison across models")
-        ax.legend(frameon=False)
+
+        # Legend placed OUTSIDE to avoid overlap with bars
+        ax.legend(
+            frameon=False,
+            bbox_to_anchor=(1.02, 1),
+            loc="upper left",
+            borderaxespad=0
+        )
+
+        fig.tight_layout()
 
         out = self.out_dir / "faithfulness_model_comparison.png"
-        fig.tight_layout()
         fig.savefig(out, dpi=150, bbox_inches="tight")
         plt.close(fig)
+
         return out
 
     # ---------------------------------------------------------
@@ -190,8 +203,8 @@ class MultiModelReportBuilder:
         story.append(
             Paragraph(
                 "This report compares multiple LLM profiles in terms of retrieval relevance "
-                "(NDCG@k) and factual grounding (Faithfulness). All evaluations were performed "
-                "using an identical prompt set, identical retrieval stack, and identical parameters.",
+                "(NDCG@k) and factual grounding (faithfulness). Thresholds for band classification "
+                "are applied internally but deliberately hidden in the visualization.",
                 self.styleN,
             )
         )
@@ -212,7 +225,7 @@ class MultiModelReportBuilder:
         story.append(PageBreak())
 
         story.append(Paragraph("2. Faithfulness Band Comparison", self.styleH))
-        story.append(Spacer(1, 0.2 * cm))
+        story.append(Spacer(1, 0.3 * cm))
         story.append(Image(str(plot_path), width=15 * cm, height=9 * cm))
         story.append(PageBreak())
 

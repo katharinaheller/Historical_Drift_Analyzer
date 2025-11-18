@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_explain_how_semantic_networks_contribute_to_reasoning_in_ai___describe_it",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.4882028774202112,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 7,
+    "1990s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

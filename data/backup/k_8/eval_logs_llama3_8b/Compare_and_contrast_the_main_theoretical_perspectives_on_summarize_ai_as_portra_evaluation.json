@@ -1,0 +1,12 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_ai_as_portra",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.735187381940672,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 7,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

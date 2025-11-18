@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-11-17T19-32-33",
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_what_criteria_are_used_to_",
+  "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.\n\nContext snippets:\n[1] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[1] 0712.3329v1.pdf (2007)\nIn this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo\n\n[1] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[1] 0712.3329v1.pdf (2007)\n. In some cases, a machine may display properties that we equate with human intelligence, in such cases it might be \"Innumerable tests are available for measuring intelligence, yet no one is quite certain of what intelligence is, or even just what it is that the available tests are measuring.\" — R. L. Gregory . [Gre98] reasonable to describe the machine as also being intelligent. . In other situations this view is far too limited and anthropocentric.\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 0712.3329v1.pdf (2007)\n[2] 3641289.pdf (2024)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.560785174369812,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.2052617371082306,
+      "relevance": 3,
+      "rank": 1,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.643574595451355,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.520925909280777,
+      "relevance": 3,
+      "rank": 2,
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794"
+    },
+    {
+      "score": 0.5949461460113525,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.8065789341926575,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.5386959314346313,
+      "text": ". In some cases, a machine may display properties that we equate with human intelligence, in such cases it might be \"Innumerable tests are available for measuring intelligence, yet no one is quite certain of what intelligence is, or even just what it is that the available tests are measuring.\" — R. L. Gregory . [Gre98] reasonable to describe the machine as also being intelligent. . In other situations this view is far too limited and anthropocentric.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.841182380914688,
+      "relevance": 3,
+      "rank": 4,
+      "id": "0712.3329v1.pdf::2007::d52f5669b2e8"
+    },
+    {
+      "score": 0.5334439277648926,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -3.0626741647720337,
+      "relevance": 3,
+      "rank": 5,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    }
+  ],
+  "model_output": "The mechanisms, criteria, and definitions for judging machine intelligence have evolved over time, as evidenced by the provided context. Some well-known criteria include the Turing Test [2], which assesses a machine's ability to convincingly mimic human responses. This test has been a longstanding objective in AI evolution and is widely recognized among researchers for evaluating intelligence [2]. Additionally, other definitions of machine intelligence have been proposed, such as those that extract essential features from expert-given definitions of human intelligence and mathematically formalize them to create a general measure of intelligence for arbitrary machines [1]. However, it is important to note that there remains debate on what exactly constitutes intelligence, with some arguing that a machine displaying certain properties can be described as intelligent [1], while others contend this view may be too limited and anthropocentric [1]. References:\n[1] 0712.3329v1.pdf (2007)\n[2] 3641289.pdf (2024)"
+}

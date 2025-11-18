@@ -1,0 +1,12 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_discuss_the_limitations_of",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6768321318013253,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2020s": 4,
+    "2010s": 4
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

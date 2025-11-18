@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_contrast_capability_fr",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6172527048599505,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 6,
+    "1990s": 1,
+    "2000s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

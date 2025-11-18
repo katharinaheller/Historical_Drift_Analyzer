@@ -1,0 +1,11 @@
+{
+  "files": 100,
+  "bert_intrinsic_mean": 0.7835755899244546,
+  "bert_intrinsic_ci95_lo": 0.77890110206604,
+  "bert_intrinsic_ci95_hi": 0.787978128194809,
+  "bert_intrinsic_median": 0.7877818644046783,
+  "bert_intrinsic_std": 0.023006357589346084,
+  "top_k": 10,
+  "bert_model": "bert-base-uncased",
+  "agg": "mean"
+}

@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-11-15",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_explain_how_ai_applica",
+  "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[3] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[1] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[4] 2210.07321v4.pdf (2023)\nThe EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.\n\n[4] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[5] 1304.1106v1.pdf (1990)\n. Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime\n\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[4] 2210.07321v4.pdf (2023)\nAdditional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the\n\n[6] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[2] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[4] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[4] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[1] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[6] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[7] 1910.10683v4.pdf (2023)\n. We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.\n\n[8] 2205.01068v4.pdf (2022)\n. While this is a significant achievement, the energy cost of creating such a model is still nontrivial, and repeated efforts to replicate a model of this size will only amplify the growing compute footprint of these LLMs. We believe the entire AI community — academic researchers, civil society, policymakers, and industry — must work together to develop clear 125M 6.0e−4 0.5M 350M 3.0e−4 0.5M 1.3B . 2.0e−4 1M 2.7B 1.6e−4 1M 6.7B . 1.2e−4 2M 13B 1.0e−4 4M 30B 1.0e−4 4M 66B 0.8e−4 2M 175B 1.2e−4 2\n\n[4] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[9] 0311031v1.pdf (2018)\n. Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co\n\n[10] 1301.2254v1.pdf (2001)\n. In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 2303.18223v16.pdf (2025)\n[3] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[4] 2210.07321v4.pdf (2023)\n[5] 1304.1106v1.pdf (1990)\n[6] 0712.3329v1.pdf (2007)\n[7] 1910.10683v4.pdf (2023)\n[8] 2205.01068v4.pdf (2022)\n[9] 0311031v1.pdf (2018)\n[10] 1301.2254v1.pdf (2001)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.45869940519332886,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.630707338452339,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.49865657091140747,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.162515088915825,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.4286273419857025,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.750779666006565,
+      "relevance": 3,
+      "rank": 3,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.47031641006469727,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.759906768798828,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.3837222456932068,
+      "text": "The EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.801271691918373,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2210.07321v4.pdf::2023::44d5f016167a"
+    },
+    {
+      "score": 0.5201690196990967,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.338858902454376,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.45239168405532837,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.366303905844688,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1304.1106v1.pdf::1990::6ce03695c520"
+    },
+    {
+      "score": 0.42158815264701843,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.3683793023228645,
+      "relevance": 3,
+      "rank": 8,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.45605218410491943,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.528816491365433,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2210.07321v4.pdf::2023::de479b9a4253"
+    },
+    {
+      "score": 0.43373391032218933,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.582422263920307,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.3760725259780884,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.684445351362228,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.4473744034767151,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.711845859885216,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.38834595680236816,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.857554495334625,
+      "relevance": 3,
+      "rank": 13,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.5099202394485474,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.915016859769821,
+      "relevance": 3,
+      "rank": 14,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.48502522706985474,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.102983519434929,
+      "relevance": 3,
+      "rank": 15,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.44977790117263794,
+      "text": ". We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.115787908434868,
+      "relevance": 3,
+      "rank": 16,
+      "id": "1910.10683v4.pdf::2023::872369300e89"
+    },
+    {
+      "score": 0.3752318024635315,
+      "text": ". While this is a significant achievement, the energy cost of creating such a model is still nontrivial, and repeated efforts to replicate a model of this size will only amplify the growing compute footprint of these LLMs. We believe the entire AI community — academic researchers, civil society, policymakers, and industry — must work together to develop clear 125M 6.0e−4 0.5M 350M 3.0e−4 0.5M 1.3B . 2.0e−4 1M 2.7B 1.6e−4 1M 6.7B . 1.2e−4 2M 13B 1.0e−4 4M 30B 1.0e−4 4M 66B 0.8e−4 2M 175B 1.2e−4 2",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.18285296857357,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2205.01068v4.pdf::2022::9943acd00d7a"
+    },
+    {
+      "score": 0.4185393750667572,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.213877834379673,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.4151732325553894,
+      "text": ". Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.238995149731636,
+      "relevance": 3,
+      "rank": 19,
+      "id": "0311031v1.pdf::2018::d8a1ca3b655a"
+    },
+    {
+      "score": 0.4257945120334625,
+      "text": ". In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how ai applications in robotics evolved within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.281686328351498,
+      "relevance": 3,
+      "rank": 20,
+      "id": "1301.2254v1.pdf::2001::981a7e9f108a"
+    }
+  ],
+  "model_output": "The main theoretical perspectives on AI applications in robotics evolution within the provided corpus can be divided into two broad categories: Turing Test-centered and Language Model-based approaches. 1. Turing Test-centered Approaches [1], [2]\n   - The Turing Test, proposed by Alan Turing in the 1950s [1], is a widely recognized benchmark for assessing AI's intelligence by discerning if responses are of human or machine origin. A computing machine that successfully passes this test can be considered as intelligent [1]. - Researchers agree that authentic intelligence equips machines with reasoning capabilities, the ability to test hypotheses, and preparation for future eventualities [3]. - The chronicle of AI can be depicted as a timeline of creating and evaluating intelligent models to pass the Turing Test [1]. 2. Language Model-based Approaches [2], [3], [4]\n   - Recently, Large Language Models (LLMs) have become increasingly popular in both academic and industrial domains [1]. These models are able to solve diverse tasks such as text generation, reasoning, and problem solving [1]. - The technical evolution of LLMs has been making an important impact on the entire AI community and is responsible for the development of powerful AI chatbots like ChatGPT [2]. - Trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses can be prevented [4]. References:\n[1] 3641289.pdf (2024)\n[2] 2303.18223v16.pdf (2025)\n[3] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[4] 2210.07321v4.pdf (2023)"
+}

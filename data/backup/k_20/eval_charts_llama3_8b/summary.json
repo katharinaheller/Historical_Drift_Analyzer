@@ -1,0 +1,18 @@
+{
+  "files": 100,
+  "ndcg@k_mean": 0.9976618506007113,
+  "ndcg@k_ci95_lo": 0.995151954984549,
+  "ndcg@k_ci95_hi": 0.999517825025223,
+  "faith_mean": 0.46079078172837185,
+  "faith_ci95_lo": 0.4348016611470933,
+  "faith_ci95_hi": 0.4872038230202113,
+  "ndcg@k_median": 1.0,
+  "faith_median": 0.4518026152094782,
+  "ndcg@k_std": 0.010997315955490885,
+  "faith_std": 0.13291064161635546,
+  "bootstrap_iters": 2000,
+  "iqr_k": 1.5,
+  "z_thresh": 3.0,
+  "faith_high_thr": 0.5,
+  "faith_mid_thr": 0.25
+}

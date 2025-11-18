@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-08-13",
+  "query_id": "Define_summarize_challenges_of_explainability_in_ai_according_to_the_corpus___de",
+  "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[3] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[2] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[5] 1910.10683v4.pdf (2023)\n. By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.\n\n[6] 2201.05273v4.pdf (2022)\n. mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa\n\n[7] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[2] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nFor example, PSAAM (Steffensen, Dufault-Thompson, and Zhang 2016) is software designed for the curation and analysis of metabolic models, yet a biologist researching metabolism might find it challenging to integrate this analytical method into common data analysis tools like Excel or R. With the rise of generative AI, new opportunities have emerged in statistics and data science. LLM-based data agents are gradually addressing existing challenges while introducing a new paradigm for approaching d\n\n[8] 2205.01068v4.pdf (2022)\n2Exceptions include work by EleutherAI, who released dense models up to 20B in size, Salesforce, and Meta AI, who released dense models up to 13B and sparse models up to 1.1T. There is also ongoing work from the BigScience workshop ( huggingface.co/), which aims to open source very large multilingual language models and datasets. progress on improving known challenges in areas such as robustness, bias, and toxicity.\n\n[1] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[6] 2201.05273v4.pdf (2022)\n. Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.\n\n[9] N18-1202.pdf (2018)\nIn this paper, we introduce a new type of deep contextualized word representation that directly addresses both challenges, can be easily integrated into existing models, and significantly improves the state of the art in every considered case across a range of challenging language understanding problems. Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence. . We use vectors derived from a\n\n[7] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[3] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[10] 1304.1106v1.pdf (1990)\n. Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime\n\n[3] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[7] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2303.18223v16.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] 2210.07321v4.pdf (2023)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 1910.10683v4.pdf (2023)\n[6] 2201.05273v4.pdf (2022)\n[7] 0712.3329v1.pdf (2007)\n[8] 2205.01068v4.pdf (2022)\n[9] N18-1202.pdf (2018)\n[10] 1304.1106v1.pdf (1990)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5005010366439819,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.563698559999466,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.5242631435394287,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.618676722049713,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4927810728549957,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.634791634976864,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.5016598105430603,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.180667772889137,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.4514942169189453,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.471678972244263,
+      "relevance": 3,
+      "rank": 5,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.41183117032051086,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.649755649268627,
+      "relevance": 3,
+      "rank": 6,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.43854930996894836,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.965367488563061,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1910.10683v4.pdf::2023::c685c979c854"
+    },
+    {
+      "score": 0.47029876708984375,
+      "text": ". mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.171560525894165,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2201.05273v4.pdf::2022::9316daacef76"
+    },
+    {
+      "score": 0.6082342267036438,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.193620130419731,
+      "relevance": 3,
+      "rank": 9,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.5633673071861267,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.220555678009987,
+      "relevance": 3,
+      "rank": 10,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.4197171926498413,
+      "text": "For example, PSAAM (Steffensen, Dufault-Thompson, and Zhang 2016) is software designed for the curation and analysis of metabolic models, yet a biologist researching metabolism might find it challenging to integrate this analytical method into common data analysis tools like Excel or R. With the rise of generative AI, new opportunities have emerged in statistics and data science. LLM-based data agents are gradually addressing existing challenges while introducing a new paradigm for approaching d",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.285581260919571,
+      "relevance": 3,
+      "rank": 11,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::3656d6ba434e"
+    },
+    {
+      "score": 0.38355565071105957,
+      "text": "2Exceptions include work by EleutherAI, who released dense models up to 20B in size, Salesforce, and Meta AI, who released dense models up to 13B and sparse models up to 1.1T. There is also ongoing work from the BigScience workshop ( huggingface.co/), which aims to open source very large multilingual language models and datasets. progress on improving known challenges in areas such as robustness, bias, and toxicity.",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.4347445368766785,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2205.01068v4.pdf::2022::daef66d2ddcc"
+    },
+    {
+      "score": 0.4312809705734253,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.60249188542366,
+      "relevance": 3,
+      "rank": 13,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.4627784788608551,
+      "text": ". Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.678053162992001,
+      "relevance": 3,
+      "rank": 14,
+      "id": "2201.05273v4.pdf::2022::bcb2357ff742"
+    },
+    {
+      "score": 0.39671313762664795,
+      "text": "In this paper, we introduce a new type of deep contextualized word representation that directly addresses both challenges, can be easily integrated into existing models, and significantly improves the state of the art in every considered case across a range of challenging language understanding problems. Our representations differ from traditional word type embeddings in that each token is assigned a representation that is a function of the entire input sentence. . We use vectors derived from a ",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.736038237810135,
+      "relevance": 3,
+      "rank": 15,
+      "id": "N18-1202.pdf::2018::995dd81662fb"
+    },
+    {
+      "score": 0.5722028017044067,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.78079280257225,
+      "relevance": 3,
+      "rank": 16,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.4308011829853058,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.804629020392895,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.40760350227355957,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.839583337306976,
+      "relevance": 3,
+      "rank": 18,
+      "id": "1304.1106v1.pdf::1990::6ce03695c520"
+    },
+    {
+      "score": 0.4392656683921814,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.901034012436867,
+      "relevance": 3,
+      "rank": 19,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.5245851278305054,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define summarize challenges of explainability in ai according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.914713770151138,
+      "relevance": 3,
+      "rank": 20,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    }
+  ],
+  "model_output": "Define: Explainability in AI\n\nThe challenges of explainability in AI have been a significant focus due to the complex nature of artificial intelligence systems and their decision-making processes [7]. According to the corpus, explainability refers to the ability for humans to comprehend the internal workings of an AI system, especially its reasoning and decision-making processes. This understanding is crucial for building trust in AI systems, ensuring accountability, and allowing for intervention when necessary [1][2][3]. Theoretical Foundations:\n\nThe foundations of explainability in AI can be traced back to the Turing Test, proposed in the 1950s, which evaluates a machine's ability to imitate human intelligence [7]. Over time, researchers have emphasized the importance of understanding and interpreting AI systems beyond mere mimicry of human behavior. To address this need, several approaches have been developed, such as model-agnostic methods, model-specific methods, and post-hoc explanation techniques [3]. Evolution across Publications:\n(1950s; described in 2007 PDF [7]) The Turing Test was proposed as a benchmark for assessing AI's ability to replicate human intelligence. (1990; described in 1990 PDF [10]) Early efforts focused on transparency and verifiability in AI systems, ensuring that they could be experimentally validated by outsiders. (2007; described in 2007 PDF [7]) A survey explored universal intelligence, including the ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents. (2018; described in 2018 PDF [9]) The introduction of deep contextualized word representation addressed both the challenges of understanding complex language structures and improving the state-of-the-art in various language understanding problems. (2022; described in 2022 PDF [6][8]) Controllability, verifiability, and factuality have been emphasized to make summarization models produce more understandable and reliable outputs. (2023; described in 2023 PDF [3][5]) Recent research focuses on integrating sociotechnical and human-centric considerations into explainability studies, ensuring that AI systems are developed ethically, lawfully, and robustly. References:\n[1] 2303.18223v16.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] 2210.07321v4.pdf (2023)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 1910.10683v4.pdf (2023)\n[6] 2201.05273v4.pdf (2022)\n[7] 0712.3329v1.pdf (2007)\n[8] 2205.01068v4.pdf (2022)\n[9] N18-1202.pdf (2018)\n[10] 1304.1106v1.pdf (1990)"
+}

@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_the_influence_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.2190812610136354,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2010s": 2,
+    "2020s": 7,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

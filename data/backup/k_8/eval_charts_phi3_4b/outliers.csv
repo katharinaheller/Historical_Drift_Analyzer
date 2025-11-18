@@ -1,0 +1,2 @@
+query_id,ndcg@k,faithfulness,citation_hit_rate,dominant_decade,model
+Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_the_emergenc,0.9984522679129527,0.3977364595052576,1.0,2020,phi3_4b

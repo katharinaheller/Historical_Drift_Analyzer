@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_summarize_how_reinforcement_learning_extended_adaptive_behavior_modeling_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.31167890511365975,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 7,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

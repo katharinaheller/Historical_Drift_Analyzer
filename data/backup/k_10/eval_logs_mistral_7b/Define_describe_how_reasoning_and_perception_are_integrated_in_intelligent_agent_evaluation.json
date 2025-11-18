@@ -1,0 +1,14 @@
+{
+  "query_id": "Define_describe_how_reasoning_and_perception_are_integrated_in_intelligent_agent",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7615354026780163,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2010s": 2,
+    "2020s": 5,
+    "2000s": 1,
+    "1990s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

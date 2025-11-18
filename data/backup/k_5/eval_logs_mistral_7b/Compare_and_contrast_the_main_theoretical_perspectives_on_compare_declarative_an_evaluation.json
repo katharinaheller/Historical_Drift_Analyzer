@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_compare_declarative_an",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.31242658825482356,
+  "dominant_decade": 1990,
+  "decade_counts": {
+    "2020s": 2,
+    "1990s": 2,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T11-22-12",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.\n\nContext snippets:\n[1] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[2] 3641289.pdf (2024)\n. As for new adversarial datasets, Wang et al. introduced AdvGLUE++ benchmark data for assessing adversarial robustness and implemented a new evaluation protocol to scrutinize machine ethics via jailbreaking system prompts.. 3.2.2 Ethics and Bias.\n\n[3] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[2] 3641289.pdf (2024)\n. Their evaluation expanded beyond the typical trustworthiness concerns to include eight critical aspects: toxicity, stereotype bias, adversarial and out-of-distribution robustness, robustness to adversarial demonstrations, privacy, machine ethics, and fairness. DecodingTrust's investigation employs an array of newly constructed scenarios, tasks, and metrics. . They revealed that while GPT-4 often showcases improved trustworthiness over GPT-3.5 in standard evaluations, it is simultaneously more\n\n[2] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[4] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[1] 2005.14165v4.pdf (2020)\nFinally, given the broad spectrum of capabilities displayed by GPT-3, we discuss concerns about bias, fairness, and broader societal impacts, and attempt a preliminary analysis of GPT-3's characteristics in this regard.. The remainder of this paper is organized as follows. In Section 2, we describe our approach and methods for training GPT-3 and evaluating it. . Section 3 presents results on the full range of tasks in the zero-, one- and few-shot settings. . Section 4 addresses questions of data\n\n[4] 2210.07321v4.pdf (2023)\nThe EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.\n\n[5] 0311031v1.pdf (2018)\n. Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to\n\n[2] 3641289.pdf (2024)\nWith the introduction of ChatGPT and GPT-4, there have been a number of research efforts aiming at evaluating ChatGPT and other LLMs from different aspects (Figure 2), encompassing a range of factors such as natural language tasks, reasoning, robustness, trustworthiness, medical applications, and ethical considerations. Despite these efforts, a comprehensive overview capturing the entire gamut of evaluations is still lacking.\n\n[4] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[4] 2210.07321v4.pdf (2023)\nWhile NLG models may make detection of automated coordinated inauthentic activity more difficult, abuse often still requires bypassing existing defenses such as IP reputation checks and CAPTCHA Future threat modeling and observed cyberattacks will certainly augment the threat models discussed in this section, but we have now provided sufficient motivation for exploring the defensive capabilities offered by machine generated text detection. In the next section we will discuss the current status o\n\n[1] 2005.14165v4.pdf (2020)\nHowever, a major limitation to this approach is that while the architecture is task-agnostic, there is still a need for task-specific datasets and task-specific fine-tuning: to achieve strong performance on a desired task typically requires fine-tuning on a dataset of thousands to hundreds of thousands of examples specific to that task. Removing this limitation would be desirable, for several reasons. . Second, the potential to exploit spurious correlations in training data fundamentally grows w\n\n[4] 2210.07321v4.pdf (2023)\n. An individual or group of motivated individuals may register social media accounts to be controlled by automation tools, or use a common bot to post from their own account, in order to generate a large volume of messages targeting a particular individual or community. SMS and phone call automation tools may facilitate such approaches outside social media as well. . The motivations of threat actors engaging in such behaviour may range from personal grudges to political objectives. . Online comm\n\n[2] 3641289.pdf (2024)\nIn addition, LLMs like GPT-3 were found to have moral biases in terms of the Moral Foundation theory; The study conducted by reveals that existing LMs have potential in ethical judgment, but still need improvement. proposes a Chinese conversational bias evaluation dataset CHBias, discovers bias risks in pre-trained models, and explores debiasing methods. Moreover, in the assessment of GPT-4 alignment, discovered a systematic bias. . ChatGPT is also observed to exhibit somewhat bias on cultural v\n\n[4] 2210.07321v4.pdf (2023)\n. While a completely exhaustive list of all possible future malicious applications of NLG models is not possible, the threats outlined here span a wide range of tangible dangers at this point in time, representing valuable areas of future investigation for preemptive ethical defensive research. As previously mentioned, threat modeling is iterative, and it is hoped that these threat models should serve as the foundation for future work in improving security against machine generated text. . 3.2.1\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The barriers to data analysis primarily exist in the following areas: •\nLack of systematic statistical training: Individuals without a background in statistics may find it challenging to understand which types of analysis are feasible, even when data is presented to them. As data and models become increasingly complex, gaining a solid understanding of current statistical techniques typically requires at least a Master's level of statistical training. . •\nSoftware limitation: Simple data analys\n\n[4] 2210.07321v4.pdf (2023)\n. Among these should be measures to protect against social media abuse more broadly, including detection of account automation, and scrutiny of coordinated inauthentic activity for content amplification. Investigations by disinformation researchers, such as those carried out on Twitter, are likely to remain relevant. . 3.3.2 Commercial Influence Campaigns. . In commercial influence campaigns, the goal is to influence individuals in a manner that commercially benefits the threat actor.\n\n[4] 2210.07321v4.pdf (2023)\n. (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nWe explore current trends in the design of LLM-based frameworks, detailing essential features such as planning, reasoning, reflection, multi-agent collaboration, user interface, knowledge integration, and system design, which enable agents to address data-centric problems with minimal human intervention. Furthermore, we analyze several case studies to demonstrate the practical applications of various data agents in realworld scenarios. . Finally, we identify key challenges and propose future res\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2005.14165v4.pdf (2020)\n[2] 3641289.pdf (2024)\n[3] Expert_Systems.pdf (2016)\n[4] 2210.07321v4.pdf (2023)\n[5] 0311031v1.pdf (2018)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.3797861933708191,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -5.303001239895821,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.4459715187549591,
+      "text": ". As for new adversarial datasets, Wang et al. introduced AdvGLUE++ benchmark data for assessing adversarial robustness and implemented a new evaluation protocol to scrutinize machine ethics via jailbreaking system prompts.. 3.2.2 Ethics and Bias.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -5.800859682261944,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::42b119384bd6"
+    },
+    {
+      "score": 0.39588141441345215,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -5.9773810505867,
+      "relevance": 3,
+      "rank": 3,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.41226011514663696,
+      "text": ". Their evaluation expanded beyond the typical trustworthiness concerns to include eight critical aspects: toxicity, stereotype bias, adversarial and out-of-distribution robustness, robustness to adversarial demonstrations, privacy, machine ethics, and fairness. DecodingTrust's investigation employs an array of newly constructed scenarios, tasks, and metrics. . They revealed that while GPT-4 often showcases improved trustworthiness over GPT-3.5 in standard evaluations, it is simultaneously more ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.288543209433556,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::fe77b56619e1"
+    },
+    {
+      "score": 0.44036298990249634,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.377682909369469,
+      "relevance": 3,
+      "rank": 5,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.45546776056289673,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.421876773238182,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.5258955955505371,
+      "text": "Finally, given the broad spectrum of capabilities displayed by GPT-3, we discuss concerns about bias, fairness, and broader societal impacts, and attempt a preliminary analysis of GPT-3's characteristics in this regard.. The remainder of this paper is organized as follows. In Section 2, we describe our approach and methods for training GPT-3 and evaluating it. . Section 3 presents results on the full range of tasks in the zero-, one- and few-shot settings. . Section 4 addresses questions of data",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.479722857475281,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2005.14165v4.pdf::2020::e2981918a7fc"
+    },
+    {
+      "score": 0.4417482018470764,
+      "text": "The EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.789880380034447,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::44d5f016167a"
+    },
+    {
+      "score": 0.5067832469940186,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.856095612049103,
+      "relevance": 3,
+      "rank": 9,
+      "id": "0311031v1.pdf::2018::62810bd2dcad"
+    },
+    {
+      "score": 0.3383679986000061,
+      "text": "With the introduction of ChatGPT and GPT-4, there have been a number of research efforts aiming at evaluating ChatGPT and other LLMs from different aspects (Figure 2), encompassing a range of factors such as natural language tasks, reasoning, robustness, trustworthiness, medical applications, and ethical considerations. Despite these efforts, a comprehensive overview capturing the entire gamut of evaluations is still lacking.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.989018306136131,
+      "relevance": 3,
+      "rank": 10,
+      "id": "3641289.pdf::2024::8f80579deadc"
+    },
+    {
+      "score": 0.474948525428772,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.989925712347031,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.4575130343437195,
+      "text": "While NLG models may make detection of automated coordinated inauthentic activity more difficult, abuse often still requires bypassing existing defenses such as IP reputation checks and CAPTCHA Future threat modeling and observed cyberattacks will certainly augment the threat models discussed in this section, but we have now provided sufficient motivation for exploring the defensive capabilities offered by machine generated text detection. In the next section we will discuss the current status o",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.992979243397713,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2210.07321v4.pdf::2023::2c54cf54eb99"
+    },
+    {
+      "score": 0.3443976044654846,
+      "text": "However, a major limitation to this approach is that while the architecture is task-agnostic, there is still a need for task-specific datasets and task-specific fine-tuning: to achieve strong performance on a desired task typically requires fine-tuning on a dataset of thousands to hundreds of thousands of examples specific to that task. Removing this limitation would be desirable, for several reasons. . Second, the potential to exploit spurious correlations in training data fundamentally grows w",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -6.995757803320885,
+      "relevance": 3,
+      "rank": 13,
+      "id": "2005.14165v4.pdf::2020::13078feeea03"
+    },
+    {
+      "score": 0.40850234031677246,
+      "text": ". An individual or group of motivated individuals may register social media accounts to be controlled by automation tools, or use a common bot to post from their own account, in order to generate a large volume of messages targeting a particular individual or community. SMS and phone call automation tools may facilitate such approaches outside social media as well. . The motivations of threat actors engaging in such behaviour may range from personal grudges to political objectives. . Online comm",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.113302767276764,
+      "relevance": 3,
+      "rank": 14,
+      "id": "2210.07321v4.pdf::2023::4dee087defe8"
+    },
+    {
+      "score": 0.40198951959609985,
+      "text": "In addition, LLMs like GPT-3 were found to have moral biases in terms of the Moral Foundation theory; The study conducted by reveals that existing LMs have potential in ethical judgment, but still need improvement. proposes a Chinese conversational bias evaluation dataset CHBias, discovers bias risks in pre-trained models, and explores debiasing methods. Moreover, in the assessment of GPT-4 alignment, discovered a systematic bias. . ChatGPT is also observed to exhibit somewhat bias on cultural v",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.122450456023216,
+      "relevance": 3,
+      "rank": 15,
+      "id": "3641289.pdf::2024::afc702007d9c"
+    },
+    {
+      "score": 0.47576215863227844,
+      "text": ". While a completely exhaustive list of all possible future malicious applications of NLG models is not possible, the threats outlined here span a wide range of tangible dangers at this point in time, representing valuable areas of future investigation for preemptive ethical defensive research. As previously mentioned, threat modeling is iterative, and it is hoped that these threat models should serve as the foundation for future work in improving security against machine generated text. . 3.2.1",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.195082955062389,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2210.07321v4.pdf::2023::33c458df5ccd"
+    },
+    {
+      "score": 0.35909268260002136,
+      "text": ". The barriers to data analysis primarily exist in the following areas: •\nLack of systematic statistical training: Individuals without a background in statistics may find it challenging to understand which types of analysis are feasible, even when data is presented to them. As data and models become increasingly complex, gaining a solid understanding of current statistical techniques typically requires at least a Master's level of statistical training. . •\nSoftware limitation: Simple data analys",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.265384681522846,
+      "relevance": 3,
+      "rank": 17,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::eb7354eac5a9"
+    },
+    {
+      "score": 0.3940903842449188,
+      "text": ". Among these should be measures to protect against social media abuse more broadly, including detection of account automation, and scrutiny of coordinated inauthentic activity for content amplification. Investigations by disinformation researchers, such as those carried out on Twitter, are likely to remain relevant. . 3.3.2 Commercial Influence Campaigns. . In commercial influence campaigns, the goal is to influence individuals in a manner that commercially benefits the threat actor.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.336897678673267,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::67fe60b625cb"
+    },
+    {
+      "score": 0.5362038612365723,
+      "text": ". (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.396846652030945,
+      "relevance": 3,
+      "rank": 19,
+      "id": "2210.07321v4.pdf::2023::97b789622b90"
+    },
+    {
+      "score": 0.45481956005096436,
+      "text": "We explore current trends in the design of LLM-based frameworks, detailing essential features such as planning, reasoning, reflection, multi-agent collaboration, user interface, knowledge integration, and system design, which enable agents to address data-centric problems with minimal human intervention. Furthermore, we analyze several case studies to demonstrate the practical applications of various data agents in realworld scenarios. . Finally, we identify key challenges and propose future res",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss ethical tensions between automation and accountability., noting origins only when explicitly stated.",
+      "final_score": -7.408505231142044,
+      "relevance": 3,
+      "rank": 20,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::03120c6c5d13"
+    }
+  ]
+}

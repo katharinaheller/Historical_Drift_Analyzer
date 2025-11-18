@@ -1,7 +1,0 @@
-{
-  "model_name": "llama3_8b",
-  "files": 20,
-  "evaluated_files": 10,
-  "mean_ndcg@k": 1.0,
-  "mean_faithfulness": 0.5313867048816344
-}

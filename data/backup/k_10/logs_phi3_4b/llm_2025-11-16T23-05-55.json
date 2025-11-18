@@ -1,0 +1,191 @@
+{
+  "timestamp": "2025-11-16T23-05-55",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_explain_the_difference",
+  "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] NatureDeepReview.pdf (2025)\n. Among other things, they can learn to output The future of deep learning Unsupervised learning91–98 had a catalytic effect in reviving interest in deep learning, but has since been overshadowed by the successes of purely supervised learning. Although we have not focused on it in this Review, we expect unsupervised learning to become far more important in the longer term. . Human and animal learning is largely unsupervised: we discover the structure of the world by observing it, not by being to\n\n[2] 2303.18223v16.pdf (2025)\nFurther, they introduced a more formal claim for this idea: \"Since the (task-specific) supervised objective is the same as the unsupervised (language modeling) objective but only evaluated on a subset of the sequence, the global minimum of the unsupervised objective is also the global minimum of the supervised objective (for various tasks)\" 15. A basic understanding of this claim is that each (NLP) task can be considered as the word prediction problem based on a subset of the world text. . Thus,\n\n[3] D14-1162.pdf (2014)\nOf course a large number of functions satisfy these properties, but one class of functions that we found to work well can be parameterized as, Because all unsupervised methods for learning word vectors are ultimately based on the occurrence statistics of a corpus, there should be commonalities between the models. Nevertheless, certain models remain somewhat opaque in this regard, particularly the recent window-based methods like skip-gram and ivLBL. . Therefore, in this subsection we show how th\n\n[4] 1910.10683v4.pdf (2023)\n. In applications of transfer learning to computer vision (Oquab et al., 2014; Jia et al., 2014; Huh et al., 2016; Yosinski et al., 2014), pre-training is typically done via supervised learning on a large labeled data set like ImageNet (Russakovsky et al., 2015; Deng et al., 2009). In contrast, modern techniques for transfer learning in NLP often pre-train using unsupervised learning on unlabeled data.\n\n[5] 0311031v1.pdf (2018)\nRelative probabilities of inferences may be calculated strictly in 3The technique that has been developed in the SP models has advantages compared with standard techniques for dynamic programming: it can process arbitrarily long patterns without excessive demands on memory, it can find many alternative matches, and the 'depth' or thoroughness of searching can be determined by the user. • . Unsupervised learning.\n\n[3] D14-1162.pdf (2014)\nThe result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi\n\n[5] 0311031v1.pdf (2018)\n. In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.\n\n[6] 2005.14165v4.pdf (2020)\nThird, humans do not require large supervised datasets to learn most language tasks – a brief directive in natural language (e.g. \"please tell me if this sentence describes something happy or something sad\") or at most a tiny number of demonstrations (e.g. \"here are two examples of people acting brave; please give a third example of bravery\") is often Figure 1.1: Language model meta-learning. During unsupervised pre-training, a language model develops a broad set of skills and pattern recognitio\n\n[7] 2201.05273v4.pdf (2022)\n. To this end, Gunel et al. combined the cross-entropy loss with a supervised contrastive learning loss that pushes the words from the same class close and the words from different classes further apart.. EVALUATION AND RESOURCES In this section, we will discuss several commonly used evaluation metrics and resources with respect to PLMs for text generation.\n\n[1] NatureDeepReview.pdf (2025)\n. This paper introduced a novel and effective way of training very deep neural networks by pre-training one hidden layer at a time using the unsupervised learning procedure for restricted Boltzmann machines.. 33. Bengio, Y., Lamblin, P., Popovici, D. & Larochelle, H. Greedy layer-wise training of deep networks. . In Proc. . Advances in Neural Information Processing Systems 19 153–160. . This report demonstrated that the unsupervised pre-training method introduced in ref. . 32 significantly impro\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] NatureDeepReview.pdf (2025)\n[2] 2303.18223v16.pdf (2025)\n[3] D14-1162.pdf (2014)\n[4] 1910.10683v4.pdf (2023)\n[5] 0311031v1.pdf (2018)\n[6] 2005.14165v4.pdf (2020)\n[7] 2201.05273v4.pdf (2022)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.40602776408195496,
+      "text": ". Among other things, they can learn to output The future of deep learning Unsupervised learning91–98 had a catalytic effect in reviving interest in deep learning, but has since been overshadowed by the successes of purely supervised learning. Although we have not focused on it in this Review, we expect unsupervised learning to become far more important in the longer term. . Human and animal learning is largely unsupervised: we discover the structure of the world by observing it, not by being to",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": 0.33081889152526855,
+      "relevance": 3,
+      "rank": 1,
+      "id": "NatureDeepReview.pdf::2025::b33d6db46333"
+    },
+    {
+      "score": 0.4288845658302307,
+      "text": "Further, they introduced a more formal claim for this idea: \"Since the (task-specific) supervised objective is the same as the unsupervised (language modeling) objective but only evaluated on a subset of the sequence, the global minimum of the unsupervised objective is also the global minimum of the supervised objective (for various tasks)\" 15. A basic understanding of this claim is that each (NLP) task can be considered as the word prediction problem based on a subset of the world text. . Thus,",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -0.3223634213209152,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2303.18223v16.pdf::2025::04076e4b3e04"
+    },
+    {
+      "score": 0.4254951477050781,
+      "text": "Of course a large number of functions satisfy these properties, but one class of functions that we found to work well can be parameterized as, Because all unsupervised methods for learning word vectors are ultimately based on the occurrence statistics of a corpus, there should be commonalities between the models. Nevertheless, certain models remain somewhat opaque in this regard, particularly the recent window-based methods like skip-gram and ivLBL. . Therefore, in this subsection we show how th",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -1.3246567845344543,
+      "relevance": 3,
+      "rank": 3,
+      "id": "D14-1162.pdf::2014::872597d3a9db"
+    },
+    {
+      "score": 0.3977075219154358,
+      "text": ". In applications of transfer learning to computer vision (Oquab et al., 2014; Jia et al., 2014; Huh et al., 2016; Yosinski et al., 2014), pre-training is typically done via supervised learning on a large labeled data set like ImageNet (Russakovsky et al., 2015; Deng et al., 2009). In contrast, modern techniques for transfer learning in NLP often pre-train using unsupervised learning on unlabeled data.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -1.7886022180318832,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1910.10683v4.pdf::2023::2aa45676f957"
+    },
+    {
+      "score": 0.3942071795463562,
+      "text": "Relative probabilities of inferences may be calculated strictly in 3The technique that has been developed in the SP models has advantages compared with standard techniques for dynamic programming: it can process arbitrarily long patterns without excessive demands on memory, it can find many alternative matches, and the 'depth' or thoroughness of searching can be determined by the user. • . Unsupervised learning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.036992624402046,
+      "relevance": 3,
+      "rank": 5,
+      "id": "0311031v1.pdf::2018::a5df5ebd8067"
+    },
+    {
+      "score": 0.441872239112854,
+      "text": "The result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.135915607213974,
+      "relevance": 3,
+      "rank": 6,
+      "id": "D14-1162.pdf::2014::a47cb0a05267"
+    },
+    {
+      "score": 0.42544612288475037,
+      "text": ". In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.355188585817814,
+      "relevance": 3,
+      "rank": 7,
+      "id": "0311031v1.pdf::2018::eeca8cb55b8c"
+    },
+    {
+      "score": 0.46228158473968506,
+      "text": "Third, humans do not require large supervised datasets to learn most language tasks – a brief directive in natural language (e.g. \"please tell me if this sentence describes something happy or something sad\") or at most a tiny number of demonstrations (e.g. \"here are two examples of people acting brave; please give a third example of bravery\") is often Figure 1.1: Language model meta-learning. During unsupervised pre-training, a language model develops a broad set of skills and pattern recognitio",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.404000908136368,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2005.14165v4.pdf::2020::f046c9059374"
+    },
+    {
+      "score": 0.4346751570701599,
+      "text": ". To this end, Gunel et al. combined the cross-entropy loss with a supervised contrastive learning loss that pushes the words from the same class close and the words from different classes further apart.. EVALUATION AND RESOURCES In this section, we will discuss several commonly used evaluation metrics and resources with respect to PLMs for text generation.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.1339312940835953,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2201.05273v4.pdf::2022::6f62650bd6aa"
+    },
+    {
+      "score": 0.44418027997016907,
+      "text": ". This paper introduced a novel and effective way of training very deep neural networks by pre-training one hidden layer at a time using the unsupervised learning procedure for restricted Boltzmann machines.. 33. Bengio, Y., Lamblin, P., Popovici, D. & Larochelle, H. Greedy layer-wise training of deep networks. . In Proc. . Advances in Neural Information Processing Systems 19 153–160. . This report demonstrated that the unsupervised pre-training method introduced in ref. . 32 significantly impro",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the difference between supervised and unsupervised learning in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.3630478903651237,
+      "relevance": 3,
+      "rank": 10,
+      "id": "NatureDeepReview.pdf::2025::983b7f706c04"
+    }
+  ],
+  "model_output": "Supervised and unsupervised learning can be compared and contrasted as follows:\n\n1. In supervised learning, a labeled dataset is provided, which contains both input data and the desired outputs. The goal is to learn a mapping function that can predict the correct output for new inputs [1], [2], [4]. An example of this is transfer learning in computer vision where models are pre-trained on large labeled datasets like ImageNet [4]. 2. In contrast, unsupervised learning involves learning from an unlabeled dataset without explicit outputs provided. The goal is to find patterns or structures within the data itself [1], [3], [5]. A notable example of this is the GloVe model, which learns word representations through global log-bilinear regression on unsupervised data [3]. 3. According to some researchers, each NLP task can be considered as a word prediction problem based on a subset of the world text, suggesting a connection between supervised and unsupervised learning objectives [2]. However, it's important to note that while the global minimum of the unsupervised objective is also the global minimum of the supervised objective for various tasks, unsupervised learning has been overshadowed by the successes of purely supervised learning [2]. 4. The paper introducing a novel way of training deep neural networks uses unsupervised learning during pre-training, demonstrating that this method significantly improves the performance of very deep neural networks [1]. References:\n[1] NatureDeepReview.pdf (2025)\n[2] 2303.18223v16.pdf (2025)\n[3] D14-1162.pdf (2014)\n[4] 1910.10683v4.pdf (2023)\n[5] 0311031v1.pdf (2018)"
+}

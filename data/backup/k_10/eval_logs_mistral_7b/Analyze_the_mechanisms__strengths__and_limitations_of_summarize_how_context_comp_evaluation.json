@@ -1,0 +1,12 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_summarize_how_context_comp",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.8008731368705686,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

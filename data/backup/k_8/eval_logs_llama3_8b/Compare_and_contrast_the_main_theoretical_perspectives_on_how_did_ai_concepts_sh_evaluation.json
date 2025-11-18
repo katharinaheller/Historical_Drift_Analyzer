@@ -1,0 +1,14 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_how_did_ai_concepts_sh",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.437875349595273,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2020s": 1,
+    "2010s": 5,
+    "1990s": 1,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

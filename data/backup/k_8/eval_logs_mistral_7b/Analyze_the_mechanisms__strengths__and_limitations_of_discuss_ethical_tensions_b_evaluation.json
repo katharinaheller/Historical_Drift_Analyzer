@@ -1,0 +1,12 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_discuss_ethical_tensions_b",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6556705636499685,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 6,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-11-17T14-06-43",
+  "query_id": "Define_describe_how_natural_language_understanding_is_conceptualized_in_ai_liter",
+  "query": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. The initial objective behind the development of language models, particularly large language models, was to enhance performance on natural language processing tasks, encompassing both understanding and generation. Consequently, the majority of evaluation research has been primarily focused on natural language tasks. . Table 2 summarizes the evaluation aspects of existing research, and we mainly highlight their conclusions in the following.2 3.1.1 Natural Language Understanding. . Natural langu\n\n[2] NatureDeepReview.pdf (2025)\nPerhaps more surprisingly, deep learning has produced extremely promising results for various tasks in natural language understanding14, particularly topic classification, sentiment analysis, question answering15 and lan guage translation16,17.\n\n[3] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[5] 2201.05273v4.pdf (2022)\n. This comprehensive survey is intended to help researchers interested in text generation problems to learn the core concepts, the main techniques and the latest developments in this area based on PLMs. INTRODUCTION Text generation, also known as natural language generation, has been one of the most important sub-fields in natural language processing (NLP). . It aims to produce plausible and readable text in a human language, from the input data in various forms including text, image, table and\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] NatureDeepReview.pdf (2025)\n[3] 2303.18223v16.pdf (2025)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 2201.05273v4.pdf (2022)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5109204053878784,
+      "text": ". The initial objective behind the development of language models, particularly large language models, was to enhance performance on natural language processing tasks, encompassing both understanding and generation. Consequently, the majority of evaluation research has been primarily focused on natural language tasks. . Table 2 summarizes the evaluation aspects of existing research, and we mainly highlight their conclusions in the following.2 3.1.1 Natural Language Understanding. . Natural langu",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": 0.42986440658569336,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::31a285825972"
+    },
+    {
+      "score": 0.5006000995635986,
+      "text": "Perhaps more surprisingly, deep learning has produced extremely promising results for various tasks in natural language understanding14, particularly topic classification, sentiment analysis, question answering15 and lan guage translation16,17.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.5566053986549377,
+      "relevance": 3,
+      "rank": 2,
+      "id": "NatureDeepReview.pdf::2025::459c724f0b53"
+    },
+    {
+      "score": 0.5615031719207764,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.64629727602005,
+      "relevance": 3,
+      "rank": 3,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.46606600284576416,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.18757364153862,
+      "relevance": 3,
+      "rank": 4,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.51939857006073,
+      "text": ". This comprehensive survey is intended to help researchers interested in text generation problems to learn the core concepts, the main techniques and the latest developments in this area based on PLMs. INTRODUCTION Text generation, also known as natural language generation, has been one of the most important sub-fields in natural language processing (NLP). . It aims to produce plausible and readable text in a human language, from the input data in various forms including text, image, table and ",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define describe how natural language understanding is conceptualized in ai literature., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.2973510324954987,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2201.05273v4.pdf::2022::8552561daf6e"
+    }
+  ],
+  "model_output": "Natural Language Understanding (NLU) in Artificial Intelligence (AI) is conceptualized as the ability of AI systems to comprehend, interpret, and make sense of human language [1]. The theoretical foundations of NLU are grounded in computational linguistics, which studies the mathematical and algorithmic aspects of natural language [3]. The initial objective behind the development of language models was to enhance performance on natural language processing tasks, including understanding and generation [1]. The Turing Test, proposed in the 1950s, marked a significant milestone in human efforts to develop AI systems capable of comprehending language [3]. Deep learning has shown promising results for various natural language understanding tasks such as topic classification, sentiment analysis, question answering, and language translation [2]. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision-language models (VLMs), have gained increasing recognition in recent years [4]. The evolution of definitions for NLU across publications can be traced back to the initial focus on natural language tasks and has expanded to encompass text generation and understanding as well as the integration of AI into various fields, such as statistics and data science [1, 4, 5]. References:\n[1] 3641289.pdf (2024)\n[2] NatureDeepReview.pdf (2025)\n[3] 2303.18223v16.pdf (2025)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 2201.05273v4.pdf (2022)"
+}

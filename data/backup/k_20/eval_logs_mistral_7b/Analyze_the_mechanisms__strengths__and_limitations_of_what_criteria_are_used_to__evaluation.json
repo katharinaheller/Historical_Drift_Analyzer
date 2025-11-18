@@ -1,0 +1,13 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_what_criteria_are_used_to_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5401475222326331,
+  "dominant_decade": 2000,
+  "decade_counts": {
+    "2000s": 10,
+    "2020s": 8,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

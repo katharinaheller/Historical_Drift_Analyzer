@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_summarize_how_neural_networks_redefined_ai_paradigms_after_2010___describ",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.46972438056406135,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 11,
+    "2010s": 9
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

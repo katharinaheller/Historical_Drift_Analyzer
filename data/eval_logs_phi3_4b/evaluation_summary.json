@@ -2,6 +2,6 @@
   "model_name": "phi3_4b",
   "files": 20,
   "evaluated_files": 10,
-  "mean_ndcg@k": 1.0,
-  "mean_faithfulness": 0.5814798338928212
+  "mean_ndcg@k": 0.9645558483001097,
+  "mean_faithfulness": 0.5060495959869938
 }

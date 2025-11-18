@@ -1,0 +1,14 @@
+{
+  "query_id": "Define_summarize_limitations_of_defining_intelligence_highlighted_in_the_corpus_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5525510085251532,
+  "dominant_decade": 2000,
+  "decade_counts": {
+    "2000s": 8,
+    "2010s": 5,
+    "2020s": 6,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

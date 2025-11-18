@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_summarize_how_symbolic_representation_enables_inference_in_ai___describe_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5937005388996477,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 4,
+    "1990s": 1
+  },
+  "citation_hit_rate": 0.9166666666666666,
+  "model_name": "phi3_4b"
+}

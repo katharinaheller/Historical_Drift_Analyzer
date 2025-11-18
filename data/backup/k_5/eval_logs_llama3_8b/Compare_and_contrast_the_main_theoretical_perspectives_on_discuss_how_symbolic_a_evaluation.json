@@ -1,0 +1,14 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_how_symbolic_a",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.32398799392155236,
+  "dominant_decade": 2000,
+  "decade_counts": {
+    "1990s": 1,
+    "2010s": 1,
+    "2000s": 2,
+    "2020s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

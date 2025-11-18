@@ -1,0 +1,11 @@
+{
+  "query_id": "Define_explain_how_explainable_ai_aligns_with_trustworthy_ai_principles___descri",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.792808479945075,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 10
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

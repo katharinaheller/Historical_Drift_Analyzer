@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T12-30-54",
+  "query_refined": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nSpecifically, we define an LLM-based data agent as an autonomous or semi-autonomous software system powered by LLMs, capable of understanding natural language instructions, planning and executing data-centric tasks, and interacting with users or external tools to accomplish complex objectivesfrom exploratory data analysis to machine learning model development. In this article, the terms \"LLM-based data science agent,\" \"LLM-based data agent,\" and \"data science agent\" are collectively referred to\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. ABSTRACT In recent years, data science agents powered by Large Language Models (LLMs), known as \"data agents,\" have shown significant potential to transform the traditional data analysis paradigm.\n\n[2] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nThe term \"Human-in-the-Loop\"indicates that humans can intervene in the data agent's workflow, such as modifying code in situations whereautomaticprocessesareinadequate.\"Self-Correcting\"referstotheagent'sabilitytoautomaticallyidentifyandcorrecterrorswithintheworkflowthroughreflection. Finally, \"Expandable\"denotes the data agent's capacity to incorporate customized tools or knowledge. . \"–\"indicates that the attribute is either not mentioned in the article or could not be observed from the provide\n\n[3] 1304.1083v1.pdf (1989)\n. Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nRecent research has focused on designing LLMbased data science agents (data agents) to automatically address data science tasks through natural language, as demonstrated by tools like ChatGPT-Advanced Data Analysis (ChatGPT-ADA) (OpenAI 2023), LAMBDA (Sun et al. 2024) and Colab Data Science Agent (Google 2025). The emergence of data agents offers a potential solution to the previously mentioned challenges, as they lower the entry barrier for users who lack programming or statistical knowledge.\n\n[4] 0712.3329v1.pdf (2007)\n. A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.\n\n[2] 0311031v1.pdf (2018)\nThat said, most applications that have been developed to date have a 'declarative' flavour and the ways in which the system may be applied to arithmetic or other mathematical operations have not yet been explored in any depth (but see Wolff ). This has a bearing on how the system may be developed for database applications, as will be discussed in Section 7. . Many problems in artificial intelligence are known to be intractable if one wishes to obtain the best possible answer. . But if one is con\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nWhile data agents are generally robust to variations in prompt phrasing and can reliably complete the intended analytical tasks, we observed notable differences in their reasoning processes and implementation details.\n\n[5] 3641289.pdf (2024)\nIn this section, we divide existing tasks into the following categories: natural language processing, robustness, ethics, biases and trustworthiness, social sciences, natural science and engineering, medical applications, agent applications (using LLMs as agents), and other applications.1 1Note that LLMs are evaluated in various tasks and the categorization in this paper is only one possible way for classification of these works. There are certainly other taxonomies.\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. On the other hand, End-to-end data agents (Qiao et al. 2023; Guo et al. 2024; Hong et al. 2024; Chi et al. 2024; Jiang et al. 2024; Li et al. 2024; Trirat, Jeong, and Hwang 2024; Grosnit et al. 2024) are designed to allow users to issue a single prompt that encompasses all requirements. In these cases, the agent employs planning, reasoning, and reflection to iteratively complete all tasks autonomously.\n\n[6] Expert_Systems.pdf (2016)\n. Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is\n\n[4] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[5] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[2] 0311031v1.pdf (2018)\nIt provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide\n\n[7] N18-1202.pdf (2018)\n. We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. A promising direction is to support the seamless export of an agent's actions (Sun et al. 2024), such as executed code, into IDEs like Jupyter Notebooks, which can serve as a bridge for smoother integration with conventional tools and workflows.\n\n[8] 1910.10683v4.pdf (2023)\nWe also introduce our approach for treating every problem as a text-to-text task and describe our \"Colossal Clean Crawled Corpus\" (C4), the Common Crawl-based data set we created as a source of unlabeled text data.. We refer to our model and framework as the \"Text-to-Text Transfer Transformer\" (T5). mechanism after each self-attention layer that attends to the output of the encoder. . The self-attention mechanism in the decoder also uses a form of autoregressive or causal selfattention, which on\n\n[9] D14-1162.pdf (2014)\nThe statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. If data agents can effectively harness domain-specific knowledge models, they have the potential to significantly advance statistical and data science research, enabling more sophisticated analyses and fostering deeper insights across scientific disciplines. Although the data agents have shown great potential in improving the accessibility of data analysis, there are still several challenges that need to be addressed for real-world adoption. . Tradeoff Between Hardware and Privacy. . First, de\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] 0311031v1.pdf (2018)\n[3] 1304.1083v1.pdf (1989)\n[4] 0712.3329v1.pdf (2007)\n[5] 3641289.pdf (2024)\n[6] Expert_Systems.pdf (2016)\n[7] N18-1202.pdf (2018)\n[8] 1910.10683v4.pdf (2023)\n[9] D14-1162.pdf (2014)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.5426174402236938,
+      "text": "Specifically, we define an LLM-based data agent as an autonomous or semi-autonomous software system powered by LLMs, capable of understanding natural language instructions, planning and executing data-centric tasks, and interacting with users or external tools to accomplish complex objectivesfrom exploratory data analysis to machine learning model development. In this article, the terms \"LLM-based data science agent,\" \"LLM-based data agent,\" and \"data science agent\" are collectively referred to ",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.476637452840805,
+      "relevance": 3,
+      "rank": 1,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::4701f38dbb41"
+    },
+    {
+      "score": 0.4599142074584961,
+      "text": ". ABSTRACT In recent years, data science agents powered by Large Language Models (LLMs), known as \"data agents,\" have shown significant potential to transform the traditional data analysis paradigm.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.7082711458206177,
+      "relevance": 3,
+      "rank": 2,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::9cf0f7df401d"
+    },
+    {
+      "score": 0.37793487310409546,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.253285184502602,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    },
+    {
+      "score": 0.3561554551124573,
+      "text": "The term \"Human-in-the-Loop\"indicates that humans can intervene in the data agent's workflow, such as modifying code in situations whereautomaticprocessesareinadequate.\"Self-Correcting\"referstotheagent'sabilitytoautomaticallyidentifyandcorrecterrorswithintheworkflowthroughreflection. Finally, \"Expandable\"denotes the data agent's capacity to incorporate customized tools or knowledge. . \"–\"indicates that the attribute is either not mentioned in the article or could not be observed from the provide",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.629639133810997,
+      "relevance": 3,
+      "rank": 4,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::c7bb785bc2b0"
+    },
+    {
+      "score": 0.36058321595191956,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.900652311742306,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1304.1083v1.pdf::1989::e330b10ef834"
+    },
+    {
+      "score": 0.43238818645477295,
+      "text": "Recent research has focused on designing LLMbased data science agents (data agents) to automatically address data science tasks through natural language, as demonstrated by tools like ChatGPT-Advanced Data Analysis (ChatGPT-ADA) (OpenAI 2023), LAMBDA (Sun et al. 2024) and Colab Data Science Agent (Google 2025). The emergence of data agents offers a potential solution to the previously mentioned challenges, as they lower the entry barrier for users who lack programming or statistical knowledge.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.0248062908649445,
+      "relevance": 3,
+      "rank": 6,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::4cf8061caba4"
+    },
+    {
+      "score": 0.4559985399246216,
+      "text": ". A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.232619971036911,
+      "relevance": 3,
+      "rank": 7,
+      "id": "0712.3329v1.pdf::2007::763164362c30"
+    },
+    {
+      "score": 0.3243861794471741,
+      "text": "That said, most applications that have been developed to date have a 'declarative' flavour and the ways in which the system may be applied to arithmetic or other mathematical operations have not yet been explored in any depth (but see Wolff ). This has a bearing on how the system may be developed for database applications, as will be discussed in Section 7. . Many problems in artificial intelligence are known to be intractable if one wishes to obtain the best possible answer. . But if one is con",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.266418561339378,
+      "relevance": 3,
+      "rank": 8,
+      "id": "0311031v1.pdf::2018::fcca44ab2ee4"
+    },
+    {
+      "score": 0.43312138319015503,
+      "text": "While data agents are generally robust to variations in prompt phrasing and can reliably complete the intended analytical tasks, we observed notable differences in their reasoning processes and implementation details.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.283731535077095,
+      "relevance": 3,
+      "rank": 9,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::2b685750375b"
+    },
+    {
+      "score": 0.4217444658279419,
+      "text": "In this section, we divide existing tasks into the following categories: natural language processing, robustness, ethics, biases and trustworthiness, social sciences, natural science and engineering, medical applications, agent applications (using LLMs as agents), and other applications.1 1Note that LLMs are evaluated in various tasks and the categorization in this paper is only one possible way for classification of these works. There are certainly other taxonomies.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.358885258436203,
+      "relevance": 3,
+      "rank": 10,
+      "id": "3641289.pdf::2024::25d02b06c04f"
+    },
+    {
+      "score": 0.3965331017971039,
+      "text": ". On the other hand, End-to-end data agents (Qiao et al. 2023; Guo et al. 2024; Hong et al. 2024; Chi et al. 2024; Jiang et al. 2024; Li et al. 2024; Trirat, Jeong, and Hwang 2024; Grosnit et al. 2024) are designed to allow users to issue a single prompt that encompasses all requirements. In these cases, the agent employs planning, reasoning, and reflection to iteratively complete all tasks autonomously.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.379240371286869,
+      "relevance": 3,
+      "rank": 11,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::4ac977dd26fa"
+    },
+    {
+      "score": 0.32785719633102417,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.40550597012043,
+      "relevance": 3,
+      "rank": 12,
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e"
+    },
+    {
+      "score": 0.48000508546829224,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.458878323435783,
+      "relevance": 3,
+      "rank": 13,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.4565194249153137,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.622133180499077,
+      "relevance": 3,
+      "rank": 14,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.41485869884490967,
+      "text": "It provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.645919352769852,
+      "relevance": 3,
+      "rank": 15,
+      "id": "0311031v1.pdf::2018::1d8bb9d6b450"
+    },
+    {
+      "score": 0.39127904176712036,
+      "text": ". We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.824387952685356,
+      "relevance": 3,
+      "rank": 16,
+      "id": "N18-1202.pdf::2018::77b5ba936913"
+    },
+    {
+      "score": 0.32416918873786926,
+      "text": ". A promising direction is to support the seamless export of an agent's actions (Sun et al. 2024), such as executed code, into IDEs like Jupyter Notebooks, which can serve as a bridge for smoother integration with conventional tools and workflows.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.854455225169659,
+      "relevance": 3,
+      "rank": 17,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::7daa9c38f23d"
+    },
+    {
+      "score": 0.37221890687942505,
+      "text": "We also introduce our approach for treating every problem as a text-to-text task and describe our \"Colossal Clean Crawled Corpus\" (C4), the Common Crawl-based data set we created as a source of unlabeled text data.. We refer to our model and framework as the \"Text-to-Text Transfer Transformer\" (T5). mechanism after each self-attention layer that attends to the output of the encoder. . The self-attention mechanism in the decoder also uses a form of autoregressive or causal selfattention, which on",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.8826634138822556,
+      "relevance": 3,
+      "rank": 18,
+      "id": "1910.10683v4.pdf::2023::ec263ec357a5"
+    },
+    {
+      "score": 0.38409072160720825,
+      "text": "The statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.924055263400078,
+      "relevance": 3,
+      "rank": 19,
+      "id": "D14-1162.pdf::2014::00df45133e01"
+    },
+    {
+      "score": 0.41123998165130615,
+      "text": ". If data agents can effectively harness domain-specific knowledge models, they have the potential to significantly advance statistical and data science research, enabling more sophisticated analyses and fostering deeper insights across scientific disciplines. Although the data agents have shown great potential in improving the accessibility of data analysis, there are still several challenges that need to be addressed for real-world adoption. . Tradeoff Between Hardware and Privacy. . First, de",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define the term artificial agent as used in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.937655597925186,
+      "relevance": 3,
+      "rank": 20,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::757d3d2b4ec9"
+    }
+  ]
+}

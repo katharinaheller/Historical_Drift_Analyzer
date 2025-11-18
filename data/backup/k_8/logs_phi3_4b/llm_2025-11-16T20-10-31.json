@@ -1,0 +1,155 @@
+{
+  "timestamp": "2025-11-16T20-10-31",
+  "query_id": "Define_discuss_how_ai_benchmarks_evolved_from_symbolic_tasks_to_open-ended_reaso",
+  "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. Furthermore, InfiAgent-DABench (Hu et al. 2024) presents a end-to-end benchmark for evaluating the capabilities of data agents, the tasks require agents to end-to-end solving complex tasks by interacting with an execution environment. However, for tasks such as data visualization, the outputs are often difficult to compare directly. . Designing effective evaluation strategies for data visualizations remains an open and important question.\n\n[2] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[2] 3641289.pdf (2024)\n. Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks.\n\n[3] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. For example, DS-1000 (Lai et al. 2023) provides a large-scale benchmark of 1000 realistic problems spanning seven core Python data science libraries, with execution-based multi-criteria evaluation and mechanisms to reduce memorization bias. MLAgentBench (Huang et al. 2024a) introduces a benchmark focused on machine learning research workflows by constructing an LLM-agent pipeline.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] NatureDeepReview.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5033279657363892,
+      "text": ". Furthermore, InfiAgent-DABench (Hu et al. 2024) presents a end-to-end benchmark for evaluating the capabilities of data agents, the tasks require agents to end-to-end solving complex tasks by interacting with an execution environment. However, for tasks such as data visualization, the outputs are often difficult to compare directly. . Designing effective evaluation strategies for data visualizations remains an open and important question.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.8501833379268646,
+      "relevance": 3,
+      "rank": 1,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::d8375dffb063"
+    },
+    {
+      "score": 0.47022607922554016,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.2978504225611687,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.6016122102737427,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.3571982085704803,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.6004236936569214,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.0078984797000885,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.4873296618461609,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.062624290585518,
+      "relevance": 3,
+      "rank": 5,
+      "id": "3641289.pdf::2024::c59652d07ccb"
+    },
+    {
+      "score": 0.4204002618789673,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.193615525960922,
+      "relevance": 3,
+      "rank": 6,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.40108367800712585,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.785796232521534,
+      "relevance": 3,
+      "rank": 7,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.5240920186042786,
+      "text": ". For example, DS-1000 (Lai et al. 2023) provides a large-scale benchmark of 1000 realistic problems spanning seven core Python data science libraries, with execution-based multi-criteria evaluation and mechanisms to reduce memorization bias. MLAgentBench (Huang et al. 2024a) introduces a benchmark focused on machine learning research workflows by constructing an LLM-agent pipeline.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define discuss how ai benchmarks evolved from symbolic tasks to open-ended reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.856729552149773,
+      "relevance": 3,
+      "rank": 8,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::846d78b62e9a"
+    }
+  ],
+  "model_output": "Artificial Intelligence (AI) benchmarks have evolved significantly from symbolic tasks to open-ended reasoning over time, as demonstrated by various publications. The Turing Test, proposed in the 1950s [2], was a landmark event that aimed to assess the intelligence of machines by discerning if responses were of human or machine origin. Initially, AI models focused on rule-based manipulation of symbolic expressions [3]. However, as technology advanced, generative AI, particularly Large Language Models (LLMs) and vision language models (VLMs), have gained recognition in recent years [1]. Theoretical foundations for AI benchmarks revolve around evaluating the performance of AI models in various tasks, including natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and others [1]. Effective evaluation strategies are crucial for these assessments, with InfiAgent-DABench (Hu et al., 2024) presenting an end-to-end benchmark for evaluating the capabilities of data agents [1]. The evolution of AI benchmarks has focused on moving beyond simple tasks and towards open-ended reasoning. This shift can be seen in publications like DS-1000 (Lai et al., 2023) [1], which provides a large-scale benchmark of realistic problems spanning seven core Python data science libraries, and MLAgentBench (Huang et al., 2024a) [1], which introduces a benchmark focused on machine learning research workflows by constructing an LLM-agent pipeline. However, there is still a challenge in designing effective evaluation strategies for complex tasks such as data visualization, where outputs are often difficult to compare directly [1]. References:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] NatureDeepReview.pdf (2025)"
+}

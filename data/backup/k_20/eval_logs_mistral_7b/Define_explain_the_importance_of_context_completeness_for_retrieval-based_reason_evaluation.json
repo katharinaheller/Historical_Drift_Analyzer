@@ -1,0 +1,14 @@
+{
+  "query_id": "Define_explain_the_importance_of_context_completeness_for_retrieval-based_reason",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.36623420141189167,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2020s": 5,
+    "2010s": 9,
+    "1990s": 5,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

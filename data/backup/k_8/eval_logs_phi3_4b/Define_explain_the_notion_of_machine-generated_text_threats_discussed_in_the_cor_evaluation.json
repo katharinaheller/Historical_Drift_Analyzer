@@ -1,0 +1,11 @@
+{
+  "query_id": "Define_explain_the_notion_of_machine-generated_text_threats_discussed_in_the_cor",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.3107228352367847,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

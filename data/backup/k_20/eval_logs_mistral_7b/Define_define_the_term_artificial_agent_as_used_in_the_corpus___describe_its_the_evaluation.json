@@ -1,0 +1,14 @@
+{
+  "query_id": "Define_define_the_term_artificial_agent_as_used_in_the_corpus___describe_its_the",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.33235080669340317,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 11,
+    "2010s": 6,
+    "1980s": 1,
+    "2000s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

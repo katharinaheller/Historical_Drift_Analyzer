@@ -1,0 +1,14 @@
+{
+  "query_id": "Define_summarize_challenges_of_explainability_in_ai_according_to_the_corpus___de",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.3281215833763241,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 15,
+    "2000s": 3,
+    "2010s": 1,
+    "1990s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

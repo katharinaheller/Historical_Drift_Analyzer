@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T11-23-28",
+  "query_refined": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[2] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[3] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[2] 2210.07321v4.pdf (2023)\n. (4) Review whether the analysis is accurate and complete: We have given careful thought to the presented threat models, which are formed from perspectives gained across industry, academia, and government. However, as threat modeling is an iterative process that benefits from diverse perspectives, we greatly encourage further analysis of potential attacks and mitigation measures in future research. . The remainder of this section comprises our threat model analysis, grouped according to a break\n\n[1] 3641289.pdf (2024)\n. Future research should prioritize achieving multilingual balance and addressing the challenges faced by non-Latin languages and low-resource languages, with the aim of better supporting users worldwide.\n\n[2] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[4] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[5] 1910.10683v4.pdf (2023)\n. We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.\n\n[6] 1304.1106v1.pdf (1990)\n. Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime\n\n[7] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[1] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[5] 1910.10683v4.pdf (2023)\n. With this unified approach, we can compare the effectiveness of different transfer learning objectives, unlabeled data sets, and other factors, while exploring the limits of transfer learning for NLP by scaling up models and data sets beyond what has previously been considered. We emphasize that our goal is not to propose new methods but instead to provide a comprehensive perspective on where the field stands. . As such, our work primarily comprises a survey, exploration, and empirical compari\n\n[8] 2205.01068v4.pdf (2022)\n. While this is a significant achievement, the energy cost of creating such a model is still nontrivial, and repeated efforts to replicate a model of this size will only amplify the growing compute footprint of these LLMs. We believe the entire AI community — academic researchers, civil society, policymakers, and industry — must work together to develop clear 125M 6.0e−4 0.5M 350M 3.0e−4 0.5M 1.3B . 2.0e−4 1M 2.7B 1.6e−4 1M 6.7B . 1.2e−4 2M 13B 1.0e−4 4M 30B 1.0e−4 4M 66B 0.8e−4 2M 175B 1.2e−4 2\n\n[2] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[6] 1304.1106v1.pdf (1990)\n. The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re\n\n[2] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[7] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[5] 1910.10683v4.pdf (2023)\n. By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 2210.07321v4.pdf (2023)\n[3] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[4] 2303.18223v16.pdf (2025)\n[5] 1910.10683v4.pdf (2023)\n[6] 1304.1106v1.pdf (1990)\n[7] 0712.3329v1.pdf (2007)\n[8] 2205.01068v4.pdf (2022)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.4677274525165558,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.187251500785351,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.45368313789367676,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.362465083599091,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.41413477063179016,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.4259911105036736,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.5174814462661743,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.447333425283432,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.40549665689468384,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.593397602438927,
+      "relevance": 3,
+      "rank": 5,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.5252978801727295,
+      "text": ". (4) Review whether the analysis is accurate and complete: We have given careful thought to the presented threat models, which are formed from perspectives gained across industry, academia, and government. However, as threat modeling is an iterative process that benefits from diverse perspectives, we greatly encourage further analysis of potential attacks and mitigation measures in future research. . The remainder of this section comprises our threat model analysis, grouped according to a break",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.794585764408112,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2210.07321v4.pdf::2023::3b6079b09c89"
+    },
+    {
+      "score": 0.49825894832611084,
+      "text": ". Future research should prioritize achieving multilingual balance and addressing the challenges faced by non-Latin languages and low-resource languages, with the aim of better supporting users worldwide.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.876509577035904,
+      "relevance": 3,
+      "rank": 7,
+      "id": "3641289.pdf::2024::d5335fd47073"
+    },
+    {
+      "score": 0.400888592004776,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.9218635186553,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.48820555210113525,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.074932903051376,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.4655439257621765,
+      "text": ". We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.2958938628435135,
+      "relevance": 3,
+      "rank": 10,
+      "id": "1910.10683v4.pdf::2023::872369300e89"
+    },
+    {
+      "score": 0.44275087118148804,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.348881974816322,
+      "relevance": 3,
+      "rank": 11,
+      "id": "1304.1106v1.pdf::1990::6ce03695c520"
+    },
+    {
+      "score": 0.4607376754283905,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.439955599606037,
+      "relevance": 3,
+      "rank": 12,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.5058825612068176,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.4579197615385056,
+      "relevance": 3,
+      "rank": 13,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.47240570187568665,
+      "text": ". With this unified approach, we can compare the effectiveness of different transfer learning objectives, unlabeled data sets, and other factors, while exploring the limits of transfer learning for NLP by scaling up models and data sets beyond what has previously been considered. We emphasize that our goal is not to propose new methods but instead to provide a comprehensive perspective on where the field stands. . As such, our work primarily comprises a survey, exploration, and empirical compari",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.462808541953564,
+      "relevance": 3,
+      "rank": 14,
+      "id": "1910.10683v4.pdf::2023::665a1633ba5c"
+    },
+    {
+      "score": 0.4039740562438965,
+      "text": ". While this is a significant achievement, the energy cost of creating such a model is still nontrivial, and repeated efforts to replicate a model of this size will only amplify the growing compute footprint of these LLMs. We believe the entire AI community — academic researchers, civil society, policymakers, and industry — must work together to develop clear 125M 6.0e−4 0.5M 350M 3.0e−4 0.5M 1.3B . 2.0e−4 1M 2.7B 1.6e−4 1M 6.7B . 1.2e−4 2M 13B 1.0e−4 4M 30B 1.0e−4 4M 66B 0.8e−4 2M 175B 1.2e−4 2",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.534139275550842,
+      "relevance": 3,
+      "rank": 15,
+      "id": "2205.01068v4.pdf::2022::9943acd00d7a"
+    },
+    {
+      "score": 0.4316104054450989,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.597700759768486,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.397310733795166,
+      "text": ". The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.605477452278137,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1304.1106v1.pdf::1990::0b2161b2f928"
+    },
+    {
+      "score": 0.427700400352478,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.607877165079117,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.4911942481994629,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.622191071510315,
+      "relevance": 3,
+      "rank": 19,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.45470505952835083,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain how future directions for ai research are framed in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.704099223017693,
+      "relevance": 3,
+      "rank": 20,
+      "id": "1910.10683v4.pdf::2023::c685c979c854"
+    }
+  ]
+}

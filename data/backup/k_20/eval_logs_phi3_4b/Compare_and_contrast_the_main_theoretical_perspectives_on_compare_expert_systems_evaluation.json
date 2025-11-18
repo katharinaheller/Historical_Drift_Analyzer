@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_compare_expert_systems",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.44289586275151366,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 14,
+    "2020s": 3,
+    "1990s": 3
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

@@ -1,0 +1,191 @@
+{
+  "timestamp": "2025-11-17T03-51-12",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_compare_declarative_an",
+  "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 1304.1082v1.pdf (1990)\n. Whereas inference schemes using propagation operate on a belief network representation of knowledge, scenario-based explanations are based on scenario trees (also known as probability trees, or decision trees without the decision variables). Each path from root to an end node represents a scenario, or sequence of events. . The psychological literature suggests that it may be easier to understand scenarios if they are presented as coherent causal stories.\n\n[2] D14-1162.pdf (2014)\nThe result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi\n\n[3] 1301.3781v3.pdf (2013)\n. In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to\n\n[4] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[5] 3641289.pdf (2024)\nIn the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.\n\n[2] D14-1162.pdf (2014)\nc⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families\n\n[6] 1304.1106v1.pdf (1990)\n. The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re\n\n[3] 1301.3781v3.pdf (2013)\n. We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. . We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set.\n\n[7] NatureDeepReview.pdf (2025)\nDistributed representations and language processing Deep-learning theory shows that deep nets have two different expo nential advantages over classic learning algorithms that do not use distributed representations21. Both of these advantages arise from the power of composition and depend on the underlying data-generating distribution having an appropriate componential structure40.\n\n[8] 0311031v1.pdf (2018)\nPerhaps the most striking difference between the SP system and other objectoriented systems is the extraordinary simplicity of the format for knowledge in the SP system, compared with the variety of constructs used in other system— such as 'classes', 'objects', 'methods', 'messages', 'isa' links, 'part-of' links, and more. This subsections considers a selection of other differences that are somewhat more subtle but are, nevertheless, important. . In Simula and most object-oriented systems that h\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1082v1.pdf (1990)\n[2] D14-1162.pdf (2014)\n[3] 1301.3781v3.pdf (2013)\n[4] Expert_Systems.pdf (2016)\n[5] 3641289.pdf (2024)\n[6] 1304.1106v1.pdf (1990)\n[7] NatureDeepReview.pdf (2025)\n[8] 0311031v1.pdf (2018)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.39470547437667847,
+      "text": ". Whereas inference schemes using propagation operate on a belief network representation of knowledge, scenario-based explanations are based on scenario trees (also known as probability trees, or decision trees without the decision variables). Each path from root to an end node represents a scenario, or sequence of events. . The psychological literature suggests that it may be easier to understand scenarios if they are presented as coherent causal stories.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.7745222598314285,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1082v1.pdf::1990::31241d7d75bb"
+    },
+    {
+      "score": 0.3888092637062073,
+      "text": "The result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.811351045966148,
+      "relevance": 3,
+      "rank": 2,
+      "id": "D14-1162.pdf::2014::a47cb0a05267"
+    },
+    {
+      "score": 0.3771289587020874,
+      "text": ". In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.494961053133011,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1301.3781v3.pdf::2013::baadc05c3b47"
+    },
+    {
+      "score": 0.3817451000213623,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.542008459568024,
+      "relevance": 3,
+      "rank": 4,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.42856383323669434,
+      "text": "In the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.701289594173431,
+      "relevance": 3,
+      "rank": 5,
+      "id": "3641289.pdf::2024::f3f9faee6ad8"
+    },
+    {
+      "score": 0.39480555057525635,
+      "text": "c⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families ",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.92209467291832,
+      "relevance": 3,
+      "rank": 6,
+      "id": "D14-1162.pdf::2014::b83e2f00e683"
+    },
+    {
+      "score": 0.3860663175582886,
+      "text": ". The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.946682006120682,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1304.1106v1.pdf::1990::0b2161b2f928"
+    },
+    {
+      "score": 0.3853934705257416,
+      "text": ". We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. . We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.991231836378574,
+      "relevance": 3,
+      "rank": 8,
+      "id": "1301.3781v3.pdf::2013::45f6e7aac3e4"
+    },
+    {
+      "score": 0.39216065406799316,
+      "text": "Distributed representations and language processing Deep-learning theory shows that deep nets have two different expo nential advantages over classic learning algorithms that do not use distributed representations21. Both of these advantages arise from the power of composition and depend on the underlying data-generating distribution having an appropriate componential structure40.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.041427552700043,
+      "relevance": 3,
+      "rank": 9,
+      "id": "NatureDeepReview.pdf::2025::83f25ef42380"
+    },
+    {
+      "score": 0.3940451741218567,
+      "text": "Perhaps the most striking difference between the SP system and other objectoriented systems is the extraordinary simplicity of the format for knowledge in the SP system, compared with the variety of constructs used in other system— such as 'classes', 'objects', 'methods', 'messages', 'isa' links, 'part-of' links, and more. This subsections considers a selection of other differences that are somewhat more subtle but are, nevertheless, important. . In Simula and most object-oriented systems that h",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare declarative and procedural representations of knowledge., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.1550468653440475,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0311031v1.pdf::2018::1b16efcebb7e"
+    }
+  ],
+  "model_output": "Comparison of Main Theoretical Perspectives on Declarative and Procedural Representations of Knowledge\n\nDeclarative knowledge refers to facts, concepts, and propositions that are explicitly represented in a system [1]. On the other hand, procedural knowledge involves algorithms, rules, or procedures for solving problems [4]. Here's a comparison of some key perspectives on these representations:\n\n1. **Scenario-Based Explanations vs. Inference Schemes using Propagation** (event year not stated; described in 2014 PDF [1]) Scenario-based explanations are based on scenario trees, or probability trees, while inference schemes use a belief network representation of knowledge [1]. The psychological literature suggests that scenarios presented as coherent causal stories might be easier to understand [1]. 2. **Context-Counting vs. Context-Predicting Semantic Vectors** (2014) Marco Baroni, Georgiana Dinu, and Germán Kruszewski proposed a systematic comparison of context-counting and context-predicting semantic vectors [2]. The result was the GloVe model, a new global log-bilinear regression model for unsupervised learning of word representations. 3. **Distributed Representations of Words Learned by Neural Networks** (2013) Two novel model architectures were proposed for computing continuous vector representations of words from large data sets [3]. These models were compared to previously best-performing techniques based on different types of neural networks, showing large improvements in accuracy at lower computational cost. 4. **Expert Systems with Heuristic and Empirical Knowledge vs. Deep Knowledge** (2016) Expert systems currently rely more on heuristic and empirical knowledge rather than deep knowledge that includes models of functional and causal relations [4]. In the future, more systems might be developed using functional and causal models with a variety of representations. 5. **Fact Consistency Evaluation Methods** (2024) Honovich et al. conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework [5]. 6. **Bayesian Networks vs. Rule-Based Systems** (1990) Various experiments comparing different uncertainty formalisms, competitions between Bayes nets and rule bases, and approaches to sensitivity analyses have been conducted [6]. These studies address the behavior of a system but may have general implications for system design. 7. **Deep Nets vs. Classic Learning Algorithms** (2025) Deep-learning theory shows that deep nets have two exponential advantages over classic learning algorithms that do not use distributed representations [7]. Both advantages arise from the power of composition and depend on the underlying data-generating distribution having an appropriate componential structure. 8. **Knowledge Representation in Object-Oriented Systems** (2018) The Simple Programming Language (SP) system has a simpler format for knowledge representation compared to other object-oriented systems, with fewer constructs such as 'classes', 'objects', and 'methods' [8]. References:\n[1] 1304.1082v1.pdf (1990)\n[2] D14-1162.pdf (2014)\n[3] 1301.3781v3.pdf (2013)\n[4] Expert_Systems.pdf (2016)\n[5] 3641289.pdf (2024)\n[6] 1304.1106v1.pdf (1990)\n[7] NatureDeepReview.pdf (2025)\n[8] 0311031v1.pdf (2018)"
+}

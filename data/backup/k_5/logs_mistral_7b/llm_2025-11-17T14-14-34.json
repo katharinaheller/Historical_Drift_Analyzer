@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-11-17T14-14-34",
+  "query_id": "Define_explain_how_semantic_networks_contribute_to_reasoning_in_ai___describe_it",
+  "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] NatureDeepReview.pdf (2025)\nN-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4). Recurrent neural networks When backpropagation was first introduced, its most exciting use was for training recurrent neural networks (RNNs). . For tasks that involve sequential inputs, s\n\n[1] NatureDeepReview.pdf (2025)\nThe network learns word vectors that contain many active components each of which can be interpreted as a separate feature of the word, as was first demonstrated27 in the context of learning distributed representations for symbols.. These semantic features were not explicitly present in the input. They were discovered by the learning procedure as a good way of factorizing the structured relationships between the input and output symbols into multiple 'micro-rules'. . Learning word vectors turned\n\n[2] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[1] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[3] 1304.1082v1.pdf (1990)\n. The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] NatureDeepReview.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] 1304.1082v1.pdf (1990)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.4524010419845581,
+      "text": "N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4). Recurrent neural networks When backpropagation was first introduced, its most exciting use was for training recurrent neural networks (RNNs). . For tasks that involve sequential inputs, s",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.4979512989521027,
+      "relevance": 3,
+      "rank": 1,
+      "id": "NatureDeepReview.pdf::2025::ffe57f5c2458"
+    },
+    {
+      "score": 0.48640692234039307,
+      "text": "The network learns word vectors that contain many active components each of which can be interpreted as a separate feature of the word, as was first demonstrated27 in the context of learning distributed representations for symbols.. These semantic features were not explicitly present in the input. They were discovered by the learning procedure as a good way of factorizing the structured relationships between the input and output symbols into multiple 'micro-rules'. . Learning word vectors turned",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.7230763137340546,
+      "relevance": 3,
+      "rank": 2,
+      "id": "NatureDeepReview.pdf::2025::3eb140ca0592"
+    },
+    {
+      "score": 0.47659724950790405,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.831165924668312,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.4766828417778015,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.8513222485780716,
+      "relevance": 3,
+      "rank": 4,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.48116618394851685,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain how semantic networks contribute to reasoning in ai., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.081993982195854,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1304.1082v1.pdf::1990::40911c1531a3"
+    }
+  ],
+  "model_output": "Semantic networks are graphical structures used to represent knowledge and relationships between concepts, attributes, and instances in Artificial Intelligence (AI). They contribute to reasoning by enabling AI models to reason about complex, interconnected concepts. The theoretical foundations of semantic networks lie in the idea of using directed graphs, where nodes represent entities or concepts and edges represent relationships or properties among them [1]. These networks allow for explicit representation of hierarchical structures, taxonomies, and inheritance. In the early days of AI (1950s; described in 2025 PDF [7]), semantic networks were introduced to capture commonsense knowledge about the world, such as relationships between objects, actions, and events [3]. Over time, research evolved towards the development of more sophisticated semantic network systems that could handle uncertainty and probabilistic reasoning [1]. As deep learning and neural language models became prominent in the 2010s (e.g., 2024 PDF [2]), they started to replace some traditional rule-based approaches like those used in semantic networks. However, neural networks do not explicitly represent the relationships between concepts as graph structures [1]. References:\n[1] NatureDeepReview.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] 1304.1082v1.pdf (1990)"
+}

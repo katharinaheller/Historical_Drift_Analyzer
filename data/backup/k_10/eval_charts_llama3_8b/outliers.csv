@@ -1,0 +1,2 @@
+query_id,ndcg@k,faithfulness,citation_hit_rate,dominant_decade,model
+Define_describe_the_notion_of_transparency_in_ai_decision_processes___describe_i,0.9738829367467964,0.5927155691835677,1.0,2020,llama3_8b

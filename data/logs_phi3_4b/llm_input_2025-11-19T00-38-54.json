@@ -1,0 +1,1390 @@
+{
+  "timestamp": "2025-11-19T00-38-54",
+  "query_refined": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[3] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[4] 0311031v1.pdf (2018)\n. The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •\n\n[5] 2210.07321v4.pdf (2023)\n. Turing's proposed \"imitation game\" in 1950 considered the question of machine intelligence based on the ability of a machine to conduct human-like conversation over a text channel, for which the first widely-published method dates back to 1966 with the ELIZA chatbot.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 2303.18223v16.pdf (2025)\n[3] 0712.3329v1.pdf (2007)\n[4] 0311031v1.pdf (2018)\n[5] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks_raw": [
+    {
+      "score": 0.4654389023780823,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::85dff6bd2fb4",
+      "raw_rank": 30,
+      "final_score": 0.45560482889413834,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.5675524473190308,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70",
+      "raw_rank": 1,
+      "final_score": -0.8338675200939178,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.5312068462371826,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::d93703f6d548",
+      "raw_rank": 2,
+      "final_score": -1.766358196735382,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.4725131392478943,
+      "text": ". The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::915dff8c9b50",
+      "raw_rank": 8,
+      "final_score": -2.5183733850717545,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.4591895043849945,
+      "text": ". Turing's proposed \"imitation game\" in 1950 considered the question of machine intelligence based on the ability of a machine to conduct human-like conversation over a text channel, for which the first widely-published method dates back to 1966 with the ELIZA chatbot.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::4bdab79968a9",
+      "raw_rank": 31,
+      "final_score": -3.3167543187737465,
+      "relevance": 3,
+      "rank": 5
+    },
+    {
+      "score": 0.529826283454895,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::b551e995a739",
+      "raw_rank": 23,
+      "final_score": -4.705438107252121
+    },
+    {
+      "score": 0.4029862880706787,
+      "text": "We also introduce our approach for treating every problem as a text-to-text task and describe our \"Colossal Clean Crawled Corpus\" (C4), the Common Crawl-based data set we created as a source of unlabeled text data.. We refer to our model and framework as the \"Text-to-Text Transfer Transformer\" (T5). mechanism after each self-attention layer that attends to the output of the encoder. . The self-attention mechanism in the decoder also uses a form of autoregressive or causal selfattention, which on",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::ec263ec357a5",
+      "raw_rank": 71,
+      "final_score": -5.914299547672272
+    },
+    {
+      "score": 0.407967746257782,
+      "text": "The statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "D14-1162.pdf::2014::00df45133e01",
+      "raw_rank": 64,
+      "final_score": -6.0594248324632645
+    },
+    {
+      "score": 0.5043671727180481,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794",
+      "raw_rank": 26,
+      "final_score": -6.297504112124443
+    },
+    {
+      "score": 0.4386778473854065,
+      "text": ". We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::872369300e89",
+      "raw_rank": 45,
+      "final_score": -6.36876867711544
+    },
+    {
+      "score": 0.43337056040763855,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::c685c979c854",
+      "raw_rank": 46,
+      "final_score": -6.553263194859028
+    },
+    {
+      "score": 0.5015702843666077,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed",
+      "raw_rank": 27,
+      "final_score": -6.733648881316185
+    },
+    {
+      "score": 0.41641712188720703,
+      "text": "We also include a gradient predivide factor to reduce the risk of over/underflows when computing the gradient across all ranks (splitting the division by the world size of N into two division operations by √\nThe pre-training corpus contains a concatenation of datasets used in RoBERTa, the Pile, and PushShift.io Reddit (Baumgartner et al., 2020; Roller et al., 2021). All corpora were previously collected or filtered to contain predominantly English text, but a small amount of non-English data is ",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2205.01068v4.pdf::2022::f0cb1e4128fa",
+      "raw_rank": 13,
+      "final_score": -6.744735479354858
+    },
+    {
+      "score": 0.40131402015686035,
+      "text": ". The issues that continue to draw debate are the questions such as whether the tests test only a part or a particular type of intelligence, or whether they are somehow biased towards a particular group or set of mental skills. Great effort has gone into dealing with these issues, but they are difficult problems with no easy solutions. . Somewhat disconnected from this exists a parallel debate over the nature of intelligence in the context of machines. . While the debate is less politically char",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::7a353eff6735",
+      "raw_rank": 74,
+      "final_score": -6.848936021327972
+    },
+    {
+      "score": 0.42159754037857056,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::132a9876fb38",
+      "raw_rank": 53,
+      "final_score": -6.866415724158287
+    },
+    {
+      "score": 0.4042014479637146,
+      "text": ". Building an ES is an iterative process involving the creation of a prototype system and then over a number of cycles of testing, repair, and extension, incrementally improving the system so that it eventually performs in a way that is satisfactory and beneficial to the users. The problem identification, conceptualization, formalization, construction, and testing are the stages of ES development process (4). . Once a system has been built and debugged it is a simple matter to extend its coverag",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::0d59c63e3fa6",
+      "raw_rank": 68,
+      "final_score": -6.98132897913456
+    },
+    {
+      "score": 0.4658361077308655,
+      "text": "Approach 2.1 Model and Architectures......................................... 2.2 Training Dataset.............................................. 2.3 Training Process............................................. 2.4 Evaluation................................................. Results 3.1 Language Modeling, Cloze, and Completion Tasks........................... 3.2 Closed Book Question Answering.................................... 3.3 Translation................................................ 3.4 ",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::b18961a6fe8c",
+      "raw_rank": 29,
+      "final_score": -7.0360275357961655
+    },
+    {
+      "score": 0.44535961747169495,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3",
+      "raw_rank": 9,
+      "final_score": -7.071906231343746
+    },
+    {
+      "score": 0.398842453956604,
+      "text": "These terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::9b9db0d1b061",
+      "raw_rank": 75,
+      "final_score": -7.07871612906456
+    },
+    {
+      "score": 0.444786012172699,
+      "text": ". Such a pretraining-finetuning framework In this section, we first give a general task definition of text generation, then describe the background of PLMs, and finally introduce the three key aspects on PLM-based text generation methods. Generally, a text can be modeled as a sequence of tokens 𝑦= ⟨𝑦1,...,𝑦𝑗,...,𝑦𝑛⟩, where each token 𝑦𝑗 is drawn from a vocabulary V. . The task of text generation aims to generate plausible and readable text in a human language.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::56fb0142ef48",
+      "raw_rank": 42,
+      "final_score": -7.09382201731205
+    },
+    {
+      "score": 0.4474797546863556,
+      "text": "To address this, they transformed existing fact consistency tasks into binary labels, specifically considering only whether there is a factual conflict with the input text, without factoring in external knowledge. The research discovered that fact evaluation methods founded on natural language inference and question generation answering exhibit superior performance and can complement each other. . Pezeshkpour proposed a novel metric, based on information theory, to assess the inclusion of specif",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::b678961257ae",
+      "raw_rank": 37,
+      "final_score": -7.096229903399944
+    },
+    {
+      "score": 0.41854217648506165,
+      "text": ". Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. . ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::1049e7043b91",
+      "raw_rank": 56,
+      "final_score": -7.114851884543896
+    },
+    {
+      "score": 0.40873879194259644,
+      "text": ". We answer the question \"a is to b as c is to ?\" by finding the word d whose representation wd is closest to wb −wa + wc according to the cosine similarity.4 Figure 2: Accuracy on the analogy task as function of vector size and window size/type.. All models are trained on the 6 billion token corpus. In (a), the window size is 10. . In (b) and (c), the vector size is 100. . Word similarity. . While the analogy task is our primary focus since it tests for interesting vector space substructures, w",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "D14-1162.pdf::2014::3871ef61736d",
+      "raw_rank": 61,
+      "final_score": -7.145683363080025
+    },
+    {
+      "score": 0.4244638979434967,
+      "text": "It provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::1d8bb9d6b450",
+      "raw_rank": 52,
+      "final_score": -7.327761493623257
+    },
+    {
+      "score": 0.4457581639289856,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::e1d85cdbb466",
+      "raw_rank": 40,
+      "final_score": -7.344176694750786
+    },
+    {
+      "score": 0.3739132285118103,
+      "text": "As in the original experiments, additional items were presented at the end of this questionnaire in order to calibrate each subject's use of the certainty descriptors highly, moderately, and slightly certain. For each of these certainty descriptors, the subject was asked to place a slash on a 16 em line to represent the described degree of certainty. . The calibration line was anchored at one end with uncertain and at the other end with completely certain. . Two different forms of the questionna",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1083v1.pdf::1989::a80b814bd872",
+      "raw_rank": 22,
+      "final_score": -7.476023092865944
+    },
+    {
+      "score": 0.4459722340106964,
+      "text": "Detection of machine generated text is typically framed as a binary classification problem in which a classifier is trained to differentiate samples of machine generated text from human generated text, though there exists related research in attribution of machine generated text to the model that generated it which we will discuss in §5.2. In this section, we outline the methods used for detection of machine generated text. . In §4.1 we summarize feature-based approaches in machine generated tex",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::98b75543d44f",
+      "raw_rank": 39,
+      "final_score": -7.509169153869152
+    },
+    {
+      "score": 0.4306544065475464,
+      "text": ". This comprehensive survey is intended to help researchers interested in text generation problems to learn the core concepts, the main techniques and the latest developments in this area based on PLMs. INTRODUCTION Text generation, also known as natural language generation, has been one of the most important sub-fields in natural language processing (NLP). . It aims to produce plausible and readable text in a human language, from the input data in various forms including text, image, table and ",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::8552561daf6e",
+      "raw_rank": 47,
+      "final_score": -7.513572245836258
+    },
+    {
+      "score": 0.40806907415390015,
+      "text": "However, as mentioned in Section 1.2, consideration of the broader field of natural language generation and previous detection research is important as detection techniques that apply against pre-Transformer models have been shown to be useful in detection of modern generative models, and diverse approaches may offer increased adversarial robustness or better explainability. 2.3 Natural Language Generation Approaches There are a wide range of model architectures and algorithmic approaches to nat",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::70f09bd8349f",
+      "raw_rank": 63,
+      "final_score": -7.519194260239601
+    },
+    {
+      "score": 0.44374504685401917,
+      "text": ". (4) Review whether the analysis is accurate and complete: We have given careful thought to the presented threat models, which are formed from perspectives gained across industry, academia, and government. However, as threat modeling is an iterative process that benefits from diverse perspectives, we greatly encourage further analysis of potential attacks and mitigation measures in future research. . The remainder of this section comprises our threat model analysis, grouped according to a break",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::3b6079b09c89",
+      "raw_rank": 43,
+      "final_score": -7.541651390492916
+    },
+    {
+      "score": 0.42010003328323364,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1",
+      "raw_rank": 55,
+      "final_score": -7.543746754527092
+    },
+    {
+      "score": 0.5095605254173279,
+      "text": "2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::bd1a671a542c",
+      "raw_rank": 24,
+      "final_score": -7.569690719246864
+    },
+    {
+      "score": 0.44311630725860596,
+      "text": ". Before presenting the results from our large-scale empirical study, we review the necessary background topics required to understand our results, including the Transformer model architecture and the downstream tasks we evaluate on.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::ff7415cced87",
+      "raw_rank": 44,
+      "final_score": -7.572556704282761
+    },
+    {
+      "score": 0.3955080807209015,
+      "text": "We use recently proposed techniques for measuring the quality of the resulting vector representations, with the expectation that not only will similar words tend to be close to each other, but that words can have multiple degrees of similarity.",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1301.3781v3.pdf::2013::8260327d4f2e",
+      "raw_rank": 17,
+      "final_score": -7.664683274924755
+    },
+    {
+      "score": 0.42773541808128357,
+      "text": "The rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::a7d0f7cc72f9",
+      "raw_rank": 49,
+      "final_score": -7.684165932238102
+    },
+    {
+      "score": 0.41576775908470154,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::62810bd2dcad",
+      "raw_rank": 57,
+      "final_score": -7.685636498034
+    },
+    {
+      "score": 0.42557787895202637,
+      "text": ". As previously mentioned, NLG encompasses a large variety of tasks and research areas, with this brief section serving as context for understanding machine generated text threat models and detection methods.. 2.3.1 Non-Neural Models. Predating the popularization of neural approaches in the NLG domain, a range of systems were used to accomplish NLG tasks. . These early approaches can broadly be summarized as \"rule-based\", though there existed variety in terms of processes, pipelines, and targets",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::6469aa988ef2",
+      "raw_rank": 50,
+      "final_score": -7.696901857852936
+    },
+    {
+      "score": 0.4995309114456177,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::c59652d07ccb",
+      "raw_rank": 28,
+      "final_score": -7.710781067609787
+    },
+    {
+      "score": 0.45343825221061707,
+      "text": ". (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::97b789622b90",
+      "raw_rank": 35,
+      "final_score": -7.733229048550129
+    },
+    {
+      "score": 0.4071613848209381,
+      "text": ". CCS Concepts: • Computing methodologies →Machine learning approaches; Neural networks; Natural language generation; • Security and privacy →Human and societal aspects of security and privacy.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::b19c863e302e",
+      "raw_rank": 66,
+      "final_score": -7.736239515244961
+    },
+    {
+      "score": 0.425762414932251,
+      "text": "We tokenize and lowercase each corpus with the Stanford tokenizer, build a vocabulary of the 400,000 most frequent words6, and then construct a matrix of cooccurrence counts X. In constructing X, we must choose how large the context window should be and whether to distinguish left context from right context. We explore the effect of these choices below. . In all cases we use a decreasing weighting function, so that word pairs that are d words apart contribute 1/d to the total count. . This is on",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "D14-1162.pdf::2014::3e6b1d89b8a2",
+      "raw_rank": 11,
+      "final_score": -7.76818174123764
+    },
+    {
+      "score": 0.40550723671913147,
+      "text": ". To understand the risks that motivate research on detection of machine generated text, we draw from existing literature to present a series of threat models incorporating natural language generation. Threat modeling reflects the process of thinking like an attacker, identifying vulnerabilities to systems by identifying potential attackers, their capabilities, and objectives. . The goal of threat modeling is to improve the security of systems by considering the greatest threats to systems and t",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::3570e19720bc",
+      "raw_rank": 67,
+      "final_score": -7.776958428323269
+    },
+    {
+      "score": 0.4280794858932495,
+      "text": ". MACHINE GENERATED TEXT Before reviewing threat models and detection methodologies for machine generated text, it is helpful to briefly provide a formal definition of machine generated text, and a condensed overview of natural language generation (NLG) models. We recommend further reading of dedicated surveys on natural language generation for greater insight into the wide breadth of NLG models and applications.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::e03808f04a5d",
+      "raw_rank": 48,
+      "final_score": -7.78695872426033
+    },
+    {
+      "score": 0.41300642490386963,
+      "text": ". Objects, which are psychologically dissimilar, are shown far apart; the distance between them can be analyzed to interpret the underlying dimensions as to why these objects have been judged relative to one another. Finally, card sorting techniques provide means of achieving a more focused or systematic understanding of the classifications and relationships in the expert's domain. . It is easy to implement and involves writing the names of objects, experiences, or rules in the expert's domain o",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::f4c8c8875d12",
+      "raw_rank": 14,
+      "final_score": -7.792467921972275
+    },
+    {
+      "score": 0.44890424609184265,
+      "text": ". The remainder of this survey is organized as follows: Section 2 introduces the background for LLMs and the evolution of GPT-series models, followed by the summarization of available resources for developing LLMs in Section 3. Sections 4, 5, 6, and 7 review and summarize the recent progress from the four aspects of pre-training, adaptation, utilization, and capacity evaluation, respectively. . Then, Section 8 discusses the practical guide for prompt design, and Section 9 reviews the application",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::a83bc172bdb8",
+      "raw_rank": 36,
+      "final_score": -7.804910369217396
+    },
+    {
+      "score": 0.45434075593948364,
+      "text": ". We began with introducing three key aspects when applying PLMs to text generation, based on which the main content of our survey is divided into three sections from the view of input representation learning, model architecture design, and parameter optimization. Besides, we discussed several non-trivial challenges related to the above three aspects. . Finally, we reviewed various evaluation metrics, open-source libraries, and common applications to help practitioners evaluate, choose and emplo",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::47a1308f9d9e",
+      "raw_rank": 34,
+      "final_score": -7.833825156092644
+    },
+    {
+      "score": 0.401864230632782,
+      "text": ". To this end, Gunel et al. combined the cross-entropy loss with a supervised contrastive learning loss that pushes the words from the same class close and the words from different classes further apart.. EVALUATION AND RESOURCES In this section, we will discuss several commonly used evaluation metrics and resources with respect to PLMs for text generation.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::6f62650bd6aa",
+      "raw_rank": 73,
+      "final_score": -7.843185618519783
+    },
+    {
+      "score": 0.44559618830680847,
+      "text": ". Besides, in conversational machine reading, Ouyang et al. formulated the input text as two complementary graphs, i.e., explicit and implicit discourse graphs, to fully capture the discourse relations and latent vector interactions among all the elementary discourse units. 3.1.2 Document Representation Learning. . In many text generation tasks such as document translation and document summarization, the input text might be a long document consisting of multiple paragraphs. . When encoding the d",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::0d34ae9fc589",
+      "raw_rank": 41,
+      "final_score": -7.847973950207233
+    },
+    {
+      "score": 0.4201490879058838,
+      "text": ". Our baseline, the ESIM sequence model from Chen et al., uses a biLSTM to encode the premise and hypothesis, followed by a matrix attention layer, a local inference layer, another biLSTM inference composition layer, and finally a pooling operation before the output layer. Overall, adding ELMo to the ESIM model improves accuracy by an average of 0.7% across five random seeds. . A five member ensemble pushes the overall accuracy to 89.3%, exceeding the previous ensemble best of 88.9%. . Semantic ",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "N18-1202.pdf::2018::b65019079157",
+      "raw_rank": 54,
+      "final_score": -7.8899425864219666
+    },
+    {
+      "score": 0.45869016647338867,
+      "text": "Motivated by a need for more rigorous understanding, we leverage a unified approach to transfer learning that allows us to systematically study different approaches and push the current limits of the field. The basic idea underlying our work is to treat every text processing problem as a \"text-to-text\" problem, i.e. taking text as input and producing new text as output. . This approach is inspired by previous unifying frameworks for NLP tasks, including casting all text problems as question answ",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::ce87f573aee5",
+      "raw_rank": 32,
+      "final_score": -7.894457936286926
+    },
+    {
+      "score": 0.40854138135910034,
+      "text": ". Given the excellent performance of BERT across many tasks, BERTScore leverages the pre-trained contextual embeddings from BERT and compares words in candidate and reference texts by cosine similarity. BERTScore has proven to correspond well with human judgments on sentence-level and system-level evaluations. . 7.1.4 . Logit-Based Metrics. . In text generation, the probability of a generated text𝑦= ⟨𝑦1,...,𝑦𝑛⟩ can be formulated as Pr(𝑦) . = Î𝑛 𝑗=1 Pr(𝑦𝑗|𝑦1:𝑗−1;𝑥) . , where 𝑥denotes the input da",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::3356fd8864eb",
+      "raw_rank": 62,
+      "final_score": -7.895694091916084
+    },
+    {
+      "score": 0.40102431178092957,
+      "text": ". The ancestor sets A logic program P together with a goal G, defines an SLD tree each branch of which is a refutation of G using P. no ENs with s, l and b as nodes\") we (essentially) get BNT REE as an SLD-tree.. Each successful branch re (logs of) the probabilities added be>.. = (>.1, >.2,..., An). For any goal G, S has an associated SLD-tree: the one for of the well-known 'Asia' network given in Fig 3. . This is BN19 in Fig 5. . We then used a uniform prior over the set ing a cyclic transition",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1301.2254v1.pdf::2001::02719e1eecb2",
+      "raw_rank": 16,
+      "final_score": -7.9082392528653145
+    },
+    {
+      "score": 0.4268704950809479,
+      "text": "He et al. 81.7 81.4 84.6 3.2 / 17.2% Coref Lee et al. 67.2 67.2 70.4 3.2 / 9.8% NER Peters et al. 91.93 ± 0.19 90.15 92.22 ± 0.10 2.06 / 21% SST-5 McCann et al. 53.7 51.4 54.7 ± 0.5 3.3 / 6.8% Table 1: Test set comparison of ELMo enhanced neural models with state-of-the-art single model baselines across six benchmark NLP tasks. The performance metric varies across tasks – accuracy for SNLI and SST-5; F1 for SQuAD, SRL and NER; average F1 for Coref. . Due to the small test sizes for NER and SST-5",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "N18-1202.pdf::2018::f91344e6ea0d",
+      "raw_rank": 10,
+      "final_score": -7.909572564065456
+    },
+    {
+      "score": 0.5065494775772095,
+      "text": "2. conducts a literature review of the recent advances in LLMs from four major aspects, including pre-training (how to pretrain a capable LLM), adaptation (how to effectively adapt pre-trained LLMs for better use), utilization (how to use LLMs for solving various downstream tasks) and capability evaluation (how to evaluate the abilities of LLMs and existing empirical findings). We thoroughly comb the literature and summarize the key findings, techniques, and methods of LLMs. . For this survey, w",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::4853158a418a",
+      "raw_rank": 25,
+      "final_score": -7.910071939229965
+    },
+    {
+      "score": 0.48204606771469116,
+      "text": "Finally, given the broad spectrum of capabilities displayed by GPT-3, we discuss concerns about bias, fairness, and broader societal impacts, and attempt a preliminary analysis of GPT-3's characteristics in this regard.. The remainder of this paper is organized as follows. In Section 2, we describe our approach and methods for training GPT-3 and evaluating it. . Section 3 presents results on the full range of tasks in the zero-, one- and few-shot settings. . Section 4 addresses questions of data",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::e2981918a7fc",
+      "raw_rank": 6,
+      "final_score": -7.917896524071693
+    },
+    {
+      "score": 0.40367963910102844,
+      "text": "As LLMs continue to play a vital role in both research and daily use, their evaluation becomes increasingly critical, not only at the task level, but also at the society level for better understanding of their potential risks. Over the past years, significant efforts have been made to examine LLMs from various perspectives. . This paper presents a comprehensive review of these evaluation methods for LLMs, focusing on three key dimensions: what to evaluate, where to evaluate, and how to evaluate.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::ed5da3879776",
+      "raw_rank": 70,
+      "final_score": -7.9241364523768425
+    },
+    {
+      "score": 0.4790099859237671,
+      "text": "Recognizing that the main utility of transfer learning is the possibility of leveraging pre-trained models in data-scarce settings, we release our code, data sets, and pre-trained models.1 The remainder of the paper is structured as follows: In the following section, we discuss our base model and its implementation, our procedure for formulating every text processing problem as a text-to-text task, and the suite of tasks we consider. In Section 3, we present a large set of experiments that explo",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::c0ffaec5863c",
+      "raw_rank": 7,
+      "final_score": -7.938867956399918
+    },
+    {
+      "score": 0.3911985754966736,
+      "text": ". This paper introduced neural language models, which learn to convert a word symbol into a word vector or word embedding composed of learned semantic features in order to predict the next word in a sequence.. 72.. Cho, K. et al. Learning phrase representations using RNN encoder-decoder 2 8 M A Y 2 0 1 5 | V O L 5 2 1 | N . A T U R E | 4 4 3 for statistical machine translation. . In Proc. –1734. . 73. . Schwenk, H. Continuous space language models. . Computer Speech Lang. 21, natural language wi",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::1ba7c2db2c6d",
+      "raw_rank": 19,
+      "final_score": -7.9421240240335464
+    },
+    {
+      "score": 0.4561692476272583,
+      "text": ". Therefore, we aim to raise awareness in the community of the importance to LLMs evaluations by reviewing the current evaluation protocols and most importantly, shed light on future research about designing new LLMs evaluation protocols.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::50b3520cf019",
+      "raw_rank": 33,
+      "final_score": -7.943289965391159
+    },
+    {
+      "score": 0.41431474685668945,
+      "text": ". Specifically, we measure performance on the GLUE and SuperGLUE text classification meta-benchmarks; CNN/Daily Mail abstractive summarization; SQuAD question answering; and WMT English to German, French, and Romanian translation.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::16cd8ddfb1f0",
+      "raw_rank": 58,
+      "final_score": -7.95077383518219
+    },
+    {
+      "score": 0.4029213786125183,
+      "text": ". LAMBDA facilitates an interactive analysis process, enabling us to perform tasks such as data processing, feature engineering, model training, parameter tuning, and evaluation through a series of guided conversations. Finally, we used LAMBDA's built-in report generation feature to compile a analysis report, which includes details of the tasks completed in the conversation history. . The analysis process, including the conversation and the generated report, is presented in Figure 6. . As beginn",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::f38b966bb5f1",
+      "raw_rank": 15,
+      "final_score": -7.9560089856386185
+    },
+    {
+      "score": 0.40736669301986694,
+      "text": "In this survey, the text generation model 𝑓M is specially crafted based on a PLM M. Specifically, according to the type of the input data 𝑥and the property set P, text generation can be instantiated into different kinds of tasks: • When the input data 𝑥is not provided or is a random vector, text generation will degenerate into language modeling or unconditional text generation. In this case, the output text is required to satisfy some common language properties, such as fluency and naturalness. ",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::81b058d0c73e",
+      "raw_rank": 65,
+      "final_score": -7.97235132753849
+    },
+    {
+      "score": 0.3858485221862793,
+      "text": ". The overall scheme is outlined in figure 1, where the shown LSTM computes the representation of \"A\", \"B\", \"C\", \"\" and then uses this representation to compute the probability of \"W\", \"X\", \"Y\", \"Z\", \"\".. We applied our method to the WMT'14 English to French MT task in two ways. We used it to directly translate the input sentence without using a reference SMT system and we it to rescore the n-best lists of an SMT baseline. . We report the accuracy of these translation methods, present sample tra",
+      "metadata": {
+        "source_file": "1409.3215v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "1409.3215v3.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1409.3215v3.pdf::2014::9e8d2d584a19",
+      "raw_rank": 20,
+      "final_score": -7.985089421272278
+    },
+    {
+      "score": 0.5219353437423706,
+      "text": "We begin with introducing three key aspects of applying PLMs to text generation: 1) how to encode the input into representations preserving input semantics which can be fused into PLMs; 2) how to design an effective PLM to serve as the generation model; and 3) how to effectively optimize PLMs given the reference text and to ensure that the generated texts satisfy special text properties. Then, we show the major challenges arisen in these aspects, as well as possible solutions for them. . We also",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::b45e7569ccf5",
+      "raw_rank": 3,
+      "final_score": -7.99200251698494
+    },
+    {
+      "score": 0.4024684429168701,
+      "text": ". Specifically, they proposed a TF-IDF based masking which selects more condition-related tokens to be masked, so that PLMs can generate condition-related expressions rather than the general language patterns. Besides, they adopted a non-parametric attention-based gating mechanism to switch between generating a general word or a condition-related word at each position. . 5.3.2 . Faithfulness. . Faithfulness is also an important language property to consider for text generation, which means the g",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::9efcc1c81bcc",
+      "raw_rank": 72,
+      "final_score": -8.00739461183548
+    },
+    {
+      "score": 0.5003389120101929,
+      "text": ". (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::0247478323b2",
+      "raw_rank": 5,
+      "final_score": -8.047729164361954
+    },
+    {
+      "score": 0.4036908745765686,
+      "text": ". The above tasks take unstructured text as input, while the data-totext generation task generates descriptive text about structured input data, such as table, knowledge graph (KG) and abstract meaning representation (AMR). First, a naive and straightforward approach is to directly linearize the structured table and KG into textual form as the input of PLMs. . Considering the graph structure of KG and AMR, Li et al. and Ribeiro et al. employed graph neural network to learn a better representatio",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::68be55340063",
+      "raw_rank": 69,
+      "final_score": -8.048449382185936
+    },
+    {
+      "score": 0.5196998715400696,
+      "text": "3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::9de497dca2cc",
+      "raw_rank": 4,
+      "final_score": -8.06971387565136
+    },
+    {
+      "score": 0.39327049255371094,
+      "text": "4We note that in the literature the bidirectional TransInput/Output Representations To make BERT handle a variety of down-stream tasks, our input representation is able to unambiguously represent both a single sentence and a pair of sentences (e.g., ⟨Question, Answer ⟩) in one token sequence. Throughout this work, a \"sentence\" can be an arbitrary span of contiguous text, rather than an actual linguistic sentence. . A \"sequence\" refers to the input token sequence to BERT, which may be a single se",
+      "metadata": {
+        "source_file": "1810.04805v2.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2019",
+        "detected_language": null,
+        "page_count": 16,
+        "origin_chunk_file": "1810.04805v2.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1810.04805v2.pdf::2019::1c276c95c09b",
+      "raw_rank": 18,
+      "final_score": -8.109774112701416
+    },
+    {
+      "score": 0.4251238703727722,
+      "text": ". With the growing variety of text generation applications and datasets, there are several advantages of automatic evaluation: it is potentially much cheaper and quicker than human evaluation, and it is repeatable. Therefore, we mainly concentrate on automatic evaluation metrics for text generation in this part. . Following Celikyilmaz et al., we present four categories of metrics, i.e., 𝑛-gram overlap metrics, diversity metrics, semantic similarity metrics, and logit-based metrics. . We list th",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::304dbe278de5",
+      "raw_rank": 51,
+      "final_score": -8.139134243130684
+    },
+    {
+      "score": 0.44732871651649475,
+      "text": ". For the query-focused summarization task, Pasunuru et al. used a search engine, i.e., Bing, to retrieve the answer paragraph as the synthetic summary and used the top ranked documents as input text.. Another line of work is to use perturbation-based methods by corrupting the original text. For example, Chen et al. presented a set of data augmentation methods for conversation summarization, such as random swapping/deletion to randomly swap or delete utterances in conversations. . Multi-Task Lea",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::7e185834e6cc",
+      "raw_rank": 38,
+      "final_score": -8.182789765298367
+    },
+    {
+      "score": 0.3745418190956116,
+      "text": ". Please note that: (1) an excerpt may not reflect the overall tenor of the item, nor contain all of the relevant information; and, (2) all items are offered \"as is\" and the fact that an item has been selected does not imply any endorsement whatsoever.",
+      "metadata": {
+        "source_file": "1887-Article Text-1883-1-10-20080129.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2006",
+        "detected_language": null,
+        "page_count": 1,
+        "origin_chunk_file": "1887-Article Text-1883-1-10-20080129.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1887-Article Text-1883-1-10-20080129.pdf::2006::30cf7400b437",
+      "raw_rank": 21,
+      "final_score": -8.205415353178978
+    },
+    {
+      "score": 0.42011600732803345,
+      "text": ". On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data. . ∗Equal contribution. . Listing order is random. . Jakob proposed replacing RNNs w",
+      "metadata": {
+        "source_file": "1706.03762v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1706.03762v7.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1706.03762v7.pdf::2024::dd7f7b0e16b5",
+      "raw_rank": 12,
+      "final_score": -8.225669011473656
+    },
+    {
+      "score": 0.4130520820617676,
+      "text": ". (2) Determine potential attackers, their capabilities, and objectives: We consider threat actors of varying sophistication and motives, but with a common modus operandi — in all cases, our attacker is an individual or organization exploiting an NLG model. We characterize the attacker when explaining each attack. . (3) Devise a mitigation strategy: After identifying a threat model, we propose mitigation measures to improve security and reduce risk. . Detection of computer-generated text is ofte",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::7ac846fb14ba",
+      "raw_rank": 59,
+      "final_score": -8.23436725139618
+    },
+    {
+      "score": 0.41102832555770874,
+      "text": "However, we opted to create a new data set because prior data sets use a more limited set of filtering heuristics, are not publicly available, and/or are different in scope (e.g. are limited to News data (Zellers et al., 2019; Liu et al., 2019c), comprise only Creative Commons content, or are focused on parallel training data for machine translation ). . To assemble our base data set, we downloaded the web extracted text from April 2019 and applied the aforementioned filtering. . This produces a",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::a69fdd35a14a",
+      "raw_rank": 60,
+      "final_score": -8.251675978302956
+    }
+  ],
+  "chunks_final_to_llm": [
+    {
+      "score": 0.4654389023780823,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::85dff6bd2fb4",
+      "raw_rank": 30,
+      "final_score": 0.45560482889413834,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.5675524473190308,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70",
+      "raw_rank": 1,
+      "final_score": -0.8338675200939178,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.5312068462371826,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::d93703f6d548",
+      "raw_rank": 2,
+      "final_score": -1.766358196735382,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.4725131392478943,
+      "text": ". The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::915dff8c9b50",
+      "raw_rank": 8,
+      "final_score": -2.5183733850717545,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.4591895043849945,
+      "text": ". Turing's proposed \"imitation game\" in 1950 considered the question of machine intelligence based on the ability of a machine to conduct human-like conversation over a text channel, for which the first widely-published method dates back to 1966 with the ELIZA chatbot.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the turing test as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::4bdab79968a9",
+      "raw_rank": 31,
+      "final_score": -3.3167543187737465,
+      "relevance": 3,
+      "rank": 5
+    }
+  ]
+}

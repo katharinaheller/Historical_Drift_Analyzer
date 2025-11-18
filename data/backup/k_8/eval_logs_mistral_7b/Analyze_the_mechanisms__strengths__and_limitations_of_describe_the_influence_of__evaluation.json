@@ -1,0 +1,11 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_describe_the_influence_of_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.700724909300804,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

@@ -1,0 +1,7 @@
+{
+  "model_name": "mistral_7b",
+  "files": 200,
+  "evaluated_files": 100,
+  "mean_ndcg@k": 0.9976728191566803,
+  "mean_faithfulness": 0.4661215523511917
+}

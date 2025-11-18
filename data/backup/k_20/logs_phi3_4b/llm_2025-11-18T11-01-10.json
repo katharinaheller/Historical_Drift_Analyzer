@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-01-10",
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_what_criteria_are_used_to_",
+  "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.\n\nContext snippets:\n[1] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[2] 2210.07321v4.pdf (2023)\n. Turing's proposed \"imitation game\" in 1950 considered the question of machine intelligence based on the ability of a machine to conduct human-like conversation over a text channel, for which the first widely-published method dates back to 1966 with the ELIZA chatbot.\n\n[1] 0712.3329v1.pdf (2007)\nIn this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo\n\n[1] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[1] 0712.3329v1.pdf (2007)\n. In some cases, a machine may display properties that we equate with human intelligence, in such cases it might be \"Innumerable tests are available for measuring intelligence, yet no one is quite certain of what intelligence is, or even just what it is that the available tests are measuring.\" — R. L. Gregory . [Gre98] reasonable to describe the machine as also being intelligent. . In other situations this view is far too limited and anthropocentric.\n\n[3] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[1] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[4] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[3] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[1] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[1] 0712.3329v1.pdf (2007)\nTo measure the intelligence of such diverse systems in a meaningful way we must step back from the specifics of particular systems and establish the underlying fundamentals of what it is that we are really trying to measure. The difficulty of developing an abstract and highly general notion of intelligence is readily apparent. . Consider, for example, the memory and numerical computation tasks that appear in some intelligence tests and which were once regarded as defining hallmarks of human inte\n\n[5] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. For example, DS-1000 (Lai et al. 2023) provides a large-scale benchmark of 1000 realistic problems spanning seven core Python data science libraries, with execution-based multi-criteria evaluation and mechanisms to reduce memorization bias. MLAgentBench (Huang et al. 2024a) introduces a benchmark focused on machine learning research workflows by constructing an LLM-agent pipeline.\n\n[7] 0311031v1.pdf (2018)\n. The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •\n\n[1] 0712.3329v1.pdf (2007)\n. The issues that continue to draw debate are the questions such as whether the tests test only a part or a particular type of intelligence, or whether they are somehow biased towards a particular group or set of mental skills. Great effort has gone into dealing with these issues, but they are difficult problems with no easy solutions. . Somewhat disconnected from this exists a parallel debate over the nature of intelligence in the context of machines. . While the debate is less politically char\n\n[8] D14-1162.pdf (2014)\n. In this work we argue that the two classes of methods are not dramatically different at a fundamental level since they both probe the underlying co-occurrence statistics of the corpus, but the efficiency with which the count-based methods capture global statistics can be advantageous.\n\n[1] 0712.3329v1.pdf (2007)\n. Ideally we would like to be able to measure the intelligence of a wide range of systems; humans, dogs, flies, robots or even disembodied systems such as chat-bots, expert systems, classification systems and prediction algorithms. [Joh92, Alb91]. One response to this problem might be to develop specific kinds of tests for specific kinds of entities; just as intelligence tests for children differ to intelligence tests for adults.\n\n[2] 2210.07321v4.pdf (2023)\nAdditional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the\n\n[1] 0712.3329v1.pdf (2007)\n. While this works well when testing humans of different ages, it comes undone when we need to measure the intelligence of entities which are profoundly different to each other in terms of their cognitive capacities, speed, senses, environments in which they operate, and so on.\n\n[3] 3641289.pdf (2024)\n. As for new adversarial datasets, Wang et al. introduced AdvGLUE++ benchmark data for assessing adversarial robustness and implemented a new evaluation protocol to scrutinize machine ethics via jailbreaking system prompts.. 3.2.2 Ethics and Bias.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 0712.3329v1.pdf (2007)\n[2] 2210.07321v4.pdf (2023)\n[3] 3641289.pdf (2024)\n[4] 2005.14165v4.pdf (2020)\n[5] 2303.18223v16.pdf (2025)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[7] 0311031v1.pdf (2018)\n[8] D14-1162.pdf (2014)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.560785174369812,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.205261379480362,
+      "relevance": 3,
+      "rank": 1,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.43480634689331055,
+      "text": ". Turing's proposed \"imitation game\" in 1950 considered the question of machine intelligence based on the ability of a machine to conduct human-like conversation over a text channel, for which the first widely-published method dates back to 1966 with the ELIZA chatbot.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.4047356843948364,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2210.07321v4.pdf::2023::4bdab79968a9"
+    },
+    {
+      "score": 0.643574595451355,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.520925909280777,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794"
+    },
+    {
+      "score": 0.5949461460113525,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.806578755378723,
+      "relevance": 3,
+      "rank": 4,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.5386959314346313,
+      "text": ". In some cases, a machine may display properties that we equate with human intelligence, in such cases it might be \"Innumerable tests are available for measuring intelligence, yet no one is quite certain of what intelligence is, or even just what it is that the available tests are measuring.\" — R. L. Gregory . [Gre98] reasonable to describe the machine as also being intelligent. . In other situations this view is far too limited and anthropocentric.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -2.841181844472885,
+      "relevance": 3,
+      "rank": 5,
+      "id": "0712.3329v1.pdf::2007::d52f5669b2e8"
+    },
+    {
+      "score": 0.5334439277648926,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -3.0626741647720337,
+      "relevance": 3,
+      "rank": 6,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.5463681817054749,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -3.54670749604702,
+      "relevance": 3,
+      "rank": 7,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.42581430077552795,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -3.5744083747267723,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.5753880739212036,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -3.7853667438030243,
+      "relevance": 3,
+      "rank": 9,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.5915236473083496,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -3.8585819005966187,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.5286681652069092,
+      "text": "To measure the intelligence of such diverse systems in a meaningful way we must step back from the specifics of particular systems and establish the underlying fundamentals of what it is that we are really trying to measure. The difficulty of developing an abstract and highly general notion of intelligence is readily apparent. . Consider, for example, the memory and numerical computation tasks that appear in some intelligence tests and which were once regarded as defining hallmarks of human inte",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.209173858165741,
+      "relevance": 3,
+      "rank": 11,
+      "id": "0712.3329v1.pdf::2007::78a3ab2819b2"
+    },
+    {
+      "score": 0.5072932243347168,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.415120363235474,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.4517184793949127,
+      "text": ". For example, DS-1000 (Lai et al. 2023) provides a large-scale benchmark of 1000 realistic problems spanning seven core Python data science libraries, with execution-based multi-criteria evaluation and mechanisms to reduce memorization bias. MLAgentBench (Huang et al. 2024a) introduces a benchmark focused on machine learning research workflows by constructing an LLM-agent pipeline.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.472660027444363,
+      "relevance": 3,
+      "rank": 13,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::846d78b62e9a"
+    },
+    {
+      "score": 0.3895288109779358,
+      "text": ". The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.499247774481773,
+      "relevance": 3,
+      "rank": 14,
+      "id": "0311031v1.pdf::2018::915dff8c9b50"
+    },
+    {
+      "score": 0.553109884262085,
+      "text": ". The issues that continue to draw debate are the questions such as whether the tests test only a part or a particular type of intelligence, or whether they are somehow biased towards a particular group or set of mental skills. Great effort has gone into dealing with these issues, but they are difficult problems with no easy solutions. . Somewhat disconnected from this exists a parallel debate over the nature of intelligence in the context of machines. . While the debate is less politically char",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.560352981090546,
+      "relevance": 3,
+      "rank": 15,
+      "id": "0712.3329v1.pdf::2007::7a353eff6735"
+    },
+    {
+      "score": 0.40259814262390137,
+      "text": ". In this work we argue that the two classes of methods are not dramatically different at a fundamental level since they both probe the underlying co-occurrence statistics of the corpus, but the efficiency with which the count-based methods capture global statistics can be advantageous.",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.850820958614349,
+      "relevance": 3,
+      "rank": 16,
+      "id": "D14-1162.pdf::2014::f2ea9dfababe"
+    },
+    {
+      "score": 0.4624657928943634,
+      "text": ". Ideally we would like to be able to measure the intelligence of a wide range of systems; humans, dogs, flies, robots or even disembodied systems such as chat-bots, expert systems, classification systems and prediction algorithms. [Joh92, Alb91]. One response to this problem might be to develop specific kinds of tests for specific kinds of entities; just as intelligence tests for children differ to intelligence tests for adults.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -4.870334021747112,
+      "relevance": 3,
+      "rank": 17,
+      "id": "0712.3329v1.pdf::2007::eb91400b289b"
+    },
+    {
+      "score": 0.5268504619598389,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -5.1233009696006775,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::de479b9a4253"
+    },
+    {
+      "score": 0.4467814564704895,
+      "text": ". While this works well when testing humans of different ages, it comes undone when we need to measure the intelligence of entities which are profoundly different to each other in terms of their cognitive capacities, speed, senses, environments in which they operate, and so on.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -5.273777291178703,
+      "relevance": 3,
+      "rank": 19,
+      "id": "0712.3329v1.pdf::2007::c76c11de48ae"
+    },
+    {
+      "score": 0.4199525713920593,
+      "text": ". As for new adversarial datasets, Wang et al. introduced AdvGLUE++ benchmark data for assessing adversarial robustness and implemented a new evaluation protocol to scrutinize machine ethics via jailbreaking system prompts.. 3.2.2 Ethics and Bias.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of what criteria are used to judge machine intelligence in the corpus?, noting origins only when explicitly stated.",
+      "final_score": -5.361457899212837,
+      "relevance": 3,
+      "rank": 20,
+      "id": "3641289.pdf::2024::42b119384bd6"
+    }
+  ],
+  "model_output": "The criteria used to judge machine intelligence have evolved over time, with various definitions and tests proposed since the 1950s. The Turing Test, a method that assesses whether a machine's responses are indistinguishable from a human's, was first introduced in 1950 (Turing [2]). In 2007, a paper approached the problem of defining machine intelligence by extracting essential features from well-known informal definitions of human intelligence and formalizing them mathematically to produce a general measure of intelligence for arbitrary machines ([1]). The paper also emphasized that testing diverse systems requires an abstract and highly general notion of intelligence, as specific tests may only be applicable to certain kinds of entities ([1]). The Turing Test has been widely recognized as a test for assessing intelligence by discerning if responses are of human or machine origin ([3]). However, it's important to note that there have been debates over the years about whether these tests truly test a complete spectrum of intelligence or are biased towards certain mental skills ([1]). In recent years, advancements in machine learning and artificial intelligence have led to new challenges and discussions. For example, the need for detecting machine-generated text has emerged due to the release of high-quality Transformer-based Natural Language Generation models ([2]). The development of large language model-based agents for statistics and data science has also been a focus in 2025 ([6]). References:\n[1] 0712.3329v1.pdf (2007)\n[2] 2210.07321v4.pdf (2023)\n[3] 3641289.pdf (2024)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)"
+}

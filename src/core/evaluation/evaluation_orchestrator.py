@@ -1,8 +1,9 @@
+# src/core/evaluation/evaluation_orchestrator.py
 from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import Dict, Any, List, Tuple, Optional
+from typing import Dict, Any, List, Optional
 from dataclasses import replace
 
 from src.core.evaluation.interfaces.i_metric import IMetric
@@ -16,14 +17,7 @@ logger = logging.getLogger("EvaluationOrchestrator")
 
 
 class EvaluationOrchestrator:
-    """
-    Deterministic evaluation orchestrator.
-
-    Responsibilities:
-    - Construct immutable settings (with safe overrides)
-    - Evaluate single or batch LLM outputs
-    - Persist per-query evaluation results and summary
-    """
+    """Deterministic evaluation orchestrator adapted to the CURRENT log structure."""
 
     def __init__(
         self,
@@ -32,32 +26,24 @@ class EvaluationOrchestrator:
         settings: EvaluationSettings = DEFAULT_EVAL_SETTINGS,
         metrics: Dict[str, IMetric] | None = None,
         gt_builder: GroundTruthBuilder | None = None,
-        k: int | None = None,
-        bootstrap_iters: int | None = None,  # kept for compatibility, not in settings
+        k: Optional[int] = None,
+        bootstrap_iters: Optional[int] = None,
     ):
-        # Prepare output directory
+        # Create output directory
         self.model_name = model_name
         self.out = Path(base_output_dir)
         self.out.mkdir(parents=True, exist_ok=True)
 
-        # Override only fields that tatsächlich im Dataclass existieren
-        settings_overrides: Dict[str, Any] = {}
+        # Store settings with overrides
+        overrides: Dict[str, Any] = {}
         if k is not None:
-            settings_overrides["ndcg_k"] = int(k)
+            overrides["ndcg_k"] = int(k)
 
-        if settings_overrides:
-            # Create a new immutable settings instance
-            self.settings = replace(settings, **settings_overrides)
-        else:
-            self.settings = settings
-
-        # Store bootstrap_iters separately (used by visualizers, not by settings)
+        self.settings = replace(settings, **overrides) if overrides else settings
         self.bootstrap_iters = bootstrap_iters
-
-        # Extract effective k
         self.k = self.settings.ndcg_k
 
-        # Metrics subsystem
+        # Initialize metrics
         self.metrics = metrics or {
             "ndcg@k": NDCGMetric(k=self.k),
             "faithfulness": FaithfulnessMetric(settings=self.settings),
@@ -66,138 +52,90 @@ class EvaluationOrchestrator:
         # Ground truth builder
         self.gt_builder = gt_builder or GroundTruthBuilder(settings=self.settings)
 
-        logger.info(
-            f"EvaluationOrchestrator ready | model={self.model_name} | k={self.k} | out={self.out}"
-        )
+        logger.info(f"EvaluationOrchestrator ready | model={self.model_name} | k={self.k}")
 
     # -------------------------------------------------------------
-    def _ensure_chunk_ids(self, items: List[Dict[str, Any]]) -> None:
-        # Ensure each retrieved chunk has a stable ID
-        for ch in items:
+    def _ensure_chunk_ids(self, xs: List[Dict[str, Any]]) -> None:
+        # Ensure stable ids are always present
+        for ch in xs:
             if not ch.get("id"):
                 ch["id"] = make_chunk_id(ch)
 
     # -------------------------------------------------------------
-    def _safe_id(self, s: str | None) -> str:
-        # Generate a filesystem-safe query identifier
+    def _safe_id(self, s: Optional[str]) -> str:
+        # Sanitize file-safe ID
         if not s:
             return "query"
-        return "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in s)[:80] or "query"
+        cleaned = "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in s)
+        return cleaned[:80] or "query"
 
     # -------------------------------------------------------------
-    def _safe_year(self, meta: Dict[str, Any]) -> Optional[int]:
-        # Extract a plausible publication year from metadata
-        y = meta.get("year")
-        try:
-            yi = int(str(y))
-            if 1900 <= yi <= 2100:
-                return yi
-        except Exception:
-            pass
-        return None
+    def _extract_final(self, data: Dict[str, Any]) -> List[Dict[str, Any]]:
+        # Accept new key
+        final = data.get("retrieved_chunks_final")
+        if final:
+            return final
+
+        # Accept legacy key for compatibility
+        final = data.get("retrieved_chunks")
+        if final:
+            return final
+
+        return []
 
     # -------------------------------------------------------------
-    def _dominant_decade(self, chunks: List[Dict[str, Any]]) -> Tuple[Optional[int], Dict[str, int]]:
-        # Compute decade histogram and dominant decade
-        counts: Dict[str, int] = {}
-        for ch in chunks:
-            y = self._safe_year(ch.get("metadata", {}) or {})
-            d = f"{(y // 10) * 10}s" if y else "unknown"
-            counts[d] = counts.get(d, 0) + 1
+    def _extract_raw(self, data: Dict[str, Any]) -> Optional[List[Dict[str, Any]]]:
+        # Prefer newest key
+        raw = data.get("raw")
+        if raw:
+            return raw
 
-        if not counts:
-            return None, {}
+        # Accept standard key
+        raw = data.get("retrieved_chunks_raw")
+        if raw:
+            return raw
 
-        dom_dec_str = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
-        try:
-            dom = int(dom_dec_str[:-1])
-        except Exception:
-            dom = None
-
-        return dom, counts
-
-    # -------------------------------------------------------------
-    def _parse_citation_map_from_prompt(self, prompt_text: str) -> Dict[int, str]:
-        # Parse "[n] filename (year)" style lines from the prompt preamble
-        if not prompt_text:
-            return {}
-        import re
-
-        pattern = re.compile(r"^\[(\d+)\]\s+(.+?)\s+\((?:\d{4}|n/a)\)$", re.MULTILINE)
-        mapping: Dict[int, str] = {}
-        for m in pattern.finditer(prompt_text):
-            try:
-                mapping[int(m.group(1))] = m.group(2).strip()
-            except Exception:
-                continue
-        return mapping
-
-    # -------------------------------------------------------------
-    def _citation_hit_rate(
-        self,
-        model_output: str,
-        retrieved_chunks: List[Dict[str, Any]],
-        citation_map: Dict[int, str],
-    ) -> float:
-        # Compute proportion of citations that point to actually retrieved sources
-        if not model_output or not citation_map:
-            return 0.0
-
-        import re
-
-        nums = [int(x) for x in re.findall(r"\[(\d+)\]", model_output)]
-        if not nums:
-            return 0.0
-
-        retrieved_sources = {
-            (ch.get("metadata", {}) or {}).get("source_file", "").strip().lower()
-            for ch in retrieved_chunks
-        }
-
-        hits = sum(
-            1
-            for n in nums
-            if citation_map.get(n, "").strip().lower() in retrieved_sources
-        )
-        return hits / len(nums)
+        # Accept fallback
+        return data.get("faiss_raw")
 
     # -------------------------------------------------------------
     def evaluate_single(
         self,
         query: str,
-        retrieved_chunks: List[Dict[str, Any]],
+        retrieved_chunks_final: List[Dict[str, Any]],
         model_output: str,
-        prompt_text: str | None = None,
+        prompt_text: Optional[str] = None,
+        retrieved_chunks_raw: Optional[List[Dict[str, Any]]] = None,
     ) -> Dict[str, float]:
-        # Evaluate one query-answer pair and persist per-query metrics
-        self._ensure_chunk_ids(retrieved_chunks)
 
-        gt_map = self.gt_builder.build(query, retrieved_chunks)
-        relevance_scores = [
-            int(gt_map.get(ch["id"], ch.get("relevance", 0)))
-            for ch in retrieved_chunks
-        ]
+        # Ensure IDs exist for final chunks
+        self._ensure_chunk_ids(retrieved_chunks_final)
 
+        # RAW is preferred for NDCG
+        retrieval_for_ndcg = retrieved_chunks_raw if retrieved_chunks_raw else retrieved_chunks_final
+        self._ensure_chunk_ids(retrieval_for_ndcg)
+
+        # Build semantic graded ground truth independent of final ranking
+        gt_map = self.gt_builder.build(query, retrieval_for_ndcg)
+
+        relevance_scores = [int(gt_map.get(ch["id"], 0)) for ch in retrieval_for_ndcg]
+
+        # Compute NDCG
         ndcg_val = self.metrics["ndcg@k"].compute(relevance_scores=relevance_scores)
+
+        # Compute faithfulness
         faith_val = self.metrics["faithfulness"].compute(
-            context_chunks=[c.get("text", "") for c in retrieved_chunks],
+            context_chunks=[c.get("text", "") for c in retrieved_chunks_final],
             answer=model_output,
         )
-
-        dom_dec, dec_counts = self._dominant_decade(retrieved_chunks)
-        cit_map = self._parse_citation_map_from_prompt(prompt_text or "")
-        cit_hit = self._citation_hit_rate(model_output, retrieved_chunks, cit_map)
 
         qid = self._safe_id(query)
 
         result = {
             "query_id": qid,
+            "model_name": self.model_name,
             "ndcg@k": float(ndcg_val),
             "faithfulness": float(faith_val),
-            "dominant_decade": int(dom_dec) if dom_dec is not None else None,
-            "decade_counts": dec_counts,
-            "citation_hit_rate": float(cit_hit),
-            "model_name": self.model_name,
         }
 
         out_f = self.out / f"{qid}_evaluation.json"
@@ -212,91 +150,67 @@ class EvaluationOrchestrator:
         logs_dir: str = "data/logs",
         pattern: str = "llm_*.json",
     ) -> Dict[str, float]:
-        # Evaluate all matching LLM logs and write a global summary
+
         logs_path = Path(logs_dir)
-        if not logs_path.exists():
-            alt = logs_path.parent / f"{logs_path.name}_{self.model_name}"
-            if alt.exists():
-                logs_path = alt
-                logger.warning(f"Fallback logs directory used: {logs_path}")
-            else:
-                logger.error(f"Missing log directory: {logs_path}")
-                return {
-                    "model_name": self.model_name,
-                    "files": 0,
-                    "evaluated_files": 0,
-                    "mean_ndcg@k": 0.0,
-                    "mean_faithfulness": 0.0,
-                }
-
         files = sorted(logs_path.glob(pattern))
-        if not files:
-            logger.error(f"No log files matching '{pattern}' in {logs_path}")
-            return {
-                "model_name": self.model_name,
-                "files": 0,
-                "evaluated_files": 0,
-                "mean_ndcg@k": 0.0,
-                "mean_faithfulness": 0.0,
-            }
 
-        nd_vals: List[float] = []
-        fa_vals: List[float] = []
+        nd_vals, fa_vals = [], []
         evaluated = 0
 
         for fp in files:
             try:
                 data = json.loads(fp.read_text(encoding="utf-8"))
 
+                # Extract query
                 query = (
                     data.get("query")
-                    or data.get("user_query")
-                    or data.get("prompt")
                     or data.get("query_refined")
+                    or data.get("processed_query")
                     or ""
                 )
-
-                model_output = data.get("model_output") or data.get("answer") or ""
-                retrieved = data.get("retrieved_chunks") or data.get("context_snippets") or []
-                prompt_text = data.get("prompt_final_to_llm") or ""
-
-                for rank, ch in enumerate(retrieved, start=1):
-                    ch.setdefault("rank", rank)
-                    ch.setdefault("final_score", ch.get("score", 0.0))
-                    if "text" not in ch and "snippet" in ch:
-                        ch["text"] = ch["snippet"]
-
-                if not query or not retrieved:
+                if not query:
                     logger.warning(f"Skipped incomplete log: {fp.name}")
                     continue
 
-                res = self.evaluate_single(query, retrieved, model_output, prompt_text)
+                # Extract model answer
+                model_output = data.get("model_output") or data.get("answer") or ""
+
+                # Extract final chunks (new + legacy)
+                final = self._extract_final(data)
+                if not final:
+                    logger.warning(f"Skipped incomplete log (no final chunks): {fp.name}")
+                    continue
+
+                # Extract raw chunks (new + legacy)
+                raw = self._extract_raw(data)
+
+                # Run evaluation
+                res = self.evaluate_single(
+                    query=query,
+                    retrieved_chunks_final=final,
+                    model_output=model_output,
+                    prompt_text=data.get("prompt_final_to_llm", ""),
+                    retrieved_chunks_raw=raw,
+                )
+
                 nd_vals.append(float(res["ndcg@k"]))
                 fa_vals.append(float(res["faithfulness"]))
                 evaluated += 1
 
             except Exception as e:
                 err = self.out / f"{fp.stem}_eval_error.json"
-                err.write_text(json.dumps({"error": str(e)}, indent=2), encoding="utf-8")
+                err.write_text(json.dumps({"error": str(e)}), encoding="utf-8")
                 logger.error(f"Evaluation failed for {fp.name}: {e}")
-
-        mean_nd = float(sum(nd_vals) / len(nd_vals)) if nd_vals else 0.0
-        mean_fa = float(sum(fa_vals) / len(fa_vals)) if fa_vals else 0.0
 
         summary = {
             "model_name": self.model_name,
             "files": len(files),
             "evaluated_files": evaluated,
-            "mean_ndcg@k": mean_nd,
-            "mean_faithfulness": mean_fa,
+            "mean_ndcg@k": float(sum(nd_vals) / len(nd_vals)) if nd_vals else 0.0,
+            "mean_faithfulness": float(sum(fa_vals) / len(fa_vals)) if fa_vals else 0.0,
         }
 
-        (self.out / "evaluation_summary.json").write_text(
-            json.dumps(summary, indent=2), encoding="utf-8"
-        )
+        (self.out / "evaluation_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
 
-        logger.info(
-            f"Batch evaluation complete | model={self.model_name} | files={len(files)} | evaluated={evaluated}"
-        )
-
+        logger.info(f"Batch evaluation complete | files={len(files)} | evaluated={evaluated}")
         return summary

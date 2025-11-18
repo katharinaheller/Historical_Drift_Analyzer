@@ -1,0 +1,191 @@
+{
+  "timestamp": "2025-11-16T23-45-44",
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_summarize_arguments_for_hu",
+  "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[2] 0311031v1.pdf (2018)\n. Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to\n\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[3] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[3] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[4] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[5] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[3] 2210.07321v4.pdf (2023)\nThe EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.\n\n[2] 0311031v1.pdf (2018)\n. A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\nWe explore current trends in the design of LLM-based frameworks, detailing essential features such as planning, reasoning, reflection, multi-agent collaboration, user interface, knowledge integration, and system design, which enable agents to address data-centric problems with minimal human intervention. Furthermore, we analyze several case studies to demonstrate the practical applications of various data agents in realworld scenarios. . Finally, we identify key challenges and propose future res\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 0311031v1.pdf (2018)\n[3] 2210.07321v4.pdf (2023)\n[4] 2005.14165v4.pdf (2020)\n[5] Expert_Systems.pdf (2016)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5190810561180115,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -2.1189438849687576,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.45884644985198975,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.150286823511124,
+      "relevance": 3,
+      "rank": 2,
+      "id": "0311031v1.pdf::2018::62810bd2dcad"
+    },
+    {
+      "score": 0.50995934009552,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.190683215856552,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.45448505878448486,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.418092459440231,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.4979898929595947,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.582556903362274,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.4329015910625458,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.745562978088856,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.4155925214290619,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.107184089720249,
+      "relevance": 3,
+      "rank": 7,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.436296284198761,
+      "text": "The EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.207477614283562,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::44d5f016167a"
+    },
+    {
+      "score": 0.45137983560562134,
+      "text": ". A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.216839537024498,
+      "relevance": 3,
+      "rank": 9,
+      "id": "0311031v1.pdf::2018::20199c863ea7"
+    },
+    {
+      "score": 0.48602941632270813,
+      "text": "We explore current trends in the design of LLM-based frameworks, detailing essential features such as planning, reasoning, reflection, multi-agent collaboration, user interface, knowledge integration, and system design, which enable agents to address data-centric problems with minimal human intervention. Furthermore, we analyze several case studies to demonstrate the practical applications of various data agents in realworld scenarios. . Finally, we identify key challenges and propose future res",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize arguments for human oversight in critical ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.327312283217907,
+      "relevance": 3,
+      "rank": 10,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::03120c6c5d13"
+    }
+  ],
+  "model_output": "The mechanisms, strengths, and limitations of arguing for human oversight in critical AI systems have evolved over time. The concept of human oversight can be traced back to expert systems (Citation: [5] Expert_Systems.pdf, 2016), where the basic limitation was building such systems with heuristic and empirical knowledge rather than deep knowledge. In more recent years, large language models (LLMs) have gained significant attention (Citation: [1] 3641289.pdf, 2024). These models possess capabilities to solve diverse tasks, raising the question of whether they could be considered AGI (Artificial General Intelligence). However, it is crucial to evaluate these systems and identify current system limitations, informing the design of more powerful models (Citation: [1] 3641289.pdf, 2024). The Turing Test, a benchmark for assessing intelligence by discerning human or machine responses, has been a longstanding objective in AI evolution (Citation: [1] 3641289.pdf, 2024). Although a computing machine passing the Turing Test can be considered as intelligent among researchers, it does not necessarily ensure the system's trustworthiness or prevent unintended or dual-use applications that could cause harm (Citation: [3] 2210.07321v4.pdf, 2023). To address these concerns, guidelines such as the EU Ethics Guidelines for Trustworthy AI have been established (Citation: [3] 2210.07321v4.pdf, 2023), emphasizing the need to prevent and mitigate abuse of AI systems. Furthermore, surveys focusing on machine-generated text detection and its associated threats have been conducted to promote trustworthy AI (Citation: [3] 2210.07321v4.pdf, 2023). In summary, the importance of human oversight in critical AI systems has been recognized throughout the evolution of AI research, from expert systems to modern large language models. It is crucial to evaluate these systems for their limitations and potential risks while adhering to guidelines such as the EU Ethics Guidelines for Trustworthy AI to ensure responsible development and application of AI technology. References:\n[1] 3641289.pdf (2024)\n[2] 0311031v1.pdf (2018)\n[3] 2210.07321v4.pdf (2023)\n[4] 2005.14165v4.pdf (2020)\n[5] Expert_Systems.pdf (2016)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)"
+}

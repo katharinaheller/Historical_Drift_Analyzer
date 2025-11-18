@@ -1,0 +1,14 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_compare_deterministic_and_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7347461392267991,
+  "dominant_decade": 1990,
+  "decade_counts": {
+    "1990s": 9,
+    "2010s": 2,
+    "2020s": 7,
+    "2000s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

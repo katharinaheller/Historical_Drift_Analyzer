@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T12-17-28",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_compare_expert_systems",
+  "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] Expert_Systems.pdf (2016)\n. ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights,\n\n[1] Expert_Systems.pdf (2016)\n. Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).\n\n[1] Expert_Systems.pdf (2016)\nInductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.\n\n[1] Expert_Systems.pdf (2016)\n. Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is\n\n[1] Expert_Systems.pdf (2016)\n. The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).\n\n[1] Expert_Systems.pdf (2016)\n. Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre\n\n[2] NatureDeepReview.pdf (2025)\n. By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.\n\n[3] 1301.3781v3.pdf (2013)\n. In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to\n\n[1] Expert_Systems.pdf (2016)\n. After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as\n\n[1] Expert_Systems.pdf (2016)\n. Knowledge-based expert systems will continue to increase individual and social potential by preserving know-how, distributing knowledge more effectively, and improving performance of tasks that require expertise. 24. I. M. Dokas and A. Alapetite, A Development Process Meta-Model for Web Based Expert Systems: The Web Engineering Point of View, Risø National Laboratory, Denmark, 2006. . 25. . R. Islam and K. Andersson, Mohammad Shahadat Hossain, A Web Based Belief Rule Based Expert System to Pre\n\n[4] 1304.1082v1.pdf (1990)\n. The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i\n\n[1] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[5] 1409.3215v3.pdf (2014)\n. Deep Neural Networks (DNNs) are extremely powerful machine learning models that achieve excellent performance on difficult problems such as speech recognition and visual object recognition.. DNNs are powerful because they can perform arbitrary parallel computation for a modest number of steps. A surprising example of the power of DNNs is their ability to sort N N-bit numbers using only 2 hidden layers of quadratic size. . So, while neural networks are related to conventional statistical models\n\n[1] Expert_Systems.pdf (2016)\n. The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest\n\n[4] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[6] 1304.1106v1.pdf (1990)\n. [28), a rule-based expert system that used certainty factors, indicated that the cer tainty factors associated with the rules were not very important to the system's performance MYCIN's diagnoses were, in general, identi cal with the certainty factor engine on or off [3, pages 217-219). In the clinical psychology literature on bootstrapping, Dawes described a series of tests in which he compared judg ments made directly by experts to those gen erated by linear model of the experts. . In additi\n\n[3] 1301.3781v3.pdf (2013)\n. We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. . We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set.\n\n[7] 1409.0473v7.pdf (2016)\nUnlike the traditional phrase-based translation system (see, e.g., Koehn et al., 2003) which consists of many small sub-components that are tuned separately, neural machine translation attempts to build and train a single, large neural network that reads a sentence and outputs a correct translation.\n\n[2] NatureDeepReview.pdf (2025)\nThis overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat\n\n[8] 2210.07321v4.pdf (2023)\n. Natural language generation using neural networks was demonstrated to be highly effective using recurrent neural networks (RNN), including long short-term memory (LSTM) architectures and gated recurrent units (GRUs). However, RNN and LSTM architectures had to contend with the vanishing gradient problem, to which the multi-head attention mechanism of the Transformer architecture is more resilient. . Generative adversarial networks (GANs) — commonly used to generate continuous data (such as imag\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] Expert_Systems.pdf (2016)\n[2] NatureDeepReview.pdf (2025)\n[3] 1301.3781v3.pdf (2013)\n[4] 1304.1082v1.pdf (1990)\n[5] 1409.3215v3.pdf (2014)\n[6] 1304.1106v1.pdf (1990)\n[7] 1409.0473v7.pdf (2016)\n[8] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.4840760827064514,
+      "text": ". ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights, ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -0.3623989075422287,
+      "relevance": 3,
+      "rank": 1,
+      "id": "Expert_Systems.pdf::2016::d305ba40cb6f"
+    },
+    {
+      "score": 0.455418199300766,
+      "text": ". Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.2108853831887245,
+      "relevance": 3,
+      "rank": 2,
+      "id": "Expert_Systems.pdf::2016::83662aa275fb"
+    },
+    {
+      "score": 0.4513838291168213,
+      "text": "Inductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.233299434185028,
+      "relevance": 3,
+      "rank": 3,
+      "id": "Expert_Systems.pdf::2016::a3208e34f3a9"
+    },
+    {
+      "score": 0.44510117173194885,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.5762101635336876,
+      "relevance": 3,
+      "rank": 4,
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e"
+    },
+    {
+      "score": 0.4984499216079712,
+      "text": ". The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.7011338770389557,
+      "relevance": 3,
+      "rank": 5,
+      "id": "Expert_Systems.pdf::2016::ce60bd8ccf2e"
+    },
+    {
+      "score": 0.455022394657135,
+      "text": ". Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.2671878188848495,
+      "relevance": 3,
+      "rank": 6,
+      "id": "Expert_Systems.pdf::2016::1f0818e4c126"
+    },
+    {
+      "score": 0.45963042974472046,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.3870248943567276,
+      "relevance": 3,
+      "rank": 7,
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d"
+    },
+    {
+      "score": 0.4307238459587097,
+      "text": ". In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.7450054436922073,
+      "relevance": 3,
+      "rank": 8,
+      "id": "1301.3781v3.pdf::2013::baadc05c3b47"
+    },
+    {
+      "score": 0.4981718957424164,
+      "text": ". After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.943114258348942,
+      "relevance": 3,
+      "rank": 9,
+      "id": "Expert_Systems.pdf::2016::bab1f1e7ac80"
+    },
+    {
+      "score": 0.5461193323135376,
+      "text": ". Knowledge-based expert systems will continue to increase individual and social potential by preserving know-how, distributing knowledge more effectively, and improving performance of tasks that require expertise. 24. I. M. Dokas and A. Alapetite, A Development Process Meta-Model for Web Based Expert Systems: The Web Engineering Point of View, Risø National Laboratory, Denmark, 2006. . 25. . R. Islam and K. Andersson, Mohammad Shahadat Hossain, A Web Based Belief Rule Based Expert System to Pre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.25571796298027,
+      "relevance": 3,
+      "rank": 10,
+      "id": "Expert_Systems.pdf::2016::3f868e4f3792"
+    },
+    {
+      "score": 0.4755956530570984,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.443410590291023,
+      "relevance": 3,
+      "rank": 11,
+      "id": "1304.1082v1.pdf::1990::40911c1531a3"
+    },
+    {
+      "score": 0.4474312365055084,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.530781351029873,
+      "relevance": 3,
+      "rank": 12,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.4028545618057251,
+      "text": ". Deep Neural Networks (DNNs) are extremely powerful machine learning models that achieve excellent performance on difficult problems such as speech recognition and visual object recognition.. DNNs are powerful because they can perform arbitrary parallel computation for a modest number of steps. A surprising example of the power of DNNs is their ability to sort N N-bit numbers using only 2 hidden layers of quadratic size. . So, while neural networks are related to conventional statistical models",
+      "metadata": {
+        "source_file": "1409.3215v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "1409.3215v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.587352842092514,
+      "relevance": 3,
+      "rank": 13,
+      "id": "1409.3215v3.pdf::2014::3209722a1d13"
+    },
+    {
+      "score": 0.47956371307373047,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.6580188274383545,
+      "relevance": 3,
+      "rank": 14,
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4"
+    },
+    {
+      "score": 0.4310115575790405,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.711334854364395,
+      "relevance": 3,
+      "rank": 15,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.4043479561805725,
+      "text": ". [28), a rule-based expert system that used certainty factors, indicated that the cer tainty factors associated with the rules were not very important to the system's performance MYCIN's diagnoses were, in general, identi cal with the certainty factor engine on or off [3, pages 217-219). In the clinical psychology literature on bootstrapping, Dawes described a series of tests in which he compared judg ments made directly by experts to those gen erated by linear model of the experts. . In additi",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.760070666670799,
+      "relevance": 3,
+      "rank": 16,
+      "id": "1304.1106v1.pdf::1990::52d0e8f62167"
+    },
+    {
+      "score": 0.47007763385772705,
+      "text": ". We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. . We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.960028499364853,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1301.3781v3.pdf::2013::45f6e7aac3e4"
+    },
+    {
+      "score": 0.42181485891342163,
+      "text": "Unlike the traditional phrase-based translation system (see, e.g., Koehn et al., 2003) which consists of many small sub-components that are tuned separately, neural machine translation attempts to build and train a single, large neural network that reads a sentence and outputs a correct translation.",
+      "metadata": {
+        "source_file": "1409.0473v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1409.0473v7.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.974828258156776,
+      "relevance": 3,
+      "rank": 18,
+      "id": "1409.0473v7.pdf::2016::797bafe5ea64"
+    },
+    {
+      "score": 0.4771084785461426,
+      "text": "This overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.997075200080872,
+      "relevance": 3,
+      "rank": 19,
+      "id": "NatureDeepReview.pdf::2025::b7c20fcc18a5"
+    },
+    {
+      "score": 0.37872397899627686,
+      "text": ". Natural language generation using neural networks was demonstrated to be highly effective using recurrent neural networks (RNN), including long short-term memory (LSTM) architectures and gated recurrent units (GRUs). However, RNN and LSTM architectures had to contend with the vanishing gradient problem, to which the multi-head attention mechanism of the Transformer architecture is more resilient. . Generative adversarial networks (GANs) — commonly used to generate continuous data (such as imag",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare expert systems and neural network based systems in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.0577724277973175,
+      "relevance": 3,
+      "rank": 20,
+      "id": "2210.07321v4.pdf::2023::5ff06653febb"
+    }
+  ],
+  "model_output": "Comparison of Expert Systems and Neural Network-Based Systems\n\nExpert systems, one of the earlier research fields in Artificial Intelligence (AI), were defined as knowledge-intensive software that can perform tasks requiring human expertise [1]. They emerged around mid-1970s under the umbrella of AI and have found applications in various areas such as engineering, chemistry, medicine, industry, etc. [1]. The general architecture of an expert system consists of a user interface, explanation facility, working memory, and inference engine [1]. On the other hand, neural networks were not explicitly mentioned as a separate field until the 2025 PDF [2], although they were used as part of some expert systems to perform classification tasks [1]. Neural network expert systems use inductive learning for handling empirical data and preventing the knowledge acquisition bottleneck [1]. Unlike expert systems that rely on IF–THEN rules, neural networks just use big activity vectors, big weight matrices, and scalar non-linearities to perform intuitive inference [2]. However, insufficient evidence is available to compare the development stages of these two approaches. While it is stated that expert systems have reached the maturity stage [1], there is no such statement for neural networks in the provided context. Additionally, while some commercial expert systems are mentioned [1], there is no mention of any commercially successful neural network-based systems. References:\n[1] Expert_Systems.pdf (2016)\n[2] NatureDeepReview.pdf (2025)"
+}

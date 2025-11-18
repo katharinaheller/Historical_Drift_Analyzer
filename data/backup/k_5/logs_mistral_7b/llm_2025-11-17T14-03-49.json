@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-11-17T14-03-49",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_how_symbolic_a",
+  "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 1304.1106v1.pdf (1990)\n. The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re\n\n[2] D14-1162.pdf (2014)\nThe result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi\n\n[3] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[3] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[4] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1106v1.pdf (1990)\n[2] D14-1162.pdf (2014)\n[3] 0712.3329v1.pdf (2007)\n[4] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.40123450756073,
+      "text": ". The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.471850901842117,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1106v1.pdf::1990::0b2161b2f928"
+    },
+    {
+      "score": 0.4344480037689209,
+      "text": "The result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.892954170703888,
+      "relevance": 3,
+      "rank": 2,
+      "id": "D14-1162.pdf::2014::a47cb0a05267"
+    },
+    {
+      "score": 0.4847224950790405,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.999051481485367,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.4585840702056885,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.074579656124115,
+      "relevance": 3,
+      "rank": 4,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.4910733103752136,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.181628540158272,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    }
+  ],
+  "model_output": "Comparison of Symbolic AI and Connectionism:\n\nSymbolic AI, also known as Good Old-Fashioned AI (GOFAI), is based on the idea that artificial intelligence can be achieved by creating systems capable of replicating human-like reasoning and problem-solving skills [3]. This approach typically involves representing knowledge in a formal, symbolic manner and using logical deduction to derive new insights. On the other hand, Connectionism, also known as neural networks, is a machine learning paradigm inspired by the structure and function of the brain's neurons [1]. It focuses on processing information through interconnected nodes or artificial neurons, simulating biological neural networks. Learning in connectionist systems occurs through adjusting the weights of connections between nodes based on the error gradient during training. In terms of conceptual differences:\n- Symbolic AI relies on explicit, formal reasoning and logic, while connectionism utilizes statistical learning and pattern recognition [3]. - Symbolic AI requires handcrafted features to represent knowledge, whereas connectionist systems can learn relevant features automatically from data [2]. - Symbolic AI struggles with generalization and scalability due to the need for a vast number of rules or expert systems [4], while connectionism is more suitable for large-scale learning tasks [1, 2]. Insufficient evidence was found to compare the historical motivations behind the development of these two perspectives. References:\n[1] 1304.1106v1.pdf (1990)\n[2] D14-1162.pdf (2014)\n[3] 0712.3329v1.pdf (2007)\n[4] 2210.07321v4.pdf (2023)"
+}

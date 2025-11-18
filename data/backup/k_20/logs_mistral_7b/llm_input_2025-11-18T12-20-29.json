@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T12-20-29",
+  "query_refined": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 2210.07321v4.pdf (2023)\n. To understand the risks that motivate research on detection of machine generated text, we draw from existing literature to present a series of threat models incorporating natural language generation. Threat modeling reflects the process of thinking like an attacker, identifying vulnerabilities to systems by identifying potential attackers, their capabilities, and objectives. . The goal of threat modeling is to improve the security of systems by considering the greatest threats to systems and t\n\n[1] 2210.07321v4.pdf (2023)\n. MACHINE GENERATED TEXT Before reviewing threat models and detection methodologies for machine generated text, it is helpful to briefly provide a formal definition of machine generated text, and a condensed overview of natural language generation (NLG) models. We recommend further reading of dedicated surveys on natural language generation for greater insight into the wide breadth of NLG models and applications.\n\n[1] 2210.07321v4.pdf (2023)\nThe result of our threat modeling process is a series of threat models that describe scenarios where machine generated text may be abused, the likely methodology of attackers, and existing research related to each threat. To date, there has yet to be any survey of machine generated text detection with a focus on the risks presented by machine generated text. . Consideration of threat models is vital to set the groundwork for trustworthy development of NLG technology, encourage early development\n\n[1] 2210.07321v4.pdf (2023)\n. DETECTION OF MACHINE GENERATED TEXT Analysis of threat models indicates that the detection of machine generated text, when utilized correctly, is a valuable tool for reducing the harms of NLG model abuse.\n\n[1] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[1] 2210.07321v4.pdf (2023)\nIn the majority of cases, the production of new text is not the primary goal of a text adversarial attack, and text adversarial attacks and threat models are already covered by surveys in adversarial attack literature. We will nevertheless discuss the role machine generated text plays in adversarial contexts in Section 3, as well as adversarial robustness of detection models in Section 5.\n\n[1] 2210.07321v4.pdf (2023)\n2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align\n\n[1] 2210.07321v4.pdf (2023)\n3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig\n\n[1] 2210.07321v4.pdf (2023)\n. As previously mentioned, NLG encompasses a large variety of tasks and research areas, with this brief section serving as context for understanding machine generated text threat models and detection methods.. 2.3.1 Non-Neural Models. Predating the popularization of neural approaches in the NLG domain, a range of systems were used to accomplish NLG tasks. . These early approaches can broadly be summarized as \"rule-based\", though there existed variety in terms of processes, pipelines, and targets\n\n[1] 2210.07321v4.pdf (2023)\n. Note that this analysis focuses on threat models where a threat actor leverages machine generated text as part of an attack — typically scenarios where the attacker is attempting to pass machine text as human, and where detection of machine generated text may be useful defensively. We are not discussing attacks against NLG models themselves, unless they leverage NLG as part of the attack.\n\n[1] 2210.07321v4.pdf (2023)\n. While a completely exhaustive list of all possible future malicious applications of NLG models is not possible, the threats outlined here span a wide range of tangible dangers at this point in time, representing valuable areas of future investigation for preemptive ethical defensive research. As previously mentioned, threat modeling is iterative, and it is hoped that these threat models should serve as the foundation for future work in improving security against machine generated text. . 3.2.1\n\n[1] 2210.07321v4.pdf (2023)\n. As an example, when generating social media posts as part of an NLG-augmented online influence campaign, an attacker would benefit from being able to ensure that generated comments both 1) mention a targeted political opponent, and 2) demonstrate negative entity sentiment towards the opponent. We will cover such potential abuses and others in more detail in the next section, which concerns threat models associated with machine generated text. . Machine generated text enables a diverse array of\n\n[1] 2210.07321v4.pdf (2023)\nAdditional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the\n\n[1] 2210.07321v4.pdf (2023)\nThe threat actors in this case may be individuals (perhaps understandably) looking to save time and improve their employment opportunities by bypassing a cumbersome application process, or a malicious attacker looking to flood a target company with fraudulent submissions (a threat actor which we will discuss further in \"Spam and Harassment\"). Detection of machine generated text may be able to identify artificial cover letters or essays given they are of sufficient length (the odds of successful\n\n[1] 2210.07321v4.pdf (2023)\nDetection of machine generated text is typically framed as a binary classification problem in which a classifier is trained to differentiate samples of machine generated text from human generated text, though there exists related research in attribution of machine generated text to the model that generated it which we will discuss in §5.2. In this section, we outline the methods used for detection of machine generated text. . In §4.1 we summarize feature-based approaches in machine generated tex\n\n[1] 2210.07321v4.pdf (2023)\n. The distinction between commercial and political influence campaigns is useful for better understanding threat actors and threatened systems in more detail, as well as categorizing existing research.. 3.3.1 Political Influence Campaigns. Machine generated text as part of political influence campaigns has been analyzed in previous work.\n\n[1] 2210.07321v4.pdf (2023)\n. As in previous cases, there are overlaps with other threat models, but the distinction of spam use-cases is useful for understanding how attacks using machine generated text impact platforms when deployed at large scale.. 3.5.2. Harassment. Techniques similar to spamming may be used to cause distress to individuals or communities by targeting them with a large volume of messages.\n\n[1] 2210.07321v4.pdf (2023)\n. For example, a white-box training data extraction attack targeting the weights of a commercial speech-to-text model would not be included in our analysis, but using an NLG model to produce data for poisoning that model's training dataset would. With this definition of machine generated text in mind, and with an understanding of the scope of research under consideration, we proceed to a brief overview of natural language generation. . Using a computer to produce human-like text is well-establis\n\n[1] 2210.07321v4.pdf (2023)\n. #Russia's #Air_Force has stepped up airstrikes against camps for the #Islamic_State in the #Terek_Val As consumption of text content is common online, there are many avenues where machine generated text might be utilized by a threat actor to improve scaling and targeting of influence operations. Social media, due to the large volume of engaged users, is likely to continue be a valuable and vulnerable target for such campaigns. . Research on detection of machine generated text for political inf\n\n[1] 2210.07321v4.pdf (2023)\nWhile NLG models may make detection of automated coordinated inauthentic activity more difficult, abuse often still requires bypassing existing defenses such as IP reputation checks and CAPTCHA Future threat modeling and observed cyberattacks will certainly augment the threat models discussed in this section, but we have now provided sufficient motivation for exploring the defensive capabilities offered by machine generated text detection. In the next section we will discuss the current status o\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.6144223213195801,
+      "text": ". To understand the risks that motivate research on detection of machine generated text, we draw from existing literature to present a series of threat models incorporating natural language generation. Threat modeling reflects the process of thinking like an attacker, identifying vulnerabilities to systems by identifying potential attackers, their capabilities, and objectives. . The goal of threat modeling is to improve the security of systems by considering the greatest threats to systems and t",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": 0.702471911907196,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2210.07321v4.pdf::2023::3570e19720bc"
+    },
+    {
+      "score": 0.6594122648239136,
+      "text": ". MACHINE GENERATED TEXT Before reviewing threat models and detection methodologies for machine generated text, it is helpful to briefly provide a formal definition of machine generated text, and a condensed overview of natural language generation (NLG) models. We recommend further reading of dedicated surveys on natural language generation for greater insight into the wide breadth of NLG models and applications.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": 0.5238059237599373,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2210.07321v4.pdf::2023::e03808f04a5d"
+    },
+    {
+      "score": 0.6042599678039551,
+      "text": "The result of our threat modeling process is a series of threat models that describe scenarios where machine generated text may be abused, the likely methodology of attackers, and existing research related to each threat. To date, there has yet to be any survey of machine generated text detection with a focus on the risks presented by machine generated text. . Consideration of threat models is vital to set the groundwork for trustworthy development of NLG technology, encourage early development ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": 0.3939816653728485,
+      "relevance": 3,
+      "rank": 3,
+      "id": "2210.07321v4.pdf::2023::64e8c6f64f37"
+    },
+    {
+      "score": 0.5706889033317566,
+      "text": ". DETECTION OF MACHINE GENERATED TEXT Analysis of threat models indicates that the detection of machine generated text, when utilized correctly, is a valuable tool for reducing the harms of NLG model abuse.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.07889728248119354,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::ef563963a3df"
+    },
+    {
+      "score": 0.5403918027877808,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.16515462845563889,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.5961117744445801,
+      "text": "In the majority of cases, the production of new text is not the primary goal of a text adversarial attack, and text adversarial attacks and threat models are already covered by surveys in adversarial attack literature. We will nevertheless discuss the role machine generated text plays in adversarial contexts in Section 3, as well as adversarial robustness of detection models in Section 5.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.21612727642059326,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2210.07321v4.pdf::2023::ea313a6a4836"
+    },
+    {
+      "score": 0.7101709842681885,
+      "text": "2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.5210580378770828,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2210.07321v4.pdf::2023::bd1a671a542c"
+    },
+    {
+      "score": 0.6925240755081177,
+      "text": "3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.7136387526988983,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::9de497dca2cc"
+    },
+    {
+      "score": 0.545637845993042,
+      "text": ". As previously mentioned, NLG encompasses a large variety of tasks and research areas, with this brief section serving as context for understanding machine generated text threat models and detection methods.. 2.3.1 Non-Neural Models. Predating the popularization of neural approaches in the NLG domain, a range of systems were used to accomplish NLG tasks. . These early approaches can broadly be summarized as \"rule-based\", though there existed variety in terms of processes, pipelines, and targets",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.7437419593334198,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2210.07321v4.pdf::2023::6469aa988ef2"
+    },
+    {
+      "score": 0.557513952255249,
+      "text": ". Note that this analysis focuses on threat models where a threat actor leverages machine generated text as part of an attack — typically scenarios where the attacker is attempting to pass machine text as human, and where detection of machine generated text may be useful defensively. We are not discussing attacks against NLG models themselves, unless they leverage NLG as part of the attack.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.161303699016571,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2210.07321v4.pdf::2023::8885c20501b6"
+    },
+    {
+      "score": 0.5021138787269592,
+      "text": ". While a completely exhaustive list of all possible future malicious applications of NLG models is not possible, the threats outlined here span a wide range of tangible dangers at this point in time, representing valuable areas of future investigation for preemptive ethical defensive research. As previously mentioned, threat modeling is iterative, and it is hoped that these threat models should serve as the foundation for future work in improving security against machine generated text. . 3.2.1",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.1923339813947678,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2210.07321v4.pdf::2023::33c458df5ccd"
+    },
+    {
+      "score": 0.5510796904563904,
+      "text": ". As an example, when generating social media posts as part of an NLG-augmented online influence campaign, an attacker would benefit from being able to ensure that generated comments both 1) mention a targeted political opponent, and 2) demonstrate negative entity sentiment towards the opponent. We will cover such potential abuses and others in more detail in the next section, which concerns threat models associated with machine generated text. . Machine generated text enables a diverse array of",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.2738267928361893,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2210.07321v4.pdf::2023::c929f079e421"
+    },
+    {
+      "score": 0.5037631988525391,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.323193609714508,
+      "relevance": 3,
+      "rank": 13,
+      "id": "2210.07321v4.pdf::2023::de479b9a4253"
+    },
+    {
+      "score": 0.42850106954574585,
+      "text": "The threat actors in this case may be individuals (perhaps understandably) looking to save time and improve their employment opportunities by bypassing a cumbersome application process, or a malicious attacker looking to flood a target company with fraudulent submissions (a threat actor which we will discuss further in \"Spam and Harassment\"). Detection of machine generated text may be able to identify artificial cover letters or essays given they are of sufficient length (the odds of successful ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.3839410990476608,
+      "relevance": 3,
+      "rank": 14,
+      "id": "2210.07321v4.pdf::2023::c717ef2fca22"
+    },
+    {
+      "score": 0.5960521697998047,
+      "text": "Detection of machine generated text is typically framed as a binary classification problem in which a classifier is trained to differentiate samples of machine generated text from human generated text, though there exists related research in attribution of machine generated text to the model that generated it which we will discuss in §5.2. In this section, we outline the methods used for detection of machine generated text. . In §4.1 we summarize feature-based approaches in machine generated tex",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.4230117797851562,
+      "relevance": 3,
+      "rank": 15,
+      "id": "2210.07321v4.pdf::2023::98b75543d44f"
+    },
+    {
+      "score": 0.44071727991104126,
+      "text": ". The distinction between commercial and political influence campaigns is useful for better understanding threat actors and threatened systems in more detail, as well as categorizing existing research.. 3.3.1 Political Influence Campaigns. Machine generated text as part of political influence campaigns has been analyzed in previous work.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.481141671538353,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2210.07321v4.pdf::2023::2b0aa46462ac"
+    },
+    {
+      "score": 0.5682370662689209,
+      "text": ". As in previous cases, there are overlaps with other threat models, but the distinction of spam use-cases is useful for understanding how attacks using machine generated text impact platforms when deployed at large scale.. 3.5.2. Harassment. Techniques similar to spamming may be used to cause distress to individuals or communities by targeting them with a large volume of messages.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.6137987971305847,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2210.07321v4.pdf::2023::74813476ebfe"
+    },
+    {
+      "score": 0.5468313694000244,
+      "text": ". For example, a white-box training data extraction attack targeting the weights of a commercial speech-to-text model would not be included in our analysis, but using an NLG model to produce data for poisoning that model's training dataset would. With this definition of machine generated text in mind, and with an understanding of the scope of research under consideration, we proceed to a brief overview of natural language generation. . Using a computer to produce human-like text is well-establis",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.7511352896690369,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::03dd03685e05"
+    },
+    {
+      "score": 0.4657145142555237,
+      "text": ". #Russia's #Air_Force has stepped up airstrikes against camps for the #Islamic_State in the #Terek_Val As consumption of text content is common online, there are many avenues where machine generated text might be utilized by a threat actor to improve scaling and targeting of influence operations. Social media, due to the large volume of engaged users, is likely to continue be a valuable and vulnerable target for such campaigns. . Research on detection of machine generated text for political inf",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.9513159841299057,
+      "relevance": 3,
+      "rank": 19,
+      "id": "2210.07321v4.pdf::2023::a93f3e8a1176"
+    },
+    {
+      "score": 0.5207411050796509,
+      "text": "While NLG models may make detection of automated coordinated inauthentic activity more difficult, abuse often still requires bypassing existing defenses such as IP reputation checks and CAPTCHA Future threat modeling and observed cyberattacks will certainly augment the threat models discussed in this section, but we have now provided sufficient motivation for exploring the defensive capabilities offered by machine generated text detection. In the next section we will discuss the current status o",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain the notion of machine-generated text threats discussed in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.2401547133922577,
+      "relevance": 3,
+      "rank": 20,
+      "id": "2210.07321v4.pdf::2023::2c54cf54eb99"
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-06-57",
+  "query_id": "Define_define_cognitive_architectures_and_describe_their_relevance_to_ai_researc",
+  "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[3] Expert_Systems.pdf (2016)\n. Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is\n\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[1] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[2] 0311031v1.pdf (2018)\n. Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co\n\n[5] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[6] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[7] 2210.07321v4.pdf (2023)\nThird, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical\n\n[5] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[6] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[7] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[8] 1304.1106v1.pdf (1990)\n. Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime\n\n[7] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[3] Expert_Systems.pdf (2016)\n. The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest\n\n[9] 1304.1082v1.pdf (1990)\nThere is a vast literature on human judgment under uncertainty for very simple inference problems, typically with a single hypothesis variable and a single observation (e.g. see Kahneman et al., 1982 and Morgan & Henrion, 1990 for reviews), but relatively little is known about cognitive processes in more complex situations. To improve our insights into this and to seek inspiration for alternative approaches to explanation, we conducted a series of cognitive process-tracing studies. . We recorded\n\n[10] 1301.3781v3.pdf (2013)\nAs far as we know, none of the previously proposed architectures has been successfully trained on more than a few hundred of millions of words, with a modest dimensionality of the word vectors between 50 - 100.\n\n[6] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[1] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 0311031v1.pdf (2018)\n[3] Expert_Systems.pdf (2016)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 2303.18223v16.pdf (2025)\n[6] 0712.3329v1.pdf (2007)\n[7] 2210.07321v4.pdf (2023)\n[8] 1304.1106v1.pdf (1990)\n[9] 1304.1082v1.pdf (1990)\n[10] 1301.3781v3.pdf (2013)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.48674288392066956,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.4287261590361595,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.46995240449905396,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.5096877068281174,
+      "relevance": 3,
+      "rank": 2,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    },
+    {
+      "score": 0.35039186477661133,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.082165837287903,
+      "relevance": 3,
+      "rank": 3,
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e"
+    },
+    {
+      "score": 0.42876335978507996,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.3922801092267036,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.3977387547492981,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.577606365084648,
+      "relevance": 3,
+      "rank": 5,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.5392171144485474,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.5952340066432953,
+      "relevance": 3,
+      "rank": 6,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.43135982751846313,
+      "text": ". Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.7139073461294174,
+      "relevance": 3,
+      "rank": 7,
+      "id": "0311031v1.pdf::2018::d8a1ca3b655a"
+    },
+    {
+      "score": 0.4440900385379791,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.765311323106289,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.5628382563591003,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.241648748517036,
+      "relevance": 3,
+      "rank": 9,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.4502050578594208,
+      "text": "Third, guided by the EU Ethics Guidelines for Trustworthy AI and research community efforts, we present our survey with sociotechnical and human-centric considerations integrated throughout, focusing not only on NLG systems and machine text detection technologies, but on the humans who will be exposed to both text generation and detection systems in daily life. The goal of trustworthy AI is to ensure that AI systems are developed in ways that are lawful, ethical, and robust both from a technical",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.293600030243397,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2210.07321v4.pdf::2023::341f89823db2"
+    },
+    {
+      "score": 0.47837916016578674,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.544535301625729,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.5506622791290283,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.73311048746109,
+      "relevance": 3,
+      "rank": 12,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.3552953898906708,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.762036271393299,
+      "relevance": 3,
+      "rank": 13,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.37515413761138916,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.890136688947678,
+      "relevance": 3,
+      "rank": 14,
+      "id": "1304.1106v1.pdf::1990::6ce03695c520"
+    },
+    {
+      "score": 0.4625762104988098,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.918496415019035,
+      "relevance": 3,
+      "rank": 15,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.48221197724342346,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.161070965230465,
+      "relevance": 3,
+      "rank": 16,
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4"
+    },
+    {
+      "score": 0.3711044192314148,
+      "text": "There is a vast literature on human judgment under uncertainty for very simple inference problems, typically with a single hypothesis variable and a single observation (e.g. see Kahneman et al., 1982 and Morgan & Henrion, 1990 for reviews), but relatively little is known about cognitive processes in more complex situations. To improve our insights into this and to seek inspiration for alternative approaches to explanation, we conducted a series of cognitive process-tracing studies. . We recorded",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.196991041302681,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1304.1082v1.pdf::1990::1c5905d87f4b"
+    },
+    {
+      "score": 0.35343918204307556,
+      "text": "As far as we know, none of the previously proposed architectures has been successfully trained on more than a few hundred of millions of words, with a modest dimensionality of the word vectors between 50 - 100.",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.252477325499058,
+      "relevance": 3,
+      "rank": 18,
+      "id": "1301.3781v3.pdf::2013::0201c961cdfa"
+    },
+    {
+      "score": 0.48688817024230957,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.316823661327362,
+      "relevance": 3,
+      "rank": 19,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.41207584738731384,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define define cognitive architectures and describe their relevance to ai research., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.359581507742405,
+      "relevance": 3,
+      "rank": 20,
+      "id": "3641289.pdf::2024::ecc662314003"
+    }
+  ],
+  "model_output": "Cognitive architectures are comprehensive frameworks that outline how an artificial intelligence system processes and integrates information to make decisions, solve problems, or perform tasks. These frameworks typically consist of various components such as a user interface, working memory, inference engine, explanation facility, among others [3]. The theoretical foundations of cognitive architectures stem from the need to emulate human-like reasoning capabilities and intelligence in AI systems [6]. One of the earliest cognitive architectures was expert systems, which were knowledge-intensive software designed to solve specific domain problems using human expertise [3]. Over time, other theories like Soar and ACT-R have been proposed with broader scopes and depths, inspired by Allen Newell's writings [2]. More recent developments in cognitive architectures revolve around large language models (LLMs) and vision language models (VLMs), which aim to simulate human-like language comprehension abilities [4][5]. The rise of LLMs has sparked significant interest within both academic and industrial domains, as demonstrated by the development of advanced AI chatbots such as ChatGPT [5]. The definition and interpretations of cognitive architectures have evolved historically across publications. For instance, the Turing Test was proposed in the 1950s to assess a machine's ability to mimic human intelligence by discerning if its responses are of human or machine origin [1][5]. However, it is worth noting that researchers believe passing the Turing Test does not necessarily equate to authentic intelligence since it only tests the system's ability to generate responses without evaluating its reasoning capabilities [1]. Finally, recent research emphasizes integrating sociotechnical and human-centric considerations when developing cognitive architectures. This approach ensures the AI systems are lawful, ethical, and robust from both a technical and societal perspective [7]. References:\n[1] 3641289.pdf (2024)\n[2] 0311031v1.pdf (2018)\n[3] Expert_Systems.pdf (2016)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 2303.18223v16.pdf (2025)\n[6] 0712.3329v1.pdf (2007)\n[7] 2210.07321v4.pdf (2023)"
+}

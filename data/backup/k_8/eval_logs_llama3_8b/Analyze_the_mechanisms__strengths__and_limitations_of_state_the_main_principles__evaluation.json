@@ -1,0 +1,11 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_state_the_main_principles_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7191701180088219,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

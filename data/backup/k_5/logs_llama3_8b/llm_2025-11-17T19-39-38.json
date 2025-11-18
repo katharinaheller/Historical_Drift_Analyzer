@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-11-17T19-39-38",
+  "query_id": "Define_explain_how_rule-based_systems_manage_uncertainty_according_to_the_corpus",
+  "query": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 1304.1083v1.pdf (1989)\n. Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I\n\n[2] 2210.07321v4.pdf (2023)\n. An alternative approach to purely rule-based approaches is to use an existing natural language corpus to generate rules for components of an NLG system, such as content selection or template generation. These statistical approaches are meant to be more adaptable to different domains than strictly rule-based systems. . While many different statistical models have been integrated with NLG systems in various ways, Hidden Markov Models (HMM) feature prominently in past work. . More recent non-neur\n\n[1] 1304.1083v1.pdf (1989)\n. A realistic way to simulate the data of human subjects in rule based propagation of uncertainty is to use maximin summarizing, multiplication scaling, and Beckerman's modified certainty factor model for combining evidence across rules. All of the relation between the mean model and subject data can be attributed to the fact that both were highly correlated with the predictions of the MMH model. . With the MMH model predictions partialled out, the correlation between the mean model and subject\n\n[1] 1304.1083v1.pdf (1989)\n. An experiment replicated and extended recent findings on psychologically realistic ways of modeling propagation of uncertainty in rule based reasoning. Within a single production rule, the antecedent evidence can be summarized by taking the maximum of disjunctively connected antecedents and the minimum of conjunctively connected antecedents. . The maximum certainty factor attached to each of the rule's conclusions can be scaled down by multiplication with this summarized antecedent certainty.\n\n[3] 1304.1082v1.pdf (1990)\nWhile there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1083v1.pdf (1989)\n[2] 2210.07321v4.pdf (2023)\n[3] 1304.1082v1.pdf (1990)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5419226884841919,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.0968191921710968,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1083v1.pdf::1989::e330b10ef834"
+    },
+    {
+      "score": 0.442322313785553,
+      "text": ". An alternative approach to purely rule-based approaches is to use an existing natural language corpus to generate rules for components of an NLG system, such as content selection or template generation. These statistical approaches are meant to be more adaptable to different domains than strictly rule-based systems. . While many different statistical models have been integrated with NLG systems in various ways, Hidden Markov Models (HMM) feature prominently in past work. . More recent non-neur",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.3537977337837219,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2210.07321v4.pdf::2023::a7dc6a3ba407"
+    },
+    {
+      "score": 0.4454643726348877,
+      "text": ". A realistic way to simulate the data of human subjects in rule based propagation of uncertainty is to use maximin summarizing, multiplication scaling, and Beckerman's modified certainty factor model for combining evidence across rules. All of the relation between the mean model and subject data can be attributed to the fact that both were highly correlated with the predictions of the MMH model. . With the MMH model predictions partialled out, the correlation between the mean model and subject ",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.5616990774869919,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1304.1083v1.pdf::1989::8a4aedfcecad"
+    },
+    {
+      "score": 0.5162234306335449,
+      "text": ". An experiment replicated and extended recent findings on psychologically realistic ways of modeling propagation of uncertainty in rule based reasoning. Within a single production rule, the antecedent evidence can be summarized by taking the maximum of disjunctively connected antecedents and the minimum of conjunctively connected antecedents. . The maximum certainty factor attached to each of the rule's conclusions can be scaled down by multiplication with this summarized antecedent certainty. ",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -0.8019102811813354,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1304.1083v1.pdf::1989::e6918324c03d"
+    },
+    {
+      "score": 0.4965243935585022,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain how rule-based systems manage uncertainty according to the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.5985542982816696,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1"
+    }
+  ],
+  "model_output": "Artificial Intelligence Systems Managing Uncertainty: Evolution and Theoretical Foundations across Publications\n\nIn the 1980s, research on the representation and management of uncertainty in rule-based reasoning systems gained focus [1]. One approach was to employ a maximin summarizing, multiplication scaling, and Beckerman's modified certainty factor model for combining evidence across rules [1]. This method aimed at simulating human subject data in rule-based propagation of uncertainty. The antecedent evidence within a single production rule could be summarized by taking the maximum of disjunctively connected antecedents and the minimum of conjunctively connected antecedents [1]. The maximum certainty factor attached to each of the rule's conclusions was then scaled down by multiplication with this summarized antecedent certainty. However, there is insufficient evidence in the provided corpus regarding the evolution of definitions for managing uncertainty in rule-based systems over time or across different publications. In 1982, Kahneman et al. showed that normatively appealing probabilistic and decision theoretic schemes were poor models of human reasoning under uncertainty [3], but there is surprisingly little experimental evidence on how well rule-based alternatives such as certainty factors or fuzzy logic perform as descriptive models [3]. References:\n[1] 1304.1083v1.pdf (1989)\n[2] 2210.07321v4.pdf (2023) - This reference does not discuss rule-based systems managing uncertainty directly, but provides insights into statistical models integrated with Natural Language Generation systems. [3] 1304.1082v1.pdf (1990)"
+}

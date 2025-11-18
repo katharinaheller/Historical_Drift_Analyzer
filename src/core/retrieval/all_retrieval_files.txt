@@ -1,983 +1,0 @@
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\all_retrieval_files.txt ==== 
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\all_retrieval_files.txt ==== 
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\faiss_retriever.py ==== 
-# src/core/retrieval/faiss_retriever.py
-from __future__ import annotations
-from typing import Any, Dict, List, Optional, Tuple
-from pathlib import Path
-import json
-import re
-import numpy as np
-import logging
-from math import exp
-from src.core.retrieval.interfaces.i_retriever import IRetriever
-
-
-class FAISSRetriever(IRetriever):
-    """FAISS-based semantic retriever with optional temporal and source diversification."""
-
-    def __init__(
-        self,
-        vector_store_dir: str,
-        model_name: str,
-        top_k_retrieve: int = 50,
-        normalize_embeddings: bool = True,
-        use_gpu: bool = False,
-        similarity_metric: str = "cosine",
-        temporal_awareness: bool = True,
-        temporal_tau: float = 8.0,
-        temporal_weight: float = 0.30,
-        valid_year_range: Tuple[int, int] = (1900, 2100),
-        diversify_sources: bool = True,  # enable balanced source selection
-    ):
-        self.logger = logging.getLogger(self.__class__.__name__)
-
-        try:
-            import faiss  # type: ignore
-            from sentence_transformers import SentenceTransformer
-        except ImportError as e:
-            raise ImportError(
-                "faiss-cpu and sentence-transformers are required. "
-                "Install via: poetry add faiss-cpu sentence-transformers"
-            ) from e
-
-        self.faiss = faiss
-        self.vector_store_dir = Path(vector_store_dir).resolve()
-        self.index_path = self.vector_store_dir / "index.faiss"
-        self.meta_path = self.vector_store_dir / "metadata.jsonl"
-
-        if not self.index_path.exists() or not self.meta_path.exists():
-            raise FileNotFoundError(f"Incomplete vector store: {self.vector_store_dir}")
-
-        self.model = SentenceTransformer(model_name)
-        self.top_k_retrieve = int(top_k_retrieve)
-        self.normalize_embeddings = bool(normalize_embeddings)
-        self.use_gpu = bool(use_gpu)
-        self.similarity_metric = similarity_metric.lower().strip()
-        self.temporal_awareness = bool(temporal_awareness)
-        self.temporal_tau = float(temporal_tau)
-        self.temporal_weight = float(temporal_weight)
-        self.valid_year_range = valid_year_range
-        self.diversify_sources = bool(diversify_sources)
-
-        if self.similarity_metric not in {"cosine", "dot"}:
-            raise ValueError(f"Unsupported similarity metric: {self.similarity_metric}")
-
-        # Load FAISS index
-        self.logger.info(f"Loading FAISS index: {self.index_path}")
-        self.index = faiss.read_index(str(self.index_path))
-        if self.use_gpu:
-            try:
-                res = faiss.StandardGpuResources()
-                self.index = faiss.index_cpu_to_gpu(res, 0, self.index)
-                self.logger.info("FAISS GPU acceleration enabled")
-            except Exception as e:
-                self.logger.warning(f"GPU mode failed, falling back to CPU: {e}")
-
-        # Load metadata
-        with open(self.meta_path, "r", encoding="utf-8") as f:
-            self.metadata = [json.loads(line) for line in f]
-
-        self.logger.info(
-            f"FAISSRetriever ready | entries={len(self.metadata)} | metric={self.similarity_metric.upper()} "
-            f"| temporal_awareness={self.temporal_awareness} | diversify_sources={self.diversify_sources}"
-        )
-
-    # ------------------------------------------------------------------
-    def _encode_query(self, query: str) -> np.ndarray:
-        # Encode query with normalization
-        vec = self.model.encode([query], normalize_embeddings=self.normalize_embeddings)
-        return np.asarray(vec, dtype="float32")
-
-    def _normalize_scores(self, distances: np.ndarray) -> np.ndarray:
-        # Normalize distances depending on metric
-        if self.similarity_metric in {"cosine", "dot"}:
-            return distances
-        return 1 - distances
-
-    # ------------------------------------------------------------------
-    def _extract_years_from_query(self, query: str) -> List[int]:
-        """
-        Extract explicit years (e.g. 2021), decade mentions (e.g. 'in the 2020s'),
-        or century references (e.g. '21st century') from a text query.
-        Returns a sorted list of representative years.
-        """
-        if not query:
-            return []
-
-        text = query.lower()
-        years: set[int] = set()
-        lo, hi = self.valid_year_range
-
-        # 1) Explicit years (e.g. 1999, 2023)
-        for m in re.findall(r"\b(19\d{2}|20\d{2})\b", text):
-            try:
-                y = int(m)
-                if lo <= y <= hi:
-                    years.add(y)
-            except ValueError:
-                continue
-
-        # 2) Decades (e.g. 1980s, 2020s, early 1990s)
-        for m in re.findall(r"\b(19|20)\d0s\b", text):
-            try:
-                decade = int(m + "0")
-                if lo <= decade <= hi:
-                    years.update(range(decade, decade + 10))
-            except ValueError:
-                continue
-
-        # 3) Centuries (e.g. "20th century", "21st century")
-        if "20th century" in text:
-            years.update(range(1900, 2000))
-        if "21st century" in text:
-            years.update(range(2000, 2100))
-
-        # Optional compact logging: only start years of detected decades
-        unique_decades = sorted({(y // 10) * 10 for y in years})
-        return unique_decades
-
-    # ------------------------------------------------------------------
-    def _temporal_modulate(self, base_score: float, doc_year: Optional[int], query_years: List[int]) -> float:
-        # Exponential weighting for temporal alignment
-        if doc_year is None or not query_years:
-            return base_score
-        nearest = min(abs(doc_year - y) for y in query_years)
-        w = exp(-nearest / max(self.temporal_tau, 1e-6))
-        return base_score * (1.0 + self.temporal_weight * w)
-
-    def _safe_doc_year(self, entry: Dict[str, Any]) -> Optional[int]:
-        # Extract publication year safely from metadata
-        meta = entry.get("metadata", {}) or {}
-        y = meta.get("year")
-        try:
-            yi = int(str(y))
-            lo, hi = self.valid_year_range
-            if lo <= yi <= hi:
-                return yi
-        except Exception:
-            pass
-        return None
-
-    # ------------------------------------------------------------------
-    def _apply_source_diversity(self, results: List[Dict[str, Any]], top_k: int) -> List[Dict[str, Any]]:
-        """Ensure chunks from different PDFs dominate early ranks."""
-        if not self.diversify_sources or not results:
-            return results[:top_k]
-
-        diversified, seen = [], set()
-        for r in results:
-            src = r["metadata"].get("source_file", "unknown")
-            if src not in seen:
-                diversified.append(r)
-                seen.add(src)
-            if len(diversified) >= top_k:
-                break
-
-        # Fill up with remaining if fewer than top_k unique
-        if len(diversified) < top_k:
-            for r in results:
-                if r not in diversified:
-                    diversified.append(r)
-                if len(diversified) >= top_k:
-                    break
-        return diversified
-
-    # ------------------------------------------------------------------
-    def search(self, query: str, top_k: Optional[int] = None, temporal_mode: bool = True) -> List[Dict[str, Any]]:
-        """Similarity search with optional temporal and source diversification."""
-        self.temporal_awareness = bool(temporal_mode)
-        k = int(top_k or self.top_k_retrieve)
-        k = max(1, min(k, self.index.ntotal))
-
-        q_vec = self._encode_query(query)
-        D, I = self.index.search(q_vec, k * 5 if self.diversify_sources else k)
-        scores = self._normalize_scores(D[0])
-        query_years = self._extract_years_from_query(query) if self.temporal_awareness else []
-
-        results: List[Dict[str, Any]] = []
-        for score, idx in zip(scores, I[0]):
-            if idx < 0 or idx >= len(self.metadata):
-                continue
-            entry = self.metadata[idx]
-            doc_year = self._safe_doc_year(entry)
-            mod_score = (
-                self._temporal_modulate(float(score), doc_year, query_years)
-                if self.temporal_awareness else float(score)
-            )
-            results.append({
-                "score": float(mod_score),
-                "text": (entry.get("text", "") or "")[:500],
-                "metadata": entry.get("metadata", {}) or {},
-            })
-
-        results.sort(key=lambda r: r["score"], reverse=True)
-        diversified = self._apply_source_diversity(results, top_k=k)
-
-        self.logger.info(
-            f"Retrieved {len(diversified)} candidates | temporal_mode={self.temporal_awareness} "
-            f"| diversify_sources={self.diversify_sources} | years_in_query={query_years or 'none'}"
-        )
-        return diversified
-
-    # ------------------------------------------------------------------
-    def close(self) -> None:
-        self.logger.info("FAISS retriever closed")
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\reranker_factory.py ==== 
-# src/core/retrieval/reranker_factory.py
-from __future__ import annotations
-import logging
-from typing import Any, Dict, Type
-
-from src.core.retrieval.temporal_reranker import TemporalReranker
-from src.core.retrieval.semantic_reranker import SemanticReranker
-from src.core.retrieval.interfaces.i_reranker import IReranker
-
-logger = logging.getLogger(__name__)
-
-
-class RerankerFactory:
-    """Factory for deterministic and clean reranker construction."""
-
-    _registry: Dict[str, Type[IReranker]] = {
-        "temporal": TemporalReranker,
-        "semantic": SemanticReranker,
-    }
-
-    @staticmethod
-    def from_config(cfg: Dict[str, Any]) -> IReranker:
-        """Instantiate reranker from configuration dictionary with clean parameter mapping."""
-        opts = cfg.get("options", {})
-        rtype = str(opts.get("reranker", "semantic")).lower()
-
-        if rtype not in RerankerFactory._registry:
-            raise ValueError(
-                f"Unsupported reranker type: {rtype}. "
-                f"Available: {list(RerankerFactory._registry.keys())}"
-            )
-
-        cls = RerankerFactory._registry[rtype]
-        logger.info(f"Initializing reranker of type='{rtype}'")
-
-        # -------------------------------------------------------------
-        # Temporal Reranker (Golden Middle Version)
-        # -------------------------------------------------------------
-        if cls is TemporalReranker:
-            return TemporalReranker(
-                semantic_threshold=float(opts.get("semantic_threshold", 0.40)),
-                min_year=int(opts.get("min_year", 1900)),
-                must_include=list(opts.get("must_include", [])),
-                blacklist_sources=list(opts.get("blacklist_sources", [])),
-            )
-
-        # -------------------------------------------------------------
-        # Semantic Reranker
-        # -------------------------------------------------------------
-        if cls is SemanticReranker:
-            return SemanticReranker(
-                model_name=str(
-                    opts.get(
-                        "semantic_model",
-                        "cross-encoder/ms-marco-MiniLM-L-6-v2"
-                    )
-                ),
-                top_k=int(opts.get("top_k_rerank", 25)),
-                semantic_weight=float(opts.get("semantic_weight", 0.75)),
-                use_gpu=bool(opts.get("use_gpu", False)),
-            )
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\retriever_factory.py ==== 
-# src/core/retrieval/retriever_factory.py
-from __future__ import annotations
-import logging
-from typing import Dict, Any
-from src.core.retrieval.faiss_retriever import FAISSRetriever
-
-logger = logging.getLogger(__name__)
-
-class RetrieverFactory:
-    """Factory fÃ¼r Intent-spezifische Retriever-Instanzen (vollstÃ¤ndig entkoppelte DatenflÃ¼sse)."""
-
-    @staticmethod
-    def build(intent: str, cfg: Dict[str, Any]) -> FAISSRetriever:
-        """Erzeuge deterministischen Retriever fÃ¼r den angegebenen Intent."""
-        paths = cfg.get("paths", {})
-        opts = cfg.get("options", {})
-
-        # Basisparameter, deterministisch
-        common_args = dict(
-            model_name=opts.get("embedding_model", "all-MiniLM-L6-v2"),
-            normalize_embeddings=True,
-            use_gpu=False,
-            similarity_metric="cosine",
-            temporal_tau=float(opts.get("temporal_tau", 8.0)),
-            temporal_weight=float(opts.get("temporal_weight", 0.30)),
-            top_k_retrieve=int(opts.get("top_k_retrieve", 80)),
-        )
-
-        # Intent â†’ Index-Ordner Mapping
-        index_map = {
-            "conceptual": paths.get("conceptual_vector_dir", "data/vector_store/conceptual"),
-            "chronological": paths.get("chronological_vector_dir", "data/vector_store/chronological"),
-            "analytical": paths.get("analytical_vector_dir", "data/vector_store/analytical"),
-            "comparative": paths.get("comparative_vector_dir", "data/vector_store/comparative"),
-        }
-
-        # Fallback auf globales Standardverzeichnis
-        vdir = index_map.get(intent, paths.get("vector_store_dir", "data/vector_store/default"))
-        temporal_flag = (intent == "chronological")
-
-        logger.info(f"Building FAISSRetriever for intent='{intent}' | dir={vdir} | temporal={temporal_flag}")
-
-        return FAISSRetriever(
-            vector_store_dir=vdir,
-            temporal_awareness=temporal_flag,
-            **common_args,
-        )
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\semantic_reranker.py ==== 
-# src/core/retrieval/semantic_reranker.py
-from __future__ import annotations
-import logging
-from typing import List, Dict, Any
-from sentence_transformers import CrossEncoder
-from src.core.retrieval.interfaces.i_reranker import IReranker
-
-logger = logging.getLogger(__name__)
-
-class SemanticReranker(IReranker):
-    """Cross-Encoder-basiertes Re-Ranking nach semantischer Relevanz."""
-
-    def __init__(
-        self,
-        model_name: str,
-        top_k: int = 25,
-        semantic_weight: float = 0.75,
-        use_gpu: bool = False,
-    ):
-        self.model_name = model_name
-        self.top_k = top_k
-        self.semantic_weight = semantic_weight
-        self.device = "cuda" if use_gpu else "cpu"
-        self.model = CrossEncoder(model_name, device=self.device)
-        logger.info(f"Semantic Cross-Encoder loaded: {model_name} ({self.device})")
-
-    def rerank(self, docs: List[Dict[str, Any]], top_k: int | None = None) -> List[Dict[str, Any]]:
-        """Score documents via Cross-Encoder similarity."""
-        if not docs:
-            return []
-
-        k = top_k or self.top_k
-        pairs = [(d.get("query", ""), d.get("text", "")) for d in docs]
-        scores = self.model.predict(pairs)
-
-        for d, score in zip(docs, scores):
-            base = float(d.get("score", 0.0))
-            d["final_score"] = self.semantic_weight * float(score) + (1 - self.semantic_weight) * base
-
-        docs.sort(key=lambda x: x["final_score"], reverse=True)
-        return docs[:k]
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\temporal_reranker.py ==== 
-from __future__ import annotations
-import logging
-from typing import List, Dict, Any, Tuple, Dict, Optional
-from collections import defaultdict
-from src.core.retrieval.interfaces.i_reranker import IReranker
-
-logger = logging.getLogger(__name__)
-
-class TemporalReranker(IReranker):
-    """
-    Semantic-first temporal diversification.
-    Ensures that each decade contributes at most one document,
-    but only if semantic relevance is sufficiently high.
-    No score manipulation. No age penalties or boosts.
-    """
-
-    def __init__(
-        self,
-        semantic_threshold: float = 0.40,  # minimal score required for decade coverage
-        min_year: int = 1900,
-        must_include: List[str] | None = None,
-        blacklist_sources: List[str] | None = None
-    ):
-        self.semantic_threshold = semantic_threshold
-        self.min_year = min_year
-        self.must_include = must_include or []
-        self.blacklist_sources = blacklist_sources or []
-
-    # ------------------------------------------------------------------
-    def rerank(self, results: List[Dict[str, Any]], top_k: int = 10) -> List[Dict[str, Any]]:
-        if not results:
-            return []
-
-        # Extract valid years
-        for r in results:
-            r["year"] = self._extract_year(r)
-
-        # Apply blacklists
-        results = [r for r in results if not self._is_blacklisted(r)]
-        if not results:
-            return []
-
-        # ---- 1. Pure semantic sort ----
-        results_sorted = sorted(results, key=lambda r: r.get("score", 0.0), reverse=True)
-
-        # ---- 2. Group by decade ----
-        decade_groups = self._group_by_decade(results_sorted)
-
-        # ---- 3. Pick top semantic document per decade (if strong) ----
-        selected = []
-        seen = set()
-
-        for dec in sorted(decade_groups.keys()):
-            best = decade_groups[dec][0]
-            if best["score"] >= self.semantic_threshold:
-                key = self._src_key(best)
-                if key not in seen:
-                    selected.append(best)
-                    seen.add(key)
-
-        # ---- 4. Fill remaining purely by semantic score ----
-        for r in results_sorted:
-            key = self._src_key(r)
-            if key not in seen:
-                selected.append(r)
-                seen.add(key)
-            if len(selected) >= top_k:
-                break
-
-        # ---- 5. Inject must-include sources at front ----
-        selected = self._inject_must_include(selected, results, top_k)
-
-        logger.info(f"Temporal diversification complete | decades={len(decade_groups)} | threshold={self.semantic_threshold}")
-        return selected[:top_k]
-
-    # ------------------------------------------------------------------
-    def _extract_year(self, r):
-        meta = r.get("metadata", {})
-        y = meta.get("year") or r.get("year")
-        try:
-            y = int(str(y))
-            if y < self.min_year or y > 2100:
-                return self.min_year
-            return y
-        except Exception:
-            return self.min_year
-
-    def _group_by_decade(self, results):
-        groups = defaultdict(list)
-        for r in results:
-            decade = (r["year"] // 10) * 10
-            groups[decade].append(r)
-        return groups
-
-    def _src_key(self, r):
-        meta = r.get("metadata", {})
-        return (meta.get("source_file") or meta.get("title") or "unknown").lower()
-
-    def _is_blacklisted(self, r):
-        key = self._src_key(r)
-        return any(b.lower() in key for b in self.blacklist_sources)
-
-    def _inject_must_include(self, ranked, all_results, top_k):
-        must = [r for r in all_results if any(m in self._src_key(r) for m in self.must_include)]
-        if not must:
-            return ranked
-        merged, seen = [], set()
-        for r in must + ranked:
-            key = self._src_key(r)
-            if key not in seen:
-                merged.append(r)
-                seen.add(key)
-            if len(merged) >= top_k:
-                break
-        return merged
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__init__.py ==== 
-
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\i_reranker.py ==== 
-from __future__ import annotations
-from abc import ABC, abstractmethod
-from typing import Any, Dict, List
-
-
-class IReranker(ABC):
-    """Interface for reranker strategies (temporal, semantic, hybrid, etc.)."""
-    @abstractmethod
-    def rerank(self, results: List[Dict[str, Any]], top_k: int = 5) -> List[Dict[str, Any]]:
-        # Rerank a list of retrieval results based on a custom strategy
-        pass
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\i_retriever.py ==== 
-from __future__ import annotations
-from abc import ABC, abstractmethod
-from typing import Any, Dict, List
-
-
-class IRetriever(ABC):
-    """Interface for all retriever implementations."""
-    @abstractmethod
-    def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
-        # Return top-k relevant documents/chunks for a query
-        pass
-
-    @abstractmethod
-    def close(self) -> None:
-        # Release resources if necessary
-        pass
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\__init__.py ==== 
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\__pycache__\i_reranker.cpython-312.pyc ==== 
-Ë
-    Ä	i£  ã                  óJ   — d dl mZ d dlmZmZ d dlmZmZmZ  G d„ de«      Z	y)é    )Úannotations)ÚABCÚabstractmethod)ÚAnyÚDictÚListc                  ó$   — e Zd ZdZeddd„«       Zy)Ú	IRerankerzEInterface for reranker strategies (temporal, semantic, hybrid, etc.).c                 ó   — y )N© )ÚselfÚresultsÚtop_ks      úTC:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\i_reranker.pyÚrerankzIReranker.rerank   s   € ğ 	ó    N)é   )r   úList[Dict[str, Any]]r   ÚintÚreturnr   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r   r   r   r   r
-   r
-      s   „ ÙOØóó ñr   r
-   N)
-Ú
-__future__r   Úabcr   r   Útypingr   r   r   r
-   r   r   r   Ú<module>r      s   ğİ "ß #ß "Ñ "ôõ r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\__pycache__\i_retriever.cpython-312.pyc ==== 
-Ë
-    •Ä	iÚ  ã                  óJ   — d dl mZ d dlmZmZ d dlmZmZmZ  G d„ de«      Z	y)é    )Úannotations)ÚABCÚabstractmethod)ÚAnyÚDictÚListc                  ó6   — e Zd ZdZeddd„«       Zedd„«       Zy)Ú
-IRetrieverz,Interface for all retriever implementations.c                 ó   — y ©N© )ÚselfÚqueryÚtop_ks      úUC:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\i_retriever.pyÚsearchzIRetriever.search   ó   € ğ 	ó    c                 ó   — y r   r   )r   s    r   ÚclosezIRetriever.close   r   r   N)é   )r   Ústrr   ÚintÚreturnzList[Dict[str, Any]])r   ÚNone)Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r   r   r   r   r   r
-   r
-      s+   „ Ù6Øóó ğğ òó ñr   r
-   N)
-Ú
-__future__r   Úabcr   r   Útypingr   r   r   r
-   r   r   r   Ú<module>r#      s   ğİ "ß #ß "Ñ "ô
-õ 
-r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\__pycache__\__init__.cpython-312.pyc ==== 
-Ë
-    !i    ã                    ó   — y )N© r   ó    úRC:\Users\katha\historical-drift-analyzer\src\core\retrieval\interfaces\__init__.pyÚ<module>r      s   ñr   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\orchestrator\diversity_pipeline.py ==== 
-from __future__ import annotations
-from typing import List, Dict, Any
-from sentence_transformers import SentenceTransformer, util
-
-class DiversityPipeline:
-    """Applies semantic and temporal diversity rules."""
-
-    def __init__(self, embed_model: SentenceTransformer):
-        self.embed_model = embed_model
-
-    def _clean(self, t: str) -> str:
-        return " ".join(t.replace("\n", " ").replace("\r", " ").split())
-
-    def apply(self, ranked: List[Dict[str, Any]], k: int, historical: bool) -> List[Dict[str, Any]]:
-        # Non-historical: simple dedupe
-        if not historical:
-            seen, out = set(), []
-            for r in ranked:
-                tx = (r.get("text") or "").strip()
-                h = hash(tx)
-                if h not in seen:
-                    seen.add(h)
-                    out.append(r)
-                if len(out) >= k:
-                    break
-            return out
-
-        # Historical: semantic & temporal diversity
-        texts = [self._clean(r.get("text", "")) for r in ranked]
-        idxs = [i for i, t in enumerate(texts) if t]
-        embs = self.embed_model.encode([texts[i] for i in idxs], normalize_embeddings=True)
-
-        selected, kept_embs = [], []
-        for j, idx in enumerate(idxs):
-            if len(selected) >= k:
-                break
-            cand = ranked[idx]
-            emb = embs[j]
-            if kept_embs:
-                sims = util.cos_sim(emb, kept_embs)[0]
-                if float(sims.max()) > 0.95:
-                    continue
-            selected.append(cand)
-            kept_embs.append(emb)
-        return selected
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\orchestrator\final_selector.py ==== 
-from __future__ import annotations
-from typing import List, Dict
-
-class FinalSelector:
-    """Ensure exact final_k chunk selection."""
-
-    def select(self, items: List[Dict], k: int) -> List[Dict]:
-        if len(items) >= k:
-            return items[:k]
-        if not items:
-            return []
-        pad = items[-1].copy()
-        return items + [pad.copy() for _ in range(k - len(items))]
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\orchestrator\relevance_annotator.py ==== 
-from __future__ import annotations
-from typing import List, Dict
-import numpy as np
-
-class RelevanceAnnotator:
-    """Assigns 0-3 relevance labels based on score distribution."""
-
-    def apply(self, items: List[Dict], population: List[Dict]) -> List[Dict]:
-        scores = np.array([float(x.get("final_score", 0.0)) for x in population])
-        if scores.size == 0 or np.allclose(scores.std(), 0.0):
-            for x in items:
-                x["relevance"] = 1
-            return items
-        q1, q2, q3 = np.quantile(scores, [0.25, 0.5, 0.75])
-        for x in items:
-            s = float(x.get("final_score", 0.0))
-            x["relevance"] = int(0 if s <= q1 else 1 if s <= q2 else 2 if s <= q3 else 3)
-        return items
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\orchestrator\reranking_pipeline.py ==== 
-from __future__ import annotations
-from typing import List, Dict, Any
-from src.core.retrieval.reranker_factory import RerankerFactory
-
-class RerankingPipeline:
-    """Unified reranking abstraction."""
-
-    def __init__(self, cfg: Dict[str, Any]):
-        self.cfg = cfg
-        self.cached_type = None
-        self.cached_reranker = None
-
-    def _get(self, intent: str):
-        rtype = "temporal" if intent == "chronological" else "semantic"
-        if rtype != self.cached_type:
-            self.cached_reranker = RerankerFactory.from_config({"options": {"reranker": rtype}})
-            self.cached_type = rtype
-        return self.cached_reranker
-
-    def run(self, docs: List[Dict[str, Any]], intent: str) -> List[Dict[str, Any]]:
-        reranker = self._get(intent)
-        ranked = reranker.rerank(docs, top_k=len(docs))
-        for d in ranked:
-            d["final_score"] = float(d.get("final_score", d.get("score", 0.0)))
-        ranked.sort(key=lambda x: x["final_score"], reverse=True)
-        return ranked
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\orchestrator\retrieval_orchestrator.py ==== 
-from __future__ import annotations
-import logging
-from typing import Dict, Any, List
-from src.core.config.config_loader import ConfigLoader
-from sentence_transformers import SentenceTransformer
-from src.core.retrieval.faiss_retriever import FAISSRetriever
-
-from src.core.retrieval.orchestrator.retrieval_pipeline import RetrievalPipeline
-from src.core.retrieval.orchestrator.reranking_pipeline import RerankingPipeline
-from src.core.retrieval.orchestrator.diversity_pipeline import DiversityPipeline
-from src.core.retrieval.orchestrator.relevance_annotator import RelevanceAnnotator
-from src.core.retrieval.orchestrator.final_selector import FinalSelector
-
-from src.core.evaluation.utils import make_chunk_id
-
-
-class RetrievalOrchestrator:
-    """Clean multi-stage retrieval orchestrator for RAG."""
-
-    def __init__(self, config_path: str = "configs/retrieval.yaml"):
-        self.logger = logging.getLogger("RetrievalOrchestrator")
-        cfg_loader = ConfigLoader(config_path)
-        self.cfg = cfg_loader.config
-
-        opts = self.cfg["options"]
-        paths = self.cfg["paths"]
-
-        # Multi-stage parameters
-        self.final_k = int(opts.get("final_k", 10))
-        oversample = int(opts.get("oversample_factor", 15))
-        self.initial_k = max(self.final_k * oversample, self.final_k * 8)
-
-        # Embedding model
-        self.embed_model = SentenceTransformer(opts["embedding_model"])
-
-        # Retriever instance
-        self.retriever = FAISSRetriever(
-            vector_store_dir=paths["vector_store_dir"],
-            model_name=opts["embedding_model"],
-            top_k_retrieve=self.initial_k,
-            normalize_embeddings=True,
-            use_gpu=opts.get("use_gpu", False),
-            similarity_metric=opts.get("similarity_metric", "cosine"),
-            temporal_awareness=False,
-            diversify_sources=opts.get("diversify_sources", True),
-        )
-
-        # Pipeline modules
-        self.stage_retrieve = RetrievalPipeline(self.retriever, self.initial_k)
-        self.stage_rerank = RerankingPipeline(self.cfg)
-        self.stage_diversity = DiversityPipeline(self.embed_model)
-        self.stage_label = RelevanceAnnotator()
-        self.stage_select = FinalSelector()
-
-    # ------------------------------------------------------------------
-    def retrieve(self, query: str, intent: str) -> List[Dict[str, Any]]:
-        if not query.strip():
-            return []
-
-        historical = intent == "chronological"
-
-        # Stage 1: Broad retrieval
-        raw = self.stage_retrieve.run(query, historical)
-
-        # Stage 2: Full reranking
-        ranked = self.stage_rerank.run(raw, intent)
-
-        # Stage 3: Diversity
-        diversified = self.stage_diversity.apply(ranked, self.final_k, historical)
-
-        # Stage 4: Relevance annotation
-        annotated = self.stage_label.apply(diversified, ranked)
-
-        # Stage 5: Final-k selection
-        final = self.stage_select.select(annotated, self.final_k)
-
-        # Assign stable IDs and ranks
-        for i, x in enumerate(final, start=1):
-            x["rank"] = i
-            if not x.get("id"):
-                x["id"] = make_chunk_id(x)
-
-        return final
-
-    # ------------------------------------------------------------------
-    def close(self):
-        self.retriever.close()
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\orchestrator\retrieval_pipeline.py ==== 
-from __future__ import annotations
-from typing import List, Dict, Any
-from src.core.retrieval.faiss_retriever import FAISSRetriever
-
-class RetrievalPipeline:
-    """Handles broad FAISS retrieval only."""
-
-    def __init__(self, retriever: FAISSRetriever, initial_k: int):
-        self.retriever = retriever
-        self.initial_k = initial_k
-
-    def run(self, query: str, historical: bool) -> List[Dict[str, Any]]:
-        # Perform broad retrieval without post-processing
-        raw = self.retriever.search(
-            query,
-            top_k=self.initial_k,
-            temporal_mode=historical,
-        )
-        for r in raw:
-            r["query"] = query
-        return raw
-.
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__pycache__\faiss_retriever.cpython-312.pyc ==== 
-Ë
-    ©RiT$  ã                  ó†   — d dl mZ d dlmZmZmZmZmZ d dlm	Z	 d dl
-Z
-d dlZd dlZd dlZd dlmZ d dlmZ  G d„ de«      Zy)	é    )Úannotations)ÚAnyÚDictÚListÚOptionalÚTuple)ÚPathN)Úexp)Ú
-IRetrieverc                  ó˜   — e Zd ZdZ	 	 	 	 	 	 	 	 	 d	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 	 dd„Zdd„Zdd„Zdd„Zdd„Zdd„Z	dd„Z
-ddd
-„Zdd„Zy	)ÚFAISSRetrieverzQFAISS-based semantic retriever with optional temporal and source diversification.c           
-     óº  — t        j                  | j                  j                  «      | _        	 dd l}ddlm} || _        t        |«      j                  «       | _        | j                  dz  | _        | j                  dz  | _        | j                  j                  «       r| j                  j                  «       st        d| j                  › «      ‚ ||«      | _        t#        |«      | _        t'        |«      | _        t'        |«      | _        |j-                  «       j/                  «       | _        t'        |«      | _        t5        |«      | _        t5        |	«      | _        |
-| _        t'        |«      | _        | j0                  dvrt?        d| j0                  › «      ‚| j                  jA                  d	| j                  › «       |jC                  tE        | j                  «      «      | _#        | j*                  rN	 |jI                  «       }|jK                  |d| jF                  «      | _#        | j                  jA                  d
-«       tQ        | j                  dd¬«      5 }|D cg c]  }tS        jT                  |«      ‘Œ c}| _+        d d d «       | j                  jA                  dtY        | jV                  «      › d| j0                  j[                  «       › d| j2                  › d| j<                  › «       y # t        $ r}t        d«      |‚d }~ww xY w# tL        $ r(}| j                  jO                  d|› «       Y d }~Œùd }~ww xY wc c}w # 1 sw Y   ŒÆxY w)Nr   )ÚSentenceTransformerzifaiss-cpu and sentence-transformers are required. Install via: poetry add faiss-cpu sentence-transformerszindex.faisszmetadata.jsonlzIncomplete vector store: >   ÚdotÚcosinezUnsupported similarity metric: zLoading FAISS index: zFAISS GPU acceleration enabledz&GPU mode failed, falling back to CPU: Úrzutf-8)ÚencodingzFAISSRetriever ready | entries=z
- | metric=z | temporal_awareness=ú | diversify_sources=).ÚloggingÚ	getLoggerÚ	__class__Ú__name__ÚloggerÚfaissÚsentence_transformersr   ÚImportErrorr	   ÚresolveÚvector_store_dirÚ
-index_pathÚ	meta_pathÚexistsÚFileNotFoundErrorÚmodelÚintÚtop_k_retrieveÚboolÚnormalize_embeddingsÚuse_gpuÚlowerÚstripÚsimilarity_metricÚtemporal_awarenessÚfloatÚtemporal_tauÚtemporal_weightÚvalid_year_rangeÚdiversify_sourcesÚ
-ValueErrorÚinfoÚ
-read_indexÚstrÚindexÚStandardGpuResourcesÚindex_cpu_to_gpuÚ	ExceptionÚwarningÚopenÚjsonÚloadsÚmetadataÚlenÚupper)Úselfr   Ú
-model_namer%   r'   r(   r+   r,   r.   r/   r0   r1   r   r   ÚeÚresÚfÚlines                     úNC:\Users\katha\historical-drift-analyzer\src\core\retrieval\faiss_retriever.pyÚ__init__zFAISSRetriever.__init__   sã  € ô ×'Ñ'¨¯©×(?Ñ(?Ó@ˆŒğ	ÛİAğ ˆŒ
-Ü $Ğ%5Ó 6× >Ñ >Ó @ˆÔØ×/Ñ/°-Ñ?ˆŒØ×.Ñ.Ğ1AÑAˆŒà‰×%Ñ%Ô'¨t¯~©~×/DÑ/DÔ/FÜ#Ğ&?À×@UÑ@UĞ?VĞ$WÓXĞXá(¨Ó4ˆŒ
-Ü! .Ó1ˆÔÜ$(Ğ)=Ó$>ˆÔ!Ü˜G“}ˆŒØ!2×!8Ñ!8Ó!:×!@Ñ!@Ó!BˆÔÜ"&Ğ'9Ó":ˆÔÜ! ,Ó/ˆÔÜ$ _Ó5ˆÔØ 0ˆÔÜ!%Ğ&7Ó!8ˆÔà×!Ñ!Ğ):Ñ:ÜĞ>¸t×?UÑ?UĞ>VĞWÓXĞXğ 	‰×ÑĞ0°·±Ğ0AĞBÔCØ×%Ñ%¤c¨$¯/©/Ó&:Ó;ˆŒ
-Ø<Š<ğRØ×0Ñ0Ó2Ø"×3Ñ3°C¸¸D¿J¹JÓG”
-Ø—‘× Ñ Ğ!AÔBô
- $—.‘. #°Õ8¸AÙ:;Ó<¹!°$œTŸZ™Z¨Õ-¸!Ñ<ˆDŒM÷ 9ğ 	‰×ÑØ-¬c°$·-±-Ó.@Ğ-AÀÈD×LbÑLb×LhÑLhÓLjĞKkğ l$Ø$(×$;Ñ$;Ğ#<Ğ<QĞRV×RhÑRhĞQiğkõ	
-øôW ò 	ÜğJóğ ğûğ	ûôH ò RØ—‘×#Ñ#Ğ&LÈQÈCĞ$P×QÑQûğRüò
- =÷ 9Ğ8úsN   °
-K; Ç>AL É#MÉ(MÊMË;	LÌLÌLÌ	M	Ì!MÍM	ÍMÍMc                ó€   — | j                   j                  |g| j                  ¬«      }t        j                  |d¬«      S )N)r'   Úfloat32)Údtype)r#   Úencoder'   ÚnpÚasarray)rA   ÚqueryÚvecs      rG   Ú_encode_queryzFAISSRetriever._encode_queryT   s4   € àj‰j×Ñ  ¸d×>WÑ>WĞÓXˆÜz‰z˜# YÔ/Ğ/ó    c                ó,   — | j                   dv r|S d|z
-  S )N>   r   r   é   )r+   )rA   Ú	distancess     rG   Ú_normalize_scoresz FAISSRetriever._normalize_scoresY   s!   € à×!Ñ!Ğ%6Ñ6ØĞØ9‰}ĞrR   c                ó˜  — |sg S |j                  «       }t        «       }| j                  \  }}t        j                  d|«      D ]-  }	 t        |«      }||cxk  r|k  rn n|j                  |«       Œ/ t        j                  d|«      D ]=  }	 t        |dz   «      }||cxk  r|k  r!n n|j                  t        ||dz   «      «       Œ? d|v r|j                  t        dd«      «       d|v r|j                  t        dd	«      «       t        |D ch c]
-  }|dz  dz  ’Œ c}«      }	|	S # t        $ r Y Œğw xY w# t        $ r Y Œ¹w xY wc c}w )
-zÚ
-        Extract explicit years (e.g. 2021), decade mentions (e.g. 'in the 2020s'),
-        or century references (e.g. '21st century') from a text query.
-        Returns a sorted list of representative years.
-        z\b(19\d{2}|20\d{2})\bz\b(19|20)\d0s\bÚ0é
-   z20th centuryél  iĞ  z21st centuryé4  )r)   Úsetr0   ÚreÚfindallr$   Úaddr2   ÚupdateÚrangeÚsorted)
-rA   rO   ÚtextÚyearsÚloÚhiÚmÚyÚdecadeÚunique_decadess
-             rG   Ú_extract_years_from_queryz(FAISSRetriever._extract_years_from_query`   sF  € ñ ØˆIà{‰{‹}ˆÜ›%ˆØ×&Ñ&‰ˆˆBô —‘Ğ4°dÖ;ˆAğÜ˜“FØ˜”=˜b•=Ø—I‘I˜a”Løğ	 <ô —‘Ğ.°Ö5ˆAğÜ˜Q ™W›Ø˜Ô% 2Õ%Ø—L‘L¤ v¨v¸©{Ó!;Ô<øğ	 6ğ ˜TÑ!ØL‰Lœ˜t TÓ*Ô+Ø˜TÑ!ØL‰Lœ˜t TÓ*Ô+ô  ¹Ó ?¹°A ! r¡'¨R£¸Ñ ?Ó@ˆØĞøô) ò Ùğûô ò Ùğüò !@s*   Á*D)Â:D8ÄEÄ)	D5Ä4D5Ä8	EÅEc                ó¨   ‡— ‰|s|S t        ˆfd„|D «       «      }t        | t        | j                  d«      z  «      }|d| j                  |z  z   z  S )Nc              3  ó:   •K  — | ]  }t        ‰|z
-  «      –— Œ y ­w)N)Úabs)Ú.0rh   Údoc_years     €rG   Ú	<genexpr>z4FAISSRetriever._temporal_modulate.<locals>.<genexpr>   s   øè ø€ Ğ=±¨A”c˜( Q™,×'±ùs   ƒgíµ ÷Æ°>g      ğ?)Úminr
-   Úmaxr.   r/   )rA   Ú
-base_scorerp   Úquery_yearsÚnearestÚws     `   rG   Ú_temporal_modulatez!FAISSRetriever._temporal_modulateŠ   sZ   ø€ àĞ¡;ØĞÜÓ=±Ó=Ó=ˆÜœ3˜t×0Ñ0°$Ó7Ñ7Ó8ˆØ˜S 4×#7Ñ#7¸!Ñ#;Ñ;Ñ<Ğ<rR   c                óØ   — |j                  di «      xs i }|j                  d«      }	 t        t        |«      «      }| j                  \  }}||cxk  r|k  r|S  y 	 y # t        $ r Y y w xY w)Nr>   Úyear)Úgetr$   r5   r0   r9   )rA   ÚentryÚmetarh   Úyire   rf   s          rG   Ú_safe_doc_yearzFAISSRetriever._safe_doc_year’   s   € ày‰y˜ RÓ(Ò.¨BˆØH‰HVÓˆğ	Ü”S˜“V“ˆBØ×*Ñ*‰FˆBØRŒ~˜2Š~Ø	ğ ğ ğ	 ğ øô ò 	ØØğ	ús   ©/A ÁA Á	A)Á(A)c                ó^  — | j                   r|s|d| S g t        «       }}|D ]M  }|d   j                  dd«      }||vr"|j                  |«       |j	                  |«       t        |«      |k\  sŒM n t        |«      |k  r-|D ](  }||vr|j                  |«       t        |«      |k\  sŒ' |S  |S )z7Ensure chunks from different PDFs dominate early ranks.Nr>   Úsource_fileÚunknown)r1   r\   r{   Úappendr_   r?   )rA   ÚresultsÚtop_kÚdiversifiedÚseenr   Úsrcs          rG   Ú_apply_source_diversityz&FAISSRetriever._apply_source_diversity    sÁ   € à×%Ò%©WØ˜6˜E?Ğ"à¤£TˆÛˆAØJ‘-×#Ñ# M°9Ó=ˆCØ˜$‰Ø×"Ñ" 1Ô%Ø—‘˜”Ü;Ó 5Ó(Ùğ ô ˆ{Ó˜eÒ#ÛØ˜KÑ'Ø×&Ñ& qÔ)Ü{Ó# uÓ,ØØĞğ ğ
- ĞrR   Nc                ó  — t        |«      | _        t        |xs | j                  «      }t	        dt        || j                  j                  «      «      }| j                  |«      }| j                  j                  || j                  r|dz  n|«      \  }}| j                  |d   «      }| j                  r| j                  |«      ng }	g }
-t        ||d   «      D ]¿  \  }}|dk  s|t        | j                  «      k\  rŒ$| j                  |   }| j!                  |«      }| j                  r| j#                  t%        |«      ||	«      n
-t%        |«      }|
-j'                  t%        |«      |j)                  dd«      xs ddd |j)                  di «      xs i d	œ«       ŒÁ |
-j+                  d
-„ d¬«       | j-                  |
-|¬«      }| j.                  j1                  dt        |«      › d| j                  › d| j                  › d|	xs d› «       |S )zDSimilarity search with optional temporal and source diversification.rT   é   r   rc   Ú Niô  r>   )Úscorerc   r>   c                ó   — | d   S )Nr   © )r   s    rG   Ú<lambda>z'FAISSRetriever.search.<locals>.<lambda>Ó   s   €  1 W¢:rR   T)ÚkeyÚreverse)r…   z
-Retrieved z candidates | temporal_mode=r   z | years_in_query=Únone)r&   r,   r$   r%   rs   rr   r6   ÚntotalrQ   Úsearchr1   rV   rk   Úzipr?   r>   r   rx   r-   rƒ   r{   Úsortr‰   r   r3   )rA   rO   r…   Útemporal_modeÚkÚq_vecÚDÚIÚscoresru   r„   r   Úidxr|   rp   Ú	mod_scorer†   s                    rG   r•   zFAISSRetriever.search¸   sø  € ä"& }Ó"5ˆÔÜÒ,˜×,Ñ,Ó-ˆÜ”3q˜$Ÿ*™*×+Ñ+Ó,Ó-ˆà×"Ñ" 5Ó)ˆØz‰z× Ñ  °×1GÒ1G¨¨AªÈQÓO‰ˆˆ1Ø×'Ñ'¨¨!©Ó-ˆØ?C×?VÒ?Vd×4Ñ4°UÔ;Ğ\^ˆà(*ˆÜ˜f a¨¡dÖ+‰JˆE3ØQŠw˜#¤ T§]¡]Ó!3Ò3ØØ—M‘M #Ñ&ˆEØ×*Ñ*¨5Ó1ˆHğ ×*Ò*ğ ×'Ñ'¬¨e«°hÀÔLÜ05°e³ğ ğ N‰NÜ˜yÓ)ØŸ™ 6¨2Ó.Ò4°"°d°sĞ;Ø!ŸI™I j°"Ó5Ò;¸ñõ ğ ,ğ 	‰Ñ-°tˆÔ<Ø×2Ñ2°7À!Ğ2ÓDˆà‰×ÑØœ˜[Ó)Ğ*Ğ*FÀt×G^ÑG^ĞF_ğ `#Ø#'×#9Ñ#9Ğ":Ğ:LÈ[ÒMbĞ\bĞLcğeô	
-ğ ĞrR   c                ó:   — | j                   j                  d«       y )NzFAISS retriever closed)r   r3   )rA   s    rG   ÚclosezFAISSRetriever.closeİ   s   € Ø‰×ÑĞ1Õ2rR   )	é2   TFr   Tg       @g333333Ó?)rZ   r[   T)r   r5   rB   r5   r%   r$   r'   r&   r(   r&   r+   r5   r,   r&   r.   r-   r/   r-   r0   zTuple[int, int]r1   r&   )rO   r5   Úreturnú
-np.ndarray)rU   r¤   r£   r¤   )rO   r5   r£   ú	List[int])rt   r-   rp   úOptional[int]ru   r¥   r£   r-   )r|   zDict[str, Any]r£   r¦   )r„   úList[Dict[str, Any]]r…   r$   r£   r§   )NT)rO   r5   r…   r¦   r˜   r&   r£   r§   )r£   ÚNone)r   Ú
-__module__Ú__qualname__Ú__doc__rH   rQ   rV   rk   rx   r   r‰   r•   r¡   r   rR   rG   r   r      sÊ   „ Ù[ğ !Ø%)ØØ!)Ø#'Ø!Ø!%Ø,8Ø"&ğA
-àğA
-ğ ğA
-ğ ğ	A
-ğ
- #ğA
-ğ ğA
-ğ ğA
-ğ !ğA
-ğ ğA
-ğ ğA
-ğ *ğA
-ğ  óA
-óH0ó
-ó'óT=óóô0"ôJ3rR   r   )Ú
-__future__r   Útypingr   r   r   r   r   Úpathlibr	   r<   r]   ÚnumpyrM   r   Úmathr
-   Ú)src.core.retrieval.interfaces.i_retrieverr   r   r   rR   rG   Ú<module>r²      s1   ğå "ß 3Õ 3İ Û Û 	Û Û İ İ @ôQ3Zõ Q3rR   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__pycache__\reranker_factory.cpython-312.pyc ==== 
-Ë
-    åéi£	  ã                  óˆ   — d dl mZ d dlZd dlmZmZmZ d dlmZ d dl	m
-Z
- d dlmZ  ej                  e«      Z G d„ d«      Zy)	é    )ÚannotationsN)ÚAnyÚDictÚType)ÚTemporalReranker)ÚSemanticReranker)Ú	IRerankerc                  ó8   — e Zd ZU dZeedœZded<   edd„«       Z	y)ÚRerankerFactoryz:Factory for deterministic and clean reranker construction.)ÚtemporalÚsemanticzDict[str, Type[IReranker]]Ú	_registryc                óN  — | j                  di «      }t        |j                  dd«      «      j                  «       }|t        j                  vr6t        d|› dt        t        j                  j                  «       «      › «      ‚t        j                  |   }t        j                  d|› d«       |t        u rst        t        |j                  dd	«      «      t        |j                  d
-d«      «      t        |j                  dg «      «      t        |j                  dg «      «      ¬«      S |t        u rst        t        |j                  dd«      «      t        |j                  dd«      «      t        |j                  dd«      «      t        |j                  dd«      «      ¬«      S y)zPInstantiate reranker from configuration dictionary with clean parameter mapping.ÚoptionsÚrerankerr   zUnsupported reranker type: z. Available: zInitializing reranker of type='Ú'Úsemantic_thresholdgš™™™™™Ù?Úmin_yearil  Úmust_includeÚblacklist_sources)r   r   r   r   Úsemantic_modelz$cross-encoder/ms-marco-MiniLM-L-6-v2Útop_k_reranké   Úsemantic_weightg      è?Úuse_gpuF)Ú
-model_nameÚtop_kr   r   N)ÚgetÚstrÚlowerr   r   Ú
-ValueErrorÚlistÚkeysÚloggerÚinfor   ÚfloatÚintr   Úbool)ÚcfgÚoptsÚrtypeÚclss       úOC:\Users\katha\historical-drift-analyzer\src\core\retrieval\reranker_factory.pyÚfrom_configzRerankerFactory.from_config   sz  € ğ w‰wy "Ó%ˆÜD—H‘H˜Z¨Ó4Ó5×;Ñ;Ó=ˆàœ×1Ñ1Ñ1ÜØ-¨e¨Wğ 5Ü"¤?×#<Ñ#<×#AÑ#AÓ#CÓDĞEğGóğ ô
- ×'Ñ'¨Ñ.ˆÜ‰Ğ5°e°W¸AĞ>Ô?ğ
- Ô"Ñ"Ü#Ü#(¨¯©Ğ2FÈÓ)MÓ#NÜ˜TŸX™X j°$Ó7Ó8Ü! $§(¡(¨>¸2Ó">Ó?Ü"& t§x¡xĞ0CÀRÓ'HÓ"Iô	ğ ğ Ô"Ñ"Ü#ÜØ—H‘HØ(Ø>óóô ˜$Ÿ(™( >°2Ó6Ó7Ü % d§h¡hĞ/@À$Ó&GÓ HÜ˜TŸX™X i°Ó7Ó8ô
-ğ 
-ğ #ó    N)r)   zDict[str, Any]Úreturnr	   )
-Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r   r   Ú__annotations__Ústaticmethodr.   © r/   r-   r   r      s0   … ÙDğ %Ø$ñ-€IĞ)ó ğ
- ò'ó ñ'r/   r   )Ú
-__future__r   ÚloggingÚtypingr   r   r   Ú$src.core.retrieval.temporal_rerankerr   Ú$src.core.retrieval.semantic_rerankerr   Ú(src.core.retrieval.interfaces.i_rerankerr	   Ú	getLoggerr1   r$   r   r7   r/   r-   Ú<module>r?      s6   ğå "Û ß "Ñ "å Aİ Aİ >à	ˆ×	Ñ	˜8Ó	$€÷0ò 0r/   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__pycache__\retrieval_orchestrator.cpython-312.pyc ==== 
-Ë
-    †ñi?-  ã                  ó˜   — d dl mZ d dlZd dlmZmZmZmZ d dlm	Z	 d dl
-Zd dlmZmZ d dlmZ d dlmZ d dlmZ d d	lmZ  G d
-„ d«      Zy)é    )ÚannotationsN)ÚListÚDictÚAnyÚOptional)Údefaultdict)ÚSentenceTransformerÚutil)ÚFAISSRetriever)ÚRerankerFactory)ÚConfigLoader)Úmake_chunk_idc                  óv   — e Zd ZdZddd„Zdd„Z	 	 	 	 	 	 	 	 dd„Z	 	 	 	 	 	 dd„Zdd„Zdd„Z	dd„Z
-dd	„Zdd
-„Zy)ÚRetrievalOrchestratoru[   Unified retrieval orchestrator â€” orchestrates query â†’ retrieval â†’ reranking pipeline.c           
-     ó  — t        j                  d«      | _        t        |«      }|j                  | _        | j
-                  j                  di «      }| j
-                  j                  di «      }t        |j                  dd«      «      | _        t        |j                  dd«      «      | _
-        |j                  dd	«      | _        t        |j                  d
-d«      «      | _        t        |j                  dd«      «      }t        | j                  |z  | j                  dz  «      | _        	 t!        | j                  «      | _        t)        | j                  | j                  | j                  dddd| j                  ¬«      | _        d | _        d | _        | j                  j1                  d| j                  › d| j                  › d| j                  › «       y # t$        $ r }t'        d| j                  › d|› «      ‚d }~ww xY w)Nr   ÚoptionsÚpathsÚtop_ké
-   Úvector_store_dirzdata/vector_storeÚembedding_modelzmulti-qa-mpnet-base-dot-v1Údiversify_sourcesTÚoversample_factoré   z Failed to load embedding model 'z': FÚcosine)r   Ú
-model_nameÚtop_k_retrieveÚnormalize_embeddingsÚuse_gpuÚsimilarity_metricÚtemporal_awarenessr   z*RetrievalOrchestrator initialized | top_k=z | default_diversify=z	 | model=)ÚloggingÚ	getLoggerÚloggerr   ÚconfigÚcfgÚgetÚintr   Ústrr   r   ÚboolÚdiversify_sources_defaultÚmaxÚmax_initialr	   Úembed_modelÚ	ExceptionÚRuntimeErrorr   Ú	retrieverÚ_cached_reranker_typeÚ_cached_rerankerÚinfo)ÚselfÚconfig_pathÚ
-cfg_loaderÚoptsr   r   Úes          úUC:\Users\katha\historical-drift-analyzer\src\core\retrieval\retrieval_orchestrator.pyÚ__init__zRetrievalOrchestrator.__init__   sÏ  € Ü×'Ñ'Ğ(?Ó@ˆŒÜ! +Ó.ˆ
-Ø#-×#4Ñ#4ˆŒàx‰x|‰|˜I rÓ*ˆØ—‘—‘˜W bÓ)ˆô ˜Ÿ™ '¨2Ó.Ó/ˆŒ
-Ü # E§I¡IĞ.@ĞBUÓ$VÓ WˆÔØ#Ÿx™xĞ(9Ğ;WÓXˆÔÜ)-¨d¯h©hĞ7JÈDÓ.QÓ)RˆÔ&Ü §¡Ğ)<¸bÓ AÓBĞÜ˜tŸz™zĞ,=Ñ=¸t¿z¹zÈA¹~ÓNˆÔğ	`Ü2°4×3GÑ3GÓHˆDÔô
- (Ø!×2Ñ2Ø×+Ñ+Ø×+Ñ+Ø!%ØØ&Ø$Ø"×<Ñ<ô	
-ˆŒğ 59ˆÔ"Ø $ˆÔà‰×ÑØ8¸¿¹¸ğ E!Ø!%×!?Ñ!?Ğ @À	È$×J^ÑJ^ĞI_ğaõ	
-øô' ò 	`ÜĞ!AÀ$×BVÑBVĞAWĞWZĞ[\ĞZ]Ğ^Ó_Ğ_ûğ	`ús   Ä-G Ç	HÇ!G<Ç<Hc           
-     ó(  — |r|j                  «       s| j                  j                  d«       g S |dk(  }|| j                  _        || j                  _        | j                  j                  d|› d| j                  › d| j                  j                  › d| j                  j
-                  › «       	 | j                  j                  || j                  |¬«      }|s| j                  j                  d
-«       g S |D ]  }|j                  «       |d<   Œ |rdnd}|| j                  k7  s| j                  €%t        j                  dd|ii«      | _        || _        	 | j                  j!                  |t#        |«      ¬«      }|D ]4  }	t%        |	j'                  d|	j'                  dd«      «      xs d«      |	d<   Œ6 |j)                  d„ d¬«       | j+                  || j                  |«      }
-| j-                  |
-|«      }
-| j/                  |
-| j                  «      }t1        |d¬«      D ])  \  }}	|	j'                  d«      st3        |	«      |	d<   ||	d<   Œ+ | j5                  |«       | j                  j                  dt#        |«      › d|› d| j                  j
-                  › «       |S # t        $ r*}| j                  j                  d|› «       g cY d	}~S d	}~ww xY w# t        $ r.}| j                  j                  d|› d|› «       |}Y d	}~Œd	}~ww xY w) zMRetrieve, rerank, and return top-k chunks based on query and detected intent.zEmpty query ignored.ÚchronologicalzRetrieval started | intent=z	 | top_k=z | temporal_awareness=z | diversify_sources=)r   Útemporal_modezFAISS retrieval failed: NzNo retrieval results found.ÚqueryÚtemporalÚsemanticr   Úreranker)r   zReranking failed (z): Úfinal_scoreÚscoreç        c                ó0   — | d   | j                  dd«      fS )NrC   ÚidÚ )r'   )Úxs    r:   Ú<lambda>z0RetrievalOrchestrator.retrieve.<locals>.<lambda>t   s   €  Q }Ñ%5°q·u±u¸TÀ2³Ñ$Gó    T)ÚkeyÚreverseé   )ÚstartrG   ÚrankzRetrieval finished | returned=z | mode=z | diversity=)Ústripr$   Úwarningr1   r!   r   r4   r   Úsearchr-   r/   Ú	exceptionr2   r3   r   Úfrom_configÚrerankÚlenÚfloatr'   ÚsortÚ_enforce_diversityÚ_attach_graded_relevanceÚ_ensure_exact_kÚ	enumerater   Ú_log_decade_distribution)r5   r?   ÚintentÚis_historicalÚraw_resultsr9   ÚrÚreranker_typeÚrerankedrI   ÚdiversifiedÚfinalÚis                r:   ÚretrievezRetrievalOrchestrator.retrieve>   s÷  € á˜EŸK™KœMØK‰K×ÑĞ 6Ô7ØˆIğ  /Ñ1ˆğ -:ˆ‰Ô)Ø+8ˆ‰Ô(à‰×ÑØ)¨&¨°¸4¿:¹:¸,ğ G"Ø"&§.¡.×"CÑ"CĞ!Dğ E!Ø!%§¡×!AÑ!AĞ BğDô	
-ğ	ØŸ.™.×/Ñ/Ø˜T×-Ñ-¸]ğ 0ó ˆKñ ØK‰K×ÑĞ =Ô>ØˆIó ˆAØŸ™›ˆAˆgŠJğ ñ '4™
-¸ˆØ˜D×6Ñ6Ò6¸$×:OÑ:OĞ:WÜ$3×$?Ñ$?Ø˜Z¨Ğ7Ğ8ó%ˆDÔ!ğ *7ˆDÔ&ğ	#Ø×,Ñ,×3Ñ3°KÄsÈ;ÓGWĞ3ÓXˆHó ˆAÜ$ Q§U¡U¨=¸!¿%¹%ÀÈÓ:MÓ%NÒ%UĞRUÓVˆAˆmÒğ à‰ÑGĞQUˆÔVğ ×-Ñ-¨h¸¿
-¹
-ÀMÓRˆØ×3Ñ3°KÀÓJˆØ×$Ñ$ [°$·*±*Ó=ˆô ˜e¨1×-‰DˆAˆqØ—5‘5˜”;Ü'¨Ó*$‘ØˆAˆfŠIğ .ğ
- 	×%Ñ% eÔ,Ø‰×ÑØ,¬S°«Z¨L¸ÀÀğ IØŸ™×9Ñ9Ğ:ğ<ô	
-ğ ˆøôa ò 	ØK‰K×!Ñ!Ğ$<¸Q¸CĞ"@ÔAØIûğ	ûô. ò 	#ØK‰K×!Ñ!Ğ$6°}°oÀSÈÈĞ"LÔMØ"Hûğ	#ús6   Â1(J$ Å&K Ê$	KÊ-KËKËKË	LË##LÌLc           	     ó¦  — |sg S |r| j                   j                  s~t        «       g }}|D ]k  }|j                  d«      xs dj	                  «       }|sŒ)t        |«      }||v rŒ9|j                  |«       |j                  |«       t        |«      |k\  sŒj |S  |S g t        «       t        «       }}
-}	|D cg c]#  }| j                  |j                  dd«      «      ‘Œ% }}t        |«      D cg c]
-  \  }}|sŒ	|‘Œ }}}|s|d| S | j                  j                  |D cg c]  }||   ‘Œ	 c}d¬«      }g }t        |«      D ]  \  }}||   }t        |	«      |k\  r n|j                  di «      xs i }|j                  d«      xs dj                  «       }| j                  |«      }|r|d	z  d	z  nd}||
-v r||v rt        |	«      t        |d
-z  «      k  rŒ–||   }|r6t!        j"                  ||«      d   }t%        |j'                  «       «      dkD  rŒÓ|	j                  |«       |j                  |«       |
-j                  |«       |sŒ
-|j                  |«       Œ t        |	«      |k  rO|	D ch c]  }t)        |«      ’Œ }}|D ]2  }t)        |«      |vsŒ|	j                  |«       t        |	«      |k\  sŒ1 |	S  |	S c c}w c c}}w c c}w c c}w )zJDiversify retrieval results by source and decade (for chronological mode).ÚtextrH   NT)r   ÚmetadataÚsource_fileÚunknownr   gš™™™™™é?r   gffffffî?)r1   r   Úsetr'   rQ   ÚhashÚaddÚappendrW   Ú_clean_textr]   r.   ÚencodeÚlowerÚ
-_safe_yearr(   r
-   Úcos_simrX   r,   rG   )r5   ÚresultsÚkÚ
-historicalÚseenÚoutrb   rj   ÚhÚselectedÚused_sourcesÚused_decadesÚ
-pool_textsrg   ÚtÚ	pool_idxsÚembsÚ	kept_embsÚjÚidxÚmetaÚsrcÚyearÚdecadeÚcand_embÚsimsrI   Úused_idss                               r:   rZ   z(RetrievalOrchestrator._enforce_diversity‰   sÈ  € ñ ØˆIá §¡×!AÒ!Aä›˜r#ˆDÛØŸ™˜f›Ò+¨×2Ñ2Ó4ÙØÜ˜“JØ˜‘9ØØ—‘˜”Ø—
-‘
-˜1”Üs“8˜q“=ØØˆJğ ğ ˆJğ 02´3³5¼#»% ,ˆÙCJÓKÁ7¸ad×&Ñ& q§u¡u¨V°RÓ'8Õ9À7ˆ
-ĞKÜ#,¨ZÔ#8Ô>Ñ#8™4˜1˜aºA’QĞ#8ˆ	Ñ>ÙØ˜2˜A;Ğà×Ñ×&Ñ&Ù$-Ó.¡I˜qˆZ˜‹] IÑ.ÀTğ 'ó 
-ˆğ ˆ	ä 	×*‰FˆAˆsØ˜‘ˆAÜ8‹} Ò!ÚØ—5‘5˜ RÓ(Ò.¨BˆDØ—8‘8˜MÓ*Ò7¨i×>Ñ>Ó@ˆCØ—?‘? 1Ó%ˆDÙ*.d˜b‘j BÒ&°DˆFàlÑ" v°Ñ'=Ä#ÀhÃ-ÔRUĞVWĞZ]ÑV]ÓR^ÒB^Øà˜A‘wˆHÙÜ—|‘| H¨iÓ8¸Ñ;Ü˜Ÿ™›Ó$ tÒ+ØàO‰O˜AÔØ×Ñ˜XÔ&Ø×Ñ˜SÔ!ÛØ× Ñ  Ö(ğ- +ô0 ˆx‹=˜1ÒÙ'/Ó0¡x !œ˜1 xˆHĞ0ÛÜa“5 Ò(Ø—O‘O AÔ&Ü˜8“}¨Ó)ØØˆğ ğ
- ˆùòS LùÛ>ùò
- /ùò: 1s   Â5(J>Ã-
-KÃ8KÄK	É1Kc                óü  — |s|S t        j                  |D cg c]1  }t        |j                  d|j                  dd«      «      xs d«      ‘Œ3 c}t        ¬«      }|j                  dk(  s$t        j
-                  |j                  «       d«      r|D ]  }d|d<   Œ	 |S 	 t        j                  |g d¢«      \  }}}|D ]T  }t        |j                  d|j                  dd«      «      xs d«      }t        ||k  rdn||k  rdn||k  rdnd«      |d<   ŒV |S c c}w # t        $ rY t        |j                  «       «      t        |j                  «       «      }	}|	|kD  r|	|z
-  d	z  nd
-}
-||
-z   |d|
-z  z   |d|
-z  z   }}}Y ŒÁw xY w)u9   Assign relevance labels (0â€“3) based on score quantiles.rC   rD   rE   )Údtyper   rN   Ú	relevance)g      Ğ?g      à?g      è?g      @g      ğ?é   é   )ÚnpÚarrayrX   r'   ÚsizeÚallcloseÚstdÚquantiler/   Úminr,   r(   )r5   ÚitemsÚref_populationrI   ÚscoresÚq1Úq2Úq3ÚsminÚsmaxÚstepÚss               r:   r[   z.RetrievalOrchestrator._attach_graded_relevanceÎ   ss  € ñ ØˆLä—‘ÙN\Ó]ÉnÈŒU1—5‘5˜¨¯©¨g°sÓ(;Ó<ÒCÀÕDÈnÑ]Üô
-ˆğ ;‰;˜!ÒœrŸ{™{¨6¯:©:«<¸Ô=ÛØ!"+’ğ àˆLğ	GÜŸ™ VÒ->Ó?‰JˆBBó ˆAÜa—e‘e˜M¨1¯5©5°¸#Ó+>Ó?ÒFÀ3ÓGˆAÜ  a¨2¢g¡¸¸Rº±1È!ÈrÊ'ÁQĞWXÓYˆAˆkŠNğ ğ ˆùò% ^øô ò 	GÜ˜vŸz™z›|Ó,¬e°F·J±J³LÓ.A$ˆDØ*.°ª+D˜4‘K 3Ò&¸3ˆDØ ™ d¨Q°©X¡o°t¸aÀ$¹h±BŠBğ	Gús   ˜6DÂD ÄAE;Å:E;c           	     óÖ   ‡— |sg S t        |«      |kD  r|d| S t        |«      |k  rB|d   j                  «       Š|j                  ˆfd„t        |t        |«      z
-  «      D «       «       |S )z6Guarantee exactly k output results (pad if necessary).Néÿÿÿÿc              3  ó>   •K  — | ]  }‰j                  «       –— Œ y ­w)N)Úcopy)Ú.0Ú_Úpads     €r:   Ú	<genexpr>z8RetrievalOrchestrator._ensure_exact_k.<locals>.<genexpr>ó   s   øè ø€ ĞGÑ/F¨!˜3Ÿ8™8Ÿ:Ñ/Fùs   ƒ)rW   r§   ÚextendÚrange)r5   rw   rx   rª   s      @r:   r\   z%RetrievalOrchestrator._ensure_exact_kë   sf   ø€ áØˆIÜˆw‹<˜!ÒØ˜2˜A;ĞÜˆw‹<˜!ÒØ˜"‘+×"Ñ"Ó$ˆCØN‰NÓG¬u°Q¼¸W»Ñ5EÔ/FÓGÔGØˆrK   c                óÈ   — |j                  di «      xs i }|j                  d|j                  d«      «      }	 t        |«      }d|cxk  rdk  r|S  y	 y# t        $ r Y yw xY w)z"Safely extract year from metadata.rk   r‰   il  i4  N)r'   r(   r/   )r5   rb   r‡   Úys       r:   ru   z RetrievalOrchestrator._safe_year÷   sz   € àu‰uZ Ó$Ò*¨ˆØH‰HV˜QŸU™U 6›]Ó+ˆğ	ÜA“ˆAØqÔ ˜DÒ Øğ !ğ ğ	 !ğ øô ò 	ØØğ	ús   ¹A ÁA Á	A!Á A!c                ó†   — |sydj                  |j                  dd«      j                  dd«      j                  «       «      S )z-Normalize whitespace for embedding stability.rH   Ú Ú
-Ú)ÚjoinÚreplaceÚsplit)r5   r   s     r:   rr   z!RetrievalOrchestrator._clean_text  s8   € áØØx‰x˜Ÿ	™	 $¨Ó,×4Ñ4°T¸3Ó?×EÑEÓGÓHĞHrK   c                ó$  — t        t        «      }|D ]/  }| j                  |«      }|r|dz  dz  › dnd}||xx   dz  cc<   Œ1 dj                  d„ t	        |j                  «       «      D «       «      }| j                  j                  d|› «       y)	z1Log temporal distribution of retrieved documents.r   r£   rm   rN   z, c              3  ó0   K  — | ]  \  }}|› d |› –— Œ y­w)Ú:N© )r¨   rx   Úvs      r:   r«   zARetrievalOrchestrator._log_decade_distribution.<locals>.<genexpr>  s!   è ø€ ĞDÑ/C¡t q¨!˜1˜#˜Q˜q˜cœ
-Ñ/Cùs   ‚zDecade distribution: N)r   r(   ru   r´   Úsortedrš   r$   r4   )r5   rš   Úhistrb   r¯   rŠ   Úmsgs          r:   r^   z.RetrievalOrchestrator._log_decade_distribution  s†   € ä*¬3Ó/ˆÛˆAØ—‘ Ó"ˆAÙ-.˜˜b™ B™Ğ' qÑ)°IˆFØ‹L˜AÑŒLğ ğ i‰iÑD¬v°d·j±j³lÔ/CÓDÓDˆØ‰×ÑĞ0°°Ğ6Õ7rK   c                óØ   — 	 | j                   j                  «        | j                  j                  d«       y# t        $ r(}| j                  j	                  d|› «       Y d}~ŒHd}~ww xY w)z%Gracefully close retriever resources.zFailed to close retriever: Nz%RetrievalOrchestrator closed cleanly.)r1   Úcloser/   r$   rR   r4   )r5   r9   s     r:   rÀ   zRetrievalOrchestrator.close  s^   € ğ	CØN‰N× Ñ Ô"ğ 	‰×ÑĞ@ÕAøô ò 	CØK‰K×ÑĞ"=¸a¸SĞ A×BÑBûğ	Cús   ‚8 ¸	A)ÁA$Á$A)N)zconfigs/retrieval.yaml)r6   r)   )r?   r)   r_   r)   ÚreturnúList[Dict[str, Any]])rw   rÂ   rx   r(   ry   r*   rÁ   rÂ   )rš   rÂ   r›   rÂ   rÁ   rÂ   )rw   rÂ   rx   r(   rÁ   rÂ   )rb   zDict[str, Any]rÁ   zOptional[int])r   r)   rÁ   r)   )rš   rÂ   rÁ   ÚNone)rÁ   rÃ   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r;   rh   rZ   r[   r\   ru   rr   r^   rÀ   rº   rK   r:   r   r      su   „ Ùeô)
-óXHğVBØ+ğBØ03ğBØAEğBà	óBğJØ)ğØ;Oğà	óó:	ó
-óIó8ôBrK   r   )Ú
-__future__r   r"   Útypingr   r   r   r   Úcollectionsr   Únumpyr“   Úsentence_transformersr	   r
-   Ú"src.core.retrieval.faiss_retrieverr   Ú#src.core.retrieval.reranker_factoryr   Úsrc.core.config.config_loaderr   Úsrc.core.evaluation.utilsr   r   rº   rK   r:   Ú<module>rÑ      s4   ğå "Û ß ,Ó ,İ #Û ß ;å =İ ?İ 6İ 3÷MBò MBrK   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__pycache__\semantic_reranker.cpython-312.pyc ==== 
-Ë
-    §|iû  ã                  ó~   — d dl mZ d dlZd dlmZmZmZ d dlmZ d dl	m
-Z
-  ej                  e«      Z G d„ de
-«      Zy)é    )ÚannotationsN)ÚListÚDictÚAny)ÚCrossEncoder)Ú	IRerankerc                  ó8   — e Zd ZdZ	 	 	 d	 	 	 	 	 	 	 dd„Zddd„Zy)	ÚSemanticRerankerz>Cross-Encoder-basiertes Re-Ranking nach semantischer Relevanz.c                óÈ   — || _         || _        || _        |rdnd| _        t	        || j                  ¬«      | _        t        j                  d|› d| j                  › d«       y )NÚcudaÚcpu)ÚdevicezSemantic Cross-Encoder loaded: z (Ú))Ú
-model_nameÚtop_kÚsemantic_weightr   r   ÚmodelÚloggerÚinfo)Úselfr   r   r   Úuse_gpus        úPC:\Users\katha\historical-drift-analyzer\src\core\retrieval\semantic_reranker.pyÚ__init__zSemanticReranker.__init__   sX   € ğ %ˆŒØˆŒ
-Ø.ˆÔÙ '‘f¨UˆŒÜ! *°T·[±[ÔAˆŒ
-Ü‰Ğ5°j°\ÀÀDÇKÁKÀ=ĞPQĞRÕSó    Nc                ó¸  — |sg S |xs | j                   }|D cg c]&  }|j                  dd«      |j                  dd«      f‘Œ( }}| j                  j                  |«      }t	        ||«      D ]N  \  }}t        |j                  dd«      «      }| j                  t        |«      z  d| j                  z
-  |z  z   |d<   ŒP |j                  d„ d	¬
-«       |d| S c c}w )z-Score documents via Cross-Encoder similarity.ÚqueryÚ ÚtextÚscoreg        é   Úfinal_scorec                ó   — | d   S )Nr!   © )Úxs    r   Ú<lambda>z)SemanticReranker.rerank.<locals>.<lambda>(   s	   €   -Ò 0r   T)ÚkeyÚreverseN)r   Úgetr   ÚpredictÚzipÚfloatr   Úsort)	r   Údocsr   ÚkÚdÚpairsÚscoresr   Úbases	            r   ÚrerankzSemanticReranker.rerank   sØ   € áØˆIàÒT—Z‘ZˆÙBFÓGÁ$¸Q!—%‘%˜ Ó$ a§e¡e¨F°BÓ&7Ò8À$ˆĞGØ—‘×#Ñ# EÓ*ˆä˜D &Ö)‰HˆAˆuÜ˜Ÿ™˜w¨Ó,Ó-ˆDØ#×3Ñ3´e¸E³lÑBÀaÈ$×J^ÑJ^ÑF^ĞbfÑEfÑfˆAˆmÒğ *ğ 		‰	Ñ0¸$ˆ	Ô?ØBQˆxˆùò Hs   ™+C)é   g      è?F)r   Ústrr   Úintr   r+   r   Úbool)N)r-   úList[Dict[str, Any]]r   z
-int | NoneÚreturnr8   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r3   r#   r   r   r
-   r
-   
-   sE   „ ÙHğ
- Ø!%ØğTàğTğ ğTğ ğ	Tğ
- óTõr   r
-   )Ú
-__future__r   ÚloggingÚtypingr   r   r   Úsentence_transformersr   Ú(src.core.retrieval.interfaces.i_rerankerr   Ú	getLoggerr:   r   r
-   r#   r   r   Ú<module>rD      s5   ğå "Û ß "Ñ "İ .İ >à	ˆ×	Ñ	˜8Ó	$€ôyõ r   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__pycache__\temporal_reranker.cpython-312.pyc ==== 
-Ë
-    jçi.  ã                  óŠ   — d dl mZ d dlZd dlmZmZmZmZmZmZ d dl	m
-Z
- d dlmZ  ej                  e«      Z G d„ de«      Zy)é    )ÚannotationsN)ÚListÚDictÚAnyÚTupler   ÚOptional)Údefaultdict)Ú	IRerankerc                  óX   — e Zd ZdZ	 	 	 	 d
-	 	 	 	 	 	 	 dd„Zddd„Zd„ Zd„ Zd„ Zd„ Z	d	„ Z
-y)ÚTemporalRerankerzá
-    Semantic-first temporal diversification.
-    Ensures that each decade contributes at most one document,
-    but only if semantic relevance is sufficiently high.
-    No score manipulation. No age penalties or boosts.
-    Nc                óL   — || _         || _        |xs g | _        |xs g | _        y ©N)Úsemantic_thresholdÚmin_yearÚmust_includeÚblacklist_sources)Úselfr   r   r   r   s        úPC:\Users\katha\historical-drift-analyzer\src\core\retrieval\temporal_reranker.pyÚ__init__zTemporalReranker.__init__   s-   € ğ #5ˆÔØ ˆŒØ(Ò.¨BˆÔØ!2Ò!8°bˆÕó    c                óö  — |sg S |D ]  }| j                  |«      |d<   Œ |D cg c]  }| j                  |«      rŒ|‘Œ }}|sg S t        |d„ d¬«      }| j                  |«      }g }t	        «       }t        |j                  «       «      D ]U  }||   d   }	|	d   | j                  k\  sŒ| j                  |	«      }
-|
-|vsŒ4|j                  |	«       |j                  |
-«       ŒW |D ]I  }| j                  |«      }
-|
-|vr"|j                  |«       |j                  |
-«       t        |«      |k\  sŒI n | j                  |||«      }t        j                  dt        |«      › d| j                  › «       |d | S c c}w )	NÚyearc                ó&   — | j                  dd«      S )NÚscoreg        )Úget)Úrs    r   Ú<lambda>z)TemporalReranker.rerank.<locals>.<lambda>,   s   € °q·u±u¸WÀcÔ7Jr   T)ÚkeyÚreverser   r   z,Temporal diversification complete | decades=z | threshold=)Ú_extract_yearÚ_is_blacklistedÚsortedÚ_group_by_decadeÚsetÚkeysr   Ú_src_keyÚappendÚaddÚlenÚ_inject_must_includeÚloggerÚinfo)r   ÚresultsÚtop_kr   Úresults_sortedÚdecade_groupsÚselectedÚseenÚdecÚbestr   s              r   ÚrerankzTemporalReranker.rerank   s†  € ÙØˆIó ˆAØ×*Ñ*¨1Ó-ˆAˆfŠIğ ñ &ÓE™g˜¨T×-AÑ-AÀ!Õ-D’1˜gˆĞEÙØˆIô   Ñ-JĞTXÔYˆğ ×-Ñ-¨nÓ=ˆğ ˆÜ‹uˆä˜-×,Ñ,Ó.Ö/ˆCØ  Ñ% aÑ(ˆDØG‰} × 7Ñ 7Ó7Ø—m‘m DÓ)Ø˜d’?Ø—O‘O DÔ)Ø—H‘H˜S•Mğ 0ó  ˆAØ—-‘- Ó"ˆCØ˜$‰Ø—‘ Ô"Ø—‘˜”Ü8‹} Ó%Ùğ  ğ ×,Ñ,¨X°wÀÓFˆä‰ĞBÄ3À}ÓCUĞBVĞVcĞdh×d{Ñd{Ğc|Ğ}Ô~Ø˜˜ĞĞùòG Fs
-   ¤E6»E6c                ó  — |j                  di «      }|j                  d«      xs |j                  d«      }	 t        t        |«      «      }|| j                  k  s|dkD  r| j                  S |S # t        $ r | j                  cY S w xY w)NÚmetadatar   i4  )r   ÚintÚstrr   Ú	Exception)r   r   ÚmetaÚys       r   r    zTemporalReranker._extract_yearM   sy   € Øu‰uZ Ó$ˆØH‰HVÓÒ- §¡ f£ˆğ	!Ü”C˜“F“ˆAØ4—=‘=Ò  A¨¢HØ—}‘}Ğ$ØˆHøÜò 	!Ø—=‘=Ò ğ	!ús   ¸3A. Á,A. Á.BÂBc                óp   — t        t        «      }|D ]!  }|d   dz  dz  }||   j                  |«       Œ# |S )Nr   é
-   )r	   Úlistr'   )r   r-   Úgroupsr   Údecades        r   r#   z!TemporalReranker._group_by_decadeX   sA   € ÜœTÓ"ˆÛˆAØ˜‘i 2‘o¨Ñ+ˆFØ6‰N×!Ñ! !Õ$ğ ğ ˆr   c                ó’   — |j                  di «      }|j                  d«      xs |j                  d«      xs dj                  «       S )Nr7   Úsource_fileÚtitleÚunknown)r   Úlower)r   r   r;   s      r   r&   zTemporalReranker._src_key_   s=   € Øu‰uZ Ó$ˆØ—‘˜Ó'ÒI¨4¯8©8°GÓ+<ÒIÀ	×PÑPÓRĞRr   c                ób   ‡— | j                  |«      Št        ˆfd„| j                  D «       «      S )Nc              3  óB   •K  — | ]  }|j                  «       ‰v –— Œ y ­wr   )rF   )Ú.0Úbr   s     €r   Ú	<genexpr>z3TemporalReranker._is_blacklisted.<locals>.<genexpr>e   s   øè ø€ ĞDÑ-C¨1—7‘7“9 Ô#Ñ-Cùs   ƒ)r&   Úanyr   )r   r   r   s     @r   r!   z TemporalReranker._is_blacklistedc   s(   ø€ Øm‰m˜AÓˆÜÓD¨T×-CÒ-CÓDÓDĞDr   c                ó8  ‡ ‡— |D ‡cg c]$  Št        ˆˆ fd„‰ j                  D «       «      sŒ#‰‘Œ& }}|s|S g t        «       }}||z   D ]J  Š‰ j                  ‰«      }||vr"|j	                  ‰«       |j                  |«       t        |«      |k\  sŒI |S  |S c c}w )Nc              3  óD   •K  — | ]  }|‰j                  ‰«      v –— Œ y ­wr   )r&   )rI   Úmr   r   s     €€r   rK   z8TemporalReranker._inject_must_include.<locals>.<genexpr>h   s"   øè ø€ Ğ-_ÑM^È¨a°4·=±=ÀÓ3CÔ.CÑM^ùs   ƒ )rL   r   r$   r&   r'   r(   r)   )	r   ÚrankedÚall_resultsr.   r   ÚmustÚmergedr2   r   s	   `   `    r   r*   z%TemporalReranker._inject_must_includeg   s˜   ù€ Ù&Ô`™;a¬#Ô-_ÈT×M^ÒM^Ó-_Õ*_’˜;ˆĞ`ÙØˆMØœ3›5ˆØ˜”ˆAØ—-‘- Ó"ˆCØ˜$‰Ø—‘˜aÔ Ø—‘˜”Ü6‹{˜eÓ#ØØˆğ ğ ˆùò as
-   ˆ$B­B)gš™™™™™Ù?il  NN)r   Úfloatr   r8   r   úList[str] | Noner   rU   )r>   )r-   úList[Dict[str, Any]]r.   r8   ÚreturnrV   )Ú__name__Ú
-__module__Ú__qualname__Ú__doc__r   r5   r    r#   r&   r!   r*   © r   r   r   r   	   sa   „ ñğ %)ØØ)-Ø.2ğ
-9à!ğ
-9ğ ğ
-9ğ 'ğ	
-9ğ
- ,ó
-9ô, ò^	!òòSòEór   r   )Ú
-__future__r   ÚloggingÚtypingr   r   r   r   r   Úcollectionsr	   Ú(src.core.retrieval.interfaces.i_rerankerr
-   Ú	getLoggerrX   r+   r   r\   r   r   Ú<module>rc      s7   ğİ "Û ß 9× 9İ #İ >à	ˆ×	Ñ	˜8Ó	$€ôjyõ jr   .
-==== C:\Users\katha\historical-drift-analyzer\src\core\retrieval\__pycache__\__init__.cpython-312.pyc ==== 
-Ë
-     i    ã                    ó   — y )N© r   ó    úGC:\Users\katha\historical-drift-analyzer\src\core\retrieval\__init__.pyÚ<module>r      s   ñr   .

@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_explain_how_data-driven_ai_challenges_symbolic_interpretability___describ",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.37338603386624647,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 18,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

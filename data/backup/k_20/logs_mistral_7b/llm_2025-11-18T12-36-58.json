@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T12-36-58",
+  "query_id": "Define_summarize_how_neural_networks_redefined_ai_paradigms_after_2010___describ",
+  "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 2303.18223v16.pdf (2025)\n. As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s\n\n[2] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[3] 1706.03762v7.pdf (2024)\n. The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU, ByteNet and ConvS2S, all of which use convolutional neural networks as basic building block, computing hidden representations in parallel for all input and output positions.\n\n[3] 1706.03762v7.pdf (2024)\nRecurrent neural networks, long short-term memory and gated recurrent neural networks in particular, have been firmly established as state of the art approaches in sequence modeling and transduction problems such as language modeling and machine translation. Numerous efforts have since continued to push the boundaries of recurrent language models and encoder-decoder architectures. . Recurrent models typically factor computation along the symbol positions of the input and output sequences. . Alig\n\n[4] 1409.3215v3.pdf (2014)\n. Deep Neural Networks (DNNs) are extremely powerful machine learning models that achieve excellent performance on difficult problems such as speech recognition and visual object recognition.. DNNs are powerful because they can perform arbitrary parallel computation for a modest number of steps. A surprising example of the power of DNNs is their ability to sort N N-bit numbers using only 2 hidden layers of quadratic size. . So, while neural networks are related to conventional statistical models\n\n[5] 1301.3781v3.pdf (2013)\n. A very popular model architecture for estimating neural network language model (NNLM) was proposed in, where a feedforward neural network with a linear projection layer and a non-linear hidden layer was used to learn jointly the word vector representation and a statistical language model. This work has been followed by many others. . Another interesting architecture of NNLM was presented in, where the word vectors are first learned using neural network with a single hidden layer. . The word ve\n\n[1] 2303.18223v16.pdf (2025)\n. According to one interview with Ilya Sutskever14 (a co-founder and chief scientist of OpenAI), the idea of approaching intelligent systems with language models was already explored in the early days of OpenAI, while it was attempted with recurrent neural networks (RNN). With the advent of Transformer, OpenAI developed two initial GPT models, namely GPT-1 and GPT-2, which can be considered as the foundation to more powerful models subsequently i.e., GPT-3 and GPT-4. . • . GPT-1. . In 2017, the\n\n[6] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[7] 2210.07321v4.pdf (2023)\n. Natural language generation using neural networks was demonstrated to be highly effective using recurrent neural networks (RNN), including long short-term memory (LSTM) architectures and gated recurrent units (GRUs). However, RNN and LSTM architectures had to contend with the vanishing gradient problem, to which the multi-head attention mechanism of the Transformer architecture is more resilient. . Generative adversarial networks (GANs) — commonly used to generate continuous data (such as imag\n\n[2] NatureDeepReview.pdf (2025)\nN-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4). Recurrent neural networks When backpropagation was first introduced, its most exciting use was for training recurrent neural networks (RNNs). . For tasks that involve sequential inputs, s\n\n[2] NatureDeepReview.pdf (2025)\nThis overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat\n\n[5] 1301.3781v3.pdf (2013)\nThe new architectures directly follow those proposed in our earlier work, where it was found that neural network language model can be successfully trained in two steps: first, continuous word vectors are learned using simple model, and then the N-gram NNLM is trained on top of these distributed representations of words. While there has been later substantial amount of work that focuses on learning word vectors, we consider the approach proposed in to be the simplest one. . Note that related mod\n\n[8] NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf (2014)\nThe specific contributions of this paper are as follows: we trained one of the largest convolutional neural networks to date on the subsets of ImageNet used in the ILSVRC-2010 and ILSVRC-2012 competitions and achieved by far the best results ever reported on these datasets. We wrote a highly-optimized GPU implementation of 2D convolution and all the other operations inherent in training convolutional neural networks, which we make available publicly1. . Our network contains a number of new and u\n\n[7] 2210.07321v4.pdf (2023)\nAdditional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the\n\n[5] 1301.3781v3.pdf (2013)\n. In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to\n\n[8] NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf (2014)\n. The neural network, which has 60 million parameters and 650,000 neurons, consists of five convolutional layers, some of which are followed by max-pooling layers, and three fully-connected layers with a final 1000-way softmax. To make training faster, we used non-saturating neurons and a very efficient GPU implementation of the convolution operation. . To reduce overfitting in the fully-connected layers we employed a recently-developed regularization method called \"dropout\" that proved to be ve\n\n[4] 1409.3215v3.pdf (2014)\n. Graves introduced a novel differentiable attention mechanism that allows neural networks to focus on different parts of their input, and an elegant variant of this idea was successfully applied to machine translation by Bahdanau et al..\n\n[9] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[5] 1301.3781v3.pdf (2013)\n. While this is what makes neural networks so attractive, we decided to explore simpler models that might not be able to represent the data as precisely as neural networks, but can possibly be trained on much more data efficiently.\n\n[5] 1301.3781v3.pdf (2013)\nRecurrent neural network based language model has been proposed to overcome certain limitations of the feedforward NNLM, such as the need to specify the context length (the order of the model N), and because theoretically RNNs can efficiently represent more complex patterns than the shallow neural networks. The RNN model does not have a projection layer; only input, hidden and output layer. . What is special for this type of model is the recurrent matrix that connects hidden layer to itself, usi\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2303.18223v16.pdf (2025)\n[2] NatureDeepReview.pdf (2025)\n[3] 1706.03762v7.pdf (2024)\n[4] 1409.3215v3.pdf (2014)\n[5] 1301.3781v3.pdf (2013)\n[6] 3641289.pdf (2024)\n[7] 2210.07321v4.pdf (2023)\n[8] NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf (2014)\n[9] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.47765305638313293,
+      "text": ". As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.8910788223147392,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2303.18223v16.pdf::2025::53cf2c81bbe2"
+    },
+    {
+      "score": 0.5217482447624207,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.984093263745308,
+      "relevance": 3,
+      "rank": 2,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.45455390214920044,
+      "text": ". The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU, ByteNet and ConvS2S, all of which use convolutional neural networks as basic building block, computing hidden representations in parallel for all input and output positions.",
+      "metadata": {
+        "source_file": "1706.03762v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1706.03762v7.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.302836701273918,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1706.03762v7.pdf::2024::e8d44c32c34f"
+    },
+    {
+      "score": 0.43177923560142517,
+      "text": "Recurrent neural networks, long short-term memory and gated recurrent neural networks in particular, have been firmly established as state of the art approaches in sequence modeling and transduction problems such as language modeling and machine translation. Numerous efforts have since continued to push the boundaries of recurrent language models and encoder-decoder architectures. . Recurrent models typically factor computation along the symbol positions of the input and output sequences. . Alig",
+      "metadata": {
+        "source_file": "1706.03762v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1706.03762v7.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.463509477674961,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1706.03762v7.pdf::2024::3135ac3fbf65"
+    },
+    {
+      "score": 0.4924473762512207,
+      "text": ". Deep Neural Networks (DNNs) are extremely powerful machine learning models that achieve excellent performance on difficult problems such as speech recognition and visual object recognition.. DNNs are powerful because they can perform arbitrary parallel computation for a modest number of steps. A surprising example of the power of DNNs is their ability to sort N N-bit numbers using only 2 hidden layers of quadratic size. . So, while neural networks are related to conventional statistical models",
+      "metadata": {
+        "source_file": "1409.3215v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "1409.3215v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.4765127897262573,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1409.3215v3.pdf::2014::3209722a1d13"
+    },
+    {
+      "score": 0.43019068241119385,
+      "text": ". A very popular model architecture for estimating neural network language model (NNLM) was proposed in, where a feedforward neural network with a linear projection layer and a non-linear hidden layer was used to learn jointly the word vector representation and a statistical language model. This work has been followed by many others. . Another interesting architecture of NNLM was presented in, where the word vectors are first learned using neural network with a single hidden layer. . The word ve",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.6035474240779877,
+      "relevance": 3,
+      "rank": 6,
+      "id": "1301.3781v3.pdf::2013::04c097140a85"
+    },
+    {
+      "score": 0.4622782766819,
+      "text": ". According to one interview with Ilya Sutskever14 (a co-founder and chief scientist of OpenAI), the idea of approaching intelligent systems with language models was already explored in the early days of OpenAI, while it was attempted with recurrent neural networks (RNN). With the advent of Transformer, OpenAI developed two initial GPT models, namely GPT-1 and GPT-2, which can be considered as the foundation to more powerful models subsequently i.e., GPT-3 and GPT-4. . • . GPT-1. . In 2017, the ",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.7066415771842003,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2303.18223v16.pdf::2025::59d5983d1eb2"
+    },
+    {
+      "score": 0.49336010217666626,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.778287038207054,
+      "relevance": 3,
+      "rank": 8,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.42904525995254517,
+      "text": ". Natural language generation using neural networks was demonstrated to be highly effective using recurrent neural networks (RNN), including long short-term memory (LSTM) architectures and gated recurrent units (GRUs). However, RNN and LSTM architectures had to contend with the vanishing gradient problem, to which the multi-head attention mechanism of the Transformer architecture is more resilient. . Generative adversarial networks (GANs) — commonly used to generate continuous data (such as imag",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.856653079390526,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2210.07321v4.pdf::2023::5ff06653febb"
+    },
+    {
+      "score": 0.45824873447418213,
+      "text": "N-grams treat each word as an atomic unit, so they cannot generalize across semantically related sequences of words, whereas neural language models can because they associate each word with a vector of real valued features, and semantically related words end up close to each other in that vector space (Fig. 4). Recurrent neural networks When backpropagation was first introduced, its most exciting use was for training recurrent neural networks (RNNs). . For tasks that involve sequential inputs, s",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.9176001250743866,
+      "relevance": 3,
+      "rank": 10,
+      "id": "NatureDeepReview.pdf::2025::ffe57f5c2458"
+    },
+    {
+      "score": 0.46916985511779785,
+      "text": "This overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.9195998311042786,
+      "relevance": 3,
+      "rank": 11,
+      "id": "NatureDeepReview.pdf::2025::b7c20fcc18a5"
+    },
+    {
+      "score": 0.4919179081916809,
+      "text": "The new architectures directly follow those proposed in our earlier work, where it was found that neural network language model can be successfully trained in two steps: first, continuous word vectors are learned using simple model, and then the N-gram NNLM is trained on top of these distributed representations of words. While there has been later substantial amount of work that focuses on learning word vectors, we consider the approach proposed in to be the simplest one. . Note that related mod",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.9295483082532883,
+      "relevance": 3,
+      "rank": 12,
+      "id": "1301.3781v3.pdf::2013::46dca819f6a7"
+    },
+    {
+      "score": 0.4694119691848755,
+      "text": "The specific contributions of this paper are as follows: we trained one of the largest convolutional neural networks to date on the subsets of ImageNet used in the ILSVRC-2010 and ILSVRC-2012 competitions and achieved by far the best results ever reported on these datasets. We wrote a highly-optimized GPU implementation of 2D convolution and all the other operations inherent in training convolutional neural networks, which we make available publicly1. . Our network contains a number of new and u",
+      "metadata": {
+        "source_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.931193321943283,
+      "relevance": 3,
+      "rank": 13,
+      "id": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf::2014::6df2ecb9ead0"
+    },
+    {
+      "score": 0.49345892667770386,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.020339205861092,
+      "relevance": 3,
+      "rank": 14,
+      "id": "2210.07321v4.pdf::2023::de479b9a4253"
+    },
+    {
+      "score": 0.3867332637310028,
+      "text": ". In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.138192482292652,
+      "relevance": 3,
+      "rank": 15,
+      "id": "1301.3781v3.pdf::2013::baadc05c3b47"
+    },
+    {
+      "score": 0.4305713176727295,
+      "text": ". The neural network, which has 60 million parameters and 650,000 neurons, consists of five convolutional layers, some of which are followed by max-pooling layers, and three fully-connected layers with a final 1000-way softmax. To make training faster, we used non-saturating neurons and a very efficient GPU implementation of the convolution operation. . To reduce overfitting in the fully-connected layers we employed a recently-developed regularization method called \"dropout\" that proved to be ve",
+      "metadata": {
+        "source_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.147153913974762,
+      "relevance": 3,
+      "rank": 16,
+      "id": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf::2014::abe7c63e4c02"
+    },
+    {
+      "score": 0.4233068823814392,
+      "text": ". Graves introduced a novel differentiable attention mechanism that allows neural networks to focus on different parts of their input, and an elegant variant of this idea was successfully applied to machine translation by Bahdanau et al..",
+      "metadata": {
+        "source_file": "1409.3215v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "1409.3215v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.3217321783304214,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1409.3215v3.pdf::2014::d450c2280f99"
+    },
+    {
+      "score": 0.4381251931190491,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.325402960181236,
+      "relevance": 3,
+      "rank": 18,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.45545846223831177,
+      "text": ". While this is what makes neural networks so attractive, we decided to explore simpler models that might not be able to represent the data as precisely as neural networks, but can possibly be trained on much more data efficiently.",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.360330030322075,
+      "relevance": 3,
+      "rank": 19,
+      "id": "1301.3781v3.pdf::2013::765008e7fe28"
+    },
+    {
+      "score": 0.4555346369743347,
+      "text": "Recurrent neural network based language model has been proposed to overcome certain limitations of the feedforward NNLM, such as the need to specify the context length (the order of the model N), and because theoretically RNNs can efficiently represent more complex patterns than the shallow neural networks. The RNN model does not have a projection layer; only input, hidden and output layer. . What is special for this type of model is the recurrent matrix that connects hidden layer to itself, usi",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Define summarize how neural networks redefined ai paradigms after 2010., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.370045974850655,
+      "relevance": 3,
+      "rank": 20,
+      "id": "1301.3781v3.pdf::2013::3a752345ec69"
+    }
+  ],
+  "model_output": "Artificial Intelligence (AI) paradigms underwent significant redefinition after 2010, mainly due to advancements in Neural Networks. These networks allowed for a unified, end-to-end solution for various tasks such as language modeling and machine translation [1, 3]. The theoretical foundations of these neural network approaches revolve around distributed representation and learning effective features for text data [1, 5]. Recurrent Neural Networks (RNN), Long Short-Term Memory (LSTM), Gated Recurrent Units (GRU), and Convolutional Neural Networks (CNN) are among the key building blocks used to develop these models [2, 3, 7]. The evolution of AI definitions historically across publications can be traced as follows:\n\n1. The Turing Test was proposed in the 1950s as a benchmark for assessing intelligence by discerning if responses are of human or machine origin [6]. 2. By the 2010s, the focus shifted towards creating intelligent models and evaluating them using standardized tests such as the Turing Test [6]. 3. With the advent of powerful Neural Networks after 2010, AI paradigms started to redefine themselves around these new capabilities [1, 5]. 4. The rise of Large Language Models (LLMs) and Vision-Language Models (VLMs) in recent years has gained increasing recognition in various fields, including data science and analysis [9]. References:\n[1] 2303.18223v16.pdf (2025)\n[2] NatureDeepReview.pdf (2025)\n[3] 1706.03762v7.pdf (2024)\n[4] 1409.3215v3.pdf (2014)\n[5] 1301.3781v3.pdf (2013)\n[6] 3641289.pdf (2024)\n[7] 2210.07321v4.pdf (2023)\n[9] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)"
+}

@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_describe_the_purpose_of_ontologies_in_knowledge-based_ai_approaches___des",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.8142706828743339,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 4,
+    "2020s": 4
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

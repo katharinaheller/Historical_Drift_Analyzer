@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_define_cognitive_architectures_and_describe_their_relevance_to_ai_researc",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7407776655870709,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 7,
+    "2010s": 2,
+    "2000s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

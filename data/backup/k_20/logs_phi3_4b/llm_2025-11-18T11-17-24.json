@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-17-24",
+  "query_id": "Define_explain_the_importance_of_context_completeness_for_retrieval-based_reason",
+  "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "query_refined": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. Another method involves the Retrieval-Augmented Generation (RAG) technique (Lewis et al. 2020), where relevant code is first retrieved and then embedded within the context to facilitate incontext learning. LLM-based agents can also access and interact with external knowledge sources, such as databases or knowledge graphs, to augment their reasoning capabilities (Wang et al. 2024b). . Sun et al. proposes a Knowledge Integration method that builds on this concept. . In LAMBDA, analysis codes are\n\n[2] 0311031v1.pdf (2018)\n. In the context of knowledge-based systems, a benefit of this versatile 'universal' format for knowledge is the scope that it offers for the seamless integration of different kinds of knowledge, minimising the awkward incompatibilities that arise in many computing systems.. • Ontologies and 'semantic' retrieval of information.\n\n[3] 1304.1082v1.pdf (1990)\n. The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i\n\n[3] 1304.1082v1.pdf (1990)\n. Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f\n\n[2] 0311031v1.pdf (2018)\n. These effects include 'parsing' (as in the example just shown), 'recognition' of an unknown entity, 'retrieval' of stored information, probabilistic 'reasoning', logical 'deduction', mathematical 'calculation', and more.\n\n[2] 0311031v1.pdf (2018)\nWithin the multiple alignment framework it is possible to represent knowledge in a format that is both simple and versatile, and processing within the framework provides a key to intelligence in the recognition of patterns, retrieval of information, probabilistic and exact kinds of reasoning, planning, problem solving and others. The versatility of the SP framework means that existing database models can be accommodated within the system and it can function in accordance with any one of those mo\n\n[3] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[4] 2201.05273v4.pdf (2022)\nFor example, Kryscinski et al. utilized a contextual network in the PLM decoder to retrieve the most salient parts from the source document to improve the level of faithfulness of generated summaries. Besides, several studies proposed to generate faithful texts by introducing additional losses besides the text generation loss. . Specifically, Yang et al. fine-tuned PLMs through a theme modeling loss which aims to make the generated summary semantically close to the original article for achieving\n\n[5] 1304.1083v1.pdf (1989)\n. Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I\n\n[2] 0311031v1.pdf (2018)\n. The SP system provides a powerful framework for the representation and processing of ontologies and for the retrieval of information by meanings rather than literal matching of patterns (Wolff, 2003a).. •. Analysis and production of natural languages. The syntax of natural languages may be represented with SP patterns and both the parsing and the production of sentences may be achieved by the formation of multiple alignments (Wolff, 2000). . Non-syntactic 'semantic' structures may also be repr\n\n[2] 0311031v1.pdf (2018)\nIt provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide\n\n[3] 1304.1082v1.pdf (1990)\nA study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason\n\n[6] N18-1202.pdf (2018)\nOur approach also benefits from subword units through the use of character convolutions, and we seamlessly incorporate multi-sense information into downstream tasks without explicitly training to predict predefined sense classes. Other recent work has also focused on learning context-dependent representations. . context2vec uses a bidirectional Long Short Term Memory (LSTM; Hochreiter and Schmidhuber, 1997) to encode the context around a pivot word.\n\n[7] D14-1162.pdf (2014)\n. Collobert and Weston decoupled the word vector training from the downstream training objectives, which paved the way for Collobert et al. to use the full context of a word for learning the word representations, rather than just the preceding context as is the case with language models. Recently, the importance of the full neural network structure for learning useful word representations has been called into question. . The skip-gram and continuous bag-of-words (CBOW) models of Mikolov et al. p\n\n[3] 1304.1082v1.pdf (1990)\nWhile there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than\n\n[6] N18-1202.pdf (2018)\n. We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.\n\n[8] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[2] 0311031v1.pdf (2018)\n. The second main difference between the two models is that the relational model is designed purely for the storage and retrieval of knowledge while the SP model can, in addition, support a range of different kinds of intelligence, to be reviewed in Section 6.\n\n[9] 2005.14165v4.pdf (2020)\nRecent work [RWC+19] attempts to do this via what we call \"in-context learning\", using the text input of a pretrained language model as a form of task specification: the model is conditioned on a natural language instruction and/or a few demonstrations of the task and is then expected to complete further instances of the task simply by predicting what comes next.\n\n[10] 2303.18223v16.pdf (2025)\n. As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] 0311031v1.pdf (2018)\n[3] 1304.1082v1.pdf (1990)\n[4] 2201.05273v4.pdf (2022)\n[5] 1304.1083v1.pdf (1989)\n[6] N18-1202.pdf (2018)\n[7] D14-1162.pdf (2014)\n[8] NatureDeepReview.pdf (2025)\n[9] 2005.14165v4.pdf (2020)\n[10] 2303.18223v16.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.39164939522743225,
+      "text": ". Another method involves the Retrieval-Augmented Generation (RAG) technique (Lewis et al. 2020), where relevant code is first retrieved and then embedded within the context to facilitate incontext learning. LLM-based agents can also access and interact with external knowledge sources, such as databases or knowledge graphs, to augment their reasoning capabilities (Wang et al. 2024b). . Sun et al. proposes a Knowledge Integration method that builds on this concept. . In LAMBDA, analysis codes are",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -1.9171377643942833,
+      "relevance": 3,
+      "rank": 1,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::172c5daf9044"
+    },
+    {
+      "score": 0.47900083661079407,
+      "text": ". In the context of knowledge-based systems, a benefit of this versatile 'universal' format for knowledge is the scope that it offers for the seamless integration of different kinds of knowledge, minimising the awkward incompatibilities that arise in many computing systems.. • Ontologies and 'semantic' retrieval of information.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.0066891834139824,
+      "relevance": 3,
+      "rank": 2,
+      "id": "0311031v1.pdf::2018::4e87dbc3eb7f"
+    },
+    {
+      "score": 0.4299190640449524,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.3845499008893967,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1304.1082v1.pdf::1990::40911c1531a3"
+    },
+    {
+      "score": 0.4682618975639343,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.6232764273881912,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3"
+    },
+    {
+      "score": 0.40231186151504517,
+      "text": ". These effects include 'parsing' (as in the example just shown), 'recognition' of an unknown entity, 'retrieval' of stored information, probabilistic 'reasoning', logical 'deduction', mathematical 'calculation', and more.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.065287098288536,
+      "relevance": 3,
+      "rank": 5,
+      "id": "0311031v1.pdf::2018::4527736523e6"
+    },
+    {
+      "score": 0.3912079930305481,
+      "text": "Within the multiple alignment framework it is possible to represent knowledge in a format that is both simple and versatile, and processing within the framework provides a key to intelligence in the recognition of patterns, retrieval of information, probabilistic and exact kinds of reasoning, planning, problem solving and others. The versatility of the SP framework means that existing database models can be accommodated within the system and it can function in accordance with any one of those mo",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.374065563082695,
+      "relevance": 3,
+      "rank": 6,
+      "id": "0311031v1.pdf::2018::b8b9d5138443"
+    },
+    {
+      "score": 0.5086392760276794,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.626710906624794,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.42014139890670776,
+      "text": "For example, Kryscinski et al. utilized a contextual network in the PLM decoder to retrieve the most salient parts from the source document to improve the level of faithfulness of generated summaries. Besides, several studies proposed to generate faithful texts by introducing additional losses besides the text generation loss. . Specifically, Yang et al. fine-tuned PLMs through a theme modeling loss which aims to make the generated summary semantically close to the original article for achieving",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.687319710850716,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2201.05273v4.pdf::2022::f89df665d558"
+    },
+    {
+      "score": 0.3763434886932373,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.864063322544098,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1304.1083v1.pdf::1989::e330b10ef834"
+    },
+    {
+      "score": 0.4320893883705139,
+      "text": ". The SP system provides a powerful framework for the representation and processing of ontologies and for the retrieval of information by meanings rather than literal matching of patterns (Wolff, 2003a).. •. Analysis and production of natural languages. The syntax of natural languages may be represented with SP patterns and both the parsing and the production of sentences may be achieved by the formation of multiple alignments (Wolff, 2000). . Non-syntactic 'semantic' structures may also be repr",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.923513159155846,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0311031v1.pdf::2018::93b27048e722"
+    },
+    {
+      "score": 0.46383804082870483,
+      "text": "It provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.052167668938637,
+      "relevance": 3,
+      "rank": 11,
+      "id": "0311031v1.pdf::2018::1d8bb9d6b450"
+    },
+    {
+      "score": 0.40432214736938477,
+      "text": "A study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.283556342124939,
+      "relevance": 3,
+      "rank": 12,
+      "id": "1304.1082v1.pdf::1990::9137bbfbb206"
+    },
+    {
+      "score": 0.37530404329299927,
+      "text": "Our approach also benefits from subword units through the use of character convolutions, and we seamlessly incorporate multi-sense information into downstream tasks without explicitly training to predict predefined sense classes. Other recent work has also focused on learning context-dependent representations. . context2vec uses a bidirectional Long Short Term Memory (LSTM; Hochreiter and Schmidhuber, 1997) to encode the context around a pivot word.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.36147241294384,
+      "relevance": 3,
+      "rank": 13,
+      "id": "N18-1202.pdf::2018::820baa4ac6dd"
+    },
+    {
+      "score": 0.37444791197776794,
+      "text": ". Collobert and Weston decoupled the word vector training from the downstream training objectives, which paved the way for Collobert et al. to use the full context of a word for learning the word representations, rather than just the preceding context as is the case with language models. Recently, the importance of the full neural network structure for learning useful word representations has been called into question. . The skip-gram and continuous bag-of-words (CBOW) models of Mikolov et al. p",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.508893229067326,
+      "relevance": 3,
+      "rank": 14,
+      "id": "D14-1162.pdf::2014::591be728f438"
+    },
+    {
+      "score": 0.4027754068374634,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.525689095258713,
+      "relevance": 3,
+      "rank": 15,
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1"
+    },
+    {
+      "score": 0.3928598165512085,
+      "text": ". We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.638657480478287,
+      "relevance": 3,
+      "rank": 16,
+      "id": "N18-1202.pdf::2018::77b5ba936913"
+    },
+    {
+      "score": 0.3573961853981018,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.682060942053795,
+      "relevance": 3,
+      "rank": 17,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.3683992922306061,
+      "text": ". The second main difference between the two models is that the relational model is designed purely for the storage and retrieval of knowledge while the SP model can, in addition, support a range of different kinds of intelligence, to be reviewed in Section 6.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.702475868165493,
+      "relevance": 3,
+      "rank": 18,
+      "id": "0311031v1.pdf::2018::a38026a3dce0"
+    },
+    {
+      "score": 0.34983864426612854,
+      "text": "Recent work [RWC+19] attempts to do this via what we call \"in-context learning\", using the text input of a pretrained language model as a form of task specification: the model is conditioned on a natural language instruction and/or a few demonstrations of the task and is then expected to complete further instances of the task simply by predicting what comes next.",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.722852371633053,
+      "relevance": 3,
+      "rank": 19,
+      "id": "2005.14165v4.pdf::2020::307a3f6ac3c5"
+    },
+    {
+      "score": 0.37732934951782227,
+      "text": ". As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain the importance of context completeness for retrieval-based reasoning., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.748613953590393,
+      "relevance": 3,
+      "rank": 20,
+      "id": "2303.18223v16.pdf::2025::53cf2c81bbe2"
+    }
+  ],
+  "model_output": "The importance of context completeness for retrieval-based reasoning is highlighted as crucial in various publications throughout the history of artificial intelligence. In the 1980s and 1990s, researchers focused on the development of expert systems and decision support systems that could provide explanations of their computer-based reasoning to users ([3] 1304.1082v1.pdf (1990)). This was deemed essential for wider acceptance of these systems, especially since they relied on uncertain knowledge and probabilistic reasoning. In the 2010s, there was a shift towards using large language models (LLMs) to facilitate incontext learning and improve the level of faithfulness in generated summaries ([4] 2201.05273v4.pdf (2022)). Context completeness became important for LLM-based agents to access and interact with external knowledge sources, such as databases or knowledge graphs, to augment their reasoning capabilities ([1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)). More recent publications discuss the importance of context completeness in deep learning models for speech and handwriting recognition ([8] NatureDeepReview.pdf (2025)), and the development of contextualized word representations that model complex characteristics of word use and how these uses vary across linguistic contexts ([6] N18-1202.pdf (2018)). Theoretical foundations for context completeness can be traced back to the work on ontologies, 'semantic' retrieval of information, and probabilistic reasoning in the 1980s ([2] 0311031v1.pdf (2018)). This was followed by the development of relational models for the storage and retrieval of knowledge and the SP model that supports a range of different kinds of intelligence ([2] 0311031v1.pdf (2018)). Over time, the emphasis on context completeness has evolved to address the need for improved reasoning capabilities in AI systems, particularly LLMs and deep learning models. This evolution is marked by a shift from focusing on explanations of probabilistic reasoning in expert systems to the development of contextualized word representations that model complex characteristics of word use across various linguistic contexts. References:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] 0311031v1.pdf (2018)\n[3] 1304.1082v1.pdf (1990)\n[4] 2201.05273v4.pdf (2022)"
+}

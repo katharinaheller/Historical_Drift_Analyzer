@@ -1,0 +1,11 @@
+{
+  "query_id": "Define_summarize_the_sp_theory_and_its_relation_to_ai___describe_its_theoretical",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.47489450939334726,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 5
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

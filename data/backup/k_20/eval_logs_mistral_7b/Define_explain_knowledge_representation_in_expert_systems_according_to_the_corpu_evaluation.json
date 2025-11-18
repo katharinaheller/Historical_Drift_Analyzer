@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_explain_knowledge_representation_in_expert_systems_according_to_the_corpu",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5435886021948327,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 15,
+    "1990s": 2,
+    "2020s": 3
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

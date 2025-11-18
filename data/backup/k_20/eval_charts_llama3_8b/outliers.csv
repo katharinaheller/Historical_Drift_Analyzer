@@ -1,0 +1,3 @@
+query_id,ndcg@k,faithfulness,citation_hit_rate,dominant_decade,model
+Define_describe_the_notion_of_transparency_in_ai_decision_processes___describe_i,0.90963717634234,0.5860690736421106,1.0,2020,llama3_8b
+Define_explain_the_concept_of_heuristic_search_as_described_in_the_corpus___desc,0.9534606181487503,0.3075871149854685,1.0,2020,llama3_8b

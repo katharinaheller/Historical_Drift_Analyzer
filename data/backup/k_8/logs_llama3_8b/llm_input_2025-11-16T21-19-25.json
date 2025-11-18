@@ -1,0 +1,152 @@
+{
+  "timestamp": "2025-11-16T21-19-25",
+  "query_refined": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 2210.07321v4.pdf (2023)\n. A related area of work is the usage of inverse reinforcement learning (IRL), which has included work that aims to address reward sparsity and mode collapse problems in GAN-based text generation by learning an optimal reward function and generation policy.. 2.3.3. Transformer. The multi-head attention architecture of Transformer language models currently represents the state-of-the-art in natural language generation across natural language tasks.\n\n[2] 2201.05273v4.pdf (2022)\n. mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa\n\n[3] 2005.14165v4.pdf (2020)\nOne potential route towards addressing these issues is meta-learning1 – which in the context of language models means the model develops a broad set of skills and pattern recognition abilities at training time, and then uses those abilities at inference time to rapidly adapt to or recognize the desired task (illustrated in Figure 1.1).\n\n[4] 2303.18223v16.pdf (2025)\n. The remainder of this survey is organized as follows: Section 2 introduces the background for LLMs and the evolution of GPT-series models, followed by the summarization of available resources for developing LLMs in Section 3. Sections 4, 5, 6, and 7 review and summarize the recent progress from the four aspects of pre-training, adaptation, utilization, and capacity evaluation, respectively. . Then, Section 8 discusses the practical guide for prompt design, and Section 9 reviews the application\n\n[4] 2303.18223v16.pdf (2025)\n. As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s\n\n[5] 0311031v1.pdf (2018)\n. In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.\n\n[3] 2005.14165v4.pdf (2020)\nThese terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:\n\n[4] 2303.18223v16.pdf (2025)\n. Considering the ever-growing interest in ChatGPT and GPT models, we add a special discussion about the technical evolution of the GPT-series models, to briefly summarize the progress how they have been developed in the past years. Meanwhile, we drew a schematic diagram depicting the technological evolution of the GPT-series models in Figure 4.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2210.07321v4.pdf (2023)\n[2] 2201.05273v4.pdf (2022)\n[3] 2005.14165v4.pdf (2020)\n[4] 2303.18223v16.pdf (2025)\n[5] 0311031v1.pdf (2018)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.4222416281700134,
+      "text": ". A related area of work is the usage of inverse reinforcement learning (IRL), which has included work that aims to address reward sparsity and mode collapse problems in GAN-based text generation by learning an optimal reward function and generation policy.. 2.3.3. Transformer. The multi-head attention architecture of Transformer language models currently represents the state-of-the-art in natural language generation across natural language tasks.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.1343181878328323,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2210.07321v4.pdf::2023::e7375b63844d"
+    },
+    {
+      "score": 0.4598546028137207,
+      "text": ". mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.719146490097046,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2201.05273v4.pdf::2022::9316daacef76"
+    },
+    {
+      "score": 0.42110496759414673,
+      "text": "One potential route towards addressing these issues is meta-learning1 – which in the context of language models means the model develops a broad set of skills and pattern recognition abilities at training time, and then uses those abilities at inference time to rapidly adapt to or recognize the desired task (illustrated in Figure 1.1).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.1230896562337875,
+      "relevance": 3,
+      "rank": 3,
+      "id": "2005.14165v4.pdf::2020::b9ea4b9b9b3d"
+    },
+    {
+      "score": 0.43051472306251526,
+      "text": ". The remainder of this survey is organized as follows: Section 2 introduces the background for LLMs and the evolution of GPT-series models, followed by the summarization of available resources for developing LLMs in Section 3. Sections 4, 5, 6, and 7 review and summarize the recent progress from the four aspects of pre-training, adaptation, utilization, and capacity evaluation, respectively. . Then, Section 8 discusses the practical guide for prompt design, and Section 9 reviews the application",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.497253201901913,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2303.18223v16.pdf::2025::a83bc172bdb8"
+    },
+    {
+      "score": 0.40593987703323364,
+      "text": ". As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.580296561121941,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2303.18223v16.pdf::2025::53cf2c81bbe2"
+    },
+    {
+      "score": 0.38744157552719116,
+      "text": ". In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.8733233362436295,
+      "relevance": 3,
+      "rank": 6,
+      "id": "0311031v1.pdf::2018::eeca8cb55b8c"
+    },
+    {
+      "score": 0.4619302749633789,
+      "text": "These terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.986896872520447,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2005.14165v4.pdf::2020::9b9db0d1b061"
+    },
+    {
+      "score": 0.4518653154373169,
+      "text": ". Considering the ever-growing interest in ChatGPT and GPT models, we add a special discussion about the technical evolution of the GPT-series models, to briefly summarize the progress how they have been developed in the past years. Meanwhile, we drew a schematic diagram depicting the technological evolution of the GPT-series models in Figure 4.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define summarize how reinforcement learning extended adaptive behavior modeling., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.9912059009075165,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2303.18223v16.pdf::2025::ba66543280b5"
+    }
+  ]
+}

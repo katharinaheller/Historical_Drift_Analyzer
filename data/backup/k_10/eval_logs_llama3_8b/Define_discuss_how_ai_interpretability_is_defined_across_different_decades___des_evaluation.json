@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_discuss_how_ai_interpretability_is_defined_across_different_decades___des",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.35049697937693736,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 7,
+    "2000s": 2,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

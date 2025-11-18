@@ -1,0 +1,1390 @@
+{
+  "timestamp": "2025-11-19T00-42-25",
+  "query_refined": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[2] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[1] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[3] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 0712.3329v1.pdf (2007)\n[3] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks_raw": [
+    {
+      "score": 0.4536813199520111,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::85dff6bd2fb4",
+      "raw_rank": 65,
+      "final_score": -4.402674354612827,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.5432686805725098,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed",
+      "raw_rank": 6,
+      "final_score": -5.463565945625305,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.48194122314453125,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b",
+      "raw_rank": 41,
+      "final_score": -5.797756671905518,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.4838184714317322,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::e1d85cdbb466",
+      "raw_rank": 39,
+      "final_score": -5.938369408249855,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.547501266002655,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1",
+      "raw_rank": 5,
+      "final_score": -6.237692669034004,
+      "relevance": 3,
+      "rank": 5
+    },
+    {
+      "score": 0.4540208578109741,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1304.1106v1.pdf::1990::6ce03695c520",
+      "raw_rank": 18,
+      "final_score": -6.279510647058487
+    },
+    {
+      "score": 0.46209415793418884,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54",
+      "raw_rank": 53,
+      "final_score": -6.436275519430637
+    },
+    {
+      "score": 0.4568942189216614,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::de479b9a4253",
+      "raw_rank": 62,
+      "final_score": -6.509667560458183
+    },
+    {
+      "score": 0.4489842653274536,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::c685c979c854",
+      "raw_rank": 70,
+      "final_score": -6.670235127210617
+    },
+    {
+      "score": 0.46449175477027893,
+      "text": ". With this unified approach, we can compare the effectiveness of different transfer learning objectives, unlabeled data sets, and other factors, while exploring the limits of transfer learning for NLP by scaling up models and data sets beyond what has previously been considered. We emphasize that our goal is not to propose new methods but instead to provide a comprehensive perspective on where the field stands. . As such, our work primarily comprises a survey, exploration, and empirical compari",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::665a1633ba5c",
+      "raw_rank": 50,
+      "final_score": -6.704138062894344
+    },
+    {
+      "score": 0.5262808799743652,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::ecc662314003",
+      "raw_rank": 30,
+      "final_score": -6.823207497596741
+    },
+    {
+      "score": 0.41961413621902466,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1304.1083v1.pdf::1989::e330b10ef834",
+      "raw_rank": 25,
+      "final_score": -6.835323020815849
+    },
+    {
+      "score": 0.4772888422012329,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a",
+      "raw_rank": 44,
+      "final_score": -6.918917268514633
+    },
+    {
+      "score": 0.4464390277862549,
+      "text": ". In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1301.2254v1.pdf::2001::981a7e9f108a",
+      "raw_rank": 71,
+      "final_score": -6.9816171526908875
+    },
+    {
+      "score": 0.49542540311813354,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::b551e995a739",
+      "raw_rank": 37,
+      "final_score": -7.02971239387989
+    },
+    {
+      "score": 0.46742933988571167,
+      "text": ". A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::763164362c30",
+      "raw_rank": 48,
+      "final_score": -7.05834074318409
+    },
+    {
+      "score": 0.510245680809021,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::d93703f6d548",
+      "raw_rank": 34,
+      "final_score": -7.090122848749161
+    },
+    {
+      "score": 0.4574200212955475,
+      "text": ". We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::872369300e89",
+      "raw_rank": 58,
+      "final_score": -7.113268457353115
+    },
+    {
+      "score": 0.5053678750991821,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794",
+      "raw_rank": 35,
+      "final_score": -7.149411052465439
+    },
+    {
+      "score": 0.4779481291770935,
+      "text": "We also include a gradient predivide factor to reduce the risk of over/underflows when computing the gradient across all ranks (splitting the division by the world size of N into two division operations by √\nThe pre-training corpus contains a concatenation of datasets used in RoBERTa, the Pile, and PushShift.io Reddit (Baumgartner et al., 2020; Roller et al., 2021). All corpora were previously collected or filtered to contain predominantly English text, but a small amount of non-English data is ",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2205.01068v4.pdf::2022::f0cb1e4128fa",
+      "raw_rank": 11,
+      "final_score": -7.357574716210365
+    },
+    {
+      "score": 0.4614824056625366,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::c59652d07ccb",
+      "raw_rank": 55,
+      "final_score": -7.375435501337051
+    },
+    {
+      "score": 0.4527866244316101,
+      "text": ". We answer the question \"a is to b as c is to ?\" by finding the word d whose representation wd is closest to wb −wa + wc according to the cosine similarity.4 Figure 2: Accuracy on the analogy task as function of vector size and window size/type.. All models are trained on the 6 billion token corpus. In (a), the window size is 10. . In (b) and (c), the vector size is 100. . Word similarity. . While the analogy task is our primary focus since it tests for interesting vector space substructures, w",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "D14-1162.pdf::2014::3871ef61736d",
+      "raw_rank": 66,
+      "final_score": -7.404357865452766
+    },
+    {
+      "score": 0.4787571132183075,
+      "text": "He et al. 81.7 81.4 84.6 3.2 / 17.2% Coref Lee et al. 67.2 67.2 70.4 3.2 / 9.8% NER Peters et al. 91.93 ± 0.19 90.15 92.22 ± 0.10 2.06 / 21% SST-5 McCann et al. 53.7 51.4 54.7 ± 0.5 3.3 / 6.8% Table 1: Test set comparison of ELMo enhanced neural models with state-of-the-art single model baselines across six benchmark NLP tasks. The performance metric varies across tasks – accuracy for SNLI and SST-5; F1 for SQuAD, SRL and NER; average F1 for Coref. . Due to the small test sizes for NER and SST-5",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::f91344e6ea0d",
+      "raw_rank": 43,
+      "final_score": -7.4062187150120735
+    },
+    {
+      "score": 0.47936809062957764,
+      "text": ". Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. . ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::1049e7043b91",
+      "raw_rank": 42,
+      "final_score": -7.461823016405106
+    },
+    {
+      "score": 0.5469218492507935,
+      "text": ". (4) Review whether the analysis is accurate and complete: We have given careful thought to the presented threat models, which are formed from perspectives gained across industry, academia, and government. However, as threat modeling is an iterative process that benefits from diverse perspectives, we greatly encourage further analysis of potential attacks and mitigation measures in future research. . The remainder of this section comprises our threat model analysis, grouped according to a break",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::3b6079b09c89",
+      "raw_rank": 27,
+      "final_score": -7.469795435667038
+    },
+    {
+      "score": 0.46351611614227295,
+      "text": "We summarize our key findings as follows: • NLG models have significant potential for abuse in improving scaling and targeting of existing attacks • Platforms that receive text submissions of any kind are likely to face a growing influx of machine-generated text content, particularly as user-friendly tools continue to be developed • Much of the research on NLG-enabled influence operations focuses on AI-generated news articles, while sociological data suggest that machine generated comments may p",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::796db366cbc3",
+      "raw_rank": 51,
+      "final_score": -7.509877234697342
+    },
+    {
+      "score": 0.47002682089805603,
+      "text": ". Through ablations and other controlled experiments, we have also confirmed that the biLM layers efficiently encode different types of syntactic and semantic information about wordsin-context, and that using all layers improves overall task performance.. san Sajjad, and James R. Glass. 2017. What do neural machine translation models learn about morphology? . In. . A large annotated corpus for learning natural language inference. . In. . One billion word benchmark for measuring progress in stati",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::0b802400e582",
+      "raw_rank": 47,
+      "final_score": -7.536320485174656
+    },
+    {
+      "score": 0.44939613342285156,
+      "text": "To address this, they transformed existing fact consistency tasks into binary labels, specifically considering only whether there is a factual conflict with the input text, without factoring in external knowledge. The research discovered that fact evaluation methods founded on natural language inference and question generation answering exhibit superior performance and can complement each other. . Pezeshkpour proposed a novel metric, based on information theory, to assess the inclusion of specif",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::b678961257ae",
+      "raw_rank": 69,
+      "final_score": -7.562825679779053
+    },
+    {
+      "score": 0.45782211422920227,
+      "text": "To analyze the relative contribution of the contextual information compared to the sub-word information, we ran an additional ablation that replaced the GloVe vectors with just the biLM character based xLM. k\nlayer without the biLM biLSTM layers. Table 7 summarizes the results for SQuAD, SNLI and SNLI.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::fdd8c8d6d060",
+      "raw_rank": 57,
+      "final_score": -7.587967567145824
+    },
+    {
+      "score": 0.5207630395889282,
+      "text": "The rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::a7d0f7cc72f9",
+      "raw_rank": 32,
+      "final_score": -7.590836137533188
+    },
+    {
+      "score": 0.5482028722763062,
+      "text": "Approach 2.1 Model and Architectures......................................... 2.2 Training Dataset.............................................. 2.3 Training Process............................................. 2.4 Evaluation................................................. Results 3.1 Language Modeling, Cloze, and Completion Tasks........................... 3.2 Closed Book Question Answering.................................... 3.3 Translation................................................ 3.4 ",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2005.14165v4.pdf::2020::b18961a6fe8c",
+      "raw_rank": 26,
+      "final_score": -7.595501810312271
+    },
+    {
+      "score": 0.4617239534854889,
+      "text": ". Where the full versatility of this scheme is not needed, it is also possible to create networks and hierarchies from patterns like '... ', '... ' and '... ' that can be linked end-to-end by alignment within a multiple alignment. This section briefly reviews aspects of intelligence that have been shown to fall within the scope of the SP system, highlighting those with particular relevance to intelligent databases. . The main points of difference between the SP system and other artificial intell",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0311031v1.pdf::2018::24ea58fd4673",
+      "raw_rank": 54,
+      "final_score": -7.763893447816372
+    },
+    {
+      "score": 0.42999428510665894,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1304.1082v1.pdf::1990::132a9876fb38",
+      "raw_rank": 23,
+      "final_score": -7.764878585934639
+    },
+    {
+      "score": 0.47494715452194214,
+      "text": ". CCS Concepts: • Computing methodologies →Machine learning approaches; Neural networks; Natural language generation; • Security and privacy →Human and societal aspects of security and privacy.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::b19c863e302e",
+      "raw_rank": 45,
+      "final_score": -7.802809193730354
+    },
+    {
+      "score": 0.4624301493167877,
+      "text": "Additionally, as research on both NLG and detection has continued to rapidly advance in the years following the previous survey, we must now cover a wider range of generative models and defensive research.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::915a4966adda",
+      "raw_rank": 52,
+      "final_score": -7.817649327218533
+    },
+    {
+      "score": 0.5351409912109375,
+      "text": ". (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::97b789622b90",
+      "raw_rank": 28,
+      "final_score": -7.839539527893066
+    },
+    {
+      "score": 0.444038987159729,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c",
+      "raw_rank": 75,
+      "final_score": -7.842487424612045
+    },
+    {
+      "score": 0.45492827892303467,
+      "text": "THE APPLICATION OF EXPERT SYSTEM: A REVIEW OF RESEARCH AND APPLICATIONS C. F. Tan1, L. S. Wahidin1, S. N. Khalil1, N. Tamaldin1, J. Hu2 and G.W. M. Rauterberg2 1Integrated Design Research Group, Centre for Advanced Research on Energy, Universiti Teknikal Malaysia Melaka, Durian Tunggal, Melaka, Malaysia 2Designed Intelligence Group, Department of Industrial Design, Eindhoven",
+      "metadata": {
+        "source_file": "tanappli2016.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 7,
+        "origin_chunk_file": "tanappli2016.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "tanappli2016.pdf::2025::c8269e056e0a",
+      "raw_rank": 17,
+      "final_score": -7.856042176485062
+    },
+    {
+      "score": 0.4738943874835968,
+      "text": ". Besides, in conversational machine reading, Ouyang et al. formulated the input text as two complementary graphs, i.e., explicit and implicit discourse graphs, to fully capture the discourse relations and latent vector interactions among all the elementary discourse units. 3.1.2 Document Representation Learning. . In many text generation tasks such as document translation and document summarization, the input text might be a long document consisting of multiple paragraphs. . When encoding the d",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2201.05273v4.pdf::2022::0d34ae9fc589",
+      "raw_rank": 46,
+      "final_score": -7.876334600150585
+    },
+    {
+      "score": 0.5260270833969116,
+      "text": "It provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0311031v1.pdf::2018::1d8bb9d6b450",
+      "raw_rank": 31,
+      "final_score": -7.886972814798355
+    },
+    {
+      "score": 0.450810968875885,
+      "text": ". In the interests of managing a survey scope that already spans a wide range of literature and broad sociotechnical context, text generation by means of text adversarial attack will not be considered.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::bd1c86fcb9f4",
+      "raw_rank": 68,
+      "final_score": -7.896081551909447
+    },
+    {
+      "score": 0.4410463869571686,
+      "text": ". Deeper neural networks are more difficult to train.. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. . We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. .",
+      "metadata": {
+        "source_file": "1512.03385v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2015",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1512.03385v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1512.03385v1.pdf::2015::8af360c954bb",
+      "raw_rank": 21,
+      "final_score": -7.90659149736166
+    },
+    {
+      "score": 0.47506266832351685,
+      "text": "This overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "NatureDeepReview.pdf::2025::b7c20fcc18a5",
+      "raw_rank": 13,
+      "final_score": -7.951313182711601
+    },
+    {
+      "score": 0.5189839601516724,
+      "text": ". Before presenting the results from our large-scale empirical study, we review the necessary background topics required to understand our results, including the Transformer model architecture and the downstream tasks we evaluate on.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::ff7415cced87",
+      "raw_rank": 33,
+      "final_score": -7.972824066877365
+    },
+    {
+      "score": 0.46053779125213623,
+      "text": ". Performance is better on the syntactic subtask for small and asymmetric context windows, which aligns with the intuition that syntactic information is mostly drawn from the immediate context and can depend strongly on word order. Semantic information, on the other hand, is more frequently non-local, and more of it is captured with larger window sizes. . In Fig. 3, we show performance on the word analogy task for 300-dimensional vectors trained on different corpora. . On the syntactic subtask, ",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "D14-1162.pdf::2014::df8c405fd996",
+      "raw_rank": 16,
+      "final_score": -7.981460362672806
+    },
+    {
+      "score": 0.5646415948867798,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0311031v1.pdf::2018::62810bd2dcad",
+      "raw_rank": 2,
+      "final_score": -7.988298267126083
+    },
+    {
+      "score": 0.4514171779155731,
+      "text": "From left to right, the table compares systems with only GloVe vectors; only the ELMo context-independent type representation without the ELMo biLSTM layers; full ELMo representations without GloVe; both GloVe and ELMo.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::4a6370d73cdc",
+      "raw_rank": 67,
+      "final_score": -7.989144988358021
+    },
+    {
+      "score": 0.44559431076049805,
+      "text": ". Such approaches are a worthy inclusion as feature-based approaches still apply against contemporary NLG models, and may provide benefits such as improved robustness against adversarial attacks targeting neural networks, or enhanced explainability.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::66ff6a824229",
+      "raw_rank": 72,
+      "final_score": -7.994192719459534
+    },
+    {
+      "score": 0.45672130584716797,
+      "text": "These terms are intended to remain agnostic on the question of whether the model learns new tasks from scratch at inference time or simply recognizes patterns seen during training – this is an important issue which we discuss later in the paper, but \"meta-learning\" is intended to encompass both possibilities, and simply describes the inner-outer loop structure. Figure 1.3:",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2005.14165v4.pdf::2020::9b9db0d1b061",
+      "raw_rank": 63,
+      "final_score": -8.003542423248291
+    },
+    {
+      "score": 0.4571639895439148,
+      "text": ". Future research should prioritize achieving multilingual balance and addressing the challenges faced by non-Latin languages and low-resource languages, with the aim of better supporting users worldwide.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::d5335fd47073",
+      "raw_rank": 61,
+      "final_score": -8.01221151649952
+    },
+    {
+      "score": 0.5048237442970276,
+      "text": ". Our baseline, the ESIM sequence model from Chen et al., uses a biLSTM to encode the premise and hypothesis, followed by a matrix attention layer, a local inference layer, another biLSTM inference composition layer, and finally a pooling operation before the output layer. Overall, adding ELMo to the ESIM model improves accuracy by an average of 0.7% across five random seeds. . A five member ensemble pushes the overall accuracy to 89.3%, exceeding the previous ensemble best of 88.9%. . Semantic ",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::b65019079157",
+      "raw_rank": 9,
+      "final_score": -8.061305031180382
+    },
+    {
+      "score": 0.5614312887191772,
+      "text": "Finally, given the broad spectrum of capabilities displayed by GPT-3, we discuss concerns about bias, fairness, and broader societal impacts, and attempt a preliminary analysis of GPT-3's characteristics in this regard.. The remainder of this paper is organized as follows. In Section 2, we describe our approach and methods for training GPT-3 and evaluating it. . Section 3 presents results on the full range of tasks in the zero-, one- and few-shot settings. . Section 4 addresses questions of data",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2005.14165v4.pdf::2020::e2981918a7fc",
+      "raw_rank": 3,
+      "final_score": -8.104540973901749
+    },
+    {
+      "score": 0.513307511806488,
+      "text": ". Knowledge-based expert systems will continue to increase individual and social potential by preserving know-how, distributing knowledge more effectively, and improving performance of tasks that require expertise. 24. I. M. Dokas and A. Alapetite, A Development Process Meta-Model for Web Based Expert Systems: The Web Engineering Point of View, Risø National Laboratory, Denmark, 2006. . 25. . R. Islam and K. Andersson, Mohammad Shahadat Hossain, A Web Based Belief Rule Based Expert System to Pre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "Expert_Systems.pdf::2016::3f868e4f3792",
+      "raw_rank": 8,
+      "final_score": -8.108481660485268
+    },
+    {
+      "score": 0.46247225999832153,
+      "text": "The specific contributions of this paper are as follows: we trained one of the largest convolutional neural networks to date on the subsets of ImageNet used in the ILSVRC-2010 and ILSVRC-2012 competitions and achieved by far the best results ever reported on these datasets. We wrote a highly-optimized GPU implementation of 2D convolution and all the other operations inherent in training convolutional neural networks, which we make available publicly1. . Our network contains a number of new and u",
+      "metadata": {
+        "source_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf::2014::6df2ecb9ead0",
+      "raw_rank": 14,
+      "final_score": -8.10892741382122
+    },
+    {
+      "score": 0.4450289011001587,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4",
+      "raw_rank": 74,
+      "final_score": -8.119249194860458
+    },
+    {
+      "score": 0.4647921621799469,
+      "text": ". Our basic pre-training approach, including model, data, and training, is similar to the process described in [RWC+19], with relatively straightforward scaling up of the model size, dataset size and diversity, and length of training. Our use of in-context learning is also similar to [RWC+19], but in this work we systematically explore different settings for learning within the context. . Therefore, we start this section by explicitly defining and contrasting the different settings that we will ",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2005.14165v4.pdf::2020::89b2ccd5d4c1",
+      "raw_rank": 49,
+      "final_score": -8.132136844098568
+    },
+    {
+      "score": 0.457295298576355,
+      "text": ". The SP system should be able to organise its knowledge automatically in a way that minimises redundancies and reveals the natural structures in that knowledge, including class hierarchies, part-whole hierarchies and their integration. It should also be able to abstract rules and other generalisations from its stored knowledge, in the manner of datamining systems. . Of course, existing datamining techniques may also be applied to an SP database. . It would take us too far afield to attempt a de",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0311031v1.pdf::2018::367243e3eebc",
+      "raw_rank": 60,
+      "final_score": -8.175917893648148
+    },
+    {
+      "score": 0.4926729202270508,
+      "text": "The sentences contain diverse linguistic phenomena such as idioms and complex syntacTask Baseline Last Only All layers λ=1 λ=0.001 SQuAD 80.8 84.7 85.0 85.2 SNLI 88.1 89.1 89.3 89.5 SRL 81.6 84.1 84.6 84.8 Table 2: Development set performance for SQuAD, SNLI and SRL comparing using all layers of the biLM (with different choices of regularization strength λ) to just the top layer. Table 3 . : Development set performance for SQuAD, SNLI and SRL when including ELMo at different locations in the sup",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::5f589a3874ae",
+      "raw_rank": 38,
+      "final_score": -8.186752319335938
+    },
+    {
+      "score": 0.5046989917755127,
+      "text": "2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::bd1a671a542c",
+      "raw_rank": 36,
+      "final_score": -8.189911305904388
+    },
+    {
+      "score": 0.5311485528945923,
+      "text": "2. conducts a literature review of the recent advances in LLMs from four major aspects, including pre-training (how to pretrain a capable LLM), adaptation (how to effectively adapt pre-trained LLMs for better use), utilization (how to use LLMs for solving various downstream tasks) and capability evaluation (how to evaluate the abilities of LLMs and existing empirical findings). We thoroughly comb the literature and summarize the key findings, techniques, and methods of LLMs. . For this survey, w",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2303.18223v16.pdf::2025::4853158a418a",
+      "raw_rank": 7,
+      "final_score": -8.194019168615341
+    },
+    {
+      "score": 0.5335633754730225,
+      "text": "3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::9de497dca2cc",
+      "raw_rank": 29,
+      "final_score": -8.212651550769806
+    },
+    {
+      "score": 0.44039246439933777,
+      "text": ". The second architecture is similar to CBOW, but instead of predicting the current word based on the context, it tries to maximize classification of a word based on another word in the same sentence. More precisely, we use each current word as an input to a log-linear classifier with continuous projection layer, and predict words within a certain range before and after the current word. . We found that increasing the range improves quality of the resulting word vectors, but it also increases th",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1301.3781v3.pdf::2013::00bcccfe8512",
+      "raw_rank": 22,
+      "final_score": -8.216127403080463
+    },
+    {
+      "score": 0.4609716832637787,
+      "text": ". The ancestor sets A logic program P together with a goal G, defines an SLD tree each branch of which is a refutation of G using P. no ENs with s, l and b as nodes\") we (essentially) get BNT REE as an SLD-tree.. Each successful branch re (logs of) the probabilities added be>.. = (>.1, >.2,..., An). For any goal G, S has an associated SLD-tree: the one for of the well-known 'Asia' network given in Fig 3. . This is BN19 in Fig 5. . We then used a uniform prior over the set ing a cyclic transition",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1301.2254v1.pdf::2001::02719e1eecb2",
+      "raw_rank": 15,
+      "final_score": -8.216337718069553
+    },
+    {
+      "score": 0.5676606297492981,
+      "text": "Recognizing that the main utility of transfer learning is the possibility of leveraging pre-trained models in data-scarce settings, we release our code, data sets, and pre-trained models.1 The remainder of the paper is structured as follows: In the following section, we discuss our base model and its implementation, our procedure for formulating every text processing problem as a text-to-text task, and the suite of tasks we consider. In Section 3, we present a large set of experiments that explo",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::c0ffaec5863c",
+      "raw_rank": 1,
+      "final_score": -8.234314605593681
+    },
+    {
+      "score": 0.5598064661026001,
+      "text": ". (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::0247478323b2",
+      "raw_rank": 4,
+      "final_score": -8.256366819143295
+    },
+    {
+      "score": 0.4218553900718689,
+      "text": ". Julius (Julius 2025) facilitates data science education by building a bridge that allowing professors to create interactive workflows for lessons, which can be shared with students for a seamless teaching experience through natural language interaction. In this section, we present a series of case studies conducted by a diverse range of agents, each illustrating the new data analysis paradigm facilitated through natural language interaction. . These case studies demonstrate how this approach e",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::d66fb2582f37",
+      "raw_rank": 24,
+      "final_score": -8.256456509232521
+    },
+    {
+      "score": 0.48283153772354126,
+      "text": ". The remainder of this survey is organized as follows: Section 2 introduces the background for LLMs and the evolution of GPT-series models, followed by the summarization of available resources for developing LLMs in Section 3. Sections 4, 5, 6, and 7 review and summarize the recent progress from the four aspects of pre-training, adaptation, utilization, and capacity evaluation, respectively. . Then, Section 8 discusses the practical guide for prompt design, and Section 9 reviews the application",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2303.18223v16.pdf::2025::a83bc172bdb8",
+      "raw_rank": 40,
+      "final_score": -8.293453320860863
+    },
+    {
+      "score": 0.4610007107257843,
+      "text": ". This is competitive with a state-of-the-art WSD-specific supervised model using hand crafted features and a task specific biLSTM that is also trained with auxiliary coarse-grained semantic labels and POS tags.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "N18-1202.pdf::2018::6207b1dd8f2a",
+      "raw_rank": 56,
+      "final_score": -8.295670919120312
+    },
+    {
+      "score": 0.4451242983341217,
+      "text": "However, we opted to create a new data set because prior data sets use a more limited set of filtering heuristics, are not publicly available, and/or are different in scope (e.g. are limited to News data (Zellers et al., 2019; Liu et al., 2019c), comprise only Creative Commons content, or are focused on parallel training data for machine translation ). . To assemble our base data set, we downloaded the web extracted text from April 2019 and applied the aforementioned filtering. . This produces a",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1910.10683v4.pdf::2023::a69fdd35a14a",
+      "raw_rank": 73,
+      "final_score": -8.307532154023647
+    },
+    {
+      "score": 0.49258801341056824,
+      "text": ". For the query-focused summarization task, Pasunuru et al. used a search engine, i.e., Bing, to retrieve the answer paragraph as the synthetic summary and used the top ranked documents as input text.. Another line of work is to use perturbation-based methods by corrupting the original text. For example, Chen et al. presented a set of data augmentation methods for conversation summarization, such as random swapping/deletion to randomly swap or delete utterances in conversations. . Multi-Task Lea",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2201.05273v4.pdf::2022::7e185834e6cc",
+      "raw_rank": 10,
+      "final_score": -8.316434390842915
+    },
+    {
+      "score": 0.4436177611351013,
+      "text": "4We note that in the literature the bidirectional TransInput/Output Representations To make BERT handle a variety of down-stream tasks, our input representation is able to unambiguously represent both a single sentence and a pair of sentences (e.g., ⟨Question, Answer ⟩) in one token sequence. Throughout this work, a \"sentence\" can be an arbitrary span of contiguous text, rather than an actual linguistic sentence. . A \"sequence\" refers to the input token sequence to BERT, which may be a single se",
+      "metadata": {
+        "source_file": "1810.04805v2.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2019",
+        "detected_language": null,
+        "page_count": 16,
+        "origin_chunk_file": "1810.04805v2.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1810.04805v2.pdf::2019::1c276c95c09b",
+      "raw_rank": 19,
+      "final_score": -8.32735301554203
+    },
+    {
+      "score": 0.47529077529907227,
+      "text": ". Opened just last week, with the help of National Museums of Scotland funds and a gaggle of sponsors, the gallery at the Royal Museum offers a wealth of interactive, visually-stunning and unique displays.... The exhibition space has been divided into five main subject areas covering transport (Move It!), artificial intelligence (Robots), cloning (Me2), space travel (Blast Off!) and energy (Power Up). . Each subject area is designed around a number of significant museum objects, complemented by ",
+      "metadata": {
+        "source_file": "1887-Article Text-1883-1-10-20080129.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2006",
+        "detected_language": null,
+        "page_count": 1,
+        "origin_chunk_file": "1887-Article Text-1883-1-10-20080129.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1887-Article Text-1883-1-10-20080129.pdf::2006::fa88a06ed47a",
+      "raw_rank": 12,
+      "final_score": -8.338343977928162
+    },
+    {
+      "score": 0.4433937072753906,
+      "text": ". On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data. . ∗Equal contribution. . Listing order is random. . Jakob proposed replacing RNNs w",
+      "metadata": {
+        "source_file": "1706.03762v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1706.03762v7.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1706.03762v7.pdf::2024::dd7f7b0e16b5",
+      "raw_rank": 20,
+      "final_score": -8.366618633270264
+    },
+    {
+      "score": 0.45737311244010925,
+      "text": ". Please note that: (1) an excerpt may not reflect the overall tenor of the item, nor contain all of the relevant information; and, (2) all items are offered \"as is\" and the fact that an item has been selected does not imply any endorsement whatsoever.",
+      "metadata": {
+        "source_file": "1887-Article Text-1883-1-10-20080129.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2006",
+        "detected_language": null,
+        "page_count": 1,
+        "origin_chunk_file": "1887-Article Text-1883-1-10-20080129.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "1887-Article Text-1883-1-10-20080129.pdf::2006::30cf7400b437",
+      "raw_rank": 59,
+      "final_score": -8.3692921474576
+    },
+    {
+      "score": 0.45543402433395386,
+      "text": "We begin with introducing three key aspects of applying PLMs to text generation: 1) how to encode the input into representations preserving input semantics which can be fused into PLMs; 2) how to design an effective PLM to serve as the generation model; and 3) how to effectively optimize PLMs given the reference text and to ensure that the generated texts satisfy special text properties. Then, we show the major challenges arisen in these aspects, as well as possible solutions for them. . We also",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2201.05273v4.pdf::2022::b45e7569ccf5",
+      "raw_rank": 64,
+      "final_score": -8.39933629333973
+    }
+  ],
+  "chunks_final_to_llm": [
+    {
+      "score": 0.4536813199520111,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::85dff6bd2fb4",
+      "raw_rank": 65,
+      "final_score": -4.402674354612827,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.5432686805725098,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed",
+      "raw_rank": 6,
+      "final_score": -5.463565945625305,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.48194122314453125,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b",
+      "raw_rank": 41,
+      "final_score": -5.797756671905518,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.4838184714317322,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "3641289.pdf::2024::e1d85cdbb466",
+      "raw_rank": 39,
+      "final_score": -5.938369408249855,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.547501266002655,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on outline the core subfields of ai mentioned in the corpus., grounding historical claims only in explicit snippet content.",
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1",
+      "raw_rank": 5,
+      "final_score": -6.237692669034004,
+      "relevance": 3,
+      "rank": 5
+    }
+  ]
+}

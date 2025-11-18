@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_summarize_the_discussion_of_cognitive_plausibility_in_ai_modeling___descr",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7294404018196425,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8,
+    "2010s": 2
+  },
+  "citation_hit_rate": 0.9285714285714286,
+  "model_name": "llama3_8b"
+}

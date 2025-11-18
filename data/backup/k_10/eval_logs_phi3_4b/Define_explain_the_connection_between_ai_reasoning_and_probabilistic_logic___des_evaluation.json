@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_explain_the_connection_between_ai_reasoning_and_probabilistic_logic___des",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.27119231406674754,
+  "dominant_decade": 1990,
+  "decade_counts": {
+    "1990s": 7,
+    "2010s": 2,
+    "2020s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

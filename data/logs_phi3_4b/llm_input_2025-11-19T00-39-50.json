@@ -1,0 +1,1390 @@
+{
+  "timestamp": "2025-11-19T00-39-50",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.\n\nContext snippets:\n[1] Expert_Systems.pdf (2016)\n. ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights,\n\n[1] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[1] Expert_Systems.pdf (2016)\n. The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest\n\n[1] Expert_Systems.pdf (2016)\nInductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.\n\n[1] Expert_Systems.pdf (2016)\n. Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] Expert_Systems.pdf (2016)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks_raw": [
+    {
+      "score": 0.5042057037353516,
+      "text": ". ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights, ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::d305ba40cb6f",
+      "raw_rank": 28,
+      "final_score": 1.0854445099830627,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.45928263664245605,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91",
+      "raw_rank": 41,
+      "final_score": -1.4734254479408264,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.521456241607666,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4",
+      "raw_rank": 25,
+      "final_score": -2.225787937641144,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.46432021260261536,
+      "text": "Inductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::a3208e34f3a9",
+      "raw_rank": 38,
+      "final_score": -3.1417063400149345,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.5179083943367004,
+      "text": ". Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::1f0818e4c126",
+      "raw_rank": 26,
+      "final_score": -3.259488984942436,
+      "relevance": 3,
+      "rank": 5
+    },
+    {
+      "score": 0.4945911467075348,
+      "text": ". Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::83662aa275fb",
+      "raw_rank": 30,
+      "final_score": -3.3217662796378136
+    },
+    {
+      "score": 0.500178337097168,
+      "text": ". The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::ce60bd8ccf2e",
+      "raw_rank": 29,
+      "final_score": -3.3581796884536743
+    },
+    {
+      "score": 0.42916035652160645,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e",
+      "raw_rank": 70,
+      "final_score": -3.595413625240326
+    },
+    {
+      "score": 0.5321394205093384,
+      "text": ". After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::bab1f1e7ac80",
+      "raw_rank": 3,
+      "final_score": -3.833469480276108
+    },
+    {
+      "score": 0.4721437990665436,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1304.1082v1.pdf::1990::40911c1531a3",
+      "raw_rank": 10,
+      "final_score": -4.232625804841518
+    },
+    {
+      "score": 0.6236642599105835,
+      "text": "THE APPLICATION OF EXPERT SYSTEM: A REVIEW OF RESEARCH AND APPLICATIONS C. F. Tan1, L. S. Wahidin1, S. N. Khalil1, N. Tamaldin1, J. Hu2 and G.W. M. Rauterberg2 1Integrated Design Research Group, Centre for Advanced Research on Energy, Universiti Teknikal Malaysia Melaka, Durian Tunggal, Melaka, Malaysia 2Designed Intelligence Group, Department of Industrial Design, Eindhoven",
+      "metadata": {
+        "source_file": "tanappli2016.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 7,
+        "origin_chunk_file": "tanappli2016.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "tanappli2016.pdf::2025::c8269e056e0a",
+      "raw_rank": 1,
+      "final_score": -4.263167053461075
+    },
+    {
+      "score": 0.4844987094402313,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c",
+      "raw_rank": 33,
+      "final_score": -4.350483246147633
+    },
+    {
+      "score": 0.5230690240859985,
+      "text": ". Knowledge-based expert systems will continue to increase individual and social potential by preserving know-how, distributing knowledge more effectively, and improving performance of tasks that require expertise. 24. I. M. Dokas and A. Alapetite, A Development Process Meta-Model for Web Based Expert Systems: The Web Engineering Point of View, Risø National Laboratory, Denmark, 2006. . 25. . R. Islam and K. Andersson, Mohammad Shahadat Hossain, A Web Based Belief Rule Based Expert System to Pre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::3f868e4f3792",
+      "raw_rank": 24,
+      "final_score": -4.687065929174423
+    },
+    {
+      "score": 0.43038928508758545,
+      "text": "Typical applications include management and administration (cost estimation, scheduling), industrial (process control, manufacturing quality control, fault diagnosis), medical (medical diagnosis in specialized domains, bacteria identification), banking (credit and loan decisions), and other fields (forecasting). If training data is available then any domain becomes a candidate for a connectionist expert system. . The neuron model developed by McCulloch and Pitts in 1943 can be regarded as the st",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::145bb6121244",
+      "raw_rank": 68,
+      "final_score": -4.941085010766983
+    },
+    {
+      "score": 0.4824211001396179,
+      "text": ". A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "0311031v1.pdf::2018::20199c863ea7",
+      "raw_rank": 34,
+      "final_score": -5.493272140622139
+    },
+    {
+      "score": 0.484988272190094,
+      "text": ". The expert system uses this knowledge by exploiting the second main component, that is the inference engine that has several roles including determining how the system reasons using the IF–THEN rules in the knowledge base.. Once the knowledge base is built, the ES can begin making inferences. The most common forms of inferencing are forward and backward chaining. . The process of moving forward from known facts to conclusions that follow them is called forward chaining. . Alternatively, the pr",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::8581249aff42",
+      "raw_rank": 32,
+      "final_score": -5.881438001990318
+    },
+    {
+      "score": 0.44967663288116455,
+      "text": ". Objects, which are psychologically dissimilar, are shown far apart; the distance between them can be analyzed to interpret the underlying dimensions as to why these objects have been judged relative to one another. Finally, card sorting techniques provide means of achieving a more focused or systematic understanding of the classifications and relationships in the expert's domain. . It is easy to implement and involves writing the names of objects, experiences, or rules in the expert's domain o",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::f4c8c8875d12",
+      "raw_rank": 49,
+      "final_score": -6.195471972227097
+    },
+    {
+      "score": 0.42647385597229004,
+      "text": "This overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "NatureDeepReview.pdf::2025::b7c20fcc18a5",
+      "raw_rank": 18,
+      "final_score": -6.384813010692596
+    },
+    {
+      "score": 0.4375157654285431,
+      "text": ". Wang et al. assessed the internal knowledge capabilities of several large models, namely InstructGPT, ChatGPT-3.5, GPT-4, and BingChat, by examining their ability to answer open questions based on the Natural Questions and TriviaQA datasets.. The evaluation process involved human assessment.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "3641289.pdf::2024::ed4da0927aa2",
+      "raw_rank": 60,
+      "final_score": -6.451887957751751
+    },
+    {
+      "score": 0.5569665431976318,
+      "text": ". (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::97b789622b90",
+      "raw_rank": 2,
+      "final_score": -6.515984833240509
+    },
+    {
+      "score": 0.4293433427810669,
+      "text": "•\nDifficulty in integrating domain knowledge: Corresponding to the last point, domain experts often lack the data science and programming skills needed to quickly incorporate their expertise into data analysis tools.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::dbd37eb0b1c1",
+      "raw_rank": 69,
+      "final_score": -6.527736157178879
+    },
+    {
+      "score": 0.40115872025489807,
+      "text": ". I I VSD OESOPHAGUS OESOPHAGUS+ MUNIN ICEA PATHFINDER OESOPHAGUS+ _0 0.04 0.04 0.25 OESOPHAGUS+ _1 0.02 0.02 0.13 OESOPHAGUS+.2 0.01 0.01 0.06 with probabilities on graphical structures and their applica tion to expert systems.. The Journal of the Royal Statistical Society.. Series B, vol.. 50, pp. 157-224, 1988. . ity of finding embeddings in a k-tree. . SIAM Journal on Al gebraic and Discrete Methods, vol. 8, pp. . 277-284, 1987. . K. Shoikhet and D. Geiger. . A practical algorithm for findin",
+      "metadata": {
+        "source_file": "1301.2256v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2256v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1301.2256v1.pdf::2001::24f92ee54d69",
+      "raw_rank": 22,
+      "final_score": -6.543225906789303
+    },
+    {
+      "score": 0.49292728304862976,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "0311031v1.pdf::2018::62810bd2dcad",
+      "raw_rank": 7,
+      "final_score": -6.5441218093037605
+    },
+    {
+      "score": 0.41875022649765015,
+      "text": ". The size of our network made overfitting a significant problem, even with 1.2 million labeled training examples, so we used several effective techniques for preventing overfitting, which are described in Section 4.",
+      "metadata": {
+        "source_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "NIPS-2012-imagenet-classification-with-deep-convolutional-neural-networks-Paper.pdf::2014::31ea37ce30d2",
+      "raw_rank": 20,
+      "final_score": -6.658167019486427
+    },
+    {
+      "score": 0.44442909955978394,
+      "text": ". The experiments reported in the next section used two sets of prior prob abilities (those specified by the experts and a uniform distribution across the hypotheses) and three types of conditionals: 3. The values assessed by experts plus ran domly generated noise, using both uni formly and normally distributed noise func tions. . against which others may be judged, the ran dom parameters addressed the relative impor tance of structure and parameters, and the ran dom noise addressed the issue of",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1304.1106v1.pdf::1990::b514c06b1deb",
+      "raw_rank": 14,
+      "final_score": -6.814905002713203
+    },
+    {
+      "score": 0.39960581064224243,
+      "text": "Susan Zhang∗, Stephen Roller∗, Naman Goyal∗, Mikel Artetxe, Moya Chen, Shuohui Chen, Christopher Dewan, Mona Diab, Xian Li, Xi Victoria Lin, Todor Mihaylov, Myle Ott†, Sam Shleifer†, Kurt Shuster, Daniel Simig, Punit Singh Koura, Anjali Sridhar, Tianlu Wang, Luke Zettlemoyer Meta AI {susanz,roller,naman}@fb.com Large language models, which are often trained for hundreds of thousands of compute days, have shown remarkable capabilities for zero- and few-shot learning. Given their computational cos",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2205.01068v4.pdf::2022::692a7a7ce109",
+      "raw_rank": 23,
+      "final_score": -6.98162816464901
+    },
+    {
+      "score": 0.44258642196655273,
+      "text": ". Provided proper attribution is provided, Google hereby grants permission to reproduce the tables and figures in this paper solely for use in journalistic or scholarly works. The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. . The best performing models also connect the encoder and decoder through an attention mechanism. . We propose a new simple network architecture, the Transformer, based solely on ",
+      "metadata": {
+        "source_file": "1706.03762v7.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "1706.03762v7.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1706.03762v7.pdf::2024::01a06850a2de",
+      "raw_rank": 15,
+      "final_score": -7.09837806224823
+    },
+    {
+      "score": 0.5082198977470398,
+      "text": ". Before presenting the results from our large-scale empirical study, we review the necessary background topics required to understand our results, including the Transformer model architecture and the downstream tasks we evaluate on.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1910.10683v4.pdf::2023::ff7415cced87",
+      "raw_rank": 6,
+      "final_score": -7.126443579792976
+    },
+    {
+      "score": 0.40593886375427246,
+      "text": "A number of techniques exist that addresses this shortcoming of HAL, such as the COALS method, in which the co-occurrence matrix is first transformed by an entropy- or correlation-based normalization.",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "D14-1162.pdf::2014::0b25d034f680",
+      "raw_rank": 21,
+      "final_score": -7.144138157367706
+    },
+    {
+      "score": 0.4375799894332886,
+      "text": "However, as mentioned in Section 1.2, consideration of the broader field of natural language generation and previous detection research is important as detection techniques that apply against pre-Transformer models have been shown to be useful in detection of modern generative models, and diverse approaches may offer increased adversarial robustness or better explainability. 2.3 Natural Language Generation Approaches There are a wide range of model architectures and algorithmic approaches to nat",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::70f09bd8349f",
+      "raw_rank": 59,
+      "final_score": -7.169450789690018
+    },
+    {
+      "score": 0.4864368140697479,
+      "text": "Finally, given the broad spectrum of capabilities displayed by GPT-3, we discuss concerns about bias, fairness, and broader societal impacts, and attempt a preliminary analysis of GPT-3's characteristics in this regard.. The remainder of this paper is organized as follows. In Section 2, we describe our approach and methods for training GPT-3 and evaluating it. . Section 3 presents results on the full range of tasks in the zero-, one- and few-shot settings. . Section 4 addresses questions of data",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2005.14165v4.pdf::2020::e2981918a7fc",
+      "raw_rank": 31,
+      "final_score": -7.210451610386372
+    },
+    {
+      "score": 0.43738090991973877,
+      "text": ". The result is a conceptual framework with distinctive features of which the main ones are: The SP computer models (SP61 and SP70) are good enough to demonstrate what can be done with the system but fall short of what would be needed for applications in industry, commerce or administration. This section considers how the SP concepts that have been developed to date may be translated into a practical system.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "0311031v1.pdf::2018::87918694caa7",
+      "raw_rank": 61,
+      "final_score": -7.229220122098923
+    },
+    {
+      "score": 0.5114333629608154,
+      "text": "Approach 2.1 Model and Architectures......................................... 2.2 Training Dataset.............................................. 2.3 Training Process............................................. 2.4 Evaluation................................................. Results 3.1 Language Modeling, Cloze, and Completion Tasks........................... 3.2 Closed Book Question Answering.................................... 3.3 Translation................................................ 3.4 ",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2005.14165v4.pdf::2020::b18961a6fe8c",
+      "raw_rank": 5,
+      "final_score": -7.363434851169586
+    },
+    {
+      "score": 0.4529210329055786,
+      "text": "Additional Key Words and Phrases: machine learning, artificial intelligence, neural networks, trustworthy AI, machine generated text, transformer, text generation, threat modeling, cybersecurity, disinformation, generative AI Since the release of GPT-2 and subsequent explosion of high-quality Transformer-based NLG models, there has been only one general survey on detection of machine generated text. The scope of this previous survey is constrained to detection methods specifically targeting the ",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::de479b9a4253",
+      "raw_rank": 47,
+      "final_score": -7.374064654111862
+    },
+    {
+      "score": 0.4281778335571289,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1304.1106v1.pdf::1990::6ce03695c520",
+      "raw_rank": 72,
+      "final_score": -7.401216745376587
+    },
+    {
+      "score": 0.46739691495895386,
+      "text": ". Where the full versatility of this scheme is not needed, it is also possible to create networks and hierarchies from patterns like '... ', '... ' and '... ' that can be linked end-to-end by alignment within a multiple alignment. This section briefly reviews aspects of intelligence that have been shown to fall within the scope of the SP system, highlighting those with particular relevance to intelligent databases. . The main points of difference between the SP system and other artificial intell",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "0311031v1.pdf::2018::24ea58fd4673",
+      "raw_rank": 37,
+      "final_score": -7.415878012776375
+    },
+    {
+      "score": 0.46102774143218994,
+      "text": "This survey provides an overview of the evolution, capabilities, and applications of LLM-based data agents, highlighting their role in simplifying complex data tasks and lowering the entry barrier for users without related expertise.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::e688c7c5051c",
+      "raw_rank": 12,
+      "final_score": -7.446307271718979
+    },
+    {
+      "score": 0.44869697093963623,
+      "text": ". As previously mentioned, NLG encompasses a large variety of tasks and research areas, with this brief section serving as context for understanding machine generated text threat models and detection methods.. 2.3.1 Non-Neural Models. Predating the popularization of neural approaches in the NLG domain, a range of systems were used to accomplish NLG tasks. . These early approaches can broadly be summarized as \"rule-based\", though there existed variety in terms of processes, pipelines, and targets",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::6469aa988ef2",
+      "raw_rank": 51,
+      "final_score": -7.47181037068367
+    },
+    {
+      "score": 0.44253039360046387,
+      "text": ". LAMBDA facilitates an interactive analysis process, enabling us to perform tasks such as data processing, feature engineering, model training, parameter tuning, and evaluation through a series of guided conversations. Finally, we used LAMBDA's built-in report generation feature to compile a analysis report, which includes details of the tasks completed in the conversation history. . The analysis process, including the conversation and the generated report, is presented in Figure 6. . As beginn",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::f38b966bb5f1",
+      "raw_rank": 55,
+      "final_score": -7.473717510700226
+    },
+    {
+      "score": 0.4439298212528229,
+      "text": "The neural network consists of cells that correspond to symptoms in the input layer, the diseases are presented in the intermediate or hidden layer and neural cells (nodes) for the treatments defined in the output layer. Training patterns consist of 0's (lack of knowledge about presence or absence of the disease), 1's (presence of the disease), and 1's (absence of the disease). . A sample rule from Hepar, a medical expert system for the diagnosis of liver and biliary tract diseases is (16) . The",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::5bf9e2d582d7",
+      "raw_rank": 53,
+      "final_score": -7.492289029061794
+    },
+    {
+      "score": 0.4397065043449402,
+      "text": "Additionally, as research on both NLG and detection has continued to rapidly advance in the years following the previous survey, we must now cover a wider range of generative models and defensive research.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::915a4966adda",
+      "raw_rank": 58,
+      "final_score": -7.510953739285469
+    },
+    {
+      "score": 0.4405198395252228,
+      "text": ". Many kinds of knowledge that are outside the scope of the relational model can be accommodated in the SP system and, as we shall see, it overcomes the weaknesses of the relational model in representing hierarchical structures. At the same time, it can accommodate the relational model when that is required.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "0311031v1.pdf::2018::e68942176c57",
+      "raw_rank": 57,
+      "final_score": -7.550987116992474
+    },
+    {
+      "score": 0.456448495388031,
+      "text": ". We began with introducing three key aspects when applying PLMs to text generation, based on which the main content of our survey is divided into three sections from the view of input representation learning, model architecture design, and parameter optimization. Besides, we discussed several non-trivial challenges related to the above three aspects. . Finally, we reviewed various evaluation metrics, open-source libraries, and common applications to help practitioners evaluate, choose and emplo",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2201.05273v4.pdf::2022::47a1308f9d9e",
+      "raw_rank": 44,
+      "final_score": -7.558135762810707
+    },
+    {
+      "score": 0.4533287286758423,
+      "text": "From left to right, the table compares systems with only GloVe vectors; only the ELMo context-independent type representation without the ELMo biLSTM layers; full ELMo representations without GloVe; both GloVe and ELMo.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "N18-1202.pdf::2018::4a6370d73cdc",
+      "raw_rank": 13,
+      "final_score": -7.616407960653305
+    },
+    {
+      "score": 0.4687809348106384,
+      "text": ". Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. . ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "3641289.pdf::2024::1049e7043b91",
+      "raw_rank": 36,
+      "final_score": -7.6756304651498795
+    },
+    {
+      "score": 0.44336792826652527,
+      "text": "3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::9de497dca2cc",
+      "raw_rank": 54,
+      "final_score": -7.681397922337055
+    },
+    {
+      "score": 0.42877811193466187,
+      "text": "Given the large volume of NLG research over the past 55 years, we provide only a high-level taxonomy of major NLG tasks and approaches as groundwork for our analysis of threat models and detection methodologies, and leave detailed discussion to aforementioned dedicated surveys. 2.2.1 Natural Language Generation Tasks. . Recall from §1.1 that there are a wide variety of applications for natural language generation. . Leveraging previous surveys, we provide a summary of major tasks in the NLG doma",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::ffcd44c2b323",
+      "raw_rank": 71,
+      "final_score": -7.713121309876442
+    },
+    {
+      "score": 0.43275174498558044,
+      "text": ". Gu et al. proposed a hierarchical framework, dialogueBERT, that uses sentence- and discourse-level Transformer encoders to encode each dialogue utterance and the sequence of utterance vectors, respectively.. Furthermore, controllability is also important to consider in dialogue systems. Zeng et al. utilized conditionaware Transformer block to steer the response in a specific topic label. . StyleDGPT attempted to enforce the target style of the generated response with KL loss at both word and s",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2201.05273v4.pdf::2022::263bb9516ec5",
+      "raw_rank": 64,
+      "final_score": -7.7309577241539955
+    },
+    {
+      "score": 0.4489472210407257,
+      "text": ". (4) Review whether the analysis is accurate and complete: We have given careful thought to the presented threat models, which are formed from perspectives gained across industry, academia, and government. However, as threat modeling is an iterative process that benefits from diverse perspectives, we greatly encourage further analysis of potential attacks and mitigation measures in future research. . The remainder of this section comprises our threat model analysis, grouped according to a break",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::3b6079b09c89",
+      "raw_rank": 50,
+      "final_score": -7.75466363877058
+    },
+    {
+      "score": 0.4211861193180084,
+      "text": ". Devlin et al. followed a similar approach, but they incorporated their NNLM into the decoder of an MT system and used the decoder's alignment information to provide the NNLM with the most useful words in the input sentence. Their approach was highly successful and it achieved large improvements over their baseline.",
+      "metadata": {
+        "source_file": "1409.3215v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "1409.3215v3.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1409.3215v3.pdf::2014::4b49f3ceddeb",
+      "raw_rank": 19,
+      "final_score": -7.776168666779995
+    },
+    {
+      "score": 0.5160726308822632,
+      "text": "2. conducts a literature review of the recent advances in LLMs from four major aspects, including pre-training (how to pretrain a capable LLM), adaptation (how to effectively adapt pre-trained LLMs for better use), utilization (how to use LLMs for solving various downstream tasks) and capability evaluation (how to evaluate the abilities of LLMs and existing empirical findings). We thoroughly comb the literature and summarize the key findings, techniques, and methods of LLMs. . For this survey, w",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2303.18223v16.pdf::2025::4853158a418a",
+      "raw_rank": 4,
+      "final_score": -7.790263324975967
+    },
+    {
+      "score": 0.4581563472747803,
+      "text": ". Therefore, we aim to raise awareness in the community of the importance to LLMs evaluations by reviewing the current evaluation protocols and most importantly, shed light on future research about designing new LLMs evaluation protocols.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "3641289.pdf::2024::50b3520cf019",
+      "raw_rank": 43,
+      "final_score": -7.7946115136146545
+    },
+    {
+      "score": 0.45396992564201355,
+      "text": ". In the interests of managing a survey scope that already spans a wide range of literature and broad sociotechnical context, text generation by means of text adversarial attack will not be considered.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::bd1c86fcb9f4",
+      "raw_rank": 46,
+      "final_score": -7.796444900333881
+    },
+    {
+      "score": 0.47564756870269775,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "3641289.pdf::2024::c59652d07ccb",
+      "raw_rank": 9,
+      "final_score": -7.839087814092636
+    },
+    {
+      "score": 0.47713690996170044,
+      "text": ". The remainder of this survey is organized as follows: Section 2 introduces the background for LLMs and the evolution of GPT-series models, followed by the summarization of available resources for developing LLMs in Section 3. Sections 4, 5, 6, and 7 review and summarize the recent progress from the four aspects of pre-training, adaptation, utilization, and capacity evaluation, respectively. . Then, Section 8 discusses the practical guide for prompt design, and Section 9 reviews the application",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2303.18223v16.pdf::2025::a83bc172bdb8",
+      "raw_rank": 35,
+      "final_score": -7.845440313220024
+    },
+    {
+      "score": 0.46002355217933655,
+      "text": "The rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1910.10683v4.pdf::2023::a7d0f7cc72f9",
+      "raw_rank": 40,
+      "final_score": -7.867411218583584
+    },
+    {
+      "score": 0.43918877840042114,
+      "text": "As a result, the pre-trained BERT model can be finetuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial taskspecific architecture modifications. BERT is conceptually simple and empirically powerful.",
+      "metadata": {
+        "source_file": "1810.04805v2.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2019",
+        "detected_language": null,
+        "page_count": 16,
+        "origin_chunk_file": "1810.04805v2.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1810.04805v2.pdf::2019::c7df14115f1b",
+      "raw_rank": 17,
+      "final_score": -7.895583912730217
+    },
+    {
+      "score": 0.4312722086906433,
+      "text": "As LLMs continue to play a vital role in both research and daily use, their evaluation becomes increasingly critical, not only at the task level, but also at the society level for better understanding of their potential risks. Over the past years, significant efforts have been made to examine LLMs from various perspectives. . This paper presents a comprehensive review of these evaluation methods for LLMs, focusing on three key dimensions: what to evaluate, where to evaluate, and how to evaluate.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "3641289.pdf::2024::ed5da3879776",
+      "raw_rank": 67,
+      "final_score": -7.932245805859566
+    },
+    {
+      "score": 0.44983524084091187,
+      "text": ". (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "3641289.pdf::2024::0247478323b2",
+      "raw_rank": 48,
+      "final_score": -8.02428187429905
+    },
+    {
+      "score": 0.5074706077575684,
+      "text": ". Building an ES is an iterative process involving the creation of a prototype system and then over a number of cycles of testing, repair, and extension, incrementally improving the system so that it eventually performs in a way that is satisfactory and beneficial to the users. The problem identification, conceptualization, formalization, construction, and testing are the stages of ES development process (4). . Once a system has been built and debugged it is a simple matter to extend its coverag",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::0d59c63e3fa6",
+      "raw_rank": 27,
+      "final_score": -8.027272343635559
+    },
+    {
+      "score": 0.4315863847732544,
+      "text": "He et al. 81.7 81.4 84.6 3.2 / 17.2% Coref Lee et al. 67.2 67.2 70.4 3.2 / 9.8% NER Peters et al. 91.93 ± 0.19 90.15 92.22 ± 0.10 2.06 / 21% SST-5 McCann et al. 53.7 51.4 54.7 ± 0.5 3.3 / 6.8% Table 1: Test set comparison of ELMo enhanced neural models with state-of-the-art single model baselines across six benchmark NLP tasks. The performance metric varies across tasks – accuracy for SNLI and SST-5; F1 for SQuAD, SRL and NER; average F1 for Coref. . Due to the small test sizes for NER and SST-5",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "N18-1202.pdf::2018::f91344e6ea0d",
+      "raw_rank": 65,
+      "final_score": -8.045107573270798
+    },
+    {
+      "score": 0.4616479277610779,
+      "text": ". For the query-focused summarization task, Pasunuru et al. used a search engine, i.e., Bing, to retrieve the answer paragraph as the synthetic summary and used the top ranked documents as input text.. Another line of work is to use perturbation-based methods by corrupting the original text. For example, Chen et al. presented a set of data augmentation methods for conversation summarization, such as random swapping/deletion to randomly swap or delete utterances in conversations. . Multi-Task Lea",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2201.05273v4.pdf::2022::7e185834e6cc",
+      "raw_rank": 39,
+      "final_score": -8.04631258547306
+    },
+    {
+      "score": 0.427947998046875,
+      "text": ". We consider a \"topic\" as an attribute in this overview, and so include \"topic-to-text generation\" under the broader umbrella of \"attribute-based generation\", including work such as topic-to-essay generation.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::ecb6211df14e",
+      "raw_rank": 73,
+      "final_score": -8.056382656097412
+    },
+    {
+      "score": 0.4365207254886627,
+      "text": ". As a representative example, Chen et al. leveraged BERT as the teacher model that generates sequences of word probability logits and treated the Seq2Seq model as the student network, which can effectively learn from the teacher's outputs. Most generative PLMs are pre-trained using language modeling objectives and then fine-tuned on text generation tasks with task-specific objectives. . Such a discrepancy between pre-training and fine-tuning affects the performance of PLMs on text generation ta",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2201.05273v4.pdf::2022::02d2e2d97ca1",
+      "raw_rank": 62,
+      "final_score": -8.059668265283108
+    },
+    {
+      "score": 0.4850711226463318,
+      "text": ". Please note that: (1) an excerpt may not reflect the overall tenor of the item, nor contain all of the relevant information; and, (2) all items are offered \"as is\" and the fact that an item has been selected does not imply any endorsement whatsoever.",
+      "metadata": {
+        "source_file": "1887-Article Text-1883-1-10-20080129.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2006",
+        "detected_language": null,
+        "page_count": 1,
+        "origin_chunk_file": "1887-Article Text-1883-1-10-20080129.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1887-Article Text-1883-1-10-20080129.pdf::2006::30cf7400b437",
+      "raw_rank": 8,
+      "final_score": -8.072785630822182
+    },
+    {
+      "score": 0.44209998846054077,
+      "text": ". The ancestor sets A logic program P together with a goal G, defines an SLD tree each branch of which is a refutation of G using P. no ENs with s, l and b as nodes\") we (essentially) get BNT REE as an SLD-tree.. Each successful branch re (logs of) the probabilities added be>.. = (>.1, >.2,..., An). For any goal G, S has an associated SLD-tree: the one for of the well-known 'Asia' network given in Fig 3. . This is BN19 in Fig 5. . We then used a uniform prior over the set ing a cyclic transition",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1301.2254v1.pdf::2001::02719e1eecb2",
+      "raw_rank": 16,
+      "final_score": -8.099834099411964
+    },
+    {
+      "score": 0.44226324558258057,
+      "text": "Recognizing that the main utility of transfer learning is the possibility of leveraging pre-trained models in data-scarce settings, we release our code, data sets, and pre-trained models.1 The remainder of the paper is structured as follows: In the following section, we discuss our base model and its implementation, our procedure for formulating every text processing problem as a text-to-text task, and the suite of tasks we consider. In Section 3, we present a large set of experiments that explo",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "1910.10683v4.pdf::2023::c0ffaec5863c",
+      "raw_rank": 56,
+      "final_score": -8.115025371313095
+    },
+    {
+      "score": 0.4274829030036926,
+      "text": ". Such a pretraining-finetuning framework In this section, we first give a general task definition of text generation, then describe the background of PLMs, and finally introduce the three key aspects on PLM-based text generation methods. Generally, a text can be modeled as a sequence of tokens 𝑦= ⟨𝑦1,...,𝑦𝑗,...,𝑦𝑛⟩, where each token 𝑦𝑗 is drawn from a vocabulary V. . The task of text generation aims to generate plausible and readable text in a human language.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2201.05273v4.pdf::2022::56fb0142ef48",
+      "raw_rank": 75,
+      "final_score": -8.117584630846977
+    },
+    {
+      "score": 0.42768263816833496,
+      "text": "As such, a better mitigation approach may be to develop alternative approaches to evaluating candidates, such as placing more emphasis face-to-face discussions with prospective job candidates or award recipients.. 3.4.3 Content Generation.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::4094a1e8ec2e",
+      "raw_rank": 74,
+      "final_score": -8.130563795566559
+    },
+    {
+      "score": 0.45424747467041016,
+      "text": "At the same time, we also identify some datasets where GPT-3's few-shot learning still struggles, as well as some datasets where GPT-3 faces methodological issues related to training on large web corpora. Finally, we find that GPT-3 can generate samples of news articles which human evaluators have difficulty distinguishing from articles written by humans. . We discuss broader societal impacts of this finding and of GPT-3 in general.",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2005.14165v4.pdf::2020::7830523f3c34",
+      "raw_rank": 45,
+      "final_score": -8.131773948669434
+    },
+    {
+      "score": 0.4348558783531189,
+      "text": "While NLG models may make detection of automated coordinated inauthentic activity more difficult, abuse often still requires bypassing existing defenses such as IP reputation checks and CAPTCHA Future threat modeling and observed cyberattacks will certainly augment the threat models discussed in this section, but we have now provided sufficient motivation for exploring the defensive capabilities offered by machine generated text detection. In the next section we will discuss the current status o",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::2c54cf54eb99",
+      "raw_rank": 63,
+      "final_score": -8.149747505784035
+    },
+    {
+      "score": 0.4439558982849121,
+      "text": "The forward chaining approach is generally preferred in the case of a few and expensive data collection and backward chaining approach is preferred when a specific result is required with respect to large quantity of data (3). The two main tasks related to reasoning issues addressed by the inference engine are the following: 1. . After obtaining the input from the user, the inference engine decides where to start the reasoning process by going through the rules and facts that reside in the stati",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::94c1f0d33748",
+      "raw_rank": 52,
+      "final_score": -8.195170044898987
+    },
+    {
+      "score": 0.4717525541782379,
+      "text": "We begin with introducing three key aspects of applying PLMs to text generation: 1) how to encode the input into representations preserving input semantics which can be fused into PLMs; 2) how to design an effective PLM to serve as the generation model; and 3) how to effectively optimize PLMs given the reference text and to ensure that the generated texts satisfy special text properties. Then, we show the major challenges arisen in these aspects, as well as possible solutions for them. . We also",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2201.05273v4.pdf::2022::b45e7569ccf5",
+      "raw_rank": 11,
+      "final_score": -8.197350405156612
+    },
+    {
+      "score": 0.4589225947856903,
+      "text": "2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "2210.07321v4.pdf::2023::bd1a671a542c",
+      "raw_rank": 42,
+      "final_score": -8.201883263885975
+    },
+    {
+      "score": 0.4312976002693176,
+      "text": ". Our baseline, the ESIM sequence model from Chen et al., uses a biLSTM to encode the premise and hypothesis, followed by a matrix attention layer, a local inference layer, another biLSTM inference composition layer, and finally a pooling operation before the output layer. Overall, adding ELMo to the ESIM model improves accuracy by an average of 0.7% across five random seeds. . A five member ensemble pushes the overall accuracy to 89.3%, exceeding the previous ensemble best of 88.9%. . Semantic ",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "N18-1202.pdf::2018::b65019079157",
+      "raw_rank": 66,
+      "final_score": -8.218529149889946
+    }
+  ],
+  "chunks_final_to_llm": [
+    {
+      "score": 0.5042057037353516,
+      "text": ". ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights, ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::d305ba40cb6f",
+      "raw_rank": 28,
+      "final_score": 1.0854445099830627,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.45928263664245605,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91",
+      "raw_rank": 41,
+      "final_score": -1.4734254479408264,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.521456241607666,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4",
+      "raw_rank": 25,
+      "final_score": -2.225787937641144,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.46432021260261536,
+      "text": "Inductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::a3208e34f3a9",
+      "raw_rank": 38,
+      "final_score": -3.1417063400149345,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.5179083943367004,
+      "text": ". Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of list examples of electronics expert systems cited in the corpus., noting origins only when explicitly stated.",
+      "id": "Expert_Systems.pdf::2016::1f0818e4c126",
+      "raw_rank": 26,
+      "final_score": -3.259488984942436,
+      "relevance": 3,
+      "rank": 5
+    }
+  ]
+}

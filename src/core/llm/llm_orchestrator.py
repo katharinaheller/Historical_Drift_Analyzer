@@ -1,4 +1,3 @@
-# src/core/llm/llm_orchestrator.py
 from __future__ import annotations
 import logging
 from typing import Dict, Any, List, Optional
@@ -16,9 +15,10 @@ from src.core.prompt.query.prompt_builder import PromptBuilder
 
 
 class LLMOrchestrator:
-    """Coherent LLM orchestration pipeline with validated logging and deterministic retrieval."""
+    """LLM pipeline with full raw+final retrieval logging and factual revision."""
 
     def __init__(self, config_path: str = "configs/llm.yaml", logs_dir: str = "data/logs"):
+        # Load global configuration
         self.cfg = ConfigLoader(config_path).config
 
         self.logger = logging.getLogger("LLMOrchestrator")
@@ -29,8 +29,10 @@ class LLMOrchestrator:
 
         self.prompt_phase = PromptOrchestrator()
 
-        self.retriever = self._init_retriever()
+        # Initialize retrieval orchestrator that now returns {"raw":[], "final":[]}
+        self.retriever = RetrievalOrchestrator()
 
+        # Build prompt builder
         citation_style = (
             self.cfg.get("generation", {})
             .get("citations", {})
@@ -39,7 +41,13 @@ class LLMOrchestrator:
         )
         self.prompt_builder = PromptBuilder(citation_style=citation_style)
 
-        self.llm = self._init_llm()
+        # Initialize LLM backend
+        profile = (
+            self.cfg.get("generation", {})
+            .get("llm", {})
+            .get("profile", "mistral_7b")
+        )
+        self.llm = OllamaLLM(config_path="configs/llm.yaml", profile=profile)
 
         # Embedding model for factual consistency revision
         self._ff_model = SentenceTransformer(
@@ -52,9 +60,8 @@ class LLMOrchestrator:
             f"LLMOrchestrator initialized (citations={citation_style}, logs_dir={self.logs_dir})."
         )
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def _setup_logging(self) -> None:
-        # Configure logging level from YAML
         lvl = self.cfg.get("global", {}).get("log_level", "INFO").upper()
         logging.basicConfig(
             level=getattr(logging, lvl, logging.INFO),
@@ -62,33 +69,13 @@ class LLMOrchestrator:
         )
         self.logger.info("Logging configured.")
 
-    # --------------------------------------------------------------
-    def _init_retriever(self) -> RetrievalOrchestrator:
-        # Initialize retrieval subsystem
-        r = RetrievalOrchestrator()
-        self.logger.info("Retriever initialized.")
-        return r
-
-    # --------------------------------------------------------------
-    def _init_llm(self) -> OllamaLLM:
-        # Initialize LLM backend
-        profile = (
-            self.cfg.get("generation", {})
-            .get("llm", {})
-            .get("profile", "mistral_7b")
-        )
-        llm = OllamaLLM(config_path="configs/llm.yaml", profile=profile)
-        self.logger.info(f"LLM backend ready (profile={profile}).")
-        return llm
-
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def _split_into_sentences(self, text: str) -> list[str]:
-        # Very simple sentence splitter
         import re
         s = re.split(r"(?<=[.!?])\s+", text.strip())
         return [t for t in s if t]
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def _fact_check_and_revise(
         self,
         answer: str,
@@ -96,7 +83,7 @@ class LLMOrchestrator:
         min_sim: float = 0.22,
         drop_below: float = 0.15,
     ) -> str:
-        # Embedding based factual consistency refinement
+        # Embedding-based consistency filter
         if not answer or not evidence_texts:
             return answer
 
@@ -138,23 +125,23 @@ class LLMOrchestrator:
         except Exception:
             return " ".join(keep) if keep else answer
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def _safe_atomic_write(self, path: Path, payload: Dict[str, Any]) -> None:
-        # Atomic write of JSON files to prevent partial logs
         tmp = path.with_suffix(".tmp")
         tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
         tmp.replace(path)
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def _compose_full_prompt(
         self,
         refined_query: str,
         intent: str,
-        retrieved_chunks: List[Dict[str, Any]],
+        final_chunks: List[Dict[str, Any]],
     ) -> str:
-        # Assemble system prompt with context and citation constraints
+        # Build system prompt
         sys_p = self.prompt_builder.build_prompt(refined_query, intent)
 
+        # Chronological → sort chunks by year
         if intent == "chronological":
             def sy(meta: Dict[str, Any]) -> int:
                 try:
@@ -162,16 +149,18 @@ class LLMOrchestrator:
                 except Exception:
                     return 9999
 
-            retrieved_chunks = sorted(retrieved_chunks, key=lambda c: sy(c.get("metadata", {})))
+            final_chunks = sorted(final_chunks, key=lambda c: sy(c.get("metadata", {})))
             self.logger.info("Chunks sorted chronologically.")
 
+        # Build reference mapping
         unique_sources: Dict[str, int] = {}
         ref_data: Dict[int, Dict[str, Any]] = {}
 
-        for chunk in retrieved_chunks:
+        for chunk in final_chunks:
             meta = chunk.get("metadata", {}) or {}
             src = meta.get("source_file", "Unknown.pdf")
             year = meta.get("year", "n/a")
+
             if src not in unique_sources:
                 ref_id = len(unique_sources) + 1
                 unique_sources[src] = ref_id
@@ -183,7 +172,7 @@ class LLMOrchestrator:
         lines.append(f"Refined query:\n{refined_query.strip()}\n")
         lines.append("Context snippets:")
 
-        for chunk in retrieved_chunks:
+        for chunk in final_chunks:
             meta = chunk.get("metadata", {}) or {}
             src = meta.get("source_file", "Unknown.pdf")
             year = meta.get("year", "n/a")
@@ -215,9 +204,15 @@ class LLMOrchestrator:
 
         return "\n".join(lines)
 
-    # --------------------------------------------------------------
-    def _log_llm_input(self, query: str, intent: str, prompt: str, chunks: List[Dict[str, Any]]) -> None:
-        # Log input with atomic write
+    # ------------------------------------------------------------------
+    def _log_llm_input(
+        self,
+        query: str,
+        intent: str,
+        prompt: str,
+        raw_chunks: List[Dict[str, Any]],
+        final_chunks: List[Dict[str, Any]],
+    ) -> None:
         ts = time.strftime("%Y-%m-%dT%H-%M-%S")
         path = self.logs_dir / f"llm_input_{ts}.json"
 
@@ -226,22 +221,23 @@ class LLMOrchestrator:
             "query_refined": query,
             "intent": intent,
             "prompt_final_to_llm": prompt,
-            "chunks_final_to_llm": chunks,
+            "retrieved_chunks_raw": raw_chunks,
+            "chunks_final_to_llm": final_chunks,
         }
 
         self._safe_atomic_write(path, payload)
         self.logger.info(f"Logged refined LLM input → {path}")
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def _log_llm_run(
         self,
         query: str,
         intent: str,
-        retrieved: List[Dict[str, Any]],
+        raw_chunks: List[Dict[str, Any]],
+        final_chunks: List[Dict[str, Any]],
         output: str,
         prompt: str,
     ) -> str:
-        # Log completed LLM output
         ts = time.strftime("%Y-%m-%dT%H-%M-%S")
         qid = "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in query)[:80] or "query"
 
@@ -253,16 +249,16 @@ class LLMOrchestrator:
             "query_refined": query,
             "intent": intent,
             "prompt_final_to_llm": prompt,
-            "retrieved_chunks": retrieved,
+            "retrieved_chunks_raw": raw_chunks,
+            "retrieved_chunks_final": final_chunks,
             "model_output": output,
         }
 
         self._safe_atomic_write(path, payload)
         return qid
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def process_query(self, query_obj: Optional[Dict[str, Any]]) -> str:
-        # Full pipeline execution
         if not query_obj:
             self.logger.warning("Empty query object received.")
             return ""
@@ -275,39 +271,47 @@ class LLMOrchestrator:
             return ""
 
         query = query.strip()
-
         self.logger.info(f"Starting pipeline | intent={intent} | query='{query}'")
 
+        # --- Retrieval ---
         try:
-            retrieved = self.retriever.retrieve(query, intent)
+            out = self.retriever.retrieve(query, intent)
+            raw_chunks = out["raw"]
+            final_chunks = out["final"]
         except Exception as e:
             self.logger.exception(f"Retrieval failed: {e}")
             return ""
 
+        # --- Prompt ---
         try:
-            prompt = self._compose_full_prompt(query, intent, retrieved)
+            prompt = self._compose_full_prompt(query, intent, final_chunks)
         except Exception as e:
             self.logger.exception(f"Prompt construction failed: {e}")
             return ""
 
-        self._log_llm_input(query, intent, prompt, retrieved)
+        # --- Logging Input ---
+        self._log_llm_input(query, intent, prompt, raw_chunks, final_chunks)
 
+        # --- LLM ---
         try:
             raw_ans = self.llm.generate(prompt.strip())
-            evidence = [c.get("text", "") for c in retrieved if c.get("text")]
+
+            # Evidence for factual revision uses only final chunks
+            evidence = [c.get("text", "") for c in final_chunks if c.get("text")]
             final_ans = self._fact_check_and_revise(raw_ans, evidence)
 
-            qid = self._log_llm_run(query, intent, retrieved, final_ans, prompt)
+            qid = self._log_llm_run(
+                query, intent, raw_chunks, final_chunks, final_ans, prompt
+            )
             self.logger.info(f"LLM generation successful (id={qid}).")
-
             return final_ans.strip()
+
         except Exception as e:
             self.logger.exception(f"LLM generation failed: {e}")
             return ""
 
-    # --------------------------------------------------------------
+    # ------------------------------------------------------------------
     def close(self) -> None:
-        # Safe close of all subcomponents
         self.logger.info("Closing LLMOrchestrator.")
         try:
             if hasattr(self.retriever, "close"):

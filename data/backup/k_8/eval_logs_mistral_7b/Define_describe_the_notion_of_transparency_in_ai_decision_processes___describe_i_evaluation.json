@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_describe_the_notion_of_transparency_in_ai_decision_processes___describe_i",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5777542709956323,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "1990s": 1,
+    "2020s": 6,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T13-45-58",
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_compare_deterministic_and_",
+  "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.\n\nContext snippets:\n[1] 1304.1081v1.pdf (1990)\n. Even in a probabilistic setting, deterministic qualitative relations are likely to play a significant role in definitions, accounting relations, and constraints (for instance, in constrained opti mization problems. [Michelena and Agogino, 1989]). Conversely, the ability to express probabilistic re lationships in otherwise deterministic models adds veridicality, since real-world problems invariably present elements of uncertainty. . The reader may find it curious that the determin istic relatio\n\n[1] 1304.1081v1.pdf (1990)\n. Indeed, the ability to de rive stronger qualitative conclusions from networks containing deterministic relations is ultimately due to the extra independencies sanctioned by the func tional constraints. Specification of deterministic variables in proba bilistic network representations was introduced by Shachter for numeric influence diagrams. . The hybrid representation scheme presented here extends the qualitative probabilistic network (QPN) formal ism to accommodate determin istic relations.\n\n[2] 0311031v1.pdf (2018)\n. A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).\n\n[3] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[1] 1304.1081v1.pdf (1990)\n. For example, Neufeld and Poole rely on the distinction be tween deterministic (implication) and probabilistic (confirmation) relations in their application of qual itative probability to default reasoning. The impor tant difference between functional and probabilistic dependencies is in the restrictions they impose on potential interactions among connected variables. . In this paper, I investigate the opportunity to exploit these constraints where deterministic and probabilis tic variables coe\n\n[4] 2303.18223v16.pdf (2025)\n. A major limitation of the original GPT-3 model (pre-trained on plain text) lies in the lack of by OpenAI, namely ChatGPT and GPT-4, which have largely raised the capacity bar of existing AI systems.. • ChatGPT. In November 2022, OpenAI released the conversation model ChatGPT, based on the GPT models (GPT-3.5 and GPT-4). . As the official blog article introduced, ChatGPT was trained in a similar way as InstructGPT (called \"a sibling model to InstructGPT\" in the original post), while specially o\n\n[5] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[1] 1304.1081v1.pdf (1990)\n. In the remaining sections, I demonstrate how the advantages of functional re lations can be realized locally by simple modifica tions to the QPN transformation operations for cases where one or more of the nodes involved are deter ministic. QPNs support two types of qualitative probabilis tic relations. . Influences describe the direction of a probabilistic relation, and synergies describe the in teraction among influences. . The bulk of this analysis concerns qualitative influences; further d\n\n[6] 1304.1082v1.pdf (1990)\nWhile there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than\n\n[7] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[8] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[6] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[6] 1304.1082v1.pdf (1990)\nA study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason\n\n[1] 1304.1081v1.pdf (1990)\n. This suggests that it would be generally useful to admit both strict and non-strict qualitative relations, carefully distinguish ing them and maintaining this information through network transformations. For notational simplicity, I adopt the convention in this paper that probabilis tic relations are non-strict, while deterministic ones are strict, unless stated otherwise. . Where strictness (or invertibility in general) is critical for the valid ity of an inference rule, the details are spell\n\n[3] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[6] 1304.1082v1.pdf (1990)\n. Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f\n\n[9] 1301.2254v1.pdf (2001)\n. Given a set of random variables RVs, skeleton/2 first probabilistically chooses an undi rected graph Skel, then essential_graph/3 proba bilistically chooses an essential graph EG with immoralities Imms by adding arrows to Skel. bn/3 is then defined to probabilistically choose a particular BN from the equiva lence class of BNs defined by EG. . It is more natural to de fine a prior over essential graphs, but we extended the prior to be over BNs to compare with our previous experiments. . Althoug\n\n[10] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[3] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[9] 1301.2254v1.pdf (2001)\n. In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1081v1.pdf (1990)\n[2] 0311031v1.pdf (2018)\n[3] 3641289.pdf (2024)\n[4] 2303.18223v16.pdf (2025)\n[5] 2005.14165v4.pdf (2020)\n[6] 1304.1082v1.pdf (1990)\n[7] Expert_Systems.pdf (2016)\n[8] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[9] 1301.2254v1.pdf (2001)\n[10] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.39763233065605164,
+      "text": ". Even in a probabilistic setting, deterministic qualitative relations are likely to play a significant role in definitions, accounting relations, and constraints (for instance, in constrained opti mization problems. [Michelena and Agogino, 1989]). Conversely, the ability to express probabilistic re lationships in otherwise deterministic models adds veridicality, since real-world problems invariably present elements of uncertainty. . The reader may find it curious that the determin istic relatio",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -0.2579675018787384,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1081v1.pdf::1990::cf2890b27084"
+    },
+    {
+      "score": 0.39875590801239014,
+      "text": ". Indeed, the ability to de rive stronger qualitative conclusions from networks containing deterministic relations is ultimately due to the extra independencies sanctioned by the func tional constraints. Specification of deterministic variables in proba bilistic network representations was introduced by Shachter for numeric influence diagrams. . The hybrid representation scheme presented here extends the qualitative probabilistic network (QPN) formal ism to accommodate determin istic relations. ",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -1.246370106935501,
+      "relevance": 3,
+      "rank": 2,
+      "id": "1304.1081v1.pdf::1990::b6d3c68f2282"
+    },
+    {
+      "score": 0.45411819219589233,
+      "text": ". A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -1.7242678552865982,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0311031v1.pdf::2018::20199c863ea7"
+    },
+    {
+      "score": 0.4942252039909363,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -1.7774897366762161,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.40415874123573303,
+      "text": ". For example, Neufeld and Poole rely on the distinction be tween deterministic (implication) and probabilistic (confirmation) relations in their application of qual itative probability to default reasoning. The impor tant difference between functional and probabilistic dependencies is in the restrictions they impose on potential interactions among connected variables. . In this paper, I investigate the opportunity to exploit these constraints where deterministic and probabilis tic variables coe",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -2.3011796101927757,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1304.1081v1.pdf::1990::6e34302e1525"
+    },
+    {
+      "score": 0.40471798181533813,
+      "text": ". A major limitation of the original GPT-3 model (pre-trained on plain text) lies in the lack of by OpenAI, namely ChatGPT and GPT-4, which have largely raised the capacity bar of existing AI systems.. • ChatGPT. In November 2022, OpenAI released the conversation model ChatGPT, based on the GPT models (GPT-3.5 and GPT-4). . As the official blog article introduced, ChatGPT was trained in a similar way as InstructGPT (called \"a sibling model to InstructGPT\" in the original post), while specially o",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -2.419065400958061,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2303.18223v16.pdf::2025::6a906900e729"
+    },
+    {
+      "score": 0.48273175954818726,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -2.630823627114296,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.40650540590286255,
+      "text": ". In the remaining sections, I demonstrate how the advantages of functional re lations can be realized locally by simple modifica tions to the QPN transformation operations for cases where one or more of the nodes involved are deter ministic. QPNs support two types of qualitative probabilis tic relations. . Influences describe the direction of a probabilistic relation, and synergies describe the in teraction among influences. . The bulk of this analysis concerns qualitative influences; further d",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -2.656225249171257,
+      "relevance": 3,
+      "rank": 8,
+      "id": "1304.1081v1.pdf::1990::36844f929cae"
+    },
+    {
+      "score": 0.5457868576049805,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -3.061675548553467,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1"
+    },
+    {
+      "score": 0.4482031762599945,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -3.0954592004418373,
+      "relevance": 3,
+      "rank": 10,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.4453868567943573,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -3.173986680805683,
+      "relevance": 3,
+      "rank": 11,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.521302342414856,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -3.548976391553879,
+      "relevance": 3,
+      "rank": 12,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.48253145813941956,
+      "text": "A study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -3.5729334577918053,
+      "relevance": 3,
+      "rank": 13,
+      "id": "1304.1082v1.pdf::1990::9137bbfbb206"
+    },
+    {
+      "score": 0.41957250237464905,
+      "text": ". This suggests that it would be generally useful to admit both strict and non-strict qualitative relations, carefully distinguish ing them and maintaining this information through network transformations. For notational simplicity, I adopt the convention in this paper that probabilis tic relations are non-strict, while deterministic ones are strict, unless stated otherwise. . Where strictness (or invertibility in general) is critical for the valid ity of an inference rule, the details are spell",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -3.6788909062743187,
+      "relevance": 3,
+      "rank": 14,
+      "id": "1304.1081v1.pdf::1990::b1f78c5718fe"
+    },
+    {
+      "score": 0.48029544949531555,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -4.059552364051342,
+      "relevance": 3,
+      "rank": 15,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4721260070800781,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -4.107984781265259,
+      "relevance": 3,
+      "rank": 16,
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3"
+    },
+    {
+      "score": 0.43460679054260254,
+      "text": ". Given a set of random variables RVs, skeleton/2 first probabilistically chooses an undi rected graph Skel, then essential_graph/3 proba bilistically chooses an essential graph EG with immoralities Imms by adding arrows to Skel. bn/3 is then defined to probabilistically choose a particular BN from the equiva lence class of BNs defined by EG. . It is more natural to de fine a prior over essential graphs, but we extended the prior to be over BNs to compare with our previous experiments. . Althoug",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -4.19095653295517,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1301.2254v1.pdf::2001::fb6671c6ce39"
+    },
+    {
+      "score": 0.4747122526168823,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -4.322713524103165,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.5174710750579834,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -4.3606022000312805,
+      "relevance": 3,
+      "rank": 19,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.5161412954330444,
+      "text": ". In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of compare deterministic and probabilistic ai models discussed in the sources., noting origins only when explicitly stated.",
+      "final_score": -4.502191931009293,
+      "relevance": 3,
+      "rank": 20,
+      "id": "1301.2254v1.pdf::2001::981a7e9f108a"
+    }
+  ],
+  "model_output": "Comparing Deterministic and Probabilistic AI Models: Analysis, Mechanisms, Strengths, and Limitations over Time\n\n(1990; described in 1304.1081v1.pdf [1]) The hybrid representation scheme presented by Michelena and Agogino extends the qualitative probabilistic network (QPN) formalism to accommodate deterministic relations, thus allowing for stronger qualitative conclusions from networks containing both types of variables. (1990; described in 1304.1082v1.pdf [6]) Qualitative belief propagation is an alternative to the graph reduction algorithms of Wellman for inference in QPNs, tracing the qualitative effect of evidence through a belief network from one variable to the next. (1990; described in 1304.1082v1.pdf [6]) Scenario-based reasoning is another approach for explaining probabilistic reasoning that focuses on providing interpretations more compatible with human reasoning styles. (2018; described in 0311031v1.pdf [2]) The SP system supports probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values. (2024; described in 3641289.pdf [3]) Supervised models significantly outperform zero-shot models in terms of performance, suggesting that an increase in parameters does not guarantee a higher level of social knowledge. Reasoning poses significant challenges for AI models and necessitates understanding and utilizing reasoning and inference abilities to tackle these challenges effectively. (2025; described in 2303.18223v16.pdf [4]) ChatGPT, based on the GPT models (GPT-3.5 and GPT-4), was released by OpenAI, raising the capacity bar of existing AI systems. (insufficient evidence; described in 7 Expert_Systems.pdf [7]) The limitations mentioned for building expert systems with deep knowledge, including functional and causal models using a variety of representations, are not explicitly stated to involve deterministic or probabilistic AI models. (2025; described in A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf [8]) The rise and potential of generative AI, particularly large language models (LLMs), have gained increasing recognition in recent years in the field of data science and analysis. References:\n[1] 1304.1081v1.pdf (1990)\n[2] 0311031v1.pdf (2018)\n[3] 3641289.pdf (2024)\n[4] 2303.18223v16.pdf (2025)\n[7] Expert_Systems.pdf (2016)\n[8] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)"
+}

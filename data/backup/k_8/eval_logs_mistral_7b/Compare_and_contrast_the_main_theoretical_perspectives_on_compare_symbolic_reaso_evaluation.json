@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_compare_symbolic_reaso",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.4061996405832203,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2010s": 2,
+    "1990s": 2,
+    "2020s": 4
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

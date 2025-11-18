@@ -1,13 +1,6 @@
 {
   "query_id": "Define_explain_the_turing_test_as_described_in_the_corpus___describe_its_theoret",
-  "ndcg@k": 1.0,
-  "faithfulness": 0.5930572426374817,
-  "dominant_decade": 2020,
-  "decade_counts": {
-    "2020s": 3,
-    "2000s": 1,
-    "2010s": 1
-  },
-  "citation_hit_rate": 1.0,
-  "model_name": "phi3_4b"
+  "model_name": "phi3_4b",
+  "ndcg@k": 0.9286024279819313,
+  "faithfulness": 0.32198696826755946
 }

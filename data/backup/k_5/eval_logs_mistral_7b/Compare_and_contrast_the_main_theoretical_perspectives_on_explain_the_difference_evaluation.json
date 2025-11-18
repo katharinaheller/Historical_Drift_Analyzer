@@ -1,0 +1,12 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_explain_the_difference",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5576441151039344,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2020s": 2,
+    "2010s": 3
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

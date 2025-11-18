@@ -1,0 +1,11 @@
+{
+  "query_id": "Define_rephrase_and_define_ai_concisely_based_only_on_the_retrieved_context___de",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.9347281334660841,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 5
+  },
+  "citation_hit_rate": 0.8181818181818182,
+  "model_name": "llama3_8b"
+}

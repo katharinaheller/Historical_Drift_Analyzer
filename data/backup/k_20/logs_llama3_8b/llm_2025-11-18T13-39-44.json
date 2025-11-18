@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T13-39-44",
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_summarize_how_context_comp",
+  "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.\n\nContext snippets:\n[1] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[2] 3641289.pdf (2024)\n. Through such evaluation, the natural language processing ability, context understanding ability and generation ability of the model can be improved, so as to realize a more intelligent and more natural dialogue system. Both Claude and ChatGPT generally achieve better performance across all dimensions when compared to GPT-3.5.\n\n[3] 2201.05273v4.pdf (2022)\n. Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.\n\n[4] N18-1202.pdf (2018)\nSec. 5.3 explores the different types of contextual information captured in biLMs and uses two intrinsic evaluations to show that syntactic information is better represented at lower layers while semantic information is captured a higher layers, consistent with MT encoders. It also shows that our biLM consistently provides richer representations then CoVe. . Additionally, we analyze the sensitivity to where ELMo is included in the task model (Sec. 5.2), training set size (Sec. 5.4), and visualiz\n\n[4] N18-1202.pdf (2018)\nUsing intrinsic evaluations, we show that the higher-level LSTM states capture context-dependent aspects of word meaning (e.g., they can be used without modification to perform well on supervised word sense disambiguation tasks) while lowerlevel states model aspects of syntax (e.g., they can be used to do part-of-speech tagging). Simultaneously exposing all of these signals is highly beneficial, allowing the learned models select the types of semi-supervision that are most useful for each end ta\n\n[2] 3641289.pdf (2024)\n. (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal\n\n[2] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[2] 3641289.pdf (2024)\n. Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks.\n\n[4] N18-1202.pdf (2018)\nTo analyze the relative contribution of the contextual information compared to the sub-word information, we ran an additional ablation that replaced the GloVe vectors with just the biLM character based xLM. k\nlayer without the biLM biLSTM layers. Table 7 summarizes the results for SQuAD, SNLI and SNLI.\n\n[5] 2303.18223v16.pdf (2025)\n. A popular speculation is that emergent abilities might be partially attributed to the evaluation setting for special tasks (e.g., the discontinuous evaluation metrics): when evaluation metrics are altered accordingly, the sharpness of the emergent ability curve would disappear. However, the performance of LLMs on most tasks are perceived by users naturally in a discontinuous way.\n\n[2] 3641289.pdf (2024)\n. Due to its great performance in handling different applications such as general natural language tasks and domain-specific ones, LLMs are increasingly used by individuals with critical information needs, such as students or patients. Evaluation is of paramount prominence to the success of LLMs due to several reasons. . First, evaluating LLMs helps us better understand the strengths and weakness of LLMs. . For instance, the PromptBench benchmark illustrates that current LLMs are sensitive to ad\n\n[2] 3641289.pdf (2024)\n. The initial objective behind the development of language models, particularly large language models, was to enhance performance on natural language processing tasks, encompassing both understanding and generation. Consequently, the majority of evaluation research has been primarily focused on natural language tasks. . Table 2 summarizes the evaluation aspects of existing research, and we mainly highlight their conclusions in the following.2 3.1.1 Natural Language Understanding. . Natural langu\n\n[2] 3641289.pdf (2024)\nWith the introduction of ChatGPT and GPT-4, there have been a number of research efforts aiming at evaluating ChatGPT and other LLMs from different aspects (Figure 2), encompassing a range of factors such as natural language tasks, reasoning, robustness, trustworthiness, medical applications, and ethical considerations. Despite these efforts, a comprehensive overview capturing the entire gamut of evaluations is still lacking.\n\n[2] 3641289.pdf (2024)\nTo address this, they transformed existing fact consistency tasks into binary labels, specifically considering only whether there is a factual conflict with the input text, without factoring in external knowledge. The research discovered that fact evaluation methods founded on natural language inference and question generation answering exhibit superior performance and can complement each other. . Pezeshkpour proposed a novel metric, based on information theory, to assess the inclusion of specif\n\n[2] 3641289.pdf (2024)\nIn the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.\n\n[5] 2303.18223v16.pdf (2025)\n. Furthermore, some capacities (e.g., in-context learning ) are unpredictable according to the scaling law, which can be observed only when the model size exceeds a certain level (as discussed below).. Emergent Abilities of LLMs.\n\n[3] 2201.05273v4.pdf (2022)\nFor example, Kryscinski et al. utilized a contextual network in the PLM decoder to retrieve the most salient parts from the source document to improve the level of faithfulness of generated summaries. Besides, several studies proposed to generate faithful texts by introducing additional losses besides the text generation loss. . Specifically, Yang et al. fine-tuned PLMs through a theme modeling loss which aims to make the generated summary semantically close to the original article for achieving\n\n[5] 2303.18223v16.pdf (2025)\n. For instance, end users prefer a reliable code generated by LLMs that can successfully pass the test case, but are less interested in selecting a better code with fewer errors between two failed ones. More recently, a study proposes a new evaluation setting that can enlarge the resolution of task metrics, making task performance more predictable. . Despite these efforts, more fundamental research (e.g., grokking10) about the working mechanism of LLMs is still in need to understand the emergenc\n\n[2] 3641289.pdf (2024)\n. Their evaluation expanded beyond the typical trustworthiness concerns to include eight critical aspects: toxicity, stereotype bias, adversarial and out-of-distribution robustness, robustness to adversarial demonstrations, privacy, machine ethics, and fairness. DecodingTrust's investigation employs an array of newly constructed scenarios, tasks, and metrics. . They revealed that while GPT-4 often showcases improved trustworthiness over GPT-3.5 in standard evaluations, it is simultaneously more\n\n[2] 3641289.pdf (2024)\n. Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. .\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2005.14165v4.pdf (2020)\n[2] 3641289.pdf (2024)\n[3] 2201.05273v4.pdf (2022)\n[4] N18-1202.pdf (2018)\n[5] 2303.18223v16.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.46518874168395996,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -4.15634697675705,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.3503476679325104,
+      "text": ". Through such evaluation, the natural language processing ability, context understanding ability and generation ability of the model can be improved, so as to realize a more intelligent and more natural dialogue system. Both Claude and ChatGPT generally achieve better performance across all dimensions when compared to GPT-3.5.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -4.522381506860256,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::8d11b51cd79a"
+    },
+    {
+      "score": 0.5755699872970581,
+      "text": ". Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -4.634590893983841,
+      "relevance": 3,
+      "rank": 3,
+      "id": "2201.05273v4.pdf::2022::bcb2357ff742"
+    },
+    {
+      "score": 0.4162691831588745,
+      "text": "Sec. 5.3 explores the different types of contextual information captured in biLMs and uses two intrinsic evaluations to show that syntactic information is better represented at lower layers while semantic information is captured a higher layers, consistent with MT encoders. It also shows that our biLM consistently provides richer representations then CoVe. . Additionally, we analyze the sensitivity to where ELMo is included in the task model (Sec. 5.2), training set size (Sec. 5.4), and visualiz",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -4.857383161783218,
+      "relevance": 3,
+      "rank": 4,
+      "id": "N18-1202.pdf::2018::8dfe0d61e196"
+    },
+    {
+      "score": 0.3615913391113281,
+      "text": "Using intrinsic evaluations, we show that the higher-level LSTM states capture context-dependent aspects of word meaning (e.g., they can be used without modification to perform well on supervised word sense disambiguation tasks) while lowerlevel states model aspects of syntax (e.g., they can be used to do part-of-speech tagging). Simultaneously exposing all of these signals is highly beneficial, allowing the learned models select the types of semi-supervision that are most useful for each end ta",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -4.879918932914734,
+      "relevance": 3,
+      "rank": 5,
+      "id": "N18-1202.pdf::2018::54d3a2ab7b39"
+    },
+    {
+      "score": 0.522355854511261,
+      "text": ". (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.195720240473747,
+      "relevance": 3,
+      "rank": 6,
+      "id": "3641289.pdf::2024::0247478323b2"
+    },
+    {
+      "score": 0.437415212392807,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.252978183329105,
+      "relevance": 3,
+      "rank": 7,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.5865879058837891,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.376801013946533,
+      "relevance": 3,
+      "rank": 8,
+      "id": "3641289.pdf::2024::c59652d07ccb"
+    },
+    {
+      "score": 0.4463236331939697,
+      "text": "To analyze the relative contribution of the contextual information compared to the sub-word information, we ran an additional ablation that replaced the GloVe vectors with just the biLM character based xLM. k\nlayer without the biLM biLSTM layers. Table 7 summarizes the results for SQuAD, SNLI and SNLI.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.5232656598091125,
+      "relevance": 3,
+      "rank": 9,
+      "id": "N18-1202.pdf::2018::fdd8c8d6d060"
+    },
+    {
+      "score": 0.36919647455215454,
+      "text": ". A popular speculation is that emergent abilities might be partially attributed to the evaluation setting for special tasks (e.g., the discontinuous evaluation metrics): when evaluation metrics are altered accordingly, the sharpness of the emergent ability curve would disappear. However, the performance of LLMs on most tasks are perceived by users naturally in a discontinuous way.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.54040490090847,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2303.18223v16.pdf::2025::3f0a227725ea"
+    },
+    {
+      "score": 0.4773399829864502,
+      "text": ". Due to its great performance in handling different applications such as general natural language tasks and domain-specific ones, LLMs are increasingly used by individuals with critical information needs, such as students or patients. Evaluation is of paramount prominence to the success of LLMs due to several reasons. . First, evaluating LLMs helps us better understand the strengths and weakness of LLMs. . For instance, the PromptBench benchmark illustrates that current LLMs are sensitive to ad",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.625747859477997,
+      "relevance": 3,
+      "rank": 11,
+      "id": "3641289.pdf::2024::66fa6e6b050c"
+    },
+    {
+      "score": 0.44216370582580566,
+      "text": ". The initial objective behind the development of language models, particularly large language models, was to enhance performance on natural language processing tasks, encompassing both understanding and generation. Consequently, the majority of evaluation research has been primarily focused on natural language tasks. . Table 2 summarizes the evaluation aspects of existing research, and we mainly highlight their conclusions in the following.2 3.1.1 Natural Language Understanding. . Natural langu",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.657825291156769,
+      "relevance": 3,
+      "rank": 12,
+      "id": "3641289.pdf::2024::31a285825972"
+    },
+    {
+      "score": 0.4337809681892395,
+      "text": "With the introduction of ChatGPT and GPT-4, there have been a number of research efforts aiming at evaluating ChatGPT and other LLMs from different aspects (Figure 2), encompassing a range of factors such as natural language tasks, reasoning, robustness, trustworthiness, medical applications, and ethical considerations. Despite these efforts, a comprehensive overview capturing the entire gamut of evaluations is still lacking.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.752757593989372,
+      "relevance": 3,
+      "rank": 13,
+      "id": "3641289.pdf::2024::8f80579deadc"
+    },
+    {
+      "score": 0.42691582441329956,
+      "text": "To address this, they transformed existing fact consistency tasks into binary labels, specifically considering only whether there is a factual conflict with the input text, without factoring in external knowledge. The research discovered that fact evaluation methods founded on natural language inference and question generation answering exhibit superior performance and can complement each other. . Pezeshkpour proposed a novel metric, based on information theory, to assess the inclusion of specif",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.767323806881905,
+      "relevance": 3,
+      "rank": 14,
+      "id": "3641289.pdf::2024::b678961257ae"
+    },
+    {
+      "score": 0.44703131914138794,
+      "text": "In the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -5.885283872485161,
+      "relevance": 3,
+      "rank": 15,
+      "id": "3641289.pdf::2024::f3f9faee6ad8"
+    },
+    {
+      "score": 0.3541455864906311,
+      "text": ". Furthermore, some capacities (e.g., in-context learning ) are unpredictable according to the scaling law, which can be observed only when the model size exceeds a certain level (as discussed below).. Emergent Abilities of LLMs.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -6.027867183089256,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2303.18223v16.pdf::2025::398006949dde"
+    },
+    {
+      "score": 0.4502042829990387,
+      "text": "For example, Kryscinski et al. utilized a contextual network in the PLM decoder to retrieve the most salient parts from the source document to improve the level of faithfulness of generated summaries. Besides, several studies proposed to generate faithful texts by introducing additional losses besides the text generation loss. . Specifically, Yang et al. fine-tuned PLMs through a theme modeling loss which aims to make the generated summary semantically close to the original article for achieving",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -6.034395359456539,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2201.05273v4.pdf::2022::f89df665d558"
+    },
+    {
+      "score": 0.3798843324184418,
+      "text": ". For instance, end users prefer a reliable code generated by LLMs that can successfully pass the test case, but are less interested in selecting a better code with fewer errors between two failed ones. More recently, a study proposes a new evaluation setting that can enlarge the resolution of task metrics, making task performance more predictable. . Despite these efforts, more fundamental research (e.g., grokking10) about the working mechanism of LLMs is still in need to understand the emergenc",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -6.050446130335331,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2303.18223v16.pdf::2025::1437b359f021"
+    },
+    {
+      "score": 0.37936222553253174,
+      "text": ". Their evaluation expanded beyond the typical trustworthiness concerns to include eight critical aspects: toxicity, stereotype bias, adversarial and out-of-distribution robustness, robustness to adversarial demonstrations, privacy, machine ethics, and fairness. DecodingTrust's investigation employs an array of newly constructed scenarios, tasks, and metrics. . They revealed that while GPT-4 often showcases improved trustworthiness over GPT-3.5 in standard evaluations, it is simultaneously more ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -6.065347403287888,
+      "relevance": 3,
+      "rank": 19,
+      "id": "3641289.pdf::2024::fe77b56619e1"
+    },
+    {
+      "score": 0.521895170211792,
+      "text": ". Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. . ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of summarize how context completeness affects evaluation quality as discussed in the corpus., noting origins only when explicitly stated.",
+      "final_score": -6.073836863040924,
+      "relevance": 3,
+      "rank": 20,
+      "id": "3641289.pdf::2024::1049e7043b91"
+    }
+  ],
+  "model_output": "The provided context discusses various aspects related to the evaluation of language models, particularly large language models (LLMs). Here's a summary on how context completeness affects evaluation quality based on the given snippets:\n\n1. Context completeness is important for evaluating LLMs as it helps in understanding their strengths and weaknesses ([1], 2020). 2. The evaluation of LLMs can improve their natural language processing ability, context understanding ability, and generation ability, ultimately realizing a more intelligent and natural dialogue system ([2], 2024). 3. Controllability in text generation requires maintaining context completeness to guide the output text towards safe, educational, and easily understandable content for children ([3], 2022). 4. Intrinsic evaluations show that higher-level LSTM states capture context-dependent aspects of word meaning, while lower-level states model aspects of syntax ([4], 2018). 5. Evaluation methods and benchmarks serve as crucial components in assessing the performance of LLMs, providing a profound understanding of current LLMs evaluations ([2], 2024). 6. Factual summarization models require evaluation metrics or correction methods to preserve factuality by maintaining context completeness ([3], 2022). 7. Evaluation can help understand the success and failure cases of LLMs in different tasks, enabling the design of more powerful models ([2], 2024). 8. Fact evaluation methods based on natural language inference and question generation answering exhibit superior performance ([2], 2024). 9. Evaluation expanded beyond trustworthiness concerns to include eight critical aspects: toxicity, stereotype bias, adversarial and out-of-distribution robustness, robustness to adversarial demonstrations, privacy, machine ethics, and fairness ([2], 2024). 10. The ongoing evolution of LLMs challenges existing evaluation protocols, reinforcing the need for thorough, multifaceted evaluation techniques ([2], 2024). References:\n[1] 2005.14165v4.pdf (2020)\n[2] 3641289.pdf (2024)\n[3] 2201.05273v4.pdf (2022)\n[4] N18-1202.pdf (2018)\n[5] 2303.18223v16.pdf (2025)"
+}

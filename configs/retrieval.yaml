@@ -1,16 +1,17 @@
 paths:
-  vector_store_dir: data/vector_store  # FAISS index + metadata
+  vector_store_dir: data/vector_store
 
 options:
   # ---------------------------------------------------------
-  # Retrieval core settings (multi-stage)
+  # Retrieval core settings
   # ---------------------------------------------------------
-  final_k: 5                 # number of chunks handed to the LLM
-  oversample_factor: 15       # FAISS candidates = final_k * oversample_factor
-  diversify_sources: true     # used in DiversityPipeline, not in FAISS itself
+  final_k: 5                   # raise from 5 → stabilizes LLM context
+  oversample_factor: 15        # 8 * 15 = 120 FAISS candidates
+
+  diversify_sources: true
 
   # ---------------------------------------------------------
-  # Embedding model for retrieval and diversity
+  # Embedding model
   # ---------------------------------------------------------
   embedding_model: "multi-qa-mpnet-base-dot-v1"
   normalize_embeddings: true
@@ -20,17 +21,17 @@ options:
   # ---------------------------------------------------------
   # Reranker selection
   # ---------------------------------------------------------
-  reranker: "semantic"        # "semantic" or "temporal"
+  reranker: "semantic"
 
-  # Semantic reranker parameters
-  semantic_model: "cross-encoder/ms-marco-MiniLM-L-6-v2"
-  top_k_rerank: 50
-  semantic_weight: 0.9
+  # Improved semantic reranker:
+  semantic_model: "cross-encoder/ms-marco-MiniLM-L-12-v2"
+  top_k_rerank: 100           # increased from 50
+  semantic_weight: 0.95       # emphasize reranker more strongly
 
   # ---------------------------------------------------------
-  # Temporal reranker parameters
+  # Temporal reranking (active only if chosen)
   # ---------------------------------------------------------
-  semantic_threshold: 0.40
+  semantic_threshold: 0.35    # previously too strict
   min_year: 1900
   must_include: []
   blacklist_sources: []

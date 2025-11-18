@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T13-46-13",
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_describe_the_influence_of_",
+  "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[3] 2303.18223v16.pdf (2025)\nChatGPT exhibited superior capacities in communicating with humans: possessing a vast store of knowledge, skill at reasoning on mathematical problems, tracing the context accurately in multi-turn dialogues, and aligning well with human values for safe use. Later on, the plugin mechanism has been supported in ChatGPT, which further extends the capacities of ChatGPT with existing tools or apps. . So far, it seems to be the ever most powerful chatbot in the AI history. . The launch of ChatGPT has a\n\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[1] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[3] 2303.18223v16.pdf (2025)\n. In 2020, Kaplan et al. (the OpenAI team) firstly proposed to model the power-law relationship of model performance with respective to three major factors, namely model size (N), dataset size (D), and the amount of training compute (C), for neural language models.\n\n[3] 2303.18223v16.pdf (2025)\nRecently, pre-trained language models (PLMs) have been proposed by pretraining Transformer models over large-scale corpora, showing strong capabilities in solving various natural language processing (NLP) tasks. Since the researchers have found that model scaling can lead to an improved model capacity, they further investigate the scaling effect by increasing the parameter scale to an even larger size.\n\n[3] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[5] 2205.01068v4.pdf (2022)\nSusan Zhang∗, Stephen Roller∗, Naman Goyal∗, Mikel Artetxe, Moya Chen, Shuohui Chen, Christopher Dewan, Mona Diab, Xian Li, Xi Victoria Lin, Todor Mihaylov, Myle Ott†, Sam Shleifer†, Kurt Shuster, Daniel Simig, Punit Singh Koura, Anjali Sridhar, Tianlu Wang, Luke Zettlemoyer Meta AI {susanz,roller,naman}@fb.com Large language models, which are often trained for hundreds of thousands of compute days, have shown remarkable capabilities for zero- and few-shot learning. Given their computational cos\n\n[3] 2303.18223v16.pdf (2025)\n. Although the GPT-3's paper does not explicitly discuss the emergent abilities of LLMs, we can observe large performance leap that might transcend the basic scaling law, e.g., larger models have significantly stronger ICL ability (illustrated in the original Figure 1.2 of the GPT-3's paper ). Overall, GPT-3 can be viewed as a remarkable landmark in the journey evolving from PLMs to LLMs. . It has empirically proved that scaling the neural networks to a significant size can lead to a huge increa\n\n[3] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[6] 2210.07321v4.pdf (2023)\nWe summarize our key findings as follows: • NLG models have significant potential for abuse in improving scaling and targeting of existing attacks • Platforms that receive text submissions of any kind are likely to face a growing influx of machine-generated text content, particularly as user-friendly tools continue to be developed • Much of the research on NLG-enabled influence operations focuses on AI-generated news articles, while sociological data suggest that machine generated comments may p\n\n[1] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[7] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[6] 2210.07321v4.pdf (2023)\nGiven the strong generative capabilities of Transformer language models, and the corresponding increased risk of associated threat models, Transformer-based models rightly warrant particular emphasis in review.\n\n[1] 3641289.pdf (2024)\n. Wang et al. assessed the internal knowledge capabilities of several large models, namely InstructGPT, ChatGPT-3.5, GPT-4, and BingChat, by examining their ability to answer open questions based on the Natural Questions and TriviaQA datasets.. The evaluation process involved human assessment.\n\n[6] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[8] 1304.1081v1.pdf (1990)\n. In the remaining sections, I demonstrate how the advantages of functional re lations can be realized locally by simple modifica tions to the QPN transformation operations for cases where one or more of the nodes involved are deter ministic. QPNs support two types of qualitative probabilis tic relations. . Influences describe the direction of a probabilistic relation, and synergies describe the in teraction among influences. . The bulk of this analysis concerns qualitative influences; further d\n\n[9] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] 2005.14165v4.pdf (2020)\n[3] 2303.18223v16.pdf (2025)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 2205.01068v4.pdf (2022)\n[6] 2210.07321v4.pdf (2023)\n[7] 0712.3329v1.pdf (2007)\n[8] 1304.1081v1.pdf (1990)\n[9] Expert_Systems.pdf (2016)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.47950807213783264,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -1.5489301308989525,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.5127652287483215,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -2.8243437856435776,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4552932381629944,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -3.5507826656103134,
+      "relevance": 3,
+      "rank": 3,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.3757718801498413,
+      "text": "ChatGPT exhibited superior capacities in communicating with humans: possessing a vast store of knowledge, skill at reasoning on mathematical problems, tracing the context accurately in multi-turn dialogues, and aligning well with human values for safe use. Later on, the plugin mechanism has been supported in ChatGPT, which further extends the capacities of ChatGPT with existing tools or apps. . So far, it seems to be the ever most powerful chatbot in the AI history. . The launch of ChatGPT has a",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -3.691043049097061,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2303.18223v16.pdf::2025::e809ccbb023b"
+    },
+    {
+      "score": 0.37401825189590454,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.013940200209618,
+      "relevance": 3,
+      "rank": 5,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.527459979057312,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.101288467645645,
+      "relevance": 3,
+      "rank": 6,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.4565422236919403,
+      "text": ". In 2020, Kaplan et al. (the OpenAI team) firstly proposed to model the power-law relationship of model performance with respective to three major factors, namely model size (N), dataset size (D), and the amount of training compute (C), for neural language models.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.665692515671253,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2303.18223v16.pdf::2025::3be5c12e591e"
+    },
+    {
+      "score": 0.3708440065383911,
+      "text": "Recently, pre-trained language models (PLMs) have been proposed by pretraining Transformer models over large-scale corpora, showing strong capabilities in solving various natural language processing (NLP) tasks. Since the researchers have found that model scaling can lead to an improved model capacity, they further investigate the scaling effect by increasing the parameter scale to an even larger size.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.769195169210434,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2303.18223v16.pdf::2025::bd0136466967"
+    },
+    {
+      "score": 0.4350603222846985,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.853016182780266,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.40380698442459106,
+      "text": "Susan Zhang∗, Stephen Roller∗, Naman Goyal∗, Mikel Artetxe, Moya Chen, Shuohui Chen, Christopher Dewan, Mona Diab, Xian Li, Xi Victoria Lin, Todor Mihaylov, Myle Ott†, Sam Shleifer†, Kurt Shuster, Daniel Simig, Punit Singh Koura, Anjali Sridhar, Tianlu Wang, Luke Zettlemoyer Meta AI {susanz,roller,naman}@fb.com Large language models, which are often trained for hundreds of thousands of compute days, have shown remarkable capabilities for zero- and few-shot learning. Given their computational cos",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.8890578001737595,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2205.01068v4.pdf::2022::692a7a7ce109"
+    },
+    {
+      "score": 0.3860410451889038,
+      "text": ". Although the GPT-3's paper does not explicitly discuss the emergent abilities of LLMs, we can observe large performance leap that might transcend the basic scaling law, e.g., larger models have significantly stronger ICL ability (illustrated in the original Figure 1.2 of the GPT-3's paper ). Overall, GPT-3 can be viewed as a remarkable landmark in the journey evolving from PLMs to LLMs. . It has empirically proved that scaling the neural networks to a significant size can lead to a huge increa",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.921918541193008,
+      "relevance": 3,
+      "rank": 11,
+      "id": "2303.18223v16.pdf::2025::9c35da8d1ef3"
+    },
+    {
+      "score": 0.4397859275341034,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.961277492344379,
+      "relevance": 3,
+      "rank": 12,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.48754453659057617,
+      "text": "We summarize our key findings as follows: • NLG models have significant potential for abuse in improving scaling and targeting of existing attacks • Platforms that receive text submissions of any kind are likely to face a growing influx of machine-generated text content, particularly as user-friendly tools continue to be developed • Much of the research on NLG-enabled influence operations focuses on AI-generated news articles, while sociological data suggest that machine generated comments may p",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -4.9718626737594604,
+      "relevance": 3,
+      "rank": 13,
+      "id": "2210.07321v4.pdf::2023::796db366cbc3"
+    },
+    {
+      "score": 0.42882785201072693,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.071439124643803,
+      "relevance": 3,
+      "rank": 14,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.4634803831577301,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.081402324140072,
+      "relevance": 3,
+      "rank": 15,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.44492554664611816,
+      "text": "Given the strong generative capabilities of Transformer language models, and the corresponding increased risk of associated threat models, Transformer-based models rightly warrant particular emphasis in review.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.215210139751434,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2210.07321v4.pdf::2023::752d3025a4cc"
+    },
+    {
+      "score": 0.4514507055282593,
+      "text": ". Wang et al. assessed the internal knowledge capabilities of several large models, namely InstructGPT, ChatGPT-3.5, GPT-4, and BingChat, by examining their ability to answer open questions based on the Natural Questions and TriviaQA datasets.. The evaluation process involved human assessment.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.233442574739456,
+      "relevance": 3,
+      "rank": 17,
+      "id": "3641289.pdf::2024::ed4da0927aa2"
+    },
+    {
+      "score": 0.4817788600921631,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.330397665500641,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.3547324538230896,
+      "text": ". In the remaining sections, I demonstrate how the advantages of functional re lations can be realized locally by simple modifica tions to the QPN transformation operations for cases where one or more of the nodes involved are deter ministic. QPNs support two types of qualitative probabilis tic relations. . Influences describe the direction of a probabilistic relation, and synergies describe the in teraction among influences. . The bulk of this analysis concerns qualitative influences; further d",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.367309466004372,
+      "relevance": 3,
+      "rank": 19,
+      "id": "1304.1081v1.pdf::1990::36844f929cae"
+    },
+    {
+      "score": 0.38174575567245483,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of describe the influence of computational power on ai capabilities., noting origins only when explicitly stated.",
+      "final_score": -5.398563042283058,
+      "relevance": 3,
+      "rank": 20,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    }
+  ],
+  "model_output": "The influence of computational power on AI capabilities has been a significant focus in both academia and industry over the years. 1. The Turing Test, proposed in the 1950s [7], has served as a benchmark for assessing the intelligence of machines by discerning if responses are of human or machine origin. A computing machine that passes the Turing Test is generally considered intelligent [1]. 2. Large language models (LLMs) have recently garnered substantial interest due to their impressive performance in solving diverse tasks [1]. The rise and potential of LLMs in data science and analysis has been recognized in recent years [4]. 3. Researchers have found that scaling neural networks can lead to improved model capacity, which is evident in the development of large language models like GPT-3 [3]. However, it's important to note that increasing parameters does not guarantee a higher level of social knowledge [1]. 4. The paper discussing the properties of universal intelligence mentions the ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents [7]. 5. There is an ongoing concern about the potential abuse of NLG models due to their strong generative capabilities, particularly Transformer language models [6]. 6. In the 1990s, a major limitation in building expert systems was the reliance on heuristic and empirical knowledge rather than deep knowledge that includes models of functional and causal relations [9]. References:\n[1] 3641289.pdf (2024)\n[2] 2005.14165v4.pdf (2020)\n[3] 2303.18223v16.pdf (2025)\n[4] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[5] 2205.01068v4.pdf (2022)\n[6] 2210.07321v4.pdf (2023)\n[7] 0712.3329v1.pdf (2007)\n[8] 1304.1081v1.pdf (1990)\n[9] Expert_Systems.pdf (2016)"
+}

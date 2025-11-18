@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_describe_how_ai_systems_learn_from_data_as_presented_in_the_sources___des",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6055451207726296,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2010s": 2,
+    "2020s": 6
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

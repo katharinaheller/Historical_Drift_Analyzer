@@ -1,0 +1,191 @@
+{
+  "timestamp": "2025-11-16T23-09-22",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_how_knowledge_",
+  "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 1301.3781v3.pdf (2013)\n. In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to\n\n[2] NatureDeepReview.pdf (2025)\n. By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.\n\n[3] 0311031v1.pdf (2018)\n. The second main difference between the two models is that the relational model is designed purely for the storage and retrieval of knowledge while the SP model can, in addition, support a range of different kinds of intelligence, to be reviewed in Section 6.\n\n[2] NatureDeepReview.pdf (2025)\n. This paper introduced neural language models, which learn to convert a word symbol into a word vector or word embedding composed of learned semantic features in order to predict the next word in a sequence.. 72.. Cho, K. et al. Learning phrase representations using RNN encoder-decoder 2 8 M A Y 2 0 1 5 | V O L 5 2 1 | N . A T U R E | 4 4 3 for statistical machine translation. . In Proc. –1734. . 73. . Schwenk, H. Continuous space language models. . Computer Speech Lang. 21, natural language wi\n\n[4] 2303.18223v16.pdf (2025)\n. As a major approach, language modeling has been widely studied for language understanding and generation in the past two decades, evolving from statistical language models to neural language models.\n\n[5] Expert_Systems.pdf (2016)\n. ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights,\n\n[1] 1301.3781v3.pdf (2013)\n. We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. . We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set.\n\n[2] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[1] 1301.3781v3.pdf (2013)\n. While this is what makes neural networks so attractive, we decided to explore simpler models that might not be able to represent the data as precisely as neural networks, but can possibly be trained on much more data efficiently.\n\n[3] 0311031v1.pdf (2018)\nPerhaps the most striking difference between the SP system and other objectoriented systems is the extraordinary simplicity of the format for knowledge in the SP system, compared with the variety of constructs used in other system— such as 'classes', 'objects', 'methods', 'messages', 'isa' links, 'part-of' links, and more. This subsections considers a selection of other differences that are somewhat more subtle but are, nevertheless, important. . In Simula and most object-oriented systems that h\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1301.3781v3.pdf (2013)\n[2] NatureDeepReview.pdf (2025)\n[3] 0311031v1.pdf (2018)\n[4] 2303.18223v16.pdf (2025)\n[5] Expert_Systems.pdf (2016)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.4457280933856964,
+      "text": ". In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.1654824540019035,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1301.3781v3.pdf::2013::baadc05c3b47"
+    },
+    {
+      "score": 0.4541171193122864,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.5402394980192184,
+      "relevance": 3,
+      "rank": 2,
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d"
+    },
+    {
+      "score": 0.4568668603897095,
+      "text": ". The second main difference between the two models is that the relational model is designed purely for the storage and retrieval of knowledge while the SP model can, in addition, support a range of different kinds of intelligence, to be reviewed in Section 6.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.6562632024288177,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0311031v1.pdf::2018::a38026a3dce0"
+    },
+    {
+      "score": 0.49776384234428406,
+      "text": ". This paper introduced neural language models, which learn to convert a word symbol into a word vector or word embedding composed of learned semantic features in order to predict the next word in a sequence.. 72.. Cho, K. et al. Learning phrase representations using RNN encoder-decoder 2 8 M A Y 2 0 1 5 | V O L 5 2 1 | N . A T U R E | 4 4 3 for statistical machine translation. . In Proc. –1734. . 73. . Schwenk, H. Continuous space language models. . Computer Speech Lang. 21, natural language wi",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.382057137787342,
+      "relevance": 3,
+      "rank": 4,
+      "id": "NatureDeepReview.pdf::2025::1ba7c2db2c6d"
+    },
+    {
+      "score": 0.40796080231666565,
+      "text": ". As a major approach, language modeling has been widely studied for language understanding and generation in the past two decades, evolving from statistical language models to neural language models.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.559754155576229,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2303.18223v16.pdf::2025::2814364959af"
+    },
+    {
+      "score": 0.4263899326324463,
+      "text": ". ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights, ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.639258801937103,
+      "relevance": 3,
+      "rank": 6,
+      "id": "Expert_Systems.pdf::2016::d305ba40cb6f"
+    },
+    {
+      "score": 0.44352811574935913,
+      "text": ". We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. . We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.88027586042881,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1301.3781v3.pdf::2013::45f6e7aac3e4"
+    },
+    {
+      "score": 0.4217522144317627,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.891342103481293,
+      "relevance": 3,
+      "rank": 8,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.4247336983680725,
+      "text": ". While this is what makes neural networks so attractive, we decided to explore simpler models that might not be able to represent the data as precisely as neural networks, but can possibly be trained on much more data efficiently.",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.014814123511314,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1301.3781v3.pdf::2013::765008e7fe28"
+    },
+    {
+      "score": 0.47355902194976807,
+      "text": "Perhaps the most striking difference between the SP system and other objectoriented systems is the extraordinary simplicity of the format for knowledge in the SP system, compared with the variety of constructs used in other system— such as 'classes', 'objects', 'methods', 'messages', 'isa' links, 'part-of' links, and more. This subsections considers a selection of other differences that are somewhat more subtle but are, nevertheless, important. . In Simula and most object-oriented systems that h",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how knowledge abstraction differs between symbolic and neural models., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.097070544958115,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0311031v1.pdf::2018::1b16efcebb7e"
+    }
+  ],
+  "model_output": "Comparison and contrast between symbolic and neural models regarding knowledge abstraction:\n\nSymbolic models, as described in [5], are designed primarily for storage and retrieval of knowledge. They also serve as a basis for expert systems that perform classification tasks ([5], 2016). The knowledge representation in these models consists of a network and connection weights ([5], 2016). On the other hand, neural models are designed to perform fast intuitive inference that underpins effortless commonsense reasoning ([2], 2025). They utilize big activity vectors, weight matrices, and scalar non-linearities to learn word embeddings composed of semantic features ([2], 2025). Neural language models are used for statistical machine translation ([2], 2015) and have evolved from statistical language models over the past two decades ([4], 2025). In terms of knowledge abstraction, neural models offer more precise representations compared to simpler models but can be computationally expensive on large data sets ([1], 2013). Symbolic models might have a variety of constructs used for knowledge representation such as 'classes', 'objects', and 'methods', whereas the format for knowledge in neural networks is simpler, with big activity vectors and weight matrices ([3], 2018). Insufficient evidence was found regarding how the relational model differs from other object-oriented systems or SP systems in terms of knowledge abstraction as described in [3] (2018). Furthermore, insufficient evidence was found about comparisons between different neural network architectures for knowledge abstraction apart from the comparison made by [1] (2013) in their proposed model architectures. References:\n[1] 1301.3781v3.pdf (2013)\n[2] NatureDeepReview.pdf (2025)\n[3] 0311031v1.pdf (2018)\n[4] 2303.18223v16.pdf (2025)\n[5] Expert_Systems.pdf (2016)"
+}

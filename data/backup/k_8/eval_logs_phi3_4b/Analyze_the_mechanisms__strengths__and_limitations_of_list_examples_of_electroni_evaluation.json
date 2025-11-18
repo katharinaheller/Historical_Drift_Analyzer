@@ -1,0 +1,11 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_list_examples_of_electroni",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.7642977787711486,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 8
+  },
+  "citation_hit_rate": 0.8888888888888888,
+  "model_name": "phi3_4b"
+}

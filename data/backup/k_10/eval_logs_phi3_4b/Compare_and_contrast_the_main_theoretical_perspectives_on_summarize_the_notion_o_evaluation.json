@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_the_notion_o",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.37633002208773664,
+  "dominant_decade": 2000,
+  "decade_counts": {
+    "2000s": 5,
+    "2020s": 4,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

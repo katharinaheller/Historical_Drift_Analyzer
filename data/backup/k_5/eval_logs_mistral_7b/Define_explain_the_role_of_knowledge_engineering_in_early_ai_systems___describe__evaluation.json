@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_explain_the_role_of_knowledge_engineering_in_early_ai_systems___describe_",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.8171561810509179,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 3,
+    "1990s": 1,
+    "2020s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

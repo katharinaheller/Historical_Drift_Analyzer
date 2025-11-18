@@ -1,0 +1,11 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_compare_evaluation_approac",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.41916761444728234,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 10
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

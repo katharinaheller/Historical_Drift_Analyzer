@@ -1,0 +1,155 @@
+{
+  "timestamp": "2025-11-16T21-08-50",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_ai_as_portra",
+  "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 2201.05273v4.pdf (2022)\n. mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[3] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[4] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[5] 1910.10683v4.pdf (2023)\n. By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[1] 2201.05273v4.pdf (2022)\n. Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.\n\n[2] 3641289.pdf (2024)\n. Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2201.05273v4.pdf (2022)\n[2] 3641289.pdf (2024)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n[5] 1910.10683v4.pdf (2023)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.5042694211006165,
+      "text": ". mRASP2 applied contrastive learning to minimize the representation gap of similar sentences Text summarization is the process of condensing text into a brief summary that retains key information from the source text. The mainstream approaches to text summarization based on PLMs are either extractive or abstractive. . Extractive summarization selects a subset of sentences from the source text and concatenates them to form the summary. . In contrast, abstractive summarization generates the summa",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.422988697886467,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2201.05273v4.pdf::2022::9316daacef76"
+    },
+    {
+      "score": 0.44375476241111755,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.8421971574425697,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4507365822792053,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.517964467406273,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    },
+    {
+      "score": 0.532038152217865,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.545846238732338,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.4973301887512207,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.99795389175415,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1910.10683v4.pdf::2023::c685c979c854"
+    },
+    {
+      "score": 0.4463219940662384,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.088782899081707,
+      "relevance": 3,
+      "rank": 6,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.45028555393218994,
+      "text": ". Furthermore, to make summarization models produce more factual summaries, some studies proposed evaluation metrics or correction methods to measure and revise the generated text for preserving factuality.. Controllability. In text generation, many applications need a good control over the output text. . For example, to generate reading materials for kids, we would like to guide the output stories to be safe, educational and easily understandable by children.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.2047692239284515,
+      "relevance": 3,
+      "rank": 7,
+      "id": "2201.05273v4.pdf::2022::bcb2357ff742"
+    },
+    {
+      "score": 0.43562909960746765,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize ai as portrayed in database applications within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.635210700333118,
+      "relevance": 3,
+      "rank": 8,
+      "id": "3641289.pdf::2024::c59652d07ccb"
+    }
+  ],
+  "model_output": "Comparative Analysis of Main Theoretical Perspectives on AI as Applied to Database Applications and Text Summarization:\n\n1. The Turing Test, a measure for evaluating machine intelligence by distinguishing human-like responses from those of machines, has been a significant objective in the evolution of AI ([2], 2024). In contrast, mRASP2, a model applied for text summarization, minimizes the representation gap between similar sentences to create condensed brief summaries while retaining key information ([1], 2022). 2. The SP theory is a new concept of computing and cognition, emphasizing integration and simplification of various concepts in computing and cognitive science, with an application focus on database applications that require a measure of human-like 'intelligence' ([3], 2018). 3. There are two mainstream approaches to text summarization based on PLMs: extractive and abstractive. Extractive summarization selects and concatenates source text sentences for the summary, while abstractive summarization generates a summary independent of the source text ([1], 2022). Some studies propose evaluation metrics or correction methods to make generated summaries more factual ([1], 2022). 4. The rise and potential of generative AI, particularly Large Language Models (LLMs) in the field of data science and analysis, have gained increasing recognition ([6], 2025). Studies on machine-generated text detection focus on evaluating the performance of LLMs in various tasks such as summarization, question answering, text classification, and more ([4], 2023). Regarding the combination of insights from an exploration with scale and the creation of a \"Colossal Clean Crawled Corpus\" for state-of-the-art results on multiple benchmarks ([5], 2023), insufficient evidence is provided to determine if this falls under database applications or text summarization specifically. References:\n[1] 2201.05273v4.pdf (2022)\n[2] 3641289.pdf (2024)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n[5] 1910.10683v4.pdf (2023)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)"
+}

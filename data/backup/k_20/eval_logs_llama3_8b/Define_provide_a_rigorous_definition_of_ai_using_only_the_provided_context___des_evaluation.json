@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_provide_a_rigorous_definition_of_ai_using_only_the_provided_context___des",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.3435624822605743,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 13,
+    "2010s": 2,
+    "2000s": 5
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

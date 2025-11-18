@@ -1,0 +1,11 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_explain_how_ai_differs",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.814631212341912,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

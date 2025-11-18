@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_summarize_how_bias_is_introduced_through_data_or_model_assumptions___desc",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.4241261396507955,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 6,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

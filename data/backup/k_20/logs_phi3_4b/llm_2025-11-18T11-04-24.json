@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T11-04-24",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_how_symbolic_a",
+  "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[2] D14-1162.pdf (2014)\n. In this work we argue that the two classes of methods are not dramatically different at a fundamental level since they both probe the underlying co-occurrence statistics of the corpus, but the efficiency with which the count-based methods capture global statistics can be advantageous.\n\n[3] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] D14-1162.pdf (2014)\n. Our model efficiently leverages statistical information by training only on the nonzero elements in a word-word cooccurrence matrix, rather than on the entire sparse matrix or on individual context windows in a large corpus. The model produces a vector space with meaningful substructure, as evidenced by its performance of 75% on a recent word analogy task. . It also outperforms related models on similarity tasks and named entity recognition. . Semantic vector space models of language represent\n\n[4] 1409.3215v3.pdf (2014)\nThe Connectionist Sequence Classification is another popular technique for mapping sequences to sequences with neural networks, but it assumes a monotonic alignment between the inputs and the outputs.. The main result of this work is the following.\n\n[5] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[6] Expert_Systems.pdf (2016)\n. ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights,\n\n[7] 1304.1106v1.pdf (1990)\n. The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re\n\n[7] 1304.1106v1.pdf (1990)\n. Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime\n\n[3] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[8] NatureDeepReview.pdf (2025)\n. By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.\n\n[8] NatureDeepReview.pdf (2025)\n. Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.\n\n[2] D14-1162.pdf (2014)\nThe result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi\n\n[3] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[9] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[9] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[10] 1301.3781v3.pdf (2013)\n. In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to\n\n[5] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[2] D14-1162.pdf (2014)\n. In contrast, the Hyperspace Analogue to Language (HAL) (Lund and Burgess, 1996), for example, utilizes matrices of \"term-term\" type, i.e., the rows and columns correspond to words and the entries correspond to the number of times a given word occurs in the context of another given word.\n\n[5] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] D14-1162.pdf (2014)\n[3] 3641289.pdf (2024)\n[4] 1409.3215v3.pdf (2014)\n[5] 2210.07321v4.pdf (2023)\n[6] Expert_Systems.pdf (2016)\n[7] 1304.1106v1.pdf (1990)\n[8] NatureDeepReview.pdf (2025)\n[9] 0712.3329v1.pdf (2007)\n[10] 1301.3781v3.pdf (2013)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.3635989725589752,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.571707688271999,
+      "relevance": 3,
+      "rank": 1,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.35982027649879456,
+      "text": ". In this work we argue that the two classes of methods are not dramatically different at a fundamental level since they both probe the underlying co-occurrence statistics of the corpus, but the efficiency with which the count-based methods capture global statistics can be advantageous.",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.646168492734432,
+      "relevance": 3,
+      "rank": 2,
+      "id": "D14-1162.pdf::2014::f2ea9dfababe"
+    },
+    {
+      "score": 0.3688340187072754,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.859751343727112,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4080093502998352,
+      "text": ". Our model efficiently leverages statistical information by training only on the nonzero elements in a word-word cooccurrence matrix, rather than on the entire sparse matrix or on individual context windows in a large corpus. The model produces a vector space with meaningful substructure, as evidenced by its performance of 75% on a recent word analogy task. . It also outperforms related models on similarity tasks and named entity recognition. . Semantic vector space models of language represent",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.221204563975334,
+      "relevance": 3,
+      "rank": 4,
+      "id": "D14-1162.pdf::2014::4672a66fe4a2"
+    },
+    {
+      "score": 0.36776572465896606,
+      "text": "The Connectionist Sequence Classification is another popular technique for mapping sequences to sequences with neural networks, but it assumes a monotonic alignment between the inputs and the outputs.. The main result of this work is the following.",
+      "metadata": {
+        "source_file": "1409.3215v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "1409.3215v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.2436229437589645,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1409.3215v3.pdf::2014::c1de77490c50"
+    },
+    {
+      "score": 0.4093528389930725,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.413924798369408,
+      "relevance": 3,
+      "rank": 6,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.3639664649963379,
+      "text": ". ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights, ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.455008149147034,
+      "relevance": 3,
+      "rank": 7,
+      "id": "Expert_Systems.pdf::2016::d305ba40cb6f"
+    },
+    {
+      "score": 0.40123450756073,
+      "text": ". The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.471850901842117,
+      "relevance": 3,
+      "rank": 8,
+      "id": "1304.1106v1.pdf::1990::0b2161b2f928"
+    },
+    {
+      "score": 0.3999990224838257,
+      "text": ". Although these results, in and of themselves, may not ap pear earth-shattering, they do highlight an im portant point: outsiders (i.e., people other than the system's designers) were able to investigate and experimentally validate a knowledge engi neering exercise. This type of experimentation is rare in AI and almost unheard of in knowl edge engineering; it was possible, in large part, because of the transparency of the Bayes net formalism. . Verifiable, reproducible, and controlled ex perime",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.603661686182022,
+      "relevance": 3,
+      "rank": 9,
+      "id": "1304.1106v1.pdf::1990::6ce03695c520"
+    },
+    {
+      "score": 0.4108167290687561,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.630337104201317,
+      "relevance": 3,
+      "rank": 10,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.38707634806632996,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.73384452611208,
+      "relevance": 3,
+      "rank": 11,
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d"
+    },
+    {
+      "score": 0.3984374403953552,
+      "text": ". Although deep learning and simple reasoning have been used for speech and handwriting recognition for a long time, new paradigms are needed to replace rule-based manipulation of symbolic expressions by operations on large vectors101.. ■ Figure 5 | A recurrent neural network and the unfolding in time of the computation involved in its forward computation.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.815955176949501,
+      "relevance": 3,
+      "rank": 12,
+      "id": "NatureDeepReview.pdf::2025::507e53beaa54"
+    },
+    {
+      "score": 0.4344480037689209,
+      "text": "The result, GloVe, is a new global log-bilinear regression model for the unsupervised learning of word representations that outperforms other models on word analogy, word similarity, and named entity recognition tasks.. Marco Baroni, Georgiana Dinu, and Germ´an Kruszewski.. 2014. Don't count, predict! . A\nsystematic comparison of context-counting vs. context-predicting semantic vectors. . In. . Extracting semantic representations from word cooccurrence statistics: A computational study. . Behavi",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.892954170703888,
+      "relevance": 3,
+      "rank": 13,
+      "id": "D14-1162.pdf::2014::a47cb0a05267"
+    },
+    {
+      "score": 0.37831443548202515,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.9112826734781265,
+      "relevance": 3,
+      "rank": 14,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.4847224950790405,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.999051481485367,
+      "relevance": 3,
+      "rank": 15,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.4585840702056885,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.074579656124115,
+      "relevance": 3,
+      "rank": 16,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.39814743399620056,
+      "text": ". In this paper, we focus on distributed representations of words learned by neural networks, as it was previously shown that they perform significantly better than LSA for preserving linear regularities among words; LDA moreover becomes computationally very expensive on large data sets. Similar to, to compare different model architectures we define first the computational complexity of a model as the number of parameters that need to be accessed to fully train the model. . Next, we will try to ",
+      "metadata": {
+        "source_file": "1301.3781v3.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2013",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "1301.3781v3.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.117103137075901,
+      "relevance": 3,
+      "rank": 17,
+      "id": "1301.3781v3.pdf::2013::baadc05c3b47"
+    },
+    {
+      "score": 0.3837529122829437,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.1308998838067055,
+      "relevance": 3,
+      "rank": 18,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.407382071018219,
+      "text": ". In contrast, the Hyperspace Analogue to Language (HAL) (Lund and Burgess, 1996), for example, utilizes matrices of \"term-term\" type, i.e., the rows and columns correspond to words and the entries correspond to the number of times a given word occurs in the context of another given word.",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.159836992621422,
+      "relevance": 3,
+      "rank": 19,
+      "id": "D14-1162.pdf::2014::6e1d11e34d17"
+    },
+    {
+      "score": 0.4910733103752136,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss how symbolic ai and connectionism differ conceptually within the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -7.181628540158272,
+      "relevance": 3,
+      "rank": 20,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    }
+  ],
+  "model_output": "Symbolic AI and Connectionism are two distinct perspectives on artificial intelligence that differ conceptually in their approach to representing and processing information. Symbolic AI, as described in [1], [6], and [9], is rooted in the idea of reasoning with symbols or rules, much like how humans solve problems. Early examples of symbolic AI include expert systems such as MYCIN ([6]) and ONCOCIN ([6]). These systems use a structured knowledge base to make decisions by applying rules and logic to specific situations. Connectionism, on the other hand, focuses on neural networks and learning from data instead of relying on explicit symbolic rules. This approach is illustrated in [2], [4], [7], [8], and [10]. Connectionist models, such as the Hyperspace Analogue to Language (HAL) ([2]), learn patterns by analyzing statistical co-occurrences in large datasets, rather than following explicit rules or logic. In terms of historical context, the Turing Test was proposed in the 1950s [3], and it has been a significant benchmark for evaluating artificial intelligence systems. More recently, there has been increasing recognition of generative AI, particularly Large Language Models (LLMs) or vision-language models (VLMs), in the field of data science and analysis ([1]). References:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] D14-1162.pdf (2014)\n[3] 3641289.pdf (2024)\n[4] 1409.3215v3.pdf (2014)\n[5] 2210.07321v4.pdf (2023)\n[6] Expert_Systems.pdf (2016)\n[7] 1304.1106v1.pdf (1990)\n[8] NatureDeepReview.pdf (2025)\n[9] 0712.3329v1.pdf (2007)\n[10] 1301.3781v3.pdf (2013)"
+}

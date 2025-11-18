@@ -1,0 +1,1390 @@
+{
+  "timestamp": "2025-11-19T00-39-25",
+  "query_refined": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] Expert_Systems.pdf (2016)\n. The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest\n\n[1] Expert_Systems.pdf (2016)\n. Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is\n\n[1] Expert_Systems.pdf (2016)\n. Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre\n\n[1] Expert_Systems.pdf (2016)\n. After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as\n\n[1] Expert_Systems.pdf (2016)\n. Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] Expert_Systems.pdf (2016)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks_raw": [
+    {
+      "score": 0.6369398832321167,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4",
+      "raw_rank": 18,
+      "final_score": 1.8027274310588837,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.5529031753540039,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e",
+      "raw_rank": 24,
+      "final_score": 1.645124077796936,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.6112549901008606,
+      "text": ". Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::1f0818e4c126",
+      "raw_rank": 20,
+      "final_score": 1.1299989968538284,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.684471845626831,
+      "text": ". After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::bab1f1e7ac80",
+      "raw_rank": 1,
+      "final_score": 0.8937419503927231,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.5530275702476501,
+      "text": ". Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::83662aa275fb",
+      "raw_rank": 23,
+      "final_score": -0.5080322772264481,
+      "relevance": 3,
+      "rank": 5
+    },
+    {
+      "score": 0.49425482749938965,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91",
+      "raw_rank": 34,
+      "final_score": -0.7782625555992126
+    },
+    {
+      "score": 0.5314455628395081,
+      "text": ". The expert system uses this knowledge by exploiting the second main component, that is the inference engine that has several roles including determining how the system reasons using the IF–THEN rules in the knowledge base.. Once the knowledge base is built, the ES can begin making inferences. The most common forms of inferencing are forward and backward chaining. . The process of moving forward from known facts to conclusions that follow them is called forward chaining. . Alternatively, the pr",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::8581249aff42",
+      "raw_rank": 26,
+      "final_score": -1.2126083225011826
+    },
+    {
+      "score": 0.47128936648368835,
+      "text": ". ACE, EURISKO, SOPHIE, PALLADIO, REDESIGN, TALIB, and CADHELP are in electronics, whereas PUFF, SPE, VM, CADUCEOUS, BLUE BOX, ONCOCIN, GUIDON, MYCIN, are ABEL are earlier examples of medical expert systems (1,10).. Connectionist Expert Systems Based on Artificial Neural Networks. A\nneural network can, in fact, serve as the knowledge base for an expert system that does classification tasks. . For a neural network expert system, knowledge representation consists of a network, connection weights, ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::d305ba40cb6f",
+      "raw_rank": 39,
+      "final_score": -1.2745390012860298
+    },
+    {
+      "score": 0.5606372356414795,
+      "text": ". The developers of expert systems and decision support systems have long been aware of the importance of facilities to explain the computer based reasoning to users as a prerequisite to their more widespread acceptance (e.g. Teach & Shortliffe, 1981).. Unless users can come to * This work was supported by the National Science Foundation under grant IRI-<PHONE> to Carnegie Mellon and by the Rockwell International Science Center. . understand the assumptions and reasoning of such systems, it is i",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::40911c1531a3",
+      "raw_rank": 2,
+      "final_score": -1.3442784249782562
+    },
+    {
+      "score": 0.5677946209907532,
+      "text": ". Knowledge-based expert systems will continue to increase individual and social potential by preserving know-how, distributing knowledge more effectively, and improving performance of tasks that require expertise. 24. I. M. Dokas and A. Alapetite, A Development Process Meta-Model for Web Based Expert Systems: The Web Engineering Point of View, Risø National Laboratory, Denmark, 2006. . 25. . R. Islam and K. Andersson, Mohammad Shahadat Hossain, A Web Based Belief Rule Based Expert System to Pre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::3f868e4f3792",
+      "raw_rank": 21,
+      "final_score": -1.3623552173376083
+    },
+    {
+      "score": 0.5578685402870178,
+      "text": "THE APPLICATION OF EXPERT SYSTEM: A REVIEW OF RESEARCH AND APPLICATIONS C. F. Tan1, L. S. Wahidin1, S. N. Khalil1, N. Tamaldin1, J. Hu2 and G.W. M. Rauterberg2 1Integrated Design Research Group, Centre for Advanced Research on Energy, Universiti Teknikal Malaysia Melaka, Durian Tunggal, Melaka, Malaysia 2Designed Intelligence Group, Department of Industrial Design, Eindhoven",
+      "metadata": {
+        "source_file": "tanappli2016.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 7,
+        "origin_chunk_file": "tanappli2016.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "tanappli2016.pdf::2025::c8269e056e0a",
+      "raw_rank": 3,
+      "final_score": -1.5754657834768295
+    },
+    {
+      "score": 0.5520217418670654,
+      "text": ". The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::ce60bd8ccf2e",
+      "raw_rank": 25,
+      "final_score": -1.7147637009620667
+    },
+    {
+      "score": 0.4937106966972351,
+      "text": "Inductive learning is used in the neural network expert systems or connectionist expert systems, and these types of expert systems are advantageous when there is much empirical data and also it is used to prevent knowledge acquisition bottleneck (13–15). The expert system rule application to define training and test patterns is represented in the following medical expert system example.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::a3208e34f3a9",
+      "raw_rank": 35,
+      "final_score": -1.8920290619134903
+    },
+    {
+      "score": 0.5208760499954224,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::132a9876fb38",
+      "raw_rank": 27,
+      "final_score": -3.0729107558727264
+    },
+    {
+      "score": 0.42117834091186523,
+      "text": "Typical applications include management and administration (cost estimation, scheduling), industrial (process control, manufacturing quality control, fault diagnosis), medical (medical diagnosis in specialized domains, bacteria identification), banking (credit and loan decisions), and other fields (forecasting). If training data is available then any domain becomes a candidate for a connectionist expert system. . The neuron model developed by McCulloch and Pitts in 1943 can be regarded as the st",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::145bb6121244",
+      "raw_rank": 68,
+      "final_score": -3.826520562171936
+    },
+    {
+      "score": 0.5140747427940369,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::b551e995a739",
+      "raw_rank": 6,
+      "final_score": -4.46741284430027
+    },
+    {
+      "score": 0.4376525282859802,
+      "text": ". Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::d8a1ca3b655a",
+      "raw_rank": 55,
+      "final_score": -4.8384560495615005
+    },
+    {
+      "score": 0.431133508682251,
+      "text": ". [28), a rule-based expert system that used certainty factors, indicated that the cer tainty factors associated with the rules were not very important to the system's performance MYCIN's diagnoses were, in general, identi cal with the certainty factor engine on or off [3, pages 217-219). In the clinical psychology literature on bootstrapping, Dawes described a series of tests in which he compared judg ments made directly by experts to those gen erated by linear model of the experts. . In additi",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1106v1.pdf::1990::52d0e8f62167",
+      "raw_rank": 13,
+      "final_score": -4.967340171337128
+    },
+    {
+      "score": 0.4283080995082855,
+      "text": ". The system is Turing-equivalent in the sense that it can model the workings of a universal Turing machine but, unlike the universal Turing machine and equivalent models such as Lamda Calculus or Post's Canonical System, it has much more to say about the nature of 'intelligence' (Wolff, 1999a). The entire theory is based on principles of minimum length encoding pioneered by Ray Solomonoff and others (see Li and Vit´anyi ). . •",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::915dff8c9b50",
+      "raw_rank": 63,
+      "final_score": -4.969655849039555
+    },
+    {
+      "score": 0.4965090751647949,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794",
+      "raw_rank": 33,
+      "final_score": -5.110547661781311
+    },
+    {
+      "score": 0.5537217855453491,
+      "text": ". Objects, which are psychologically dissimilar, are shown far apart; the distance between them can be analyzed to interpret the underlying dimensions as to why these objects have been judged relative to one another. Finally, card sorting techniques provide means of achieving a more focused or systematic understanding of the classifications and relationships in the expert's domain. . It is easy to implement and involves writing the names of objects, experiences, or rules in the expert's domain o",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::f4c8c8875d12",
+      "raw_rank": 22,
+      "final_score": -5.404318004846573
+    },
+    {
+      "score": 0.48720985651016235,
+      "text": ". In its overall abstract structure, the SP system is conceived as a system for unsupervised learning—and capabilities in this area have now been demonstrated in the SP70 computer model (Wolff, 2003c, 2002b). The results are good enough to show that the approach is sound but further development is needed to realise the full potential of this model. . • Exact forms of reasoning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::eeca8cb55b8c",
+      "raw_rank": 37,
+      "final_score": -5.571371778845787
+    },
+    {
+      "score": 0.4425455331802368,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b",
+      "raw_rank": 53,
+      "final_score": -5.68295082449913
+    },
+    {
+      "score": 0.4548247754573822,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::e0c690d03c51",
+      "raw_rank": 47,
+      "final_score": -5.716015018522739
+    },
+    {
+      "score": 0.46820592880249023,
+      "text": ". The SP system should be able to organise its knowledge automatically in a way that minimises redundancies and reveals the natural structures in that knowledge, including class hierarchies, part-whole hierarchies and their integration. It should also be able to abstract rules and other generalisations from its stored knowledge, in the manner of datamining systems. . Of course, existing datamining techniques may also be applied to an SP database. . It would take us too far afield to attempt a de",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::367243e3eebc",
+      "raw_rank": 40,
+      "final_score": -5.957822203636169
+    },
+    {
+      "score": 0.44333016872406006,
+      "text": "To measure the intelligence of such diverse systems in a meaningful way we must step back from the specifics of particular systems and establish the underlying fundamentals of what it is that we are really trying to measure. The difficulty of developing an abstract and highly general notion of intelligence is readily apparent. . Consider, for example, the memory and numerical computation tasks that appear in some intelligence tests and which were once regarded as defining hallmarks of human inte",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::78a3ab2819b2",
+      "raw_rank": 52,
+      "final_score": -6.091285854578018
+    },
+    {
+      "score": 0.4509078860282898,
+      "text": ". In the context of knowledge-based systems, a benefit of this versatile 'universal' format for knowledge is the scope that it offers for the seamless integration of different kinds of knowledge, minimising the awkward incompatibilities that arise in many computing systems.. • Ontologies and 'semantic' retrieval of information.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::4e87dbc3eb7f",
+      "raw_rank": 48,
+      "final_score": -6.135999634861946
+    },
+    {
+      "score": 0.41847163438796997,
+      "text": ". There is, of course, a wide variety of existing database systems that exhibit varying degrees and kinds of intelligence and it is reasonable to ask what may be gained by creating yet another system in that domain.. In brief, the attractions of the SP model in this connection are that: • It provides an extraordinarily simple yet versatile format for representing knowledge that facilitates the seamless integration of different kinds of knowledge. . The SP theory is an abstract model of any syste",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::3adede50f7f5",
+      "raw_rank": 70,
+      "final_score": -6.198204204440117
+    },
+    {
+      "score": 0.5518968105316162,
+      "text": "It provides a framework for processing that knowledge that integrates and simplifies a range of artificial intelligence functions including probabilistic and exact forms of reasoning, unsupervised learning, fuzzy pattern recognition, best-match information retrieval, planning, problem solving and others. Prototypes of the SP system have been developed as software simulations running on an ordinary computer. . These prototypes serve to demonstrate what can be done with the system and they provide",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::1d8bb9d6b450",
+      "raw_rank": 4,
+      "final_score": -6.201916754245758
+    },
+    {
+      "score": 0.4492170512676239,
+      "text": ". A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::20199c863ea7",
+      "raw_rank": 49,
+      "final_score": -6.381805844604969
+    },
+    {
+      "score": 0.49253612756729126,
+      "text": ". Domain-specific knowledge is extracted from a number of sources using one or more of the following knowledge elicitation techniques: Structured interviews—specific probing questions are asked (scope of the questions are usually identified in a preliminary interview with the expert). Unstructured interviews—expert is asked to provide all information regarding the domain without specific elaboration of detail. . Unstructured interviews can be used as a preliminary interview to the structured app",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::07759df48af7",
+      "raw_rank": 36,
+      "final_score": -6.409667119383812
+    },
+    {
+      "score": 0.4553157091140747,
+      "text": ". The SP system provides a powerful framework for the representation and processing of ontologies and for the retrieval of information by meanings rather than literal matching of patterns (Wolff, 2003a).. •. Analysis and production of natural languages. The syntax of natural languages may be represented with SP patterns and both the parsing and the production of sentences may be achieved by the formation of multiple alignments (Wolff, 2000). . Non-syntactic 'semantic' structures may also be repr",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::93b27048e722",
+      "raw_rank": 46,
+      "final_score": -6.449776858091354
+    },
+    {
+      "score": 0.49750107526779175,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed",
+      "raw_rank": 32,
+      "final_score": -6.5660975724458694
+    },
+    {
+      "score": 0.5320533514022827,
+      "text": ". (1) Identify the system under attack: We provide a broad attack-centric analysis of machine generated text on society, rather than a system-centric analysis focusing on vulnerabilities to a specific IT system. As such, we identify several discrete technological systems, within the broader societal supersystem.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::97b789622b90",
+      "raw_rank": 5,
+      "final_score": -6.575089126825333
+    },
+    {
+      "score": 0.4658964276313782,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::62810bd2dcad",
+      "raw_rank": 41,
+      "final_score": -6.6391506642103195
+    },
+    {
+      "score": 0.4455108046531677,
+      "text": "•\nDifficulty in integrating domain knowledge: Corresponding to the last point, domain experts often lack the data science and programming skills needed to quickly incorporate their expertise into data analysis tools.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::dbd37eb0b1c1",
+      "raw_rank": 11,
+      "final_score": -6.647982135415077
+    },
+    {
+      "score": 0.4307655096054077,
+      "text": "Perhaps the most striking difference between the SP system and other objectoriented systems is the extraordinary simplicity of the format for knowledge in the SP system, compared with the variety of constructs used in other system— such as 'classes', 'objects', 'methods', 'messages', 'isa' links, 'part-of' links, and more. This subsections considers a selection of other differences that are somewhat more subtle but are, nevertheless, important. . In Simula and most object-oriented systems that h",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::1b16efcebb7e",
+      "raw_rank": 62,
+      "final_score": -6.702606827020645
+    },
+    {
+      "score": 0.4282097816467285,
+      "text": "We explore current trends in the design of LLM-based frameworks, detailing essential features such as planning, reasoning, reflection, multi-agent collaboration, user interface, knowledge integration, and system design, which enable agents to address data-centric problems with minimal human intervention. Furthermore, we analyze several case studies to demonstrate the practical applications of various data agents in realworld scenarios. . Finally, we identify key challenges and propose future res",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::03120c6c5d13",
+      "raw_rank": 64,
+      "final_score": -6.712001204490662
+    },
+    {
+      "score": 0.45606178045272827,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::d93703f6d548",
+      "raw_rank": 44,
+      "final_score": -6.719088688492775
+    },
+    {
+      "score": 0.6119132041931152,
+      "text": ". Building an ES is an iterative process involving the creation of a prototype system and then over a number of cycles of testing, repair, and extension, incrementally improving the system so that it eventually performs in a way that is satisfactory and beneficial to the users. The problem identification, conceptualization, formalization, construction, and testing are the stages of ES development process (4). . Once a system has been built and debugged it is a simple matter to extend its coverag",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::0d59c63e3fa6",
+      "raw_rank": 19,
+      "final_score": -6.847384095191956
+    },
+    {
+      "score": 0.4883972406387329,
+      "text": "Approach 2.1 Model and Architectures......................................... 2.2 Training Dataset.............................................. 2.3 Training Process............................................. 2.4 Evaluation................................................. Results 3.1 Language Modeling, Cloze, and Completion Tasks........................... 3.2 Closed Book Question Answering.................................... 3.3 Translation................................................ 3.4 ",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::b18961a6fe8c",
+      "raw_rank": 7,
+      "final_score": -6.849688619375229
+    },
+    {
+      "score": 0.4383421540260315,
+      "text": "Although this may seem to be a very limited format, it is possible within the system to model a wide range of existing formats for knowledge, including context-free and context-sensitive grammars, condition-action rules, tables, networks and trees of various kinds, including class-inclusion hierarchies, partwhole-hierarchies and discrimination networks. Some examples will be seen below. . In the SP system, a symbol is simply a 'mark' that can be matched with other symbols to decide in each case ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::0eb0ef4f1235",
+      "raw_rank": 54,
+      "final_score": -6.942077144980431
+    },
+    {
+      "score": 0.5096112489700317,
+      "text": "The neural network consists of cells that correspond to symptoms in the input layer, the diseases are presented in the intermediate or hidden layer and neural cells (nodes) for the treatments defined in the output layer. Training patterns consist of 0's (lack of knowledge about presence or absence of the disease), 1's (presence of the disease), and 1's (absence of the disease). . A sample rule from Hepar, a medical expert system for the diagnosis of liver and biliary tract diseases is (16) . The",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::5bf9e2d582d7",
+      "raw_rank": 28,
+      "final_score": -6.989334553480148
+    },
+    {
+      "score": 0.4312807321548462,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70",
+      "raw_rank": 60,
+      "final_score": -7.053541988134384
+    },
+    {
+      "score": 0.4323180615901947,
+      "text": ". Many kinds of knowledge that are outside the scope of the relational model can be accommodated in the SP system and, as we shall see, it overcomes the weaknesses of the relational model in representing hierarchical structures. At the same time, it can accommodate the relational model when that is required.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::e68942176c57",
+      "raw_rank": 59,
+      "final_score": -7.1349205151200294
+    },
+    {
+      "score": 0.42245328426361084,
+      "text": "To address this, they transformed existing fact consistency tasks into binary labels, specifically considering only whether there is a factual conflict with the input text, without factoring in external knowledge. The research discovered that fact evaluation methods founded on natural language inference and question generation answering exhibit superior performance and can complement each other. . Pezeshkpour proposed a novel metric, based on information theory, to assess the inclusion of specif",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::b678961257ae",
+      "raw_rank": 67,
+      "final_score": -7.1687892973423
+    },
+    {
+      "score": 0.4555409848690033,
+      "text": ". As previously mentioned, NLG encompasses a large variety of tasks and research areas, with this brief section serving as context for understanding machine generated text threat models and detection methods.. 2.3.1 Non-Neural Models. Predating the popularization of neural approaches in the NLG domain, a range of systems were used to accomplish NLG tasks. . These early approaches can broadly be summarized as \"rule-based\", though there existed variety in terms of processes, pipelines, and targets",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::6469aa988ef2",
+      "raw_rank": 45,
+      "final_score": -7.188566125929356
+    },
+    {
+      "score": 0.47738271951675415,
+      "text": ". Firstly, we provide an overview from the perspective of evaluation tasks, encompassing general natural language processing tasks, reasoning, medical usage, ethics, education, natural and social sciences, agent applications, and other areas. Secondly, we answer the 'where' and 'how' questions by diving into the evaluation methods and benchmarks, which serve as crucial components in assessing the performance of LLMs. . Then, we summarize the success and failure cases of LLMs in different tasks. ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::c59652d07ccb",
+      "raw_rank": 8,
+      "final_score": -7.216789230704308
+    },
+    {
+      "score": 0.41387754678726196,
+      "text": ". A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0712.3329v1.pdf::2007::763164362c30",
+      "raw_rank": 74,
+      "final_score": -7.256286129355431
+    },
+    {
+      "score": 0.4487137794494629,
+      "text": ". (4) Review whether the analysis is accurate and complete: We have given careful thought to the presented threat models, which are formed from perspectives gained across industry, academia, and government. However, as threat modeling is an iterative process that benefits from diverse perspectives, we greatly encourage further analysis of potential attacks and mitigation measures in future research. . The remainder of this section comprises our threat model analysis, grouped according to a break",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::3b6079b09c89",
+      "raw_rank": 50,
+      "final_score": -7.298942446708679
+    },
+    {
+      "score": 0.42428088188171387,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::e1d85cdbb466",
+      "raw_rank": 65,
+      "final_score": -7.3003228306770325
+    },
+    {
+      "score": 0.4993685483932495,
+      "text": ". CCS Concepts: • Computing methodologies →Machine learning approaches; Neural networks; Natural language generation; • Security and privacy →Human and societal aspects of security and privacy.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::b19c863e302e",
+      "raw_rank": 29,
+      "final_score": -7.3471212685108185
+    },
+    {
+      "score": 0.47111594676971436,
+      "text": ". Before presenting the results from our large-scale empirical study, we review the necessary background topics required to understand our results, including the Transformer model architecture and the downstream tasks we evaluate on.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::ff7415cced87",
+      "raw_rank": 9,
+      "final_score": -7.357045441865921
+    },
+    {
+      "score": 0.43340736627578735,
+      "text": ". In the database world, object-oriented concepts have been developed in the 'entity-relationship model' and the 'enhanced entity-relationship model' (see Connolly and Begg ) and also in a variety of 'object-oriented databases' (see Bertino et al. ). (In the remainder of this paper, the entity-relationship model and enhanced entity-relationship model will be referred to collectively as the entityrelationship model.) . In the SP system, all the object-oriented concepts mentioned in the previous p",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::9b50f5ef2c5b",
+      "raw_rank": 57,
+      "final_score": -7.404379710555077
+    },
+    {
+      "score": 0.4980582296848297,
+      "text": ". Where the full versatility of this scheme is not needed, it is also possible to create networks and hierarchies from patterns like '... ', '... ' and '... ' that can be linked end-to-end by alignment within a multiple alignment. This section briefly reviews aspects of intelligence that have been shown to fall within the scope of the SP system, highlighting those with particular relevance to intelligent databases. . The main points of difference between the SP system and other artificial intell",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::24ea58fd4673",
+      "raw_rank": 31,
+      "final_score": -7.407342933118343
+    },
+    {
+      "score": 0.4225146174430847,
+      "text": "Since the invention of the Simula language for programming and simulation in the 1960s, there has been a growing recognition of the value of organising software and databases into hierarchies of 'classes' and 'subclasses', with 'inheritance' of 'attributes' down each hierarchy to individual 'objects' at the bottom level. An associated idea is that any object may be structured into a hierarchy of 'parts' and 'subparts'. . These 'object-oriented' '... ' . and it would also mean that each of the fi",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::6aa0b001d396",
+      "raw_rank": 66,
+      "final_score": -7.453432157635689
+    },
+    {
+      "score": 0.4332340955734253,
+      "text": "As LLMs continue to play a vital role in both research and daily use, their evaluation becomes increasingly critical, not only at the task level, but also at the society level for better understanding of their potential risks. Over the past years, significant efforts have been made to examine LLMs from various perspectives. . This paper presents a comprehensive review of these evaluation methods for LLMs, focusing on three key dimensions: what to evaluate, where to evaluate, and how to evaluate.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::ed5da3879776",
+      "raw_rank": 58,
+      "final_score": -7.457800418138504
+    },
+    {
+      "score": 0.46495091915130615,
+      "text": "2. conducts a literature review of the recent advances in LLMs from four major aspects, including pre-training (how to pretrain a capable LLM), adaptation (how to effectively adapt pre-trained LLMs for better use), utilization (how to use LLMs for solving various downstream tasks) and capability evaluation (how to evaluate the abilities of LLMs and existing empirical findings). We thoroughly comb the literature and summarize the key findings, techniques, and methods of LLMs. . For this survey, w",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::4853158a418a",
+      "raw_rank": 10,
+      "final_score": -7.474443823099136
+    },
+    {
+      "score": 0.4739399552345276,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3",
+      "raw_rank": 38,
+      "final_score": -7.49102209508419
+    },
+    {
+      "score": 0.417524516582489,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1",
+      "raw_rank": 72,
+      "final_score": -7.582307770848274
+    },
+    {
+      "score": 0.3905739486217499,
+      "text": ". The most that ordinary reasoners can realistically be expected to know, at least implicitly, is how certain they are of various instantiated antecedent conditions and the maximum certainty factors contained in the conclusions of their production rules. Any of the various normative models of reasoning under uncertainty could be candidates for descriptive models of how ordinary people reason. . Some of these candidates could conceivably be ruled out as psychological models in terms of the amount",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1304.1083v1.pdf::1989::ffefa69c12a2",
+      "raw_rank": 15,
+      "final_score": -7.6502391174435616
+    },
+    {
+      "score": 0.4111332297325134,
+      "text": ". The remainder of this survey is organized as follows: Section 2 introduces the background for LLMs and the evolution of GPT-series models, followed by the summarization of available resources for developing LLMs in Section 3. Sections 4, 5, 6, and 7 review and summarize the recent progress from the four aspects of pre-training, adaptation, utilization, and capacity evaluation, respectively. . Then, Section 8 discusses the practical guide for prompt design, and Section 9 reviews the application",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2303.18223v16.pdf::2025::a83bc172bdb8",
+      "raw_rank": 75,
+      "final_score": -7.675153627991676
+    },
+    {
+      "score": 0.4310358166694641,
+      "text": "The rapid rate of progress and diversity of techniques in this burgeoning field can make it difficult to compare different algorithms, tease apart the effects of new contributions, and understand the space of existing methods for transfer learning.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1910.10683v4.pdf::2023::a7d0f7cc72f9",
+      "raw_rank": 61,
+      "final_score": -7.715668961405754
+    },
+    {
+      "score": 0.4461801052093506,
+      "text": "2.1 Definition and Scope In this survey, we use a broad definition of the term \"machine generated text\" which we believe includes all relevant research in the field: We focus our definition of machine generated text on natural language — i.e., text written in human languages that are \"acquired naturally (in [an] operationally defined sense) in association with speech\" — and exclude non-natural language — i.e., logical languages, programming languages, etc. Exclusion of non-natural language align",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::bd1a671a542c",
+      "raw_rank": 51,
+      "final_score": -7.794921934604645
+    },
+    {
+      "score": 0.4600794315338135,
+      "text": "In addition, each of the tables for the subclasses needs a column such as 'StaffNumber' so that the record of an individual in any one subclass can be connected to the corresponding record in the superclass.. Similar principles apply to the division of concepts into parts and subparts. This system works quite well for many applications but it has a number of shortcomings compared with the SP system: • . Using tables to represent classes means that the description of a class must always take the ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::ab789abfb5a4",
+      "raw_rank": 43,
+      "final_score": -7.803217351436615
+    },
+    {
+      "score": 0.3904121518135071,
+      "text": ". Deep learning discovers intricate structure in large data sets by using the backpropagation algorithm to indicate how a machine should change its internal parameters that are used to compute the representation in each layer from the representation in the previous layer. Deep convolutional nets have brought about breakthroughs in processing images, video, speech and audio, whereas recurrent nets have shone light on sequential data such as text and speech. . 4 3 6 | N . A T U R E | V O L 5 2 1 |",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "NatureDeepReview.pdf::2025::1b7bb54a2b2e",
+      "raw_rank": 16,
+      "final_score": -7.8844163864851
+    },
+    {
+      "score": 0.4422268867492676,
+      "text": "We begin with introducing three key aspects of applying PLMs to text generation: 1) how to encode the input into representations preserving input semantics which can be fused into PLMs; 2) how to design an effective PLM to serve as the generation model; and 3) how to effectively optimize PLMs given the reference text and to ensure that the generated texts satisfy special text properties. Then, we show the major challenges arisen in these aspects, as well as possible solutions for them. . We also",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2201.05273v4.pdf::2022::b45e7569ccf5",
+      "raw_rank": 12,
+      "final_score": -7.948840498924255
+    },
+    {
+      "score": 0.49926289916038513,
+      "text": "3.1 Threat Modeling Fundamentals As we anticipate an audience with varying exposure to cybersecurity topics, before we present threat models related to machine generated text, it is helpful to first provide an overview of threat modeling, and characterize the approach taken in this section. A basic example of a common threat model is \"a thief who wants to steal your money\". . We can add detail to this threat model by considering more specific capabilities and objectives that such an attacker mig",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2210.07321v4.pdf::2023::9de497dca2cc",
+      "raw_rank": 30,
+      "final_score": -7.969505287706852
+    },
+    {
+      "score": 0.46468043327331543,
+      "text": ". Therefore, we aim to raise awareness in the community of the importance to LLMs evaluations by reviewing the current evaluation protocols and most importantly, shed light on future research about designing new LLMs evaluation protocols.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::50b3520cf019",
+      "raw_rank": 42,
+      "final_score": -7.978077232837677
+    },
+    {
+      "score": 0.41820400953292847,
+      "text": "Finally, given the broad spectrum of capabilities displayed by GPT-3, we discuss concerns about bias, fairness, and broader societal impacts, and attempt a preliminary analysis of GPT-3's characteristics in this regard.. The remainder of this paper is organized as follows. In Section 2, we describe our approach and methods for training GPT-3 and evaluating it. . Section 3 presents results on the full range of tasks in the zero-, one- and few-shot settings. . Section 4 addresses questions of data",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "2005.14165v4.pdf::2020::e2981918a7fc",
+      "raw_rank": 71,
+      "final_score": -8.005822494626045
+    },
+    {
+      "score": 0.413917601108551,
+      "text": ". Our baseline, the ESIM sequence model from Chen et al., uses a biLSTM to encode the premise and hypothesis, followed by a matrix attention layer, a local inference layer, another biLSTM inference composition layer, and finally a pooling operation before the output layer. Overall, adding ELMo to the ESIM model improves accuracy by an average of 0.7% across five random seeds. . A five member ensemble pushes the overall accuracy to 89.3%, exceeding the previous ensemble best of 88.9%. . Semantic ",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "N18-1202.pdf::2018::b65019079157",
+      "raw_rank": 14,
+      "final_score": -8.021076187491417
+    },
+    {
+      "score": 0.4360924959182739,
+      "text": ". (2) Regarding what to evaluate, we summarize existing tasks in various areas and obtain insightful conclusions on the success and failure case of LLMs (Section 6), providing experience for future research. (3) As for where to evaluate, we summarize evaluation metrics, datasets, and benchmarks to provide a profound understanding of current LLMs evaluations. . In terms of how to evaluate, we explore current protocols and summarize novel evaluation approaches. . (4) We further discuss future chal",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "3641289.pdf::2024::0247478323b2",
+      "raw_rank": 56,
+      "final_score": -8.028783291578293
+    },
+    {
+      "score": 0.416542649269104,
+      "text": "The forward chaining approach is generally preferred in the case of a few and expensive data collection and backward chaining approach is preferred when a specific result is required with respect to large quantity of data (3). The two main tasks related to reasoning issues addressed by the inference engine are the following: 1. . After obtaining the input from the user, the inference engine decides where to start the reasoning process by going through the rules and facts that reside in the stati",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::94c1f0d33748",
+      "raw_rank": 73,
+      "final_score": -8.148709625005722
+    },
+    {
+      "score": 0.3788559138774872,
+      "text": ". The ancestor sets A logic program P together with a goal G, defines an SLD tree each branch of which is a refutation of G using P. no ENs with s, l and b as nodes\") we (essentially) get BNT REE as an SLD-tree.. Each successful branch re (logs of) the probabilities added be>.. = (>.1, >.2,..., An). For any goal G, S has an associated SLD-tree: the one for of the well-known 'Asia' network given in Fig 3. . This is BN19 in Fig 5. . We then used a uniform prior over the set ing a cyclic transition",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "1301.2254v1.pdf::2001::02719e1eecb2",
+      "raw_rank": 17,
+      "final_score": -8.155009932816029
+    },
+    {
+      "score": 0.41852477192878723,
+      "text": ". It is, for example, possible to record that a vehicle has a steering wheel (as in column 2 of Figure 5) without any implication that there may be alternative kinds of steering wheel to be recorded in a field with that name. It is also possible to provide a verbal description of any class, something that is outside the scope of the relational model. . • . Using tables to represent classes means that the record for every individual must have start and end tags for every field in the table regard",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "0311031v1.pdf::2018::2dc9ec8a3e69",
+      "raw_rank": 69,
+      "final_score": -8.167024604976177
+    }
+  ],
+  "chunks_final_to_llm": [
+    {
+      "score": 0.6369398832321167,
+      "text": ". The general architecture of an expert system is presented in Figure 1 and its components are defined as follows (1): • User interface—the mechanism by which the user and the expert system communicate.. • Explanation facility—explains the reasoning of the system to a user. • Working memory—a database of facts used by the rules. . • Inference engine—makes inferences by deciding which rules are satisfied by facts or objects, prioritizes the satisfied rules, and executes the rule with the highest ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::9aef20ca04a4",
+      "raw_rank": 18,
+      "final_score": 1.8027274310588837,
+      "relevance": 3,
+      "rank": 1
+    },
+    {
+      "score": 0.5529031753540039,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e",
+      "raw_rank": 24,
+      "final_score": 1.645124077796936,
+      "relevance": 3,
+      "rank": 2
+    },
+    {
+      "score": 0.6112549901008606,
+      "text": ". Expert systems have emerged around mid-1970s under the umbrella of Artificial Intelligence and as soon as convincing success was attained, the field was transformed into an established branch of computer science. The potential of expert systems that emulate human knowledge and skill has also encouraged the development of many applications in various areas. . Expert systems contain specialized knowledge elicited from a domain expert. . Various expert system building tools or shells exist to gre",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::1f0818e4c126",
+      "raw_rank": 20,
+      "final_score": 1.1299989968538284,
+      "relevance": 3,
+      "rank": 3
+    },
+    {
+      "score": 0.684471845626831,
+      "text": ". After expert systems have moved out of research laboratories during early 1980s, they became more popular and found several application fields such as engineering, chemistry, medicine, industry, and many others. The construction process of expert systems with specialized domain knowledge is defined as knowledge engineering. . Knowledge-based expert systems contain knowledge acquired from periodicals, books, or from domain interviews with human experts. . Expert systems are mostly preferred as ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::bab1f1e7ac80",
+      "raw_rank": 1,
+      "final_score": 0.8937419503927231,
+      "relevance": 3,
+      "rank": 4
+    },
+    {
+      "score": 0.5530275702476501,
+      "text": ". Expert system implementation methods can be classified as classical expert systems, neural expert systems, fuzzy expert systems, rough set-based expert Expert systems have now reached the maturity stage in their development.. The early research has established the viability of this approach. Many commercial systems have been developed since then to show their use in real environments. . These days we find them either as hybrid expert systems or embedded on web pages in the Internet (29–33).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define describe expert systems and their key components., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "id": "Expert_Systems.pdf::2016::83662aa275fb",
+      "raw_rank": 23,
+      "final_score": -0.5080322772264481,
+      "relevance": 3,
+      "rank": 5
+    }
+  ]
+}

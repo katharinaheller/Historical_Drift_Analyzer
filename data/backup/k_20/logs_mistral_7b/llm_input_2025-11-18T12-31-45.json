@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T12-31-45",
+  "query_refined": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[2] 1910.10683v4.pdf (2023)\nOur heuristics are inspired by past work on using Common Crawl as a source of data for NLP: For example, Grave et al. also filter text using an automatic language detector and discard short lines and Smith et al.;. Grave et al.. both perform line-level deduplication.\n\n[3] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[4] 0311031v1.pdf (2018)\n. In current models, the main emphasis is on hill climbing and related techniques that concentrate search in areas that are proving productive without ruling out any part of the search space a priori—and with enough flexibility to be able to escape from 'local peaks'.\n\n[5] D14-1162.pdf (2014)\nThe statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa\n\n[2] 1910.10683v4.pdf (2023)\nWe also introduce our approach for treating every problem as a text-to-text task and describe our \"Colossal Clean Crawled Corpus\" (C4), the Common Crawl-based data set we created as a source of unlabeled text data.. We refer to our model and framework as the \"Text-to-Text Transfer Transformer\" (T5). mechanism after each self-attention layer that attends to the output of the encoder. . The self-attention mechanism in the decoder also uses a form of autoregressive or causal selfattention, which on\n\n[4] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[2] 1910.10683v4.pdf (2023)\n. To address these issues, we used the following heuristics for cleaning up Common Crawl's web extracted text: • We only retained lines that ended in a terminal punctuation mark (i.e. a period, exclamation mark, question mark, or end quotation mark).. • We discarded any page with fewer than 3 sentences and only retained lines that contained at least 5 words. . • . We removed any page that contained any word on the \"List of Dirty, Naughty, Obscene or Otherwise Bad Words\".6 • . Many of the scraped\n\n[6] N18-1202.pdf (2018)\n. We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.\n\n[2] 1910.10683v4.pdf (2023)\nHowever, we opted to create a new data set because prior data sets use a more limited set of filtering heuristics, are not publicly available, and/or are different in scope (e.g. are limited to News data (Zellers et al., 2019; Liu et al., 2019c), comprise only Creative Commons content, or are focused on parallel training data for machine translation ). . To assemble our base data set, we downloaded the web extracted text from April 2019 and applied the aforementioned filtering. . This produces a\n\n[7] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[5] D14-1162.pdf (2014)\n. In this work we argue that the two classes of methods are not dramatically different at a fundamental level since they both probe the underlying co-occurrence statistics of the corpus, but the efficiency with which the count-based methods capture global statistics can be advantageous.\n\n[2] 1910.10683v4.pdf (2023)\n. By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.\n\n[5] D14-1162.pdf (2014)\nOf course a large number of functions satisfy these properties, but one class of functions that we found to work well can be parameterized as, Because all unsupervised methods for learning word vectors are ultimately based on the occurrence statistics of a corpus, there should be commonalities between the models. Nevertheless, certain models remain somewhat opaque in this regard, particularly the recent window-based methods like skip-gram and ivLBL. . Therefore, in this subsection we show how th\n\n[2] 1910.10683v4.pdf (2023)\n. We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.\n\n[8] 2303.18223v16.pdf (2025)\n. As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s\n\n[9] 2201.05273v4.pdf (2022)\nFor example, CALM developed a mutually reinforced pre-training framework with generative and contrastive objectives, thus achieving comparable results to other larger PLMs such as T5 while only being pre-trained on a small corpus for a few steps.. 6.3.1. Satisfying Special Text Properties. In Section 5.3, we introduced three basic text properties. . In this section, we will present three more difficult properties for text generation tasks, i.e., coherence, factuality, and controllability. . Cohe\n\n[7] 0712.3329v1.pdf (2007)\nIn this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo\n\n[4] 0311031v1.pdf (2018)\nRelative probabilities of inferences may be calculated strictly in 3The technique that has been developed in the SP models has advantages compared with standard techniques for dynamic programming: it can process arbitrarily long patterns without excessive demands on memory, it can find many alternative matches, and the 'depth' or thoroughness of searching can be determined by the user. • . Unsupervised learning.\n\n[9] 2201.05273v4.pdf (2022)\n. Liao et al. proposed a speech recognition post-processing model that attempts to transform the incorrect and noisy recognition output into natural language text for humans and downstream tasks by leveraging the Metadata Extraction (MDE) corpus to construct a small task-specific dataset.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 2005.14165v4.pdf (2020)\n[2] 1910.10683v4.pdf (2023)\n[3] Expert_Systems.pdf (2016)\n[4] 0311031v1.pdf (2018)\n[5] D14-1162.pdf (2014)\n[6] N18-1202.pdf (2018)\n[7] 0712.3329v1.pdf (2007)\n[8] 2303.18223v16.pdf (2025)\n[9] 2201.05273v4.pdf (2022)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.3431227505207062,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.8124449774622917,
+      "relevance": 3,
+      "rank": 1,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.4561562240123749,
+      "text": "Our heuristics are inspired by past work on using Common Crawl as a source of data for NLP: For example, Grave et al. also filter text using an automatic language detector and discard short lines and Smith et al.;. Grave et al.. both perform line-level deduplication.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.5869435146451,
+      "relevance": 3,
+      "rank": 2,
+      "id": "1910.10683v4.pdf::2023::69ccccb9e9d1"
+    },
+    {
+      "score": 0.3324511647224426,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.03681044280529,
+      "relevance": 3,
+      "rank": 3,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.3568466901779175,
+      "text": ". In current models, the main emphasis is on hill climbing and related techniques that concentrate search in areas that are proving productive without ruling out any part of the search space a priori—and with enough flexibility to be able to escape from 'local peaks'.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.856114894151688,
+      "relevance": 3,
+      "rank": 4,
+      "id": "0311031v1.pdf::2018::c7eb7751c2f9"
+    },
+    {
+      "score": 0.3943110406398773,
+      "text": "The statistics of word occurrences in a corpus is the primary source of information available to all unsupervised methods for learning word representations, and although many such methods now exist, the question still remains as to how meaning is generated from these statistics, and how the resulting word vectors might represent that meaning. In this section, we shed some light on this question. . We use our insights to construct a new model for word representation which we call GloVe, for Globa",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -5.940466620028019,
+      "relevance": 3,
+      "rank": 5,
+      "id": "D14-1162.pdf::2014::00df45133e01"
+    },
+    {
+      "score": 0.39671003818511963,
+      "text": "We also introduce our approach for treating every problem as a text-to-text task and describe our \"Colossal Clean Crawled Corpus\" (C4), the Common Crawl-based data set we created as a source of unlabeled text data.. We refer to our model and framework as the \"Text-to-Text Transfer Transformer\" (T5). mechanism after each self-attention layer that attends to the output of the encoder. . The self-attention mechanism in the decoder also uses a form of autoregressive or causal selfattention, which on",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.052270740270615,
+      "relevance": 3,
+      "rank": 6,
+      "id": "1910.10683v4.pdf::2023::ec263ec357a5"
+    },
+    {
+      "score": 0.31927332282066345,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.071806587278843,
+      "relevance": 3,
+      "rank": 7,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    },
+    {
+      "score": 0.3546121120452881,
+      "text": ". To address these issues, we used the following heuristics for cleaning up Common Crawl's web extracted text: • We only retained lines that ended in a terminal punctuation mark (i.e. a period, exclamation mark, question mark, or end quotation mark).. • We discarded any page with fewer than 3 sentences and only retained lines that contained at least 5 words. . • . We removed any page that contained any word on the \"List of Dirty, Naughty, Obscene or Otherwise Bad Words\".6 • . Many of the scraped",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.199665129184723,
+      "relevance": 3,
+      "rank": 8,
+      "id": "1910.10683v4.pdf::2023::9570be2f6c19"
+    },
+    {
+      "score": 0.3154774308204651,
+      "text": ". We introduce a new type of deep contextualized word representation that models both (1) complex characteristics of word use (e.g., syntax and semantics), and (2) how these uses vary across linguistic contexts (i.e., to model polysemy). Our word vectors are learned functions of the internal states of a deep bidirectional language model (biLM), which is pretrained on a large text corpus.",
+      "metadata": {
+        "source_file": "N18-1202.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "N18-1202.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.226640686392784,
+      "relevance": 3,
+      "rank": 9,
+      "id": "N18-1202.pdf::2018::77b5ba936913"
+    },
+    {
+      "score": 0.37295812368392944,
+      "text": "However, we opted to create a new data set because prior data sets use a more limited set of filtering heuristics, are not publicly available, and/or are different in scope (e.g. are limited to News data (Zellers et al., 2019; Liu et al., 2019c), comprise only Creative Commons content, or are focused on parallel training data for machine translation ). . To assemble our base data set, we downloaded the web extracted text from April 2019 and applied the aforementioned filtering. . This produces a",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.2580526024103165,
+      "relevance": 3,
+      "rank": 10,
+      "id": "1910.10683v4.pdf::2023::a69fdd35a14a"
+    },
+    {
+      "score": 0.43360602855682373,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.268144875764847,
+      "relevance": 3,
+      "rank": 11,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.34561672806739807,
+      "text": ". In this work we argue that the two classes of methods are not dramatically different at a fundamental level since they both probe the underlying co-occurrence statistics of the corpus, but the efficiency with which the count-based methods capture global statistics can be advantageous.",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.365019463002682,
+      "relevance": 3,
+      "rank": 12,
+      "id": "D14-1162.pdf::2014::f2ea9dfababe"
+    },
+    {
+      "score": 0.4426737427711487,
+      "text": ". By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.370438322424889,
+      "relevance": 3,
+      "rank": 13,
+      "id": "1910.10683v4.pdf::2023::c685c979c854"
+    },
+    {
+      "score": 0.3806822597980499,
+      "text": "Of course a large number of functions satisfy these properties, but one class of functions that we found to work well can be parameterized as, Because all unsupervised methods for learning word vectors are ultimately based on the occurrence statistics of a corpus, there should be commonalities between the models. Nevertheless, certain models remain somewhat opaque in this regard, particularly the recent window-based methods like skip-gram and ivLBL. . Therefore, in this subsection we show how th",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.463746003806591,
+      "relevance": 3,
+      "rank": 14,
+      "id": "D14-1162.pdf::2014::872597d3a9db"
+    },
+    {
+      "score": 0.4398648738861084,
+      "text": ". We also explore the limits of current approaches by scaling up the insights from our systematic study (training models up to 11 billion parameters) to obtain state-of-the-art results in many of the tasks we consider. In order to perform experiments at this scale, we introduce the \"Colossal Clean Crawled Corpus\" (C4), a data set consisting of hundreds of gigabytes of clean English text scraped from the web.",
+      "metadata": {
+        "source_file": "1910.10683v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 67,
+        "origin_chunk_file": "1910.10683v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.497371017932892,
+      "relevance": 3,
+      "rank": 15,
+      "id": "1910.10683v4.pdf::2023::872369300e89"
+    },
+    {
+      "score": 0.37368297576904297,
+      "text": ". As a remarkable contribution, the work in introduced the concept of distributed representation of words and built the word prediction function conditioned on the aggregated context features (i.e., the distributed word vectors). By extending the idea of learning effective features for text data, a general neural network approach was developed to build a unified, end-to-end solution for Fig. . 1: The trends of the cumulative numbers of arXiv papers that contain the keyphrases \"language model\" (s",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.579559087753296,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2303.18223v16.pdf::2025::53cf2c81bbe2"
+    },
+    {
+      "score": 0.3391270041465759,
+      "text": "For example, CALM developed a mutually reinforced pre-training framework with generative and contrastive objectives, thus achieving comparable results to other larger PLMs such as T5 while only being pre-trained on a small corpus for a few steps.. 6.3.1. Satisfying Special Text Properties. In Section 5.3, we introduced three basic text properties. . In this section, we will present three more difficult properties for text generation tasks, i.e., coherence, factuality, and controllability. . Cohe",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.5812701135873795,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2201.05273v4.pdf::2022::35646703e4fd"
+    },
+    {
+      "score": 0.39563655853271484,
+      "text": "In this paper we approach this problem in the following way: We take a number of well known informal definitions of human intelligence that have been given by experts, and extract their essential features. These are then mathematically formalised to produce a general measure of intelligence for arbitrary machines. . We believe that this equation formally captures the concept of machine intelligence in the broadest reasonable sense. . We then show how this formal definition is related to the theo",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.583938360214233,
+      "relevance": 3,
+      "rank": 18,
+      "id": "0712.3329v1.pdf::2007::fbf0fc9f1794"
+    },
+    {
+      "score": 0.31094059348106384,
+      "text": "Relative probabilities of inferences may be calculated strictly in 3The technique that has been developed in the SP models has advantages compared with standard techniques for dynamic programming: it can process arbitrarily long patterns without excessive demands on memory, it can find many alternative matches, and the 'depth' or thoroughness of searching can be determined by the user. • . Unsupervised learning.",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.762949265539646,
+      "relevance": 3,
+      "rank": 19,
+      "id": "0311031v1.pdf::2018::a5df5ebd8067"
+    },
+    {
+      "score": 0.3548678755760193,
+      "text": ". Liao et al. proposed a speech recognition post-processing model that attempts to transform the incorrect and noisy recognition output into natural language text for humans and downstream tasks by leveraging the Metadata Extraction (MDE) corpus to construct a small task-specific dataset.",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define explain the concept of heuristic search as described in the corpus., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -6.848122134804726,
+      "relevance": 3,
+      "rank": 20,
+      "id": "2201.05273v4.pdf::2022::247cd1db24dd"
+    }
+  ]
+}

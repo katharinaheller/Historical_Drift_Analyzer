@@ -1,0 +1,14 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_explain_the_relation_b",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.2957560802719969,
+  "dominant_decade": 1990,
+  "decade_counts": {
+    "2020s": 2,
+    "1990s": 3,
+    "2000s": 2,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

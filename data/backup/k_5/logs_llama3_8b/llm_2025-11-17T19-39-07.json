@@ -1,0 +1,101 @@
+{
+  "timestamp": "2025-11-17T19-39-07",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_the_influence_",
+  "query": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] D14-1162.pdf (2014)\nc⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families\n\n[2] 2303.18223v16.pdf (2025)\nRecently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance\n\n[3] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[4] 2210.07321v4.pdf (2023)\nWe summarize our key findings as follows: • NLG models have significant potential for abuse in improving scaling and targeting of existing attacks • Platforms that receive text submissions of any kind are likely to face a growing influx of machine-generated text content, particularly as user-friendly tools continue to be developed • Much of the research on NLG-enabled influence operations focuses on AI-generated news articles, while sociological data suggest that machine generated comments may p\n\n[5] 1304.1083v1.pdf (1989)\n. Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] D14-1162.pdf (2014)\n[2] 2303.18223v16.pdf (2025)\n[3] 3641289.pdf (2024)\n[4] 2210.07321v4.pdf (2023)\n[5] 1304.1083v1.pdf (1989)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.4710593819618225,
+      "text": "c⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families ",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.6711161583662033,
+      "relevance": 3,
+      "rank": 1,
+      "id": "D14-1162.pdf::2014::b83e2f00e683"
+    },
+    {
+      "score": 0.5055669546127319,
+      "text": "Recently, the research on LLMs has been largely advanced by both academia and industry, and a remarkable progress is the launch of ChatGPT (a powerful AI chatbot developed based on LLMs), which has attracted widespread attention from society. The technical evolution of LLMs has been making an important impact on the entire AI community, which would revolutionize the way how we develop and use AI algorithms. . Considering this rapid technical progress, in this survey, we review the recent advance",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.659442692995071,
+      "relevance": 3,
+      "rank": 2,
+      "id": "2303.18223v16.pdf::2025::ea3b381a808a"
+    },
+    {
+      "score": 0.43335461616516113,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.810716092586517,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.5165899991989136,
+      "text": "We summarize our key findings as follows: • NLG models have significant potential for abuse in improving scaling and targeting of existing attacks • Platforms that receive text submissions of any kind are likely to face a growing influx of machine-generated text content, particularly as user-friendly tools continue to be developed • Much of the research on NLG-enabled influence operations focuses on AI-generated news articles, while sociological data suggest that machine generated comments may p",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.9953018724918365,
+      "relevance": 3,
+      "rank": 4,
+      "id": "2210.07321v4.pdf::2023::796db366cbc3"
+    },
+    {
+      "score": 0.418862909078598,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on discuss the influence of computational linguistics on ai research., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.059327699244022,
+      "relevance": 3,
+      "rank": 5,
+      "id": "1304.1083v1.pdf::1989::e330b10ef834"
+    }
+  ],
+  "model_output": "Comparative Analysis of Theoretical Perspectives on Computational Linguistics and AI Research\n\nThe context provided offers insights into two major theoretical perspectives on computational linguistics' influence on artificial intelligence research: Log Bilinear Models (LBM) and Natural Language Generation (NLG). 1. Log Bilinear Models (LBM):\n   - Origin of regularities in word vectors has remained opaque [1] (event year not stated; described in 2014 PDF [1]). - A new global log bilinear regression model is proposed to make explicit the model properties needed for such regularities to emerge in word vectors [1]. - The evolution of LLMs has made an important impact on the entire AI community, contributing to the development of powerful AI chatbots like ChatGPT [2] (event year not stated; described in 2025 PDF [2]). 2. Natural Language Generation (NLG):\n   - Significant potential for abuse in scaling and targeting of existing attacks using NLG models is recognized [4] (event year not stated; described in 2023 PDF [4]). - Much of the research on NLG-enabled influence operations focuses on AI-generated news articles, while sociological data suggest that machine-generated comments may play a significant role as well [4]. In terms of historical context, the earliest reference provided dates back to 1989 when the focus was on uncertainty in artificial intelligence research rather than computational linguistics or AI chatbots [5]. However, insufficient evidence is available regarding the development and influence of NLG prior to 2023. References:\n[1] D14-1162.pdf (2014)\n[2] 2303.18223v16.pdf (2025)\n[3] 3641289.pdf (2024)\n[4] 2210.07321v4.pdf (2023)\n[5] 1304.1083v1.pdf (1989)"
+}

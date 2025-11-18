@@ -1,0 +1,13 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_list_examples_of_electroni",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.51897381091116,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 13,
+    "2020s": 5,
+    "1990s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

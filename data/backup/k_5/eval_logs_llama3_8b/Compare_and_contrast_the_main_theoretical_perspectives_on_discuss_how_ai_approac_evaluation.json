@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_discuss_how_ai_approac",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.38434290619170064,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 3,
+    "1990s": 1,
+    "1980s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

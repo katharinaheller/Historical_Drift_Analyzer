@@ -1,0 +1,14 @@
+{
+  "query_id": "Define_explain_how_explainable_ai_aligns_with_trustworthy_ai_principles___descri",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.359996749734689,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 14,
+    "2010s": 2,
+    "1990s": 1,
+    "2000s": 3
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

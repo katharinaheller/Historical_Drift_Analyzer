@@ -1,0 +1,13 @@
+{
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_how_probabil",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.4300647153144127,
+  "dominant_decade": 1990,
+  "decade_counts": {
+    "1990s": 5,
+    "2020s": 2,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

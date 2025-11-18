@@ -1,0 +1,188 @@
+{
+  "timestamp": "2025-11-17T03-38-27",
+  "query_refined": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+  "intent": "conceptual",
+  "prompt_final_to_llm": "You are a domain expert in Artificial Intelligence. Provide a precise definition, clarify theoretical foundations, and explain how interpretations evolved across time and publications. Use event years ONLY if explicitly stated in the snippets. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nDefine describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.\n\nContext snippets:\n[1] 0712.3329v1.pdf (2007)\n. We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give\n\n[2] NatureDeepReview.pdf (2025)\n. Representation learning is a set of methods that allows a machine to be fed with raw data and to automatically discover the representations needed for detection or classification.\n\n[1] 0712.3329v1.pdf (2007)\n. In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an\n\n[1] 0712.3329v1.pdf (2007)\n. We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford\n\n[3] 2201.05273v4.pdf (2022)\n. In what follows, we will highlight three classic applications, i.e., machine translation, text summarization and dialogue system, and briefly discuss how to design a task-specific PLM to adapt to specific text generation tasks. 8.1 Machine Translation Machine translation (MT) is the process of automatically translating one language into another. . With the advent of deep learning, Neural Machine Translation (NMT) has emerged as the dominant method in both academic research and commercial use.\n\n[2] NatureDeepReview.pdf (2025)\nFor decades, con structing a pattern-recognition or machine-learning system required careful engineering and considerable domain expertise to design a fea ture extractor that transformed the raw data (such as the pixel values of an image) into a suitable internal representation or feature vector from which the learning subsystem, often a classifier, could detect or classify patterns in the input. Deep learning is making major advances in solving problems that have resisted the best attempts of t\n\n[2] NatureDeepReview.pdf (2025)\nWe think that deep learning will have many more successes in the near future because it requires very little engineering by hand, so it can easily take advantage of increases in the amount of available com putation and data. New learning algorithms and architectures that are currently being developed for deep neural networks will only acceler ate this progress. . Supervised learning The most common form of machine learning, deep or not, is super vised learning. . Imagine that we want to build a\n\n[2] NatureDeepReview.pdf (2025)\n. achine-learning technology powers many aspects of modern society: from web searches to content filtering on social net works to recommendations on e-commerce websites, and it is increasingly present in consumer products such as cameras and smartphones. Machine-learning systems are used to identify objects in images, transcribe speech into text, match news items, posts or products with users' interests, and select relevant results of search. . Increasingly, these applications make use of a clas\n\n[1] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[4] 0311031v1.pdf (2018)\n. Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 0712.3329v1.pdf (2007)\n[2] NatureDeepReview.pdf (2025)\n[3] 2201.05273v4.pdf (2022)\n[4] 0311031v1.pdf (2018)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.47391796112060547,
+      "text": ". We then examine some of the properties of universal intelligence, such as its ability to sensibly order simple learning algorithms and connections to the theory of universal optimal learning agents.. Section 4 overviews other definitions and tests of machine intelligence that have been proposed. Although surveys of the Turing test and its many variants exist, for example [SCA00], as far as we know this section is the first general survey of definitions and tests of machine intelligence. . Give",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.6389307975769043,
+      "relevance": 3,
+      "rank": 1,
+      "id": "0712.3329v1.pdf::2007::d93703f6d548"
+    },
+    {
+      "score": 0.5066090822219849,
+      "text": ". Representation learning is a set of methods that allows a machine to be fed with raw data and to automatically discover the representations needed for detection or classification.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.6553796231746674,
+      "relevance": 3,
+      "rank": 2,
+      "id": "NatureDeepReview.pdf::2025::18f38311376f"
+    },
+    {
+      "score": 0.5714828968048096,
+      "text": ". In this paper we approach the problem of defining machine intelligence as follows: Section 2 overviews well known theories, definitions and tests of intelligence that have been developed by psychologists. Our objective in this section is to gain an understanding of the essence of intelligence in the broadest possible terms. . In particular we are interested in commonly expressed ideas that could be applied to arbitrary systems and contexts, not just humans. . Section 3 takes these key ideas an",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -2.844159722328186,
+      "relevance": 3,
+      "rank": 3,
+      "id": "0712.3329v1.pdf::2007::b551e995a739"
+    },
+    {
+      "score": 0.4421694874763489,
+      "text": ". We are particularly interested in common themes and general perspectives on intelligence that could be applicable to many kinds of systems, as these will form the foundation of our definition of machine intelligence in the next section.. children. [Bin11]. It was found that Binet's test results were a good predictor of children's academic performance. . Lewis Terman of Stanford",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.3591431826353073,
+      "relevance": 3,
+      "rank": 4,
+      "id": "0712.3329v1.pdf::2007::ea49dafed84b"
+    },
+    {
+      "score": 0.4084133505821228,
+      "text": ". In what follows, we will highlight three classic applications, i.e., machine translation, text summarization and dialogue system, and briefly discuss how to design a task-specific PLM to adapt to specific text generation tasks. 8.1 Machine Translation Machine translation (MT) is the process of automatically translating one language into another. . With the advent of deep learning, Neural Machine Translation (NMT) has emerged as the dominant method in both academic research and commercial use. ",
+      "metadata": {
+        "source_file": "2201.05273v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 35,
+        "origin_chunk_file": "2201.05273v4.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.363779917359352,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2201.05273v4.pdf::2022::228a5706d603"
+    },
+    {
+      "score": 0.5079507231712341,
+      "text": "For decades, con structing a pattern-recognition or machine-learning system required careful engineering and considerable domain expertise to design a fea ture extractor that transformed the raw data (such as the pixel values of an image) into a suitable internal representation or feature vector from which the learning subsystem, often a classifier, could detect or classify patterns in the input. Deep learning is making major advances in solving problems that have resisted the best attempts of t",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.4031326919794083,
+      "relevance": 3,
+      "rank": 6,
+      "id": "NatureDeepReview.pdf::2025::3e333976691b"
+    },
+    {
+      "score": 0.47705864906311035,
+      "text": "We think that deep learning will have many more successes in the near future because it requires very little engineering by hand, so it can easily take advantage of increases in the amount of available com putation and data. New learning algorithms and architectures that are currently being developed for deep neural networks will only acceler ate this progress. . Supervised learning The most common form of machine learning, deep or not, is super vised learning. . Imagine that we want to build a ",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.580460011959076,
+      "relevance": 3,
+      "rank": 7,
+      "id": "NatureDeepReview.pdf::2025::129cbe57e6e3"
+    },
+    {
+      "score": 0.493324875831604,
+      "text": ". achine-learning technology powers many aspects of modern society: from web searches to content filtering on social net works to recommendations on e-commerce websites, and it is increasingly present in consumer products such as cameras and smartphones. Machine-learning systems are used to identify objects in images, transcribe speech into text, match news items, posts or products with users' interests, and select relevant results of search. . Increasingly, these applications make use of a clas",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.880652517080307,
+      "relevance": 3,
+      "rank": 8,
+      "id": "NatureDeepReview.pdf::2025::8d61f8f05785"
+    },
+    {
+      "score": 0.5303677320480347,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -3.933845430612564,
+      "relevance": 3,
+      "rank": 9,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.45766130089759827,
+      "text": ". Although more work is required in understanding how the model may be developed for learning, other aspects are sufficiently robust and mature for development into an industrial strength working system.. I am grateful to Thomas Connolly for constructive comments on this article. The responsibility for all errors and oversights is, of course, my own. . M. Abdelguerfiand S. Lavington, editors. . Emerging Trends in Database and Knowledge-base Machines: The Application of Parallel Architectures to ",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Define describe the emergence of machine learning as reflected in the sources., describe its theoretical foundations, and explain how definitions evolved historically across publications.",
+      "final_score": -4.044242464005947,
+      "relevance": 3,
+      "rank": 10,
+      "id": "0311031v1.pdf::2018::62810bd2dcad"
+    }
+  ]
+}

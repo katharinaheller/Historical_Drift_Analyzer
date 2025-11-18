@@ -1,0 +1,12 @@
+{
+  "query_id": "Trace_the_historical_development_and_evolution_of_explain_societal_impacts_of_ai",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6434707388271038,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

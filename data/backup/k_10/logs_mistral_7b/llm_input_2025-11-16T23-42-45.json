@@ -1,0 +1,188 @@
+{
+  "timestamp": "2025-11-16T23-42-45",
+  "query_refined": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[2] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[3] 1304.1081v1.pdf (1990)\n. These conventions are not entirely arbitrary; the non-strict interpretation is notation ally simpler and more broadly applicable in the prob abilistic case, and strictness is required for invertibil ity in the deterministic. Invertibility is necessary for the arc reversal op eration in deterministic models, and can be qual itatively guaranteed only for strict monotone rela tions. . In hybrid models, it makes sense to relax this requirement, allowing deterministic nodes to be come probabilistic\n\n[4] 2205.01068v4.pdf (2022)\n. While this is a significant achievement, the energy cost of creating such a model is still nontrivial, and repeated efforts to replicate a model of this size will only amplify the growing compute footprint of these LLMs. We believe the entire AI community — academic researchers, civil society, policymakers, and industry — must work together to develop clear 125M 6.0e−4 0.5M 350M 3.0e−4 0.5M 1.3B . 2.0e−4 1M 2.7B 1.6e−4 1M 6.7B . 1.2e−4 2M 13B 1.0e−4 4M 30B 1.0e−4 4M 66B 0.8e−4 2M 175B 1.2e−4 2\n\n[5] D14-1162.pdf (2014)\n. Our model efficiently leverages statistical information by training only on the nonzero elements in a word-word cooccurrence matrix, rather than on the entire sparse matrix or on individual context windows in a large corpus. The model produces a vector space with meaningful substructure, as evidenced by its performance of 75% on a recent word analogy task. . It also outperforms related models on similarity tasks and named entity recognition. . Semantic vector space models of language represent\n\n[3] 1304.1081v1.pdf (1990)\n. Indeed, the ability to de rive stronger qualitative conclusions from networks containing deterministic relations is ultimately due to the extra independencies sanctioned by the func tional constraints. Specification of deterministic variables in proba bilistic network representations was introduced by Shachter for numeric influence diagrams. . The hybrid representation scheme presented here extends the qualitative probabilistic network (QPN) formal ism to accommodate determin istic relations.\n\n[6] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\n[5] D14-1162.pdf (2014)\nc⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families\n\n[5] D14-1162.pdf (2014)\nWith this in mind, we choose to use 5To demonstrate the scalability of the model, we also trained it on a much larger sixth corpus, containing 840 billion tokens of web data, but in this case we did not lowercase the vocabulary, so the results are not directly comparable. 6For the model trained on Common Crawl data, we use a larger vocabulary of about 2 million words. . We present results on the word analogy task in Table 2. . The GloVe model performs significantly better than the other baseline\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[2] 3641289.pdf (2024)\n[3] 1304.1081v1.pdf (1990)\n[4] 2205.01068v4.pdf (2022)\n[5] D14-1162.pdf (2014)\n[6] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.45861196517944336,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.760222315788269,
+      "relevance": 3,
+      "rank": 1,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.4332320988178253,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.729810766875744,
+      "relevance": 3,
+      "rank": 2,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4269195795059204,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.314166039228439,
+      "relevance": 3,
+      "rank": 3,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.41495707631111145,
+      "text": ". These conventions are not entirely arbitrary; the non-strict interpretation is notation ally simpler and more broadly applicable in the prob abilistic case, and strictness is required for invertibil ity in the deterministic. Invertibility is necessary for the arc reversal op eration in deterministic models, and can be qual itatively guaranteed only for strict monotone rela tions. . In hybrid models, it makes sense to relax this requirement, allowing deterministic nodes to be come probabilistic",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.779790513217449,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1304.1081v1.pdf::1990::8c3d3831963d"
+    },
+    {
+      "score": 0.4162723422050476,
+      "text": ". While this is a significant achievement, the energy cost of creating such a model is still nontrivial, and repeated efforts to replicate a model of this size will only amplify the growing compute footprint of these LLMs. We believe the entire AI community — academic researchers, civil society, policymakers, and industry — must work together to develop clear 125M 6.0e−4 0.5M 350M 3.0e−4 0.5M 1.3B . 2.0e−4 1M 2.7B 1.6e−4 1M 6.7B . 1.2e−4 2M 13B 1.0e−4 4M 30B 1.0e−4 4M 66B 0.8e−4 2M 175B 1.2e−4 2",
+      "metadata": {
+        "source_file": "2205.01068v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2022",
+        "detected_language": null,
+        "page_count": 30,
+        "origin_chunk_file": "2205.01068v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.01184506714344,
+      "relevance": 3,
+      "rank": 5,
+      "id": "2205.01068v4.pdf::2022::9943acd00d7a"
+    },
+    {
+      "score": 0.44526177644729614,
+      "text": ". Our model efficiently leverages statistical information by training only on the nonzero elements in a word-word cooccurrence matrix, rather than on the entire sparse matrix or on individual context windows in a large corpus. The model produces a vector space with meaningful substructure, as evidenced by its performance of 75% on a recent word analogy task. . It also outperforms related models on similarity tasks and named entity recognition. . Semantic vector space models of language represent",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.049071595072746,
+      "relevance": 3,
+      "rank": 6,
+      "id": "D14-1162.pdf::2014::4672a66fe4a2"
+    },
+    {
+      "score": 0.4150432348251343,
+      "text": ". Indeed, the ability to de rive stronger qualitative conclusions from networks containing deterministic relations is ultimately due to the extra independencies sanctioned by the func tional constraints. Specification of deterministic variables in proba bilistic network representations was introduced by Shachter for numeric influence diagrams. . The hybrid representation scheme presented here extends the qualitative probabilistic network (QPN) formal ism to accommodate determin istic relations. ",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.099110990762711,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1304.1081v1.pdf::1990::b6d3c68f2282"
+    },
+    {
+      "score": 0.5459060072898865,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.161744251847267,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    },
+    {
+      "score": 0.4670388102531433,
+      "text": "c⃝2014 Association for Computational Linguistics Recent methods for learning vector space representations of words have succeeded in capturing fine-grained semantic and syntactic regularities using vector arithmetic, but the origin of these regularities has remained opaque. We analyze and make explicit the model properties needed for such regularities to emerge in word vectors. . The result is a new global logbilinear regression model that combines the advantages of the two major model families ",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.221893027424812,
+      "relevance": 3,
+      "rank": 9,
+      "id": "D14-1162.pdf::2014::b83e2f00e683"
+    },
+    {
+      "score": 0.4308094382286072,
+      "text": "With this in mind, we choose to use 5To demonstrate the scalability of the model, we also trained it on a much larger sixth corpus, containing 840 billion tokens of web data, but in this case we did not lowercase the vocabulary, so the results are not directly comparable. 6For the model trained on Common Crawl data, we use a larger vocabulary of about 2 million words. . We present results on the word analogy task in Table 2. . The GloVe model performs significantly better than the other baseline",
+      "metadata": {
+        "source_file": "D14-1162.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2014",
+        "detected_language": null,
+        "page_count": 12,
+        "origin_chunk_file": "D14-1162.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on explain the emergence of hybrid ai models in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.273649349808693,
+      "relevance": 3,
+      "rank": 10,
+      "id": "D14-1162.pdf::2014::a618faafc284"
+    }
+  ]
+}

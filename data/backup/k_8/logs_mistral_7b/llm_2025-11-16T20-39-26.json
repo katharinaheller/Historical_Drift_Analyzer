@@ -1,0 +1,155 @@
+{
+  "timestamp": "2025-11-16T20-39-26",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_summarize_how_probabil",
+  "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 1304.1082v1.pdf (1990)\n. Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f\n\n[1] 1304.1082v1.pdf (1990)\nA study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason\n\n[1] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[2] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[3] 0311031v1.pdf (2018)\n. A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).\n\n[1] 1304.1082v1.pdf (1990)\nWhile there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than\n\n[1] 1304.1082v1.pdf (1990)\n. By now the most familiar display of qualitative probabilistic information is the Bayesian belief net (and influence diagram), which prȿvi3es a. perspicuous display of purely quahtɀt1ve beliefs about conditional dependence and Independence. Figure 2 provides a belief network for probabilistic knowledge for the \"sneeze\" example. . The nodes depict the key variables. . (NB, we use the abbreviated term \"Cat\" to mean \"the presence of a cat in the vicinity\", and so on.) . As usual, the directed arcs\n\n[4] 2210.07321v4.pdf (2023)\n. To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1082v1.pdf (1990)\n[2] 3641289.pdf (2024)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.46563956141471863,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.112688548862934,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3"
+    },
+    {
+      "score": 0.5028551816940308,
+      "text": "A study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.9655371010303497,
+      "relevance": 3,
+      "rank": 2,
+      "id": "1304.1082v1.pdf::1990::9137bbfbb206"
+    },
+    {
+      "score": 0.5359649658203125,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.205873966217041,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.4607645869255066,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.562256172299385,
+      "relevance": 3,
+      "rank": 4,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.4666672348976135,
+      "text": ". A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.141510233283043,
+      "relevance": 3,
+      "rank": 5,
+      "id": "0311031v1.pdf::2018::20199c863ea7"
+    },
+    {
+      "score": 0.4776456654071808,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.17013531178236,
+      "relevance": 3,
+      "rank": 6,
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1"
+    },
+    {
+      "score": 0.47703805565834045,
+      "text": ". By now the most familiar display of qualitative probabilistic information is the Bayesian belief net (and influence diagram), which prȿvi3es a. perspicuous display of purely quahtɀt1ve beliefs about conditional dependence and Independence. Figure 2 provides a belief network for probabilistic knowledge for the \"sneeze\" example. . The nodes depict the key variables. . (NB, we use the abbreviated term \"Cat\" to mean \"the presence of a cat in the vicinity\", and so on.) . As usual, the directed arcs",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.718502841889858,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1304.1082v1.pdf::1990::74b1cb5531a7"
+    },
+    {
+      "score": 0.5557252168655396,
+      "text": ". To summarize, the major contributions of this work are as follows: • The most complete survey of machine generated text detection to date, including previously omitted feature-based work and findings from recent contemporary research.. • The first detailed review of the threat models enabled by machine generated text, at a critical juncture where NLG models and tools are rapidly improving and proliferating. . • . A meaningful exploration of both topics through the lens of Trustworthy AI (TAI),",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on summarize how probabilistic reasoning contributed to ai evolution in the corpus., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.869198888540268,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::f2298e5175a1"
+    }
+  ],
+  "model_output": "The main theoretical perspectives on probabilistic reasoning that contributed to AI evolution, as evidenced by the provided context snippets, can be categorized into two primary approaches: qualitative belief propagation and rule-based systems. 1. Qualitative Belief Propagation (QBP) [1] (1990):\n   - The QBP approach was inspired by an empirical study of human strategies for uncertain reasoning [1]. - This mode of explanation traces the qualitative effect of evidence through a belief network from one variable to the next [1]. - It provides a comprehensible explanation of probabilistic reasoning, essential for wider acceptance of Bayesian methods in expert systems and decision support systems [1]. 2. Rule-Based Systems (e.g., certainty factors or fuzzy logic) [1] (1990):\n   - While there is evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty, the rule-based alternatives offer little experimental evidence as descriptive models [1]. - A major strength of rule-based systems is their support for probabilistic 'deduction' in one step or via chains of reasoning [3] (2018). Insufficient evidence was found regarding the contributions of abductive and nonmonotonic reasoning to AI evolution. Regarding the Turing Test, it has been a longstanding objective in AI evolution, as stated by [2] (2024), where a computing machine passing the test can be considered intelligent. However, no specific connections between probabilistic reasoning and the Turing Test were found within the provided context snippets. References:\n[1] 1304.1082v1.pdf (1990)\n[2] 3641289.pdf (2024)\n[3] 0311031v1.pdf (2018)\n[4] 2210.07321v4.pdf (2023)"
+}

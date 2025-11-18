@@ -1,4 +1,3 @@
-# ingestion.yaml
 global:
   base_dir: "${PROJECT_ROOT}"
 
@@ -9,24 +8,19 @@ paths:
 
 options:
   language: "aut"
-  pdf_parser: "fitz" #fitz
+  pdf_parser: "fitz"
   parallelism: "auto"
   metadata_fields:
-    #- title
-    #- authors
     - year
-    #- detected_language
-    #- file_size
-    #- toc
 
 chunking:
-  mode: "static"  # "adaptive" chooses optimal chunk sizes automatically
-  chunk_size: 300  # Used only if mode = "static", define the fixed chunk size (in tokens)
-  overlap: 5  # Overlap size in tokens (used when `enable_overlap` is true)
-  enable_overlap: true  # Enable overlapping chunks between adjacent chunks
-  sentence_boundary_detection: true  # Prefer splitting at sentence boundaries to maintain context
-  merge_short_chunks: true  # Merge very short chunks (below min_chunk_length) to preserve context
-  min_chunk_length: 200  # Discard chunks shorter than this threshold (in tokens)
+  mode: "static"
+  chunk_size: 384                 # improved from 300
+  overlap: 40                     # drastically improved from 5
+  enable_overlap: true
+  sentence_boundary_detection: true
+  merge_short_chunks: true
+  min_chunk_length: 100           # more realistic threshold
 
 save_intermediate: true
 log_level: "INFO"

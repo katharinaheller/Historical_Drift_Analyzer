@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_describe_how_reinforcement_learning_is_portrayed_in_the_corpus___describe",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.4171222871093675,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 4,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

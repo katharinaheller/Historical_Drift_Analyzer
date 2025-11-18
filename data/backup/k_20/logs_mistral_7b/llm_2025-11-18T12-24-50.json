@@ -1,0 +1,371 @@
+{
+  "timestamp": "2025-11-18T12-24-50",
+  "query_id": "Compare_and_contrast_the_main_theoretical_perspectives_on_compare_human_reasonin",
+  "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+  "query_refined": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+  "intent": "comparative",
+  "prompt_final_to_llm": "You are a comparative analyst. Compare major frameworks or schools of thought, specifying explicit historical information only when stated in the provided snippets. Never infer missing event years. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nCompare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.\n\nContext snippets:\n[1] 1304.1082v1.pdf (1990)\n. Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f\n\n[2] 1304.1083v1.pdf (1989)\n. Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I\n\n[1] 1304.1082v1.pdf (1990)\nA study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason\n\n[1] 1304.1082v1.pdf (1990)\nWhile there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than\n\n[3] 0311031v1.pdf (2018)\n. The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte\n\n[4] 0712.3329v1.pdf (2007)\n. A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.\n\n[5] 1301.2254v1.pdf (2001)\n. In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.\n\n[6] NatureDeepReview.pdf (2025)\n. By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.\n\n[7] 3641289.pdf (2024)\n. We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed\n\n[1] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[3] 0311031v1.pdf (2018)\n. Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co\n\n[7] 3641289.pdf (2024)\nIn the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.\n\n[8] Expert_Systems.pdf (2016)\n. Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is\n\n[1] 1304.1082v1.pdf (1990)\nThere is a vast literature on human judgment under uncertainty for very simple inference problems, typically with a single hypothesis variable and a single observation (e.g. see Kahneman et al., 1982 and Morgan & Henrion, 1990 for reviews), but relatively little is known about cognitive processes in more complex situations. To improve our insights into this and to seek inspiration for alternative approaches to explanation, we conducted a series of cognitive process-tracing studies. . We recorded\n\n[9] 1304.1106v1.pdf (1990)\n. The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re\n\n[4] 0712.3329v1.pdf (2007)\n. In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk\n\n[7] 3641289.pdf (2024)\n. Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. .\n\n[1] 1304.1082v1.pdf (1990)\n. This can·drastically simplify the explanation, since many real cases seem to be like the example above, where a few (two to four) scenarios turn out to have the bulk of the probability, and the vast mass can be ignored without significant error. Thirdly, in comparisons of the relative probability of pairs of scenarios, only those events with substantially different probabilities are mentioned. . Additional abstraction techniques could provide further simplification. . Some linked variables mig\n\n[1] 1304.1082v1.pdf (1990)\n. However, human qualitative belief propagation appears to trace the impact of evidence locally from node to node, which seems more reminiscent of the quantitative belief propagation or message-passing algorithms developed by Pearl and others than the reduction type algorithms.\n\n[10] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 1304.1082v1.pdf (1990)\n[2] 1304.1083v1.pdf (1989)\n[3] 0311031v1.pdf (2018)\n[4] 0712.3329v1.pdf (2007)\n[5] 1301.2254v1.pdf (2001)\n[6] NatureDeepReview.pdf (2025)\n[7] 3641289.pdf (2024)\n[8] Expert_Systems.pdf (2016)\n[9] 1304.1106v1.pdf (1990)\n[10] 2303.18223v16.pdf (2025)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "retrieved_chunks": [
+    {
+      "score": 0.44876009225845337,
+      "text": ". Since our goal is to produce interpretations of probabilistic reasoning that are more compatible with human reasoning styles, we started out with an empirical study of human strategies for uncertain reasoning. This provided us with the inspiration for the design of two new and contrasting modes of explaining probabilistic reasoning, namely qualitative belief propagation and scenario-based reasoning. . It is useful to distinguish explanation as the communication of static knowledge or beliefs f",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.4497524946928024,
+      "relevance": 3,
+      "rank": 1,
+      "id": "1304.1082v1.pdf::1990::f5d99a04d2d3"
+    },
+    {
+      "score": 0.44315844774246216,
+      "text": ". Although it is widely acknowledged that much of human knowledge is uncertain, it is in the field of artificial intelligence that research on the representation and management of uncertainty in rule based reasoning has been focused (Kanal & Lemmer, 1986; Hink & Woods, 1987). Most of the work on uncertainty in artificial intelligence has so far been normative, stressing issues of mathematical correctness and effectiveness. . The approach taken in this paper is not normative, but descriptive. . I",
+      "metadata": {
+        "source_file": "1304.1083v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1989",
+        "detected_language": null,
+        "page_count": 6,
+        "origin_chunk_file": "1304.1083v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -2.553197368979454,
+      "relevance": 3,
+      "rank": 2,
+      "id": "1304.1083v1.pdf::1989::e330b10ef834"
+    },
+    {
+      "score": 0.4848465025424957,
+      "text": "A study of human reasoning under uncertainty suggests two different strategies for explaining probabilistic reasoning specially attuned to human thinking: The first, qualitative belief propagation, traces the qualitative effect of evidence through a belief network from one variable to the next. This propagation algorithm is an alternative to the graph reduction algorithms of Wellman for inference in qualitative probabilistic networks. . It is based on a qualitative analysis of intercausal reason",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.5939167961478233,
+      "relevance": 3,
+      "rank": 3,
+      "id": "1304.1082v1.pdf::1990::9137bbfbb206"
+    },
+    {
+      "score": 0.47541117668151855,
+      "text": "While there is ample evidence that normatively appealing probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty (e.g. Kahneman et a/. 1982), there is surprisingly little experimental evidence that the rule-based alternatives, such as certainty factors or fuzzy logic, are any better as descriptive models. And even if successful descriptively, the emulative approach would merely reproduce the documented deficiencies of our intuitive reasoning rather than ",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -3.9523306488990784,
+      "relevance": 3,
+      "rank": 4,
+      "id": "1304.1082v1.pdf::1990::b8b9fc9ddce1"
+    },
+    {
+      "score": 0.3912419080734253,
+      "text": ". The SP theory is a new theory of computing and cognition developed with the aim of integrating and simplifying a range of concepts in computing and cognitive science, with a particular emphasis on concepts in artificial intelligence. An overview of the theory is presented in Wolff and more detail may be found in earlier publications cited there. . Amongst other things, the SP theory provides an attractive model for database applications, especially those requiring a measure of human-like 'inte",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.854643136262894,
+      "relevance": 3,
+      "rank": 5,
+      "id": "0311031v1.pdf::2018::e0c690d03c51"
+    },
+    {
+      "score": 0.4562721848487854,
+      "text": ". A fundamental problem in artificial intelligence is that nobody really knows what intelligence is.. The problem is especially acute when we need to consider artificial systems which are significantly different to humans.",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -4.9671634286642075,
+      "relevance": 3,
+      "rank": 6,
+      "id": "0712.3329v1.pdf::2007::763164362c30"
+    },
+    {
+      "score": 0.365429550409317,
+      "text": ". In Uncertainty in Artificial Intelligence: Pro Madigan, D., Andersson, S. A., Perlman, M. D., & Volin sky, C. T.. Bayesian model averaging and model selection for Markov equivalence classes of acycic digraphs. Communications in Statistics: The Philps, D. B., & Smith, A. F. M.. Bayesian model comparison via jump diffusions. . In Gilks, W. R., Richardson, S., & Spiegelhalter, D. (Eds.), Markov Roberts, G. 0.. Markov chain concepts related to sampling algorithms.",
+      "metadata": {
+        "source_file": "1301.2254v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2001",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1301.2254v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.09241708368063,
+      "relevance": 3,
+      "rank": 7,
+      "id": "1301.2254v1.pdf::2001::981a7e9f108a"
+    },
+    {
+      "score": 0.39310958981513977,
+      "text": ". By contrast, neural networks just use big activity vectors, big weight matrices and scalar non-linearities to perform the type of fast 'intui tive' inference that underpins effortless commonsense reasoning.",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.130343608558178,
+      "relevance": 3,
+      "rank": 8,
+      "id": "NatureDeepReview.pdf::2025::ae3679c1842d"
+    },
+    {
+      "score": 0.4947052001953125,
+      "text": ". We consistently maintain the related open-source materials at: INTRODUCTION Understanding the essence of intelligence and establishing whether a machine embodies it poses a compelling question for scientists. It is generally agreed upon that authentic intelligence equips us with reasoning capabilities, enables us to test hypotheses, and prepares for future eventualities. . In particular, Artificial Intelligence (AI) researchers focus on the development of machine-based intelligence, as opposed",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.272254467010498,
+      "relevance": 3,
+      "rank": 9,
+      "id": "3641289.pdf::2024::e1d85cdbb466"
+    },
+    {
+      "score": 0.47446882724761963,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.491875261068344,
+      "relevance": 3,
+      "rank": 10,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.40533214807510376,
+      "text": ". Chief amongst these is the remarkable simplicity of the system combined with its very wide scope, much wider than the great majority of artificial intelligence systems, with the possible exception of unified theories of cognition such as Soar (Laird et al., 1987; Rosenbloom et al., 1993) and ACT-R (Anderson and Lebiere, 1998). . Like those two systems, the development of the SP system was inspired by the writings of Allen Newell, putting the case for greater breadth and depth in theories of co",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.525911793112755,
+      "relevance": 3,
+      "rank": 11,
+      "id": "0311031v1.pdf::2018::d8a1ca3b655a"
+    },
+    {
+      "score": 0.4760388731956482,
+      "text": "In the work of Honovich et al., they conducted a review of current factual consistency evaluation methods and highlighted the absence of a unified comparison framework and the limited reference value of related scores compared to binary labels.",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.60005284845829,
+      "relevance": 3,
+      "rank": 12,
+      "id": "3641289.pdf::2024::f3f9faee6ad8"
+    },
+    {
+      "score": 0.3577152490615845,
+      "text": ". Expert systems (ES) are knowledge-based systems that were one of the earlier research fields in Artificial Intelligence (AI) and can be defined as knowledgeintensive software that can perform some tasks normally requiring human expertise. Expert systems are used to solve specific domain problems and each step of reasoning for a specific problem is determined by the human expert professionally. . So, they behave as an artificial advisory system for a particular problem domain. . Although AI is ",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.847086876630783,
+      "relevance": 3,
+      "rank": 13,
+      "id": "Expert_Systems.pdf::2016::3ff2aebe9c8e"
+    },
+    {
+      "score": 0.4175817668437958,
+      "text": "There is a vast literature on human judgment under uncertainty for very simple inference problems, typically with a single hypothesis variable and a single observation (e.g. see Kahneman et al., 1982 and Morgan & Henrion, 1990 for reviews), but relatively little is known about cognitive processes in more complex situations. To improve our insights into this and to seek inspiration for alternative approaches to explanation, we conducted a series of cognitive process-tracing studies. . We recorded",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -5.866620607674122,
+      "relevance": 3,
+      "rank": 14,
+      "id": "1304.1082v1.pdf::1990::1c5905d87f4b"
+    },
+    {
+      "score": 0.42440009117126465,
+      "text": ". The recent wave of work on Bayes nets, however, has suggested several diferent types of experiments: comparisons of different uncertainty formalisms, competi tions between Bayes nets and rule bases [14). [32), and several diferent approaches to (and motivations for) sensitivity analyses (29]. For the most part, these studies ad dress the behavior of a system; although they are al system-specific, they should have some general implications to the way in which we approach system design. . Our re",
+      "metadata": {
+        "source_file": "1304.1106v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1106v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.010168373584747,
+      "relevance": 3,
+      "rank": 15,
+      "id": "1304.1106v1.pdf::1990::0b2161b2f928"
+    },
+    {
+      "score": 0.4921960234642029,
+      "text": ". In the current paper we explore universal intelligence in much greater detail, in particular the way in which it relates to mainstream views on human intelligence and other proposed definitions of machine intelligence. Human intelligence is an enormously rich topic with a complex intellectual, social and political history. . For an overview the interested reader might want to consult \"Handbook of Intelligence\" . [Ste00] edited by R. J. Sternberg. . Our objective in this section is simply to sk",
+      "metadata": {
+        "source_file": "0712.3329v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2007",
+        "detected_language": null,
+        "page_count": 49,
+        "origin_chunk_file": "0712.3329v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.030864730477333,
+      "relevance": 3,
+      "rank": 16,
+      "id": "0712.3329v1.pdf::2007::175d12dd01ed"
+    },
+    {
+      "score": 0.448533833026886,
+      "text": ". Furthermore, the ongoing evolution of LLMs has also presented novel aspects for evaluation, thereby challenging existing evaluation protocols and reinforcing the need for thorough, multifaceted evaluation techniques. While existing research such as Bubeck et al. claimed that GPT-4 can be seen as sparks of AGI, others contest this claim due to the human-crafted nature of its evaluation approach. . This paper serves as the first comprehensive survey on the evaluation of large language models. . ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.106967970728874,
+      "relevance": 3,
+      "rank": 17,
+      "id": "3641289.pdf::2024::1049e7043b91"
+    },
+    {
+      "score": 0.3950730562210083,
+      "text": ". This can·drastically simplify the explanation, since many real cases seem to be like the example above, where a few (two to four) scenarios turn out to have the bulk of the probability, and the vast mass can be ignored without significant error. Thirdly, in comparisons of the relative probability of pairs of scenarios, only those events with substantially different probabilities are mentioned. . Additional abstraction techniques could provide further simplification. . Some linked variables mig",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.109363287687302,
+      "relevance": 3,
+      "rank": 18,
+      "id": "1304.1082v1.pdf::1990::d12be7bfee56"
+    },
+    {
+      "score": 0.4276975095272064,
+      "text": ". However, human qualitative belief propagation appears to trace the impact of evidence locally from node to node, which seems more reminiscent of the quantitative belief propagation or message-passing algorithms developed by Pearl and others than the reduction type algorithms.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.1153599396348,
+      "relevance": 3,
+      "rank": 19,
+      "id": "1304.1082v1.pdf::1990::6b95ac546eef"
+    },
+    {
+      "score": 0.3750796318054199,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Compare and contrast the main theoretical perspectives on compare human reasoning and artificial reasoning as presented in the sources., grounding historical claims only in explicit snippet content.",
+      "final_score": -6.135170578956604,
+      "relevance": 3,
+      "rank": 20,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    }
+  ],
+  "model_output": "Comparative Analysis of Main Theoretical Perspectives on Human and Artificial Reasoning:\n\n1. Qualitative Belief Propagation and Scenario-Based Reasoning (1990) [1]\n   - This approach is based on empirical studies of human strategies for uncertain reasoning, which inspired the design of two new modes for explaining probabilistic reasoning attuned to human thinking: qualitative belief propagation and scenario-based reasoning. The former traces the qualitative effect of evidence through a belief network from one variable to the next. 2. Normative Approach in Artificial Intelligence (1989, 1990) [2, 1]\n   - Most work on uncertainty in artificial intelligence has been normative, focusing on mathematical correctness and effectiveness. However, it has been acknowledged that many probabilistic and decision theoretic schemes are poor models of human reasoning under uncertainty. 3. Simplicity Principle Theory (SP) (2018, 2024) [3, 7]\n   - SP theory is a new theory of computing and cognition with an emphasis on concepts in artificial intelligence. It provides an attractive model for database applications, especially those requiring a measure of human-like 'intuitive' inference. The SP system has a wide scope, similar to other unified theories of cognition like Soar and ACT-R. 4. Universal Intelligence (2007, 2025) [4, 10]\n   - There is no single agreed-upon definition of intelligence, but the current paper explores universal intelligence in greater detail, relating it to mainstream views on human intelligence and other proposed definitions of machine intelligence. The Turing Test has been explored since the 1950s for mastering language intelligence by machines. References:\n[1] 1304.1082v1.pdf (1990)\n[2] 1304.1083v1.pdf (1989)\n[3] 0311031v1.pdf (2018)\n[4] 0712.3329v1.pdf (2007)\n[5] 1301.2254v1.pdf (2001)\n[6] NatureDeepReview.pdf (2025)\n[7] 3641289.pdf (2024)\n[8] Expert_Systems.pdf (2016)\n[9] 1304.1106v1.pdf (1990)\n[10] 2303.18223v16.pdf (2025)"
+}

@@ -1,0 +1,11 @@
+{
+  "query_id": "Define_what_is_an_intelligent_database_in_the_sp_theory_context___describe_its_t",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5378370411731863,
+  "dominant_decade": 2010,
+  "decade_counts": {
+    "2010s": 20
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

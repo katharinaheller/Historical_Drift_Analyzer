@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_explain_the_concept_of_heuristic_search_as_described_in_the_corpus___desc",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.4317464188113702,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 5,
+    "2010s": 4,
+    "2000s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "mistral_7b"
+}

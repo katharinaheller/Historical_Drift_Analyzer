@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_how_did_the_definition_of_ai_evolve_across_the_sources___describe_its_the",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.3013587907145231,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 7,
+    "2010s": 1,
+    "2000s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

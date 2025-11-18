@@ -1,0 +1,14 @@
+{
+  "query_id": "Analyze_the_mechanisms__strengths__and_limitations_of_summarize_arguments_for_hu",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.38369961337528097,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 13,
+    "2010s": 4,
+    "1980s": 2,
+    "1990s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}

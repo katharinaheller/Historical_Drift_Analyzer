@@ -1,0 +1,368 @@
+{
+  "timestamp": "2025-11-18T11-15-13",
+  "query_refined": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+  "intent": "analytical",
+  "prompt_final_to_llm": "You are a rigorous AI researcher. Analyze mechanisms, methodologies, and implications over time. Event years may only be used if explicitly present in the snippet text. Use numeric IEEE-style citations [1], [2], etc., for statements supported by the provided snippets. Each number corresponds to one unique PDF listed below. Multiple snippets originating from the same PDF share the same number. Never assign multiple citation numbers to the same source.\n\n**Your final answer MUST end with a separate section titled 'References'.**\nThis section MUST list all unique PDFs exactly once, in the following strict format:\n[n] FILENAME.pdf (YEAR)\n\nDo not fabricate author names, journals, or article titles — only use the given filename and metadata year.\n\nTemporal Attribution Rules:\n1. You may ONLY use event years that appear explicitly in the snippet text.\n2. If the snippet text explicitly contains a year (e.g., 'In the 1950s', 'In 1976'), treat that as the factual historical reference.\n3. If a snippet DOES NOT contain an explicit event year, you MUST NOT guess, infer, approximate, or estimate any year.\n   Instead, write exactly: '(event year not stated; described in YEAR PDF [n])'.\n4. The metadata publication year indicates only when the PDF was published, not when the events occurred.\n5. Never replace or override an explicit event year with a metadata year.\n6. Never deduce approximate historical periods from textual content (e.g., never infer '1990s' unless explicitly stated).\n\nOutput Structuring Guidelines:\n- For every key historical or conceptual point:\n  • If an explicit event year exists in the snippet → include it.\n  • If no explicit event year exists → write '(event year not stated; described in YEAR PDF [n])'.\n- Recommended dual-year structure:\n  • (1950s; described in 2025 PDF [7]) The Turing Test was proposed as a benchmark.\nThis dual timestamping ensures full temporal grounding without hallucination.\n\nIMPORTANT:\n**Your output MUST end with a final section titled 'References'.**\nThis section must list all unique PDFs exactly once in IEEE numeric format.\n\nRefined query:\nAnalyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.\n\nContext snippets:\n[1] 3641289.pdf (2024)\n. A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse\n\n[2] Expert_Systems.pdf (2016)\n. The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.\n\n[3] 2005.14165v4.pdf (2020)\n. By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).\n\n[2] Expert_Systems.pdf (2016)\n. The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).\n\n[2] Expert_Systems.pdf (2016)\n. The expert system uses this knowledge by exploiting the second main component, that is the inference engine that has several roles including determining how the system reasons using the IF–THEN rules in the knowledge base.. Once the knowledge base is built, the ES can begin making inferences. The most common forms of inferencing are forward and backward chaining. . The process of moving forward from known facts to conclusions that follow them is called forward chaining. . Alternatively, the pr\n\n[4] 0311031v1.pdf (2018)\n. A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).\n\n[1] 3641289.pdf (2024)\n. Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and\n\n[5] 2210.07321v4.pdf (2023)\nAs such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.\n\n[3] 2005.14165v4.pdf (2020)\nHowever, a major limitation to this approach is that while the architecture is task-agnostic, there is still a need for task-specific datasets and task-specific fine-tuning: to achieve strong performance on a desired task typically requires fine-tuning on a dataset of thousands to hundreds of thousands of examples specific to that task. Removing this limitation would be desirable, for several reasons. . Second, the potential to exploit spurious correlations in training data fundamentally grows w\n\n[5] 2210.07321v4.pdf (2023)\nThe EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.\n\n[7] 1304.1081v1.pdf (1990)\nThis restriction can be exploited in qualitative probabilistic reasoning by introducing deterministic variables and mod ifying the inference rules to produce stronger conclusions in the presence of functional rela tions.\n\n[1] 3641289.pdf (2024)\nThis statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc\n\n[8] NatureDeepReview.pdf (2025)\nThis overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat\n\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n. The barriers to data analysis primarily exist in the following areas: •\nLack of systematic statistical training: Individuals without a background in statistics may find it challenging to understand which types of analysis are feasible, even when data is presented to them. As data and models become increasingly complex, gaining a solid understanding of current statistical techniques typically requires at least a Master's level of statistical training. . •\nSoftware limitation: Simple data analys\n\n[9] 2303.18223v16.pdf (2025)\n. Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.\n\n[5] 2210.07321v4.pdf (2023)\n. It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.\n\n[10] 1304.1082v1.pdf (1990)\n. Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.\n\n[4] 0311031v1.pdf (2018)\nThat said, most applications that have been developed to date have a 'declarative' flavour and the ways in which the system may be applied to arithmetic or other mathematical operations have not yet been explored in any depth (but see Wolff ). This has a bearing on how the system may be developed for database applications, as will be discussed in Section 7. . Many problems in artificial intelligence are known to be intractable if one wishes to obtain the best possible answer. . But if one is con\n\n[1] 3641289.pdf (2024)\nComparison Traditional ML Deep Learning LLMs Training Data Size Large Large Very large Feature Engineering Manual Automatic Automatic Model Complexity Limited Complex Very Complex Interpretability Good Poor Poorer Performance Moderate High Highest Hardware Requirements Low High Very High AI model evaluation is an essential step in assessing the performance of a model. There are some standard model evaluation protocols, including k-fold cross-validation, holdout validation, leave one out cross-va\n\nAnswer the refined query using only the context above. Use numeric citations. If a claim lacks evidence write 'insufficient evidence'.\n\nReference index:\n[1] 3641289.pdf (2024)\n[2] Expert_Systems.pdf (2016)\n[3] 2005.14165v4.pdf (2020)\n[4] 0311031v1.pdf (2018)\n[5] 2210.07321v4.pdf (2023)\n[6] A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf (2025)\n[7] 1304.1081v1.pdf (1990)\n[8] NatureDeepReview.pdf (2025)\n[9] 2303.18223v16.pdf (2025)\n[10] 1304.1082v1.pdf (1990)\n\nIMPORTANT OUTPUT REQUIREMENTS:\nYour final answer must end with a section titled 'References'.\nList all unique PDFs exactly once in the format:\n[n] FILENAME.pdf (YEAR)\nThis section must be at the end of your output.",
+  "chunks_final_to_llm": [
+    {
+      "score": 0.48869308829307556,
+      "text": ". A significant takeaway from previous attempts is the paramount importance of AI evaluation, which serves as a critical tool to identify current system limitations and inform the design of more powerful models. Recently, large language models (LLMs) have incited substantial interest across both academic and industrial domains. . As demonstrated by existing work, the great performance of LLMs has raised promise that they could be AGI in this era. . LLMs possess the capabilities to solve diverse ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -2.048005260527134,
+      "relevance": 3,
+      "rank": 1,
+      "id": "3641289.pdf::2024::f744bf595495"
+    },
+    {
+      "score": 0.4410964250564575,
+      "text": ". The basic limitation currently, is to build expert systems with heuristic and empirical knowledge rather than deep knowledge, which include models of the functional and causal relations that underlie a problem. In the future, more systems might be developed using functional and causal models using a variety of representations. . Using multiple sources of knowledge (i.e., domain experts) in a cooperative manner is still a difficult problem waiting to be tackled.",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -2.8141739666461945,
+      "relevance": 3,
+      "rank": 2,
+      "id": "Expert_Systems.pdf::2016::9a58c34e6d91"
+    },
+    {
+      "score": 0.4497984051704407,
+      "text": ". By presenting a broad characterization of GPT-3's strengths and weaknesses, including these limitations, we hope to stimulate study of few-shot learning in language models and draw attention to where progress is most needed. A heuristic sense of the overall results can be seen in Figure 1.3, which aggregates the various tasks (though it should not be seen as a rigorous or meaningful benchmark in itself).",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -2.9621015042066574,
+      "relevance": 3,
+      "rank": 3,
+      "id": "2005.14165v4.pdf::2020::26b7dadfcc8c"
+    },
+    {
+      "score": 0.5007208585739136,
+      "text": ". The knowledge base of this expert system consist of various IF–THEN rules that are related with diagnosing illnesses to achieve the more appropriate treatment and this system can be implemented as a three layered-neural network as in the following example (13).",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -3.6305146515369415,
+      "relevance": 3,
+      "rank": 4,
+      "id": "Expert_Systems.pdf::2016::ce60bd8ccf2e"
+    },
+    {
+      "score": 0.40780019760131836,
+      "text": ". The expert system uses this knowledge by exploiting the second main component, that is the inference engine that has several roles including determining how the system reasons using the IF–THEN rules in the knowledge base.. Once the knowledge base is built, the ES can begin making inferences. The most common forms of inferencing are forward and backward chaining. . The process of moving forward from known facts to conclusions that follow them is called forward chaining. . Alternatively, the pr",
+      "metadata": {
+        "source_file": "Expert_Systems.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2016",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "Expert_Systems.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.59119188785553,
+      "relevance": 3,
+      "rank": 5,
+      "id": "Expert_Systems.pdf::2016::8581249aff42"
+    },
+    {
+      "score": 0.4627598524093628,
+      "text": ". A major strength of the SP system is its support for probabilistic 'deduction' in one step or via chains of reasoning, abductive reasoning, and nonmonotonic reasoning with default values (Wolff, 1999b).",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.637006312608719,
+      "relevance": 3,
+      "rank": 6,
+      "id": "0311031v1.pdf::2018::20199c863ea7"
+    },
+    {
+      "score": 0.47777655720710754,
+      "text": ". Within the scope of AI, the Turing Test, a widely recognized test for assessing intelligence by discerning if responses are of human or machine origin, has been a longstanding objective in AI evolution. It is generally believed among researchers that a computing machine that successfully passes the Turing Test can be considered as intelligent. . Consequently, when viewed from a wider lens, the chronicle of AI can be depicted as the timeline of creation and evaluation of intelligent models and ",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.80289077013731,
+      "relevance": 3,
+      "rank": 7,
+      "id": "3641289.pdf::2024::85dff6bd2fb4"
+    },
+    {
+      "score": 0.43578383326530457,
+      "text": "As such, trustworthy AI in the context of NLG necessitates understanding the areas where such models may be abused, and how these abuses may be prevented (either with detection technologies, moderation mechanisms, government legislation, or platform policies). When discussing attacks, we discuss not only the direct impact on targets, but also the broader impacts of both attacks and mitigation measures on trust.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -4.908500798046589,
+      "relevance": 3,
+      "rank": 8,
+      "id": "2210.07321v4.pdf::2023::a3adc0e308cc"
+    },
+    {
+      "score": 0.3651464283466339,
+      "text": "However, a major limitation to this approach is that while the architecture is task-agnostic, there is still a need for task-specific datasets and task-specific fine-tuning: to achieve strong performance on a desired task typically requires fine-tuning on a dataset of thousands to hundreds of thousands of examples specific to that task. Removing this limitation would be desirable, for several reasons. . Second, the potential to exploit spurious correlations in training data fundamentally grows w",
+      "metadata": {
+        "source_file": "2005.14165v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2020",
+        "detected_language": null,
+        "page_count": 75,
+        "origin_chunk_file": "2005.14165v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.090089611709118,
+      "relevance": 3,
+      "rank": 9,
+      "id": "2005.14165v4.pdf::2020::13078feeea03"
+    },
+    {
+      "score": 0.39252281188964844,
+      "text": "The EU ethics guidelines for trustworthy AI emphasize that unintended or dual-use applications of AI systems should be taken into account, and that steps should be taken to prevent and mitigate abuse of AI systems to cause harm.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.400980710983276,
+      "relevance": 3,
+      "rank": 10,
+      "id": "2210.07321v4.pdf::2023::44d5f016167a"
+    },
+    {
+      "score": 0.3836001753807068,
+      "text": ". The rise and potential of generative AI, particularly Large Language Models (LLMs) or vision language models (VLMs) in the field of data science and analysis have gained increasing recognition in recent years.",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.581115499138832,
+      "relevance": 3,
+      "rank": 11,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::53ec537880b8"
+    },
+    {
+      "score": 0.41507020592689514,
+      "text": "This restriction can be exploited in qualitative probabilistic reasoning by introducing deterministic variables and mod ifying the inference rules to produce stronger conclusions in the presence of functional rela tions.",
+      "metadata": {
+        "source_file": "1304.1081v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 8,
+        "origin_chunk_file": "1304.1081v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.59705313295126,
+      "relevance": 3,
+      "rank": 12,
+      "id": "1304.1081v1.pdf::1990::90abd28aa4c2"
+    },
+    {
+      "score": 0.48374009132385254,
+      "text": "This statement demonstrates that supervised models significantly outperform zero-shot models in terms of performance, highlighting that an increase in parameters does not necessarily guarantee a higher level of social knowledge in this particular scenario.. 3.1.2. Reasoning. The task of reasoning poses significant challenges for an intelligent AI model. . To effectively tackle reasoning tasks, the models need to not only comprehend the provided information but also utilize reasoning and inferenc",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.748470723628998,
+      "relevance": 3,
+      "rank": 13,
+      "id": "3641289.pdf::2024::ecc662314003"
+    },
+    {
+      "score": 0.4608909487724304,
+      "text": "This overview paper on the principles of end-to-end training of modular systems such as deep neural networks using gradient-based optimization showed how neural networks (and in particular convolutional nets) can be combined with search or inference mechanisms to model complex outputs that are interdependent, such as sequences of characters associated with the content of a document. 43. . Hubel, D. H. & Wiesel, T. N. Receptive fields, binocular interaction, and functional architecture in the cat",
+      "metadata": {
+        "source_file": "NatureDeepReview.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 9,
+        "origin_chunk_file": "NatureDeepReview.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.785026267170906,
+      "relevance": 3,
+      "rank": 14,
+      "id": "NatureDeepReview.pdf::2025::b7c20fcc18a5"
+    },
+    {
+      "score": 0.4116054177284241,
+      "text": ". The barriers to data analysis primarily exist in the following areas: •\nLack of systematic statistical training: Individuals without a background in statistics may find it challenging to understand which types of analysis are feasible, even when data is presented to them. As data and models become increasingly complex, gaining a solid understanding of current statistical techniques typically requires at least a Master's level of statistical training. . •\nSoftware limitation: Simple data analys",
+      "metadata": {
+        "source_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 15,
+        "origin_chunk_file": "A Survey on Large Language Model-based Agents for Statistics and Data Science.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.797114834189415,
+      "relevance": 3,
+      "rank": 15,
+      "id": "A Survey on Large Language Model-based Agents for Statistics and Data Science.pdf::2025::eb7354eac5a9"
+    },
+    {
+      "score": 0.44397827982902527,
+      "text": ". Abstract—Ever since the Turing Test was proposed in the 1950s, humans have explored the mastering of language intelligence by machine.. Language is essentially a complex, intricate system of human expressions governed by grammatical rules. It poses a significant challenge to develop capable artificial intelligence (AI) algorithms for comprehending and grasping a language.",
+      "metadata": {
+        "source_file": "2303.18223v16.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2025",
+        "detected_language": null,
+        "page_count": 144,
+        "origin_chunk_file": "2303.18223v16.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.84788466244936,
+      "relevance": 3,
+      "rank": 16,
+      "id": "2303.18223v16.pdf::2025::63f7ecf49d70"
+    },
+    {
+      "score": 0.4176487624645233,
+      "text": ". It may be difficult to differentiate those who mean to exploit such systems (e.g., thoughtlessly spam submissions to as many avenues as possible), and those who are relying on AI writing tools to better express themselves.",
+      "metadata": {
+        "source_file": "2210.07321v4.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2023",
+        "detected_language": null,
+        "page_count": 36,
+        "origin_chunk_file": "2210.07321v4.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.922927029430866,
+      "relevance": 3,
+      "rank": 17,
+      "id": "2210.07321v4.pdf::2023::7b9fad77ea54"
+    },
+    {
+      "score": 0.4424927234649658,
+      "text": ". Comprehensible explanations of probabilistic reasoning are a prerequisite for wider acceptance of Bayesian methods in expert systems and decision support systems.",
+      "metadata": {
+        "source_file": "1304.1082v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "1990",
+        "detected_language": null,
+        "page_count": 11,
+        "origin_chunk_file": "1304.1082v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.953404366970062,
+      "relevance": 3,
+      "rank": 18,
+      "id": "1304.1082v1.pdf::1990::132a9876fb38"
+    },
+    {
+      "score": 0.3990001082420349,
+      "text": "That said, most applications that have been developed to date have a 'declarative' flavour and the ways in which the system may be applied to arithmetic or other mathematical operations have not yet been explored in any depth (but see Wolff ). This has a bearing on how the system may be developed for database applications, as will be discussed in Section 7. . Many problems in artificial intelligence are known to be intractable if one wishes to obtain the best possible answer. . But if one is con",
+      "metadata": {
+        "source_file": "0311031v1.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2018",
+        "detected_language": null,
+        "page_count": 25,
+        "origin_chunk_file": "0311031v1.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -5.994715228676796,
+      "relevance": 3,
+      "rank": 19,
+      "id": "0311031v1.pdf::2018::fcca44ab2ee4"
+    },
+    {
+      "score": 0.3767727017402649,
+      "text": "Comparison Traditional ML Deep Learning LLMs Training Data Size Large Large Very large Feature Engineering Manual Automatic Automatic Model Complexity Limited Complex Very Complex Interpretability Good Poor Poorer Performance Moderate High Highest Hardware Requirements Low High Very High AI model evaluation is an essential step in assessing the performance of a model. There are some standard model evaluation protocols, including k-fold cross-validation, holdout validation, leave one out cross-va",
+      "metadata": {
+        "source_file": "3641289.pdf",
+        "title": null,
+        "authors": null,
+        "year": "2024",
+        "detected_language": null,
+        "page_count": 45,
+        "origin_chunk_file": "3641289.chunks.json"
+      },
+      "query": "Analyze the mechanisms, strengths, and limitations of discuss the limitations of if–then logic in complex ai systems., noting origins only when explicitly stated.",
+      "final_score": -6.058418795466423,
+      "relevance": 3,
+      "rank": 20,
+      "id": "3641289.pdf::2024::fb8524993698"
+    }
+  ]
+}

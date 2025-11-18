@@ -1,0 +1,12 @@
+{
+  "query_id": "Define_summarize_approaches_to_knowledge_acquisition_mentioned_in_the_corpus___d",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.6545309973221582,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2020s": 8,
+    "2010s": 2
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "phi3_4b"
+}

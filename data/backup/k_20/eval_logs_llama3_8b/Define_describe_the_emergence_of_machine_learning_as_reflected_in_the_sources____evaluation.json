@@ -1,0 +1,13 @@
+{
+  "query_id": "Define_describe_the_emergence_of_machine_learning_as_reflected_in_the_sources___",
+  "ndcg@k": 1.0,
+  "faithfulness": 0.5498810193698644,
+  "dominant_decade": 2020,
+  "decade_counts": {
+    "2000s": 5,
+    "2020s": 14,
+    "2010s": 1
+  },
+  "citation_hit_rate": 1.0,
+  "model_name": "llama3_8b"
+}
