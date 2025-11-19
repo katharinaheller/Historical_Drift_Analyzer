@@ -1,6 +1,4 @@
 from __future__ import annotations
-
-# Add project root
 import sys
 import os
 import subprocess
@@ -19,7 +17,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.core.evaluation.multi_model_report_builder import MultiModelReportBuilder
 
-# Color scale for six-level classification
+# ---------------------------------------------------------
 FAITH_COLORS = {
     "excellent":  "#006d2c",
     "good":       "#31a354",
@@ -40,9 +38,7 @@ FAITH_LABELS = {
 
 
 # ---------------------------------------------------------
-
 def run(cmd: list[str]) -> None:
-    # Wrapper for subprocess execution
     print(">>>", " ".join(cmd))
     start = time.time()
     p = subprocess.Popen(cmd)
@@ -51,9 +47,7 @@ def run(cmd: list[str]) -> None:
 
 
 # ---------------------------------------------------------
-
 def load_eval_df(eval_dir: Path) -> pd.DataFrame:
-    # Load all per-query evaluation json files in a directory
     rows = []
     for fp in eval_dir.glob("*_evaluation.json"):
         try:
@@ -61,49 +55,34 @@ def load_eval_df(eval_dir: Path) -> pd.DataFrame:
         except Exception:
             continue
 
-        nd = d.get("ndcg@k")
-        fa = d.get("faithfulness")
-
         rows.append({
             "query_id": d.get("query_id"),
-            "ndcg": float(nd) if nd is not None else np.nan,
-            "faith": float(fa) if fa is not None else np.nan,
+            "ndcg": float(d.get("ndcg@k", np.nan)),
+            "faith": float(d.get("faithfulness", np.nan)),
             "model": d.get("model_name", "unknown"),
         })
 
     df = pd.DataFrame(rows)
     if df.empty:
-        # Ensure expected columns exist even when no rows are present
-        df = pd.DataFrame(columns=["query_id", "ndcg", "faith", "model"])
-    if "faith" not in df:
-        df["faith"] = np.nan
+        return pd.DataFrame(columns=["query_id", "ndcg", "faith", "model"])
     return df
 
 
 # ---------------------------------------------------------
-
 def faith_band(f: float) -> str:
-    # Six-level categorization of faithfulness scores
     if np.isnan(f):
         return "missing"
     v = float(f)
-    if v >= 0.95:
-        return "excellent"
-    if v >= 0.85:
-        return "good"
-    if v >= 0.75:
-        return "fair"
-    if v >= 0.60:
-        return "borderline"
-    if v >= 0.40:
-        return "poor"
+    if v >= 0.95: return "excellent"
+    if v >= 0.85: return "good"
+    if v >= 0.75: return "fair"
+    if v >= 0.60: return "borderline"
+    if v >= 0.40: return "poor"
     return "critical"
 
 
 # ---------------------------------------------------------
-
 def clear_and_prepare(path: Path) -> None:
-    # Clear directory and reconstruct it
     if path.exists():
         for f in path.glob("*"):
             if f.is_file():
@@ -115,14 +94,12 @@ def clear_and_prepare(path: Path) -> None:
 
 
 # ---------------------------------------------------------
-
 def plot_global_comparison(df: pd.DataFrame, out_path: Path) -> None:
-    # Draw multi-model band distribution
-    df = df.copy()
     if df.empty:
         print("No evaluation data available for global comparison plot.")
         return
 
+    df = df.copy()
     df["band"] = df["faith"].apply(faith_band)
 
     models = sorted(df["model"].unique())
@@ -130,8 +107,7 @@ def plot_global_comparison(df: pd.DataFrame, out_path: Path) -> None:
 
     counts = (
         df.groupby(["model", "band"])["query_id"]
-        .count()
-        .unstack(fill_value=0)
+        .count().unstack(fill_value=0)
         .reindex(columns=bands, fill_value=0)
     )
 
@@ -159,22 +135,27 @@ def plot_global_comparison(df: pd.DataFrame, out_path: Path) -> None:
     ax.legend(frameon=False, ncol=3)
 
     fig.tight_layout()
-    fig.savefig(out_path.with_suffix(".png"), dpi=150, bbox_inches="tight")
-    fig.savefig(out_path.with_suffix(".svg"), bbox_inches="tight")
+    fig.savefig(out_path.with_suffix(".png"), dpi=150)
+    fig.savefig(out_path.with_suffix(".svg"))
     plt.close(fig)
 
 
 # ---------------------------------------------------------
-
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Run multi-model benchmark with strict isolation and build comparison report."
+        description="Run multi-model benchmark with custom output directories."
     )
     parser.add_argument("--num_prompts", type=int, default=10)
-    parser.add_argument("--prompt_file", type=str, default="data/prompts/benchmark_prompts.txt")
+    parser.add_argument("--prompt_file", type=str)
     parser.add_argument("--k", type=int, default=10)
     parser.add_argument("--bootstrap_iters", type=int, default=2000)
     parser.add_argument("--seed", type=int, default=42)
+
+    # NEW: allow overriding dirs
+    parser.add_argument("--logs_dir", type=str, required=True)
+    parser.add_argument("--eval_dir", type=str, required=True)
+    parser.add_argument("--charts_dir", type=str, required=True)
+
     args = parser.parse_args()
 
     models = {
@@ -188,15 +169,15 @@ def main() -> None:
     for profile, model_id in models.items():
         print(f"=== RUNNING MODEL: {profile} ({model_id}) ===")
 
-        logs_dir = Path(f"data/logs_{profile}")
-        eval_dir = Path(f"data/eval_logs_{profile}")
-        charts_dir = Path(f"data/eval_charts_{profile}")
+        # Write model-specific subfolders inside provided base dirs
+        logs_dir = Path(args.logs_dir) / f"logs_{profile}"
+        eval_dir = Path(args.eval_dir) / f"eval_logs_{profile}"
+        charts_dir = Path(args.charts_dir) / f"eval_charts_{profile}"
 
         clear_and_prepare(logs_dir)
         clear_and_prepare(eval_dir)
         clear_and_prepare(charts_dir)
 
-        # Run isolated benchmark for this profile
         cmd = [
             "poetry", "run", "python", "scripts/run_full_benchmark.py",
             "--prompt_file", args.prompt_file,
@@ -211,31 +192,23 @@ def main() -> None:
         run(cmd)
 
         df = load_eval_df(eval_dir)
-        if df.empty:
-            print(f"No evaluation files found for model '{profile}' in {eval_dir}")
         df["model"] = profile
         all_dfs.append(df)
 
     df_all = pd.concat(all_dfs, ignore_index=True)
 
-    outdir = Path("data/model_comparison")
+    outdir = Path(args.charts_dir) / "model_comparison"
     outdir.mkdir(parents=True, exist_ok=True)
 
-    df_all.to_csv(outdir / "all_models_evaluation.csv", index=False, encoding="utf-8")
+    df_all.to_csv(outdir / "all_models_evaluation.csv", index=False)
 
     if df_all.empty:
-        print("No evaluation data across models. Skipping plots and multi-model report.")
         return
 
     plot_global_comparison(df_all, outdir / "faithfulness_model_comparison")
 
-    rb = MultiModelReportBuilder(base_dir="data")
-    pdf_path = rb.build(name="multi_model_benchmark_report.pdf")
-
-    print("\nAll done.")
-    print("→ CSV :", outdir / "all_models_evaluation.csv")
-    print("→ Plots:", outdir / "faithfulness_model_comparison.*")
-    print("→ PDF :", pdf_path)
+    rb = MultiModelReportBuilder(base_dir=str(args.charts_dir))
+    rb.build(name="multi_model_benchmark_report.pdf")
 
 
 if __name__ == "__main__":

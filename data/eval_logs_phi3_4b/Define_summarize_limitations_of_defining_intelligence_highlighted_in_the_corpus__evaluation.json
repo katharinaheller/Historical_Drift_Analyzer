@@ -1,6 +1,0 @@
-{
-  "query_id": "Define_summarize_limitations_of_defining_intelligence_highlighted_in_the_corpus_",
-  "model_name": "phi3_4b",
-  "ndcg@k": 0.9821490166714711,
-  "faithfulness": 0.32784229033043893
-}

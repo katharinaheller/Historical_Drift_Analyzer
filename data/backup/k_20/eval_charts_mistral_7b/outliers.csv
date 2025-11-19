@@ -1,4 +1,0 @@
-query_id,ndcg@k,faithfulness,citation_hit_rate,dominant_decade,model
-Analyze_the_mechanisms__strengths__and_limitations_of_describe_how_temporal_cont,1.0,0.8515358202560334,1.0,2020,mistral_7b
-Define_describe_the_notion_of_transparency_in_ai_decision_processes___describe_i,0.90963717634234,0.5637604516437201,1.0,2020,mistral_7b
-Define_explain_the_concept_of_heuristic_search_as_described_in_the_corpus___desc,0.9534606181487503,0.42518573875667004,1.0,2020,mistral_7b

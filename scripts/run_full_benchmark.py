@@ -22,12 +22,10 @@ from src.core.evaluation.evaluation_table_exporter import EvaluationTableExporte
 
 
 def _count_files(dir_path: Path, pattern: str) -> int:
-    # Count files using glob
     return sum(1 for _ in dir_path.glob(pattern))
 
 
 def _load_json(path: Path) -> dict | None:
-    # Safe JSON loader
     try:
         return json.loads(path.read_text(encoding="utf-8"))
     except Exception:
@@ -35,7 +33,6 @@ def _load_json(path: Path) -> dict | None:
 
 
 def _clean_directory(path: Path) -> None:
-    # Delete directory contents
     if path.exists():
         for f in path.glob("*"):
             if f.is_file():
@@ -58,6 +55,7 @@ def main() -> None:
     parser.add_argument("--k", type=int, default=10)
     parser.add_argument("--bootstrap_iters", type=int, default=2000)
     parser.add_argument("--seed", type=int, default=42)
+
     parser.add_argument(
         "--intent",
         type=str,
@@ -65,6 +63,13 @@ def main() -> None:
         choices=["conceptual", "chronological", "analytical", "comparative"],
         help="Fixed intent; if omitted, automatic classification is used."
     )
+
+    parser.add_argument(
+        "--skip_llm",
+        action="store_true",
+        help="Skip LLM generation phase if logs already exist."
+    )
+
     args = parser.parse_args()
 
     random.seed(args.seed)
@@ -76,8 +81,6 @@ def main() -> None:
     eval_dir = Path(args.eval_dir)
     charts_dir = Path(args.charts_dir)
 
-    # Clean directories
-    _clean_directory(logs_dir)
     _clean_directory(eval_dir)
     _clean_directory(charts_dir)
 
@@ -91,10 +94,18 @@ def main() -> None:
     print(f"boot iters   : {args.bootstrap_iters}")
     print(f"seed         : {args.seed}")
     print(f"intent       : {args.intent or 'auto'}")
+    print(f"skip_llm     : {args.skip_llm}")
     print()
 
-    # -------------------------------------------------------
+    # --------------------------------------------------------------------
+    # Phase 1: LLM generation (skippable)
+    # --------------------------------------------------------------------
     print("=== Phase 1: LLM Generation ===")
+
+    # If skip_llm: do not delete logs_dir; keep cached llm_*.json
+    if not args.skip_llm:
+        _clean_directory(logs_dir)
+
     prompt_file = Path(args.prompt_file)
     if not prompt_file.exists():
         raise FileNotFoundError(f"Prompt file not found: {prompt_file}")
@@ -107,51 +118,62 @@ def main() -> None:
     prompts = prompts[: args.num_prompts]
     print(f"Loaded {len(prompts)} prompts.\n")
 
-    before_logs = _count_files(logs_dir, "llm_*.json")
-
-    llm_orch = LLMOrchestrator(logs_dir=str(logs_dir))
-    prompt_orch = PromptOrchestrator()
-
-    for idx, prompt in enumerate(prompts, start=1):
-        print(f"[{idx}/{len(prompts)}] {prompt}")
-
-        try:
-            if args.intent:
-                query_obj = {"processed_query": prompt.strip(), "intent": args.intent}
-            else:
-                pre = prompt_orch.preprocessor.process(prompt)
-                intent = pre["intent"]
-                refined = prompt_orch.prompt_builder.reformulate_query(
-                    pre["processed_query"], intent
-                )
-                query_obj = {"processed_query": refined, "intent": intent}
-                prompt_orch.logger.info(
-                    f"Auto intent='{intent}' → refined query='{refined}'"
-                )
-
-            _ = llm_orch.process_query(query_obj)
-
-        except Exception as e:
-            (logs_dir / f"error_{idx}.json").write_text(
-                json.dumps({"prompt": prompt, "error": str(e)}, indent=2),
-                encoding="utf-8"
+    if args.skip_llm:
+        count_existing = _count_files(logs_dir, "llm_*.json")
+        if count_existing == 0:
+            raise RuntimeError(
+                "skip_llm was specified, but no llm_*.json files exist in logs_dir."
             )
+        print(f"Skipping LLM generation. Using {count_existing} cached llm_*.json files.\n")
 
-    if hasattr(llm_orch, "close"):
-        try:
-            llm_orch.close()
-        except Exception:
-            pass
+    else:
+        before_logs = _count_files(logs_dir, "llm_*.json")
 
-    after_logs = _count_files(logs_dir, "llm_*.json")
-    produced = max(0, after_logs - before_logs)
-    print(f"LLM phase completed. Produced {produced} valid llm_*.json logs.\n")
+        llm_orch = LLMOrchestrator(logs_dir=str(logs_dir))
+        prompt_orch = PromptOrchestrator()
 
-    if produced == 0:
-        print("No LLM outputs. Stopping.")
-        return
+        for idx, prompt in enumerate(prompts, start=1):
+            print(f"[{idx}/{len(prompts)}] {prompt}")
 
-    # -------------------------------------------------------
+            try:
+                if args.intent:
+                    query_obj = {"processed_query": prompt.strip(), "intent": args.intent}
+                else:
+                    pre = prompt_orch.preprocessor.process(prompt)
+                    intent = pre["intent"]
+                    refined = prompt_orch.prompt_builder.reformulate_query(
+                        pre["processed_query"], intent
+                    )
+                    query_obj = {"processed_query": refined, "intent": intent}
+                    prompt_orch.logger.info(
+                        f"Auto intent='{intent}' → refined query='{refined}'"
+                    )
+
+                _ = llm_orch.process_query(query_obj)
+
+            except Exception as e:
+                (logs_dir / f"error_{idx}.json").write_text(
+                    json.dumps({"prompt": prompt, "error": str(e)}, indent=2),
+                    encoding="utf-8"
+                )
+
+        if hasattr(llm_orch, "close"):
+            try:
+                llm_orch.close()
+            except Exception:
+                pass
+
+        after_logs = _count_files(logs_dir, "llm_*.json")
+        produced = max(0, after_logs - before_logs)
+        print(f"LLM phase completed. Produced {produced} valid llm_*.json logs.\n")
+
+        if produced == 0:
+            print("No LLM outputs. Stopping.")
+            return
+
+    # --------------------------------------------------------------------
+    # Phase 2: Evaluation
+    # --------------------------------------------------------------------
     print("=== Phase 2: Evaluation ===")
 
     model_name = Path(args.logs_dir).name.replace("logs_", "") or "benchmark"
@@ -170,7 +192,9 @@ def main() -> None:
         print("No evaluatable data. Stopping before visualization.")
         return
 
-    # -------------------------------------------------------
+    # --------------------------------------------------------------------
+    # Phase 3: Visualization
+    # --------------------------------------------------------------------
     print("=== Phase 3: Visualization ===")
     cfg = VizConfig(
         logs_dir=str(eval_dir),
@@ -185,7 +209,9 @@ def main() -> None:
     summary = _load_json(summary_json)
     has_summary = bool(summary and "ndcg@k_mean" in summary and "faith_mean" in summary)
 
-    # -------------------------------------------------------
+    # --------------------------------------------------------------------
+    # Phase 4: Table Export
+    # --------------------------------------------------------------------
     print("=== Phase 4: Table Export ===")
     if has_summary:
         exp = EvaluationTableExporter(charts_dir=str(charts_dir))
@@ -199,7 +225,9 @@ def main() -> None:
     else:
         print("Skipping table export (no summary.json with means).")
 
-    # -------------------------------------------------------
+    # --------------------------------------------------------------------
+    # Phase 5: PDF Report
+    # --------------------------------------------------------------------
     print("=== Phase 5: PDF Report ===")
     if has_summary:
         try:

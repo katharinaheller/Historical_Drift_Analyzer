@@ -17,86 +17,69 @@ logger = logging.getLogger("EvaluationOrchestrator")
 
 
 class EvaluationOrchestrator:
-    """Deterministic evaluation orchestrator adapted to the CURRENT log structure."""
-
+    # Deterministic evaluation, fully decoupled from judge logic.
     def __init__(
         self,
         base_output_dir: str = "data/eval_logs",
         model_name: str = "default",
         settings: EvaluationSettings = DEFAULT_EVAL_SETTINGS,
         metrics: Dict[str, IMetric] | None = None,
-        gt_builder: GroundTruthBuilder | None = None,
+        gt_builder: Any | None = None,
         k: Optional[int] = None,
         bootstrap_iters: Optional[int] = None,
     ):
-        # Create output directory
+        # Setup output directory
         self.model_name = model_name
         self.out = Path(base_output_dir)
         self.out.mkdir(parents=True, exist_ok=True)
 
-        # Store settings with overrides
+        # Override settings
         overrides: Dict[str, Any] = {}
         if k is not None:
             overrides["ndcg_k"] = int(k)
-
         self.settings = replace(settings, **overrides) if overrides else settings
-        self.bootstrap_iters = bootstrap_iters
         self.k = self.settings.ndcg_k
+        self.bootstrap_iters = bootstrap_iters
 
-        # Initialize metrics
+        # Metrics
         self.metrics = metrics or {
             "ndcg@k": NDCGMetric(k=self.k),
             "faithfulness": FaithfulnessMetric(settings=self.settings),
         }
 
-        # Ground truth builder
+        # Ground truth builder (completely decoupled)
         self.gt_builder = gt_builder or GroundTruthBuilder(settings=self.settings)
 
         logger.info(f"EvaluationOrchestrator ready | model={self.model_name} | k={self.k}")
 
     # -------------------------------------------------------------
     def _ensure_chunk_ids(self, xs: List[Dict[str, Any]]) -> None:
-        # Ensure stable ids are always present
         for ch in xs:
             if not ch.get("id"):
                 ch["id"] = make_chunk_id(ch)
 
     # -------------------------------------------------------------
     def _safe_id(self, s: Optional[str]) -> str:
-        # Sanitize file-safe ID
         if not s:
             return "query"
-        cleaned = "".join(ch if ch.isalnum() or ch in "-_" else "_" for ch in s)
+        cleaned = "".join(c if c.isalnum() or c in "-_" else "_" for c in s)
         return cleaned[:80] or "query"
 
     # -------------------------------------------------------------
     def _extract_final(self, data: Dict[str, Any]) -> List[Dict[str, Any]]:
-        # Accept new key
-        final = data.get("retrieved_chunks_final")
-        if final:
-            return final
-
-        # Accept legacy key for compatibility
-        final = data.get("retrieved_chunks")
-        if final:
-            return final
-
-        return []
+        return (
+            data.get("retrieved_chunks_final")
+            or data.get("retrieved_chunks")
+            or []
+        )
 
     # -------------------------------------------------------------
     def _extract_raw(self, data: Dict[str, Any]) -> Optional[List[Dict[str, Any]]]:
-        # Prefer newest key
-        raw = data.get("raw")
-        if raw:
-            return raw
-
-        # Accept standard key
-        raw = data.get("retrieved_chunks_raw")
-        if raw:
-            return raw
-
-        # Accept fallback
-        return data.get("faiss_raw")
+        return (
+            data.get("raw")
+            or data.get("retrieved_chunks_raw")
+            or data.get("faiss_raw")
+        )
 
     # -------------------------------------------------------------
     def evaluate_single(
@@ -108,22 +91,19 @@ class EvaluationOrchestrator:
         retrieved_chunks_raw: Optional[List[Dict[str, Any]]] = None,
     ) -> Dict[str, float]:
 
-        # Ensure IDs exist for final chunks
+        # Ensure chunk IDs
         self._ensure_chunk_ids(retrieved_chunks_final)
-
-        # RAW is preferred for NDCG
         retrieval_for_ndcg = retrieved_chunks_raw if retrieved_chunks_raw else retrieved_chunks_final
         self._ensure_chunk_ids(retrieval_for_ndcg)
 
-        # Build semantic graded ground truth independent of final ranking
+        # Build semantic ground truth (entirely decoupled)
         gt_map = self.gt_builder.build(query, retrieval_for_ndcg)
 
+        # Relevance list (NDCG)
         relevance_scores = [int(gt_map.get(ch["id"], 0)) for ch in retrieval_for_ndcg]
 
-        # Compute NDCG
+        # Compute metrics
         ndcg_val = self.metrics["ndcg@k"].compute(relevance_scores=relevance_scores)
-
-        # Compute faithfulness
         faith_val = self.metrics["faithfulness"].compute(
             context_chunks=[c.get("text", "") for c in retrieved_chunks_final],
             answer=model_output,
@@ -131,6 +111,7 @@ class EvaluationOrchestrator:
 
         qid = self._safe_id(query)
 
+        # Output
         result = {
             "query_id": qid,
             "model_name": self.model_name,
@@ -140,7 +121,6 @@ class EvaluationOrchestrator:
 
         out_f = self.out / f"{qid}_evaluation.json"
         out_f.write_text(json.dumps(result, indent=2), encoding="utf-8")
-
         logger.info(f"Evaluation complete → {out_f}")
         return result
 
@@ -161,7 +141,7 @@ class EvaluationOrchestrator:
             try:
                 data = json.loads(fp.read_text(encoding="utf-8"))
 
-                # Extract query
+                # Query
                 query = (
                     data.get("query")
                     or data.get("query_refined")
@@ -172,19 +152,16 @@ class EvaluationOrchestrator:
                     logger.warning(f"Skipped incomplete log: {fp.name}")
                     continue
 
-                # Extract model answer
                 model_output = data.get("model_output") or data.get("answer") or ""
 
-                # Extract final chunks (new + legacy)
                 final = self._extract_final(data)
                 if not final:
-                    logger.warning(f"Skipped incomplete log (no final chunks): {fp.name}")
+                    logger.warning(f"Skipped (no final chunks): {fp.name}")
                     continue
 
-                # Extract raw chunks (new + legacy)
                 raw = self._extract_raw(data)
 
-                # Run evaluation
+                # Evaluate
                 res = self.evaluate_single(
                     query=query,
                     retrieved_chunks_final=final,
@@ -211,6 +188,5 @@ class EvaluationOrchestrator:
         }
 
         (self.out / "evaluation_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-
         logger.info(f"Batch evaluation complete | files={len(files)} | evaluated={evaluated}")
         return summary

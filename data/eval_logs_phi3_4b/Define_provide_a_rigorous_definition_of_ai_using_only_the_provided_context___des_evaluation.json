@@ -1,6 +1,0 @@
-{
-  "query_id": "Define_provide_a_rigorous_definition_of_ai_using_only_the_provided_context___des",
-  "model_name": "phi3_4b",
-  "ndcg@k": 0.9427930190104705,
-  "faithfulness": 0.63614658892426
-}
