@@ -1,7 +1,7 @@
 paths:
   vector_store_dir: data/vector_store
 options:
-  final_k: 20
+  final_k: 3
   oversample_factor: 15
   diversify_sources: true
   embedding_model: multi-qa-mpnet-base-dot-v1

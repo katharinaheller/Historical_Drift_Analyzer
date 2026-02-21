@@ -47,7 +47,7 @@ def run_full_model(model_name: str, model_key: str, k: int):
         "poetry", "run", "python",
         f"{BASE_DIR}/scripts/run_full_benchmark.py",
         "--prompt_file", PROMPT_FILE,
-        "--num_prompts", "10",
+        "--num_prompts", "100",
         "--logs_dir", str(logs_dir),
         "--eval_dir", str(eval_dir),
         "--charts_dir", str(charts_dir),
